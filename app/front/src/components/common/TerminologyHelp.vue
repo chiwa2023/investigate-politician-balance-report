@@ -1,5 +1,4 @@
 ﻿<script setup lang="ts">
-import { Ref, ref ,onBeforeMount ,watch} from 'vue';
 
 const props = defineProps<{
     terminologyId: number,

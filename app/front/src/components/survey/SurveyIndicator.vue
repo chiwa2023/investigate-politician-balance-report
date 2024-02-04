@@ -19,6 +19,7 @@ function viewTerminology(){
 function recieveCloseTerminology(){
     isVisibleTerminology.value = false;
 }
+const terminologyId = 0;
 </script>
 
 <template>
@@ -39,7 +40,7 @@ function recieveCloseTerminology(){
             <input type="text" v-model="indicatorValue.indicatorResultDetail" :disabled="true" style="width: 95%;">
         </div>
     </div>
-    <TerminologyHelp v-if="isVisibleTerminology" terminologyId="0" :terminology-name="indicatorValue.indicatorTitle" :help-explain="indicatorValue.indicatorExplain"  @send-close-terminology="recieveCloseTerminology"></TerminologyHelp>
+    <TerminologyHelp v-if="isVisibleTerminology" :terminologyId="terminologyId" :terminology-name="indicatorValue.indicatorTitle" :help-explain="indicatorValue.indicatorExplain"  @send-close-terminology="recieveCloseTerminology"></TerminologyHelp>
 </template>
 
 <style scoped></style>
