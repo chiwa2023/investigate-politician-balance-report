@@ -2,6 +2,11 @@
 import SelectOptionDto from "../../dto/selectOptionDto";
 import SurveySelecterInterface from "../../dto/survey/surveySelecterDto";
 
+/**
+ *  重複のない提出年リストを作成する
+ * @param selectorList 全調査リスト
+ * @returns セレクトボックス選択肢
+ */
 export default function getAllYearTeishutsuUnique(selectorList: SurveySelecterInterface[]): SelectOptionDto[] {
     const list: SelectOptionInterface[] = [];
 
@@ -25,6 +30,13 @@ export default function getAllYearTeishutsuUnique(selectorList: SurveySelecterIn
 
     return list;
 }
+
+/**
+ * セレクトボックス選択肢Dtoを生成する
+ * @param id 値
+ * @param name 表示テキスト
+ * @returns Dto
+ */
 function createDto(id: number, name: string): SelectOptionDto {
     const dto: SelectOptionInterface = new SelectOptionDto();
     dto.value = id + "";

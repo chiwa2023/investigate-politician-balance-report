@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import BalancesheetXmlUpload from './common/balancesheet-xml-upload/BalancesheetXmlUpload.vue'
+import BalancesheetXmlUpload from "./common/balancesheet-xml-upload/BalancesheetXmlUpload.vue";
 
 </script>
 <template>

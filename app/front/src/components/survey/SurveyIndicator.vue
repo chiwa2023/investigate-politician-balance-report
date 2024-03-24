@@ -1,9 +1,9 @@
 ﻿<script setup lang="ts">
 
-import { Ref,computed,ref } from 'vue'
-import  SurveyIndicatorDto from '../../dto/surveyIndicatorDto'
-import  SurveyIndicatorInterface from '../../dto/surveyIndicatorDto'
-import  TerminologyHelp from '../common/TerminologyHelp.vue'
+import { Ref,computed,ref } from "vue";
+import  SurveyIndicatorDto from "../../dto/surveyIndicatorDto";
+import  SurveyIndicatorInterface from "../../dto/surveyIndicatorDto";
+import  TerminologyHelp from "../common/TerminologyHelp.vue";
 
 const props = defineProps<{
     indicator: SurveyIndicatorDto
@@ -12,6 +12,10 @@ let indicatorValue: Ref<SurveyIndicatorInterface> = computed(() => props.indicat
 
 /** 用語ヘルプを表示する */
 const isVisibleTerminology:Ref<boolean> = ref(false); 
+
+/**
+ * 用語ヘルプコンポーネントを表示する
+ */
 function viewTerminology(){
     isVisibleTerminology.value = true;
 }

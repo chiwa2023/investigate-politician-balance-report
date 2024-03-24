@@ -1,16 +1,16 @@
 ﻿<script setup lang="ts">
-import SurveyIndicatorDto from './../../dto/surveyIndicatorDto';
-import SelectOptionDto from './../../dto/selectOptionDto';
-import createMockSurveyGroupOptions from './mock/createMockSurveyGroupOptions';
-import getMockSurveySelector from './mock/getMockSurveySelector';
-import getMockSurveyView from './mock/getMockSurveyView';
-import { Ref, ref ,onBeforeMount ,watch} from 'vue';
-import SurveyIndicator from './SurveyIndicator.vue';
-import SurveySelecterInterface from '../../dto/survey/surveySelecterDto';
-import getAllOrganizationUnique from './getAllOrganizationUnique';
-import getAllYearTeishutsuUnique from './getAllYearTeishutsuUnique';
-import filterYearTeishutsu from './filterYearTeishutsu';
-import filterOrganization from './filterOrganization';
+import SurveyIndicatorDto from "./../../dto/surveyIndicatorDto";
+import SelectOptionDto from "./../../dto/selectOptionDto";
+import createMockSurveyGroupOptions from "./mock/createMockSurveyGroupOptions";
+import getMockSurveySelector from "./mock/getMockSurveySelector";
+import getMockSurveyView from "./mock/getMockSurveyView";
+import { Ref, ref ,onBeforeMount ,watch} from "vue";
+import SurveyIndicator from "./SurveyIndicator.vue";
+import SurveySelecterInterface from "../../dto/survey/surveySelecterDto";
+import getAllOrganizationUnique from "./getAllOrganizationUnique";
+import getAllYearTeishutsuUnique from "./getAllYearTeishutsuUnique";
+import filterYearTeishutsu from "./filterYearTeishutsu";
+import filterOrganization from "./filterOrganization";
 
 //選択リスト
 const yearList: Ref<SelectOptionDto[]> = ref([]);
@@ -51,6 +51,9 @@ const isYearCondition:Ref<boolean> = ref(true);
 const yearConditionText = "提出年を変更すると政治団体が絞り込まれます";
 const organizationConditionText = "政治団体を変更すると提出年が絞り込まれます";
 const conditionText:Ref<string> = ref(yearConditionText);
+/**
+ * 提出年が変更時
+ */
 function changeCondition(){
     isYearCondition.value = !isYearCondition.value;
     if(isYearCondition.value){
@@ -119,7 +122,7 @@ watch(selectedOrganaization, () => {
     </select>
     </div>
     <div class="right-area">
-        <span v-for="option in organizationList">
+        <span v-for="option in organizationList" :key="option.value">
         <input type="radio" :value="option.value" v-model="selectedOrganaization"/><label>{{ option.text }}</label>
     </span>
     </div>
@@ -128,13 +131,13 @@ watch(selectedOrganaization, () => {
         <label>調査指標グループ</label>
     </div>
     <div class="right-area">
-    <span v-for="option in surveyList">
+    <span v-for="option in surveyList" :key="option.value">
         <input type="radio" :value="option.value" :id="option.value" v-model="selectedSurvey" :disabled="isNotCompleteSelect"/><label>{{ option.text }}</label>
     </span>
     </div>
     <div class="one-line">
         <label>調査結果の表示</label><br>
-        <div v-for="option in surveyIndicatorList">
+        <div v-for="option in surveyIndicatorList" :key="option.indicatorTitle">
             <SurveyIndicator :indicator="option" ></SurveyIndicator>
         </div>
     </div>

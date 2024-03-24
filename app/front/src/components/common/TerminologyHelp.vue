@@ -5,7 +5,7 @@ const props = defineProps<{
     terminologyName: string,
     helpExplain: string,
 }>();
-const emits = defineEmits(['sendCloseTerminology']);
+const emits = defineEmits(["sendCloseTerminology"]);
 
 /** 自身を閉じる通知を親画面にする */
 function myCloseInfo() {

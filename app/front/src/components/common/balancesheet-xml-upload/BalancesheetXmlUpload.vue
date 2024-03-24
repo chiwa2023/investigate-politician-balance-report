@@ -1,7 +1,7 @@
 ﻿<script setup lang="ts">
-import { ref, Ref } from 'vue';
-import getMockAllBookDto from './mock/getMockAllBookDto';
-import AllBookDto from '../../../dto/balancesheet/allBookDto';
+import { ref, Ref } from "vue";
+import getMockAllBookDto from "./mock/getMockAllBookDto";
+import AllBookDto from "../../../dto/balancesheet/allBookDto";
 
 const selectFileInput = ref<HTMLInputElement>();
 
@@ -14,11 +14,15 @@ const dantaiKbn: Ref<string> = ref("");
 const umuShikinKanriDantai: Ref<number> = ref(0);
 
 const allBookDto: Ref<AllBookDto> = ref(new AllBookDto());
+
+/**
+ * ファイル選択ダイアログを表示する
+ */
 function onReadButton() {
     selectFileInput.value?.click();
 }
 
-const selectFileName:Ref<string> = ref("");
+const selectFileName: Ref<string> = ref("");
 const readTextFile = async () => {
     //ファイル名を表示
     if (selectFileInput.value !== null) {
@@ -29,24 +33,26 @@ const readTextFile = async () => {
             }
         }
     }
-    
+
     //データを取得して表示
     allBookDto.value = await getMockAllBookDto();
-    
+
     houkokuNen.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.houkokuNen;
     dantaiName.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.dantaiName;
     dantaiManagerName.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.daihyoushaNameLast + allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.daihyoushaNameFirst;
     dantaiOfficerName.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.kaikeiSekinnshaNameLast + allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.kaikeiSekinnshaNameFirst;
     dantaiJimushoAddress.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.jimushoJusho + allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.jimushoJushoTatemono;
     dantaiKbn.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.dantaiKbn;
-    umuShikinKanriDantai.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.umuShikinKanrenDantai    
+    umuShikinKanriDantai.value = allBookDto.value.allSheet0701CoverAndOrganizationDetailsDto.sheet070100CoverAndOrganizationDetailsDto.umuShikinKanrenDantai;
 };
 
 </script>
 <template>
     <div class="one-line">
-        政治資金収支報告書XMLファイル(SHUSHI.xml)を指定して読み取り<input ref="selectFileInput" type="file" accept=".xml" @change="readTextFile" style="visibility: hidden;"><br>
-        &nbsp;<input v-model="selectFileName" type="text" disabled="true" style="width: 50%;"><button @click="onReadButton" style="margin-left: 1%;">ファイルを指定</button><br>
+        政治資金収支報告書XMLファイル(SHUSHI.xml)を指定して読み取り<input ref="selectFileInput" type="file" accept=".xml"
+            @change="readTextFile" style="visibility: hidden;"><br>
+        &nbsp;<input v-model="selectFileName" type="text" disabled="true" style="width: 50%;"><button
+            @click="onReadButton" style="margin-left: 1%;">ファイルを指定</button><br>
     </div>
     <div class="left-area">
         <label>発行年</label>

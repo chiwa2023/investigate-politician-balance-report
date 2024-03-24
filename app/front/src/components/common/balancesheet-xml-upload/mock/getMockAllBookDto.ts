@@ -3,6 +3,10 @@ import  AllSheet0701CoverAndOrganizationDetailsDto  from "../../../../dto/balanc
 import  Sheet070100CoverAndOrganizationDetailsDto  from "../../../../dto/balancesheet/sheet01/sheet070100CoverAndOrganizationDetailsDto";
 //import axios from 'axios';
 
+/**
+ * 政治資金収支報告書を取得する
+ * @returns 政治資金収支報告書Dto
+ */
 export default async function getMockAllBookDto():Promise<AllBookDto>{
     //const allBookDto:AllBookDto = await axios.get('http://localhost:8080/convert-balancesheet-xml')
     //.then((response) => {return response.data})
