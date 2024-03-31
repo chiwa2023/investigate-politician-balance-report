@@ -22,22 +22,15 @@ Backend処理のうちService部分で共通化できる処理をフレームワ
 
 ## メソッド
 
-### 1. practice
+### 1. boolean practice
 
 - 引数:ビジネス処理に必要な情報Dto
 - 特有なビジネス処理を行い、その結果を返却すること
 - 処理を行ったことをログに記録にするため、自身のwriteLogメソッドを呼び出すこと
 
-### 2. boolean checkPrivilege
+### 2. boolean writeLog
 
-- 引数:(パッケージ未定)PrivilegeDto
-- 処理内容：TODO
-- NG時の処理：false/javax.naming.AuthenticationExceptionを返却すること
-- OK時の処理：trueを返却すること
-
-### 3. boolean checkPrivilege
-
-- 引数:(パッケージ未定)TransactionControllDto
-- 処理内容：TODO
-- NG時の処理：false/org.springframework.dao.DuplicateKeyExceptionを返却すること
+- 引数:(パッケージ未定)LogContentDto
+- 処理内容：LogContentDtoの内容
+- NG時の処理：例外を投げること
 - OK時の処理：trueを返却すること

@@ -49,7 +49,7 @@
 
 ※同じ報告年のデータが存在する場合は、このページではアップロードせず[政党交付金使途報告書バージョン管理機能](../#)を利用すること
 
-## 5.アクション一覧
+## 5. アクション一覧
 
 | 番号 |     論理名      | タイプ | 活性／表示 |                     内容                     |
 | ---- | --------------- | ------ | ---------- | -------------------------------------------- |
@@ -65,8 +65,8 @@ CheckConmbinedPoliticsPartyUsageReportInterface
 |               論理名               |           物理名            |   型    |                        説明(例)                        |
 | ---------------------------------- | --------------------------- | ------- | ------------------------------------------------------ |
 | 政治団体Id                         | politicianOrganizationId    | Long    | 政治団体を識別する一意のId                             |
-| 政治団体同一識別コード             | politicianOrganizationCode  | Long    | 変更にかかわらず政治団体同一であることを識別するコード |
-| 政治団体名称                       | politicianOrganizationName  | Long    | 政治団体名称                                           |
+| 政治団体同一識別コード             | politicianOrganizationCode  | Integer | 変更にかかわらず政治団体同一であることを識別するコード |
+| 政治団体名称                       | politicianOrganizationName  | String  | 政治団体名称                                           |
 | 報告年                             | submisshonYear              | Integer | 報告年                                                 |
 | 取込み前確認・政治団体名称         | isConfirmOrganizationName   | boolean | 政治団体名称の一致を確認したら`true`                   |
 | 取込み前確認・報告年               | isConfirmYear               | boolean | 指定報告年のデータが不存在なら`true`                   |

@@ -60,10 +60,10 @@
         <mxCell id="qQW_u_u5-3ppLx-0F7_--37" value="&lt;span style=&quot;font-size: 30px;&quot;&gt;側所属です&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;dashed=1;dashPattern=8 8;verticalAlign=bottom;" parent="cFaB45KztUIKXS-_cTrr-14" vertex="1">
           <mxGeometry x="830" y="96" width="260" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="Wn7HRnoRUJRt4UX1Rprx-0" value="&lt;span style=&quot;font-size: 30px;&quot;&gt;◆◆派閥&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#CCCCCC;" parent="cFaB45KztUIKXS-_cTrr-14" vertex="1">
+        <mxCell id="Wn7HRnoRUJRt4UX1Rprx-0" value="&lt;span style=&quot;font-size: 30px;&quot;&gt;◆◆政策集団&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#CCCCCC;" parent="cFaB45KztUIKXS-_cTrr-14" vertex="1">
           <mxGeometry x="526" y="229" width="230" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="Wn7HRnoRUJRt4UX1Rprx-1" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 30px;&quot;&gt;☑派閥役職&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#CCCCCC;" parent="cFaB45KztUIKXS-_cTrr-14" vertex="1">
+        <mxCell id="Wn7HRnoRUJRt4UX1Rprx-1" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 30px;&quot;&gt;☑政策集団役職&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#CCCCCC;" parent="cFaB45KztUIKXS-_cTrr-14" vertex="1">
           <mxGeometry x="772" y="229" width="174" height="48" as="geometry" />
         </mxCell>
         <mxCell id="GAbksBgTEfNfYpB4TjCx-0" value="&lt;span style=&quot;font-size: 30px;&quot;&gt;◆◆委員会&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#CCCCCC;" parent="cFaB45KztUIKXS-_cTrr-14" vertex="1">

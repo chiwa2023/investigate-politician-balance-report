@@ -69,7 +69,7 @@
 | 1    | 議会選挙           | ラベル | 表示       | 議会選挙名称を表示すること                                     |
 | 1    | 該当市町村         | ラベル | 表示       | 該当市町村名称を表示すること                                   |
 
-## 5.アクション一覧
+## 5. アクション一覧
 
 フィールド要素に記載したので省略
 
@@ -80,7 +80,7 @@ ElectionCommissionInterface
 |            論理名            |         物理名         |                  型                  |                                           説明(例)                                           |
 | ---------------------------- | ---------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------- |
 | 選挙管理委員会id             | electionCommissionId   | Long                                 | 選挙管理委員会同一識別コードを表示すること                                                   |
-| 選挙管理委員会同一識別コード | electionCommissionCode | Long                                 | 選挙管理委員会同一識別コードを表示すること                                                   |
+| 選挙管理委員会同一識別コード | electionCommissionCode | Integer                              | 選挙管理委員会同一識別コードを表示すること                                                   |
 | 選挙管理委員会名称           | electionCommissionName | String                               | 選挙管理委員会名称の入力を受け付けること                                                     |
 | 選挙管理委員会名称かな       | commissionNameKana     | String                               | 選挙管理委員会名称かなの入力を受け付けること                                                 |
 | 地方自治体コード             | commissionLocalGovCode | String                               | 選挙管理委員会が存在する都道府県・広域自治体(市まで)の地方自治体コードの入力を受け付けること |
@@ -101,19 +101,19 @@ ElectionCommissionInterface
 
 ElectionHasParliamentInterface
 
-|          論理名          |            物理名            |   型   |                         説明(例)                         |
-| ------------------------ | ---------------------------- | ------ | -------------------------------------------------------- |
-| 議会Id                   | parliamentId                 | Long   | 議会を一意に識別するId。                                 |
-| 議会同一識別コード       | parliamentCode               | Long   | 議会にかかわらず首長選挙が同一であることを識別するコード |
-| 議会名称                 | parliamentName               | String | 議会名称                                                 |
-| 議会所属地方自治体コード | localGovCode                 | String | 議会が所属する地方自治体コード                           |
-| 議会所属地方自治体名称   | localGovName                 | String | 地方自治体コードに紐づく地方自治体名称                   |
-| 首長選挙Id               | chiefParliamentElectionId    | Long   | 首長選挙を一意に識別するId                               |
-| 首長選挙同一識別コード   | chiefParliamentElectionCode  | Long   | 変更にかかわらず首長選挙が同一であることを識別するコード |
-| 首長選挙名称             | chiefParliamentElectionName  | String | 首長選挙名称                                             |
-| 議員選挙Id               | memberParliamentElectionId   | Long   | 議員選挙を一意に識別するId                               |
-| 議員選挙同一識別コード   | memberParliamentElectionCode | Long   | 変更にかかわらず議員選挙が同一であることを識別するコード |
-| 議員選挙名称             | memberParliamentElectionName | String | 議員選挙名称                                             |
+|          論理名          |            物理名            |   型    |                         説明(例)                         |
+| ------------------------ | ---------------------------- | ------- | -------------------------------------------------------- |
+| 議会Id                   | parliamentId                 | Long    | 議会を一意に識別するId。                                 |
+| 議会同一識別コード       | parliamentCode               | Integer | 議会にかかわらず首長選挙が同一であることを識別するコード |
+| 議会名称                 | parliamentName               | String  | 議会名称                                                 |
+| 議会所属地方自治体コード | localGovCode                 | String  | 議会が所属する地方自治体コード                           |
+| 議会所属地方自治体名称   | localGovName                 | String  | 地方自治体コードに紐づく地方自治体名称                   |
+| 首長選挙Id               | chiefParliamentElectionId    | Long    | 首長選挙を一意に識別するId                               |
+| 首長選挙同一識別コード   | chiefParliamentElectionCode  | Integer | 変更にかかわらず首長選挙が同一であることを識別するコード |
+| 首長選挙名称             | chiefParliamentElectionName  | String  | 首長選挙名称                                             |
+| 議員選挙Id               | memberParliamentElectionId   | Long    | 議員選挙を一意に識別するId                               |
+| 議員選挙同一識別コード   | memberParliamentElectionCode | Integer | 変更にかかわらず議員選挙が同一であることを識別するコード |
+| 議員選挙名称             | memberParliamentElectionName | String  | 議員選挙名称                                             |
 
 ## 7. 連携
 

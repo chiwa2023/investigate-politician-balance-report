@@ -57,7 +57,7 @@
 
 ※TODO 検索結果のページングについては共通コンポーネントを作成するか、各ページで実装するか検討中のため、ソフトウェア全体で統一する挙動については[議会検索](../serach_paliament/serach_paliament.md)のページを参照すること
 
-## 5.アクション一覧
+## 5 アクション一覧
 
 | 番号 |          論理名          | タイプ | 活性／表示 |                                        内容                                        |
 | ---- | ------------------------ | ------ | ---------- | ---------------------------------------------------------------------------------- |
@@ -69,7 +69,9 @@
 
 ## 6. 政治団体検索結果(最低限)インターフェイス
 
-PoliticOrgnaizationSearchResultLeastInterface
+PoliticOrgnaizationLeastInterface
+
+SelectOptionIntefaceを継承すること。*は継承している値
 
  |              論理名              |         論理名          |   型    |                                     説明(例)                                     |
  | -------------------------------- | ----------------------- | ------- | -------------------------------------------------------------------------------- |
@@ -81,7 +83,9 @@ PoliticOrgnaizationSearchResultLeastInterface
  | 届先選挙管理委員会同一識別コード | electionCommissionCode  | Long    | 政治団体に紐づく政治資金収支報告書が提出されている選挙管理委員会の同一識別コード |
  | 届先選挙管理委員会名称           | electionCommissionName  | String  | 政治団体に紐づく政治資金収支報告書が提出されている選挙管理委員会名称             |
  | 代表者氏名                       | delegate                | String  | 代表者氏名                                                                       |
+ | セレクトボタンの値               | value                   | String  | *セレクトボタンの値。(政治団体Id)                                                |
+ | セレクトボタンの表示テキスト     | text                    | String  | *セレクトボタンの表示テキスト(政治団体名称)                                      |
 
 ## 7. 連携
 
-選択ボタンが押下された場合、親画面に指定データを通知する`emit[sendPoliticOrgnaizationSearchResultLeastInterface(data:PoliticOrgnaizationSearchResultLeastInterface)]`
+選択ボタンが押下された場合、親画面に指定データを通知する`emit[sendPoliticOrgnaizationLeastInterface(data:PoliticOrgnaizationLeastInterface)]`

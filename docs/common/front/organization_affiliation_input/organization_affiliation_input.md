@@ -48,7 +48,7 @@
 
 ※権力分散の観点から役職を複数選択する可能性は低いが、選任者の病気退任／不祥事等で、不意の辞職時に空席にしないで兼務を選択する場合を想定して、複数選択できると明示している。現実の問題としてそこまで細かく更新するか？と思うが将来の自動更新も視野に入れている
 
-## 5.アクション一覧
+## 5. アクション一覧
 
 | 番号 |           論理名           | タイプ | 活性／表示 |                                       内容                                       |
 | ---- | -------------------------- | ------ | ---------- | -------------------------------------------------------------------------------- |
@@ -59,22 +59,26 @@
 
 OrgnaizationAffiliationInterface
 
-|      論理名      |        論理名         |     型     |                           説明(例)                           |
-| ---------------- | --------------------- | ---------- | ------------------------------------------------------------ |
-| 選任役職リスト   | listHasPost           | List<Long> | 役職リストから選択された役職Idを格納する                     |
-| 政治家Id         | politicianId          | Long       | 政治家コードを表示すること                                   |
-| 政治家同一識別コード     | politicianCode        | Long       | 政治家コードを表示すること                                   |
-| 政治家氏名       | politicianName        | String     | 政治家氏名を表示すること                                     |
-| 政党Id           | politicPartyId        | Long       | 組織所属政治家が属する政党の同一識別コードを表示すること     |
-| 政党コード       | politicPartyCode      | Long       | 組織所属政治家が属する政党の同一識別コードを表示すること     |
-| 政党名称         | politicPartyName      | String     | 組織所属政治家が属する政党の名称を表示すること               |
-| 議会会派Id       | politicFactionCode    | Long       | 組織所属政治家が属する議会会派の同一識別コードを表示すること |
-| 議会会派コード   | politicFactionCode    | Long       | 組織所属政治家が属する議会会派の同一識別コードを表示すること |
-| 議会会派名称     | politicFactionName    | String     | 組織所属政治家が属する議会会派の名称を表示すること           |
-| 議会委員会Id     | politicCommissionCode | Long       | 組織所属政治家が属する議会会派の同一識別コードを表示すること |
-| 議会委員会コード | politicCommissionCode | Long       | 組織所属政治家が属する議会会派の同一識別コードを表示すること |
-| 議会委員会名称   | politicCommissionName | String     | 組織所属政治家が属する議会会派の名称を表示すること           |
+|              論理名              |        論理名         |             型             |                                        説明(例)                                        |
+| -------------------------------- | --------------------- | -------------------------- | -------------------------------------------------------------------------------------- |
+| 組織区分                         | organizationKbn       | Integer                    | 組織を区分する定数                                                                     |
+| 役職が所属する組織Id             | hasOrganizationId     | Long                       | 役職一覧を表示する組織Id。××党の役職について編集するなら××党を一意に識別するId         |
+| 役職が所属する組織同一識別コード | hasOrganizationCode   | Integer                    | 役職一覧を表示する組織同一識別コード。××党の役職について編集するなら××党同一識別コード |
+| 組織名称                         | politicianId          | Long                       | 政治家Id                                                                               |
+| 役職選択肢                       | listSelection         | List<SelectOptionInteface> | 役職選択セレクトボタンのオプション候補となりうるリスト                                 |
+| 政治家Id                         | politicianId          | Long                       | 政治家Id                                                                               |
+| 政治家同一識別コード             | politicianCode        | Long                       | 政治家同一識別コードを表示すること                                                     |
+| 政治家氏名                       | politicianName        | String                     | 政治家氏名を表示すること                                                               |
+| 政党Id                           | politicPartyId        | Long                       | 組織所属政治家が属する政党のid(表示用)                                                 |
+| 政党コード                       | politicPartyCode      | Long                       | 組織所属政治家が属する政党の同一識別コード(表示用)                                     |
+| 政党名称                         | politicPartyName      | String                     | 組織所属政治家が属する政党の名称(表示用)                                               |
+| 議会会派Id                       | politicFactionCode    | Long                       | 組織所属政治家が属する議会内会派のid(表示用)                                           |
+| 議会会派同一識別コード           | politicFactionCode    | Integer                    | 組織所属政治家が属する議会内会派の同一識別コード(表示用)                               |
+| 議会会派名称                     | politicFactionName    | String                     | 組織所属政治家が属する議会内会派の名称(表示用)                                         |
+| 議会委員会Id                     | politicCommissionCode | Long                       | 組織所属政治家が属する議会内委員会のid(表示用)                                         |
+| 議会委員会同一識別コード         | politicCommissionCode | Integer                    | 組織所属政治家が属する議会内委員会の同一識別コード(表示用)                             |
+| 議会委員会名称                   | politicCommissionName | String                     | 組織所属政治家が属する議会内委員会の名称(表示用)                                       |
 
 ## 7. 連携
 
-入力内容が変更された都度、入力チェックを行い親画面に変更内容を通知する`emit[sendOrgnaizationAffiliationInterface(data,errorInfo)]`
+選択ボタン押下時、親画面に選択内容を通知する`emit[sendOrgnaizationAffiliationInterface(data)]`

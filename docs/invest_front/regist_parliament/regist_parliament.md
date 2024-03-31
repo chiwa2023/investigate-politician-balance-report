@@ -58,16 +58,16 @@
 
 ### 4.1 議会区分定数
 
- |       論理名       | 値  |   テキスト   |
- | ------------------ | --- | ------------ |
- | 衆議院             | 1   | 論理名に同じ |
- | 参議院             | 2   | 論理名に同じ |
- | 県議会             | 11  | 論理名に同じ |
- | 広域自治体議会(区) | 12  | 論理名に同じ |
- | 市議会             | 21  | 論理名に同じ |
- | 町村議会           | 31  | 論理名に同じ |
+ |       論理名       |  値  |   テキスト   |
+ | ------------------ | ---: | ------------ |
+ | 衆議院             |    1 | 論理名に同じ |
+ | 参議院             |    2 | 論理名に同じ |
+ | 県議会             |   11 | 論理名に同じ |
+ | 広域自治体議会(区) |   12 | 論理名に同じ |
+ | 市議会             |   21 | 論理名に同じ |
+ | 町村議会           |   31 | 論理名に同じ |
 
-## 5.アクション一覧
+## 5. アクション一覧
 
 | 番号 |     論理名     |      タイプ      | 活性／表示 |                                            内容                                            |
 | ---- | -------------- | ---------------- | ---------- | ------------------------------------------------------------------------------------------ |
@@ -80,26 +80,26 @@
 
 PaliamentInterface
 
- |        論理名        |          論理名           |             型             |                    説明(例)                    |
- | -------------------- | ------------------------- | -------------------------- | ---------------------------------------------- |
- | 議会Id               | parliamentId              | Long                       | 議会を識別する一意のId                         |
- | 議会同一識別コード   | parliamentCode            | Long                       | 変更履歴にかかわらず議会を同一と識別するコード |
- | 議会名称             | parliamentName            | String                     | 議会名称                                       |
- | 議会名称かな         | parliamentNameKana        | String                     | 議会名称かな                                   |
- | 地方自治体コード     | localGovCode              | String                     | 地方自治体コード                               |
- | 議会電話番号市外局番 | parliamentTel1            | String                     | 議会の電話番号市外局番                         |
- | 議会電話番号局番     | parliamentTel2            | String                     | 議会の電話番号局番                             |
- | 議会電話番号番号     | parliamentTel3            | String                     | 議会の電話番号番号                             |
- | 議会郵便番号1        | parliamentPostalcode1     | String                     | 議会郵便番号(前)                               |
- | 議会郵便番号2        | parliamentPostalcode2     | String                     | 議会郵便番号(後)                               |
- | 議会住所             | parliamentAddress         | String                     | 議会住所で郵便番号で読み出せるところ           |
- | 議会住所番地         | parliamentAddressBlock    | String                     | 議会住所で番地に相当する部分                   |
- | 議会住所建物         | parliamentAddressBuilding | String                     | 議会住所で建物                                 |
- | 議会住所建物         | parliamentMail            | String                     | 議会住所で建物                                 |
- | 議会区分             | parliamentKbn             | Integer                    | 議会区分定数                                   |
- | 議会選挙区情報       | electionDitrict           | ElectionDistrictInterface  | 議会選挙区情報情報                             |
- | 議会内委員会情報     | parliamentCommission      | ParliamentFactionInterface | 議会内委員会情報                               |
- | 議会内会派情報       | parliamentFaction         | ParliamentFactionInterface | 議会内会派情報                                 |
+ |        論理名        |          論理名           |             型              |                    説明(例)                    |
+ | -------------------- | ------------------------- | --------------------------- | ---------------------------------------------- |
+ | 議会Id               | parliamentId              | Long                        | 議会を識別する一意のId                         |
+ | 議会同一識別コード   | parliamentCode            | Integer                     | 変更履歴にかかわらず議会を同一と識別するコード |
+ | 議会名称             | parliamentName            | String                      | 議会名称                                       |
+ | 議会名称かな         | parliamentNameKana        | String                      | 議会名称かな                                   |
+ | 地方自治体コード     | localGovCode              | String                      | 地方自治体コード                               |
+ | 議会電話番号市外局番 | parliamentTel1            | String                      | 議会の電話番号市外局番                         |
+ | 議会電話番号局番     | parliamentTel2            | String                      | 議会の電話番号局番                             |
+ | 議会電話番号番号     | parliamentTel3            | String                      | 議会の電話番号番号                             |
+ | 議会郵便番号1        | parliamentPostalcode1     | String                      | 議会郵便番号(前)                               |
+ | 議会郵便番号2        | parliamentPostalcode2     | String                      | 議会郵便番号(後)                               |
+ | 議会住所             | parliamentAddress         | String                      | 議会住所で郵便番号で読み出せるところ           |
+ | 議会住所番地         | parliamentAddressBlock    | String                      | 議会住所で番地に相当する部分                   |
+ | 議会住所建物         | parliamentAddressBuilding | String                      | 議会住所で建物                                 |
+ | 議会住所建物         | parliamentMail            | String                      | 議会住所で建物                                 |
+ | 議会区分             | parliamentKbn             | Integer                     | 議会区分定数                                   |
+ | 議会選挙区情報       | electionDitrict           | ElectionDistrictInterface   | 議会選挙区情報情報                             |
+ | 議会内委員会情報     | parliamentComittee        | ParliamentComitteeInterface | 議会内委員会情報                               |
+ | 議会内会派情報       | parliamentFaction         | ParliamentFactionInterface  | 議会内会派情報                                 |
 
 ## 7. 連携
 
