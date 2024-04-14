@@ -233,30 +233,30 @@ b.政党が無指定であるとき
 
 PoliticianInterface
 
-|                 論理名                 |                 論理名                  |                         型                          |                            説明(例)                            |
-| -------------------------------------- | --------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------- |
-| 政治家Id                               | politicianId                            | Long                                                | 政治家を一意に識別するId。                                     |
-| 政治家同一識別コード                   | politicianCode                          | Integer                                             | 変更履歴にかかわらず政治家が同一であることを識別するコード     |
-| 政治家名称                             | politicianName                          | String                                              | 政治家名称                                                     |
-| 議会Id                                 | parliamentId                            | Long                                                | 議会を一意に識別するId。                                       |
-| 議会同一識別コード                     | parliamentCode                          | Integer                                             | 議会にかかわらず首長選挙が同一であることを識別するコード       |
-| 議会名称                               | parliamentName                          | String                                              | 議会名称                                                       |
-| 議会選挙区Id                           | electionDistrictId                      | Long                                                | 議会選挙区を一意に識別するId。                                 |
-| 議会選挙区同一識別コード               | electionDistrictCode                    | Integer                                             | 変更履歴にかかわらず議会選挙区が同一であることを識別するコード |
-| 議会選挙区名称                         | electionDistrictName                    | String                                              | 議会選挙区名称                                                 |
-| 所属議会内会派複数選択リスト           | listParliamentFaction                   | List<ParliamentFactionLeastInterface>               | 議会内会派名称                                                 |
-| 所属議会内会派役職複数選択リスト       | listParliamentFactionPost               | List<PostAllHasOrganizationInterface>               | 議会内会派役職名称                                             |
-| 所属議会内委員会複数選択リスト         | listParliamentCommission                | List<ElectionCommissionLeastInterface>              | 議会内委員会名称                                               |
-| 所属議会内委員会役職複数選択リスト     | listParliamentCommissionPost            | List<PostAllHasOrganizationInterface>               | 議会内委員会役職名称                                           |
-| 所属政党複数選択リスト                 | listPoliticsParty                       | List<PoliticsPartyLeastInterface>                   | 政党名称                                                       |
-| 所属政党役職複数選択リスト             | listPoliticsPartyPost                   | List<PostAllHasOrganizationInterface>               | 政党役職名称                                                   |
-| 所属政党政策集団複数選択リスト         | listPoliticsPartyFaction                | List<PoliticsPartyFactionLeastInterface>            | 政党政策集団名称                                               |
-| 所属政党政策集団役職複数選択リスト     | listPoliticsPartyFactionPost            | List<PostAllHasOrganizationInterface>               | 政党政策集団役職名称                                           |
-| 所属政党支部複数選択リスト             | listPoliticsPartySubdivision            | List<PoliticsPartySubdivisionLeastInterface>        | 政党支部名称                                                   |
-| 所属政党支部役職複数選択リスト         | listPoliticsPartySubdivisionPost        | List<PostAllHasOrganizationInterface>               | 政党支部役職名称                                               |
-| 所属政党支部政策集団複数選択リスト     | listPoliticsPartySubdivisionFaction     | List<PoliticsPartySubdivisionFactionLeastInterface> | 政党支部政策集団名称                                           |
-| 所属政党支部政策集団役職複数選択リスト | listPoliticsPartySubdivisionFactionPost | List<PostAllHasOrganizationInterface>               | 政党支部政策集団役職名称                                       |
-| 政治家関連政治団体リスト               | listOrganization                        | List<PoliticianOrganization>                        | 政治家を識別する一意のId                                       |
+|                 論理名                 |                 論理名                  |                          型                           |                            説明(例)                            |
+| -------------------------------------- | --------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------- |
+| 政治家Id                               | politicianId                            | Long                                                  | 政治家を一意に識別するId。                                     |
+| 政治家同一識別コード                   | politicianCode                          | Integer                                               | 変更履歴にかかわらず政治家が同一であることを識別するコード     |
+| 政治家名称                             | politicianName                          | String                                                | 政治家名称                                                     |
+| 議会Id                                 | parliamentId                            | Long                                                  | 議会を一意に識別するId。                                       |
+| 議会同一識別コード                     | parliamentCode                          | Integer                                               | 議会にかかわらず首長選挙が同一であることを識別するコード       |
+| 議会名称                               | parliamentName                          | String                                                | 議会名称                                                       |
+| 議会選挙区Id                           | electionDistrictId                      | Long                                                  | 議会選挙区を一意に識別するId。                                 |
+| 議会選挙区同一識別コード               | electionDistrictCode                    | Integer                                               | 変更履歴にかかわらず議会選挙区が同一であることを識別するコード |
+| 議会選挙区名称                         | electionDistrictName                    | String                                                | 議会選挙区名称                                                 |
+| 所属議会内会派複数選択リスト           | listParliamentFaction                   | List\<ParliamentFactionLeastInterface\>               | 議会内会派名称                                                 |
+| 所属議会内会派役職複数選択リスト       | listParliamentFactionPost               | List\<PostAllHasOrganizationInterface\>               | 議会内会派役職名称                                             |
+| 所属議会内委員会複数選択リスト         | listParliamentCommission                | List\<ElectionCommissionLeastInterface\>              | 議会内委員会名称                                               |
+| 所属議会内委員会役職複数選択リスト     | listParliamentCommissionPost            | List\<PostAllHasOrganizationInterface\>               | 議会内委員会役職名称                                           |
+| 所属政党複数選択リスト                 | listPoliticsParty                       | List\<PoliticsPartyLeastInterface\>                   | 政党名称                                                       |
+| 所属政党役職複数選択リスト             | listPoliticsPartyPost                   | List\<PostAllHasOrganizationInterface\>               | 政党役職名称                                                   |
+| 所属政党政策集団複数選択リスト         | listPoliticsPartyFaction                | List\<PoliticsPartyFactionLeastInterface\>            | 政党政策集団名称                                               |
+| 所属政党政策集団役職複数選択リスト     | listPoliticsPartyFactionPost            | List\<PostAllHasOrganizationInterface\>               | 政党政策集団役職名称                                           |
+| 所属政党支部複数選択リスト             | listPoliticsPartySubdivision            | List\<PoliticsPartySubdivisionLeastInterface\>        | 政党支部名称                                                   |
+| 所属政党支部役職複数選択リスト         | listPoliticsPartySubdivisionPost        | List\<PostAllHasOrganizationInterface\>               | 政党支部役職名称                                               |
+| 所属政党支部政策集団複数選択リスト     | listPoliticsPartySubdivisionFaction     | List\<PoliticsPartySubdivisionFactionLeastInterface\> | 政党支部政策集団名称                                           |
+| 所属政党支部政策集団役職複数選択リスト | listPoliticsPartySubdivisionFactionPost | List\<PostAllHasOrganizationInterface\>               | 政党支部政策集団役職名称                                       |
+| 政治家関連政治団体リスト               | listOrganization                        | List\<PoliticianOrganization\>                        | 政治家を識別する一意のId                                       |
 
 ※セレクトボックスの複数選択であればList\<String\>が取得されるが、政治家テーブルでは各項目についてId,Code,Nameと３つのデータを保存するため、その３種を含むデータを含むInterfaceで設計している
 

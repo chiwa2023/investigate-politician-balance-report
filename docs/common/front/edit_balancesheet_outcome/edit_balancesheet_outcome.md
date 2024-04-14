@@ -142,37 +142,37 @@ b.編集が選択された場合
 
 AuditBalancesheetOutcomeInterface
 
-|               論理名               |           物理名            |             型              |                                                        説明(例)                                                        |
-| ---------------------------------- | --------------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 支出データId                       | outcomeId                   | String                      | 読み込みした書証Id。例示：「111-20221101-333」                                                                         |
-| 支出データ同一識別コード           | outcomeCode                 | Long                        | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
-| 書証Id                             | shoshouId                   | String                      | 読み込みした書証Id。例示「111-20221101-333」                                                                           |
-| 書証識別コード                     | shoshouHistroyCode          | Long                        | 変更した際に同一意味の書証であることを識別するコード。例示「333」                                                      |
-| 書証区分                           | shoshouKbnl                 | Integer                     | 書証を区分する。書証アップロード機能参照                                                                               |
-| 参照した摘要                       | referDigest                 | String                      | 書証に記載された取引概要。例示「ﾋｷｵﾄｼ ﾕｳｹﾝｼｬﾀﾛｳ」                                                                      |
-| 入力済項目編集区分                 | isEditAutoInput             | Boolean                     | 自動入力部を編集しようとしているかどうか。編集している場合は`true`                                                     |
-| 収支報告区分                       | reportKbn                   | Integer                     | 支出／収入                                                                                                             |
-| 様式仕訳区分                       | yoshikiKbn                  | String                      | 様式仕訳区分。支出データ編集参照                                                                                       |
-| 様式仕訳枝項目区分                 | yoshikiEdaKbn               | List<SelectOptionInterface> | 様式仕訳枝項目区分。支出データ編集参照                                                                                 |
-| 様式仕訳枝項目区分個別用選択リスト | yoshikiEdaKbnOptions        | Integer                     | 様式仕訳枝項目の選択肢設定。支出データ編集参照                                                                         |
-| 取引金額                           | amount                      | Long                        | 取引した金額                                                                                                           |
-| 発生日                             | accrualDate                 | String                      | 取引発生日                                                                                                             |
-| 支出大項目                         | categorizeGroup             | String                      | 例示：パーティを複数回開いた場合、「○×君を応援するパーティ2021」「男性意識改革セミナー2021」などを別集計するための項目 |
-| 支出項目                           | itemName                    | String                      |                                                                                                                        |
-| 氏名・団体名称                     | shimeiOrgnizationName       | String                      | 個人氏名または団体名称                                                                                                 |
-| 団体住所                           | orgnizationAddress          | String                      | 住所                                                                                                                   |
-| 備考                               | biko                        | String                      | 備考                                                                                                                   |
-| 交付金に係る支出                   | isExpendituresRelatedGrants | Boolean                     | 交付金に係る支出かどうか。かかる支出である場合は`true`                                                                 |
-| 領収書を徴しがたかったもの         | notCollectReciptKbn         | Integer                     | 領収書を徴しがたかった支出かどうかを判別する。                                                                         |
-| 意見付記                           | note                        | String                      | 仕訳に対する意見、メモ                                                                                                 |
-| 前例と異なる処理フラグ             | isDifferPrecedent           | Boolean                     | 前例と異なる処理を行った場合は`true`                                                                                   |
-| 保全書証リスト                     | storagedDocumentIdList      | List<String>                | この仕訳に関して指示内容等を保全した場合の書証Idリスト                                                                 |
-| ユーザーId                         | userId                      | String                      | 読み込みした書証Id。例示：「111-20221101-333」                                                                         |
-| ユーザ識別コード                   | userCode                    | Long                        | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
-| ユーザ名称                         | userName                    | String                      | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
-| ユーザ団体内役割区分               | roleOrgCode                 | Long                        | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
-| ユーザ団体内役割区分名称           | roleOrgName                 | String                      | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
-| 処理時間                           | update_datetime             | Timestamp                   | 処理が行われた時間のタイムスタンプ                                                                                     |
+|               論理名               |           物理名            |              型               |                                                        説明(例)                                                        |
+| ---------------------------------- | --------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 支出データId                       | outcomeId                   | String                        | 読み込みした書証Id。例示：「111-20221101-333」                                                                         |
+| 支出データ同一識別コード           | outcomeCode                 | Long                          | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
+| 書証Id                             | shoshouId                   | String                        | 読み込みした書証Id。例示「111-20221101-333」                                                                           |
+| 書証識別コード                     | shoshouHistroyCode          | Long                          | 変更した際に同一意味の書証であることを識別するコード。例示「333」                                                      |
+| 書証区分                           | shoshouKbnl                 | Integer                       | 書証を区分する。書証アップロード機能参照                                                                               |
+| 参照した摘要                       | referDigest                 | String                        | 書証に記載された取引概要。例示「ﾋｷｵﾄｼ ﾕｳｹﾝｼｬﾀﾛｳ」                                                                      |
+| 入力済項目編集区分                 | isEditAutoInput             | Boolean                       | 自動入力部を編集しようとしているかどうか。編集している場合は`true`                                                     |
+| 収支報告区分                       | reportKbn                   | Integer                       | 支出／収入                                                                                                             |
+| 様式仕訳区分                       | yoshikiKbn                  | String                        | 様式仕訳区分。支出データ編集参照                                                                                       |
+| 様式仕訳枝項目区分                 | yoshikiEdaKbn               | List\<SelectOptionInterface\> | 様式仕訳枝項目区分。支出データ編集参照                                                                                 |
+| 様式仕訳枝項目区分個別用選択リスト | yoshikiEdaKbnOptions        | Integer                       | 様式仕訳枝項目の選択肢設定。支出データ編集参照                                                                         |
+| 取引金額                           | amount                      | Long                          | 取引した金額                                                                                                           |
+| 発生日                             | accrualDate                 | String                        | 取引発生日                                                                                                             |
+| 支出大項目                         | categorizeGroup             | String                        | 例示：パーティを複数回開いた場合、「○×君を応援するパーティ2021」「男性意識改革セミナー2021」などを別集計するための項目 |
+| 支出項目                           | itemName                    | String                        | 項目名称                                                                                                               |
+| 氏名・団体名称                     | shimeiOrgnizationName       | String                        | 個人氏名または団体名称                                                                                                 |
+| 団体住所                           | orgnizationAddress          | String                        | 住所                                                                                                                   |
+| 備考                               | biko                        | String                        | 備考                                                                                                                   |
+| 交付金に係る支出                   | isExpendituresRelatedGrants | Boolean                       | 交付金に係る支出かどうか。かかる支出である場合は`true`                                                                 |
+| 領収書を徴しがたかったもの         | notCollectReciptKbn         | Integer                       | 領収書を徴しがたかった支出かどうかを判別する。                                                                         |
+| 意見付記                           | note                        | String                        | 仕訳に対する意見、メモ                                                                                                 |
+| 前例と異なる処理フラグ             | isDifferPrecedent           | Boolean                       | 前例と異なる処理を行った場合は`true`                                                                                   |
+| 保全書証リスト                     | storagedDocumentIdList      | List\<String\>                | この仕訳に関して指示内容等を保全した場合の書証Idリスト                                                                 |
+| ユーザーId                         | userId                      | String                        | 読み込みした書証Id。例示：「111-20221101-333」                                                                         |
+| ユーザ識別コード                   | userCode                    | Long                          | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
+| ユーザ名称                         | userName                    | String                        | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
+| ユーザ団体内役割区分               | roleOrgCode                 | Long                          | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
+| ユーザ団体内役割区分名称           | roleOrgName                 | String                        | 変更した際に同一意味の書証であることを識別するコード。例示：「333」                                                    |
+| 処理時間                           | update_datetime             | Timestamp                     | 処理が行われた時間のタイムスタンプ                                                                                     |
 
 ## 7. 連携
 

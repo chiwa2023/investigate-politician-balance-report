@@ -8,7 +8,7 @@
 
 ## 2. 構成コンポーネント
 
-1. [議会選択コンポーネント](../../common/front/serach_paliament/serach_paliament.md)
+1. [議会検索コンポーネント](../../common/front/serach_paliament/serach_paliament.md)
 2. 独自フィールド
 3. [選挙区情報入力コンポーネント](../../common/front/input_election_district/input_election_district.md)
 

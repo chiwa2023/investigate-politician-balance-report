@@ -55,16 +55,16 @@
 
 ParliamentComittieInterface
 
- |           論理名           |         論理名         |           型            |                    説明(例)                    |
- | -------------------------- | ---------------------- | ----------------------- | ---------------------------------------------- |
- | 議会内委員会Id             | parliamentComittieId   | Long                    | 委員会を識別する一意のId                       |
- | 議会内委員会同一識別コード | parliamentComittieCode | Long                    | 変更された委員会が同であることを識別するコード |
- | 委員会名称                 | comittieName           | String                  | 委員会名称                                     |
- | 委員会名称かな             | comittieNameKana       | String                  | 委員会名称かな                                 |
- | 委員会区分                 | comittieKbn            | Integer                 | 委員会区分                                     |
- | 委員会摘要                 | comittieExplain        | String                  | 委員会名称摘要                                 |
- | 委員会役職リスト           | 物理名                 | List<組織役職Interface> | 委員会に存在する役職リスト                     |
- | 委員会所属議員リスト       | 物理名                 | List<所属議員Interface> | 委員会に所属議員リスト                         |
+ |           論理名           |         論理名         |            型             |                    説明(例)                    |
+ | -------------------------- | ---------------------- | ------------------------- | ---------------------------------------------- |
+ | 議会内委員会Id             | parliamentComittieId   | Long                      | 委員会を識別する一意のId                       |
+ | 議会内委員会同一識別コード | parliamentComittieCode | Long                      | 変更された委員会が同であることを識別するコード |
+ | 委員会名称                 | comittieName           | String                    | 委員会名称                                     |
+ | 委員会名称かな             | comittieNameKana       | String                    | 委員会名称かな                                 |
+ | 委員会区分                 | comittieKbn            | Integer                   | 委員会区分                                     |
+ | 委員会摘要                 | comittieExplain        | String                    | 委員会名称摘要                                 |
+ | 委員会役職リスト           | 物理名                 | List\<組織役職Interface\> | 委員会に存在する役職リスト                     |
+ | 委員会所属議員リスト       | 物理名                 | List\<所属議員Interface\> | 委員会に所属議員リスト                         |
 
 ### 6.1 委員会区分
 

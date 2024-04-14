@@ -49,17 +49,17 @@
 
 TableScheduleRowInterface
 
- |             論理名             |        論理名        |             型             |                        説明(例)                         |
- | ------------------------------ | -------------------- | -------------------------- | ------------------------------------------------------- |
- | イベント開始時間               | accrualTimeStart     | LocalDatetime              | このイベントが発生した開始日時                          |
- | イベント開始時間表示用         | accrualTimeStartText | String                     | このイベントが発生した開始日時HTML入出力用 例:「09:15」 |
- | イベント終了時間               | accrualTimeEnd       | LocalDatetime              | このイベントが発生した開始日時                          |
- | イベント終了時間表示用         | accrualTimeEndText   | String                     | このイベントが発生した開始日時HTML入出力用 例:「09:15」 |
- | イベント摘要                   | eventDigest          | String                     | このイベントの摘要                                      |
- | イベント収入項目               | incomeSelected       | List<String>               | 収入項目のうち選択された支出項目                        |
- | イベント収入項目選択候補リスト | listIncome           | List<EventDigestInterface> | 選択可能な収入項目リスト                                |
- | イベント支出項目               | outcomeSelected      | List<String>               | 支出項目のうち選択された支出項目                        |
- | イベント支出項目選択候補リスト | listOutcome          | List<EventDigestInterface> | 選択可能な支出項目リスト                                |
+ |             論理名             |        論理名        |              型              |                        説明(例)                         |
+ | ------------------------------ | -------------------- | ---------------------------- | ------------------------------------------------------- |
+ | イベント開始時間               | accrualTimeStart     | LocalDatetime                | このイベントが発生した開始日時                          |
+ | イベント開始時間表示用         | accrualTimeStartText | String                       | このイベントが発生した開始日時HTML入出力用 例:「09:15」 |
+ | イベント終了時間               | accrualTimeEnd       | LocalDatetime                | このイベントが発生した開始日時                          |
+ | イベント終了時間表示用         | accrualTimeEndText   | String                       | このイベントが発生した開始日時HTML入出力用 例:「09:15」 |
+ | イベント摘要                   | eventDigest          | String                       | このイベントの摘要                                      |
+ | イベント収入項目               | incomeSelected       | List\<String\>               | 収入項目のうち選択された支出項目                        |
+ | イベント収入項目選択候補リスト | listIncome           | List\<EventDigestInterface\> | 選択可能な収入項目リスト                                |
+ | イベント支出項目               | outcomeSelected      | List\<String\>               | 支出項目のうち選択された支出項目                        |
+ | イベント支出項目選択候補リスト | listOutcome          | List\<EventDigestInterface\> | 選択可能な支出項目リスト                                |
 
 ### 6.1 収支要約インターフェイス
 

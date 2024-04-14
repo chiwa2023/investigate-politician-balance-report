@@ -74,4 +74,4 @@ ParliamentComittieInterface
 
 ## 7. 連携
 
-入内容変更時、議員内委員会インターフェイスを通知する`emit[sendParliamentComittieInterface(data)]`
+親画面から`props{parliamentComittieInterfaceDto:ParliamentComittieInterfaceInterface}`を受け取り、`computed`を設定することで変更状態を常に親画面に通知すること

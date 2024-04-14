@@ -77,25 +77,25 @@
 
 ElectionCommissionInterface
 
-|            論理名            |         物理名         |                  型                  |                                           説明(例)                                           |
-| ---------------------------- | ---------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------- |
-| 選挙管理委員会id             | electionCommissionId   | Long                                 | 選挙管理委員会同一識別コードを表示すること                                                   |
-| 選挙管理委員会同一識別コード | electionCommissionCode | Integer                              | 選挙管理委員会同一識別コードを表示すること                                                   |
-| 選挙管理委員会名称           | electionCommissionName | String                               | 選挙管理委員会名称の入力を受け付けること                                                     |
-| 選挙管理委員会名称かな       | commissionNameKana     | String                               | 選挙管理委員会名称かなの入力を受け付けること                                                 |
-| 地方自治体コード             | commissionLocalGovCode | String                               | 選挙管理委員会が存在する都道府県・広域自治体(市まで)の地方自治体コードの入力を受け付けること |
-| 事務局名称                   | secretariatName        | String                               | 事務局名称の入力を受け付けること                                                             |
-| 事務局名称かな               | secretariatNameKana    | String                               | 事務局名称かなの入力を受け付けること                                                         |
-| 事務局電話番号市外局番       | secretariatTel1        | String                               | 事務局電話番号市外局番の入力を受け付けること                                                 |
-| 事務局電話番号局番           | secretariatTel2        | String                               | 事務局電話番号局番の入力を受け付けること                                                     |
-| 事務局電話番号番号           | secretariatTel3        | String                               | 事務局電話番号番号の入力を受け付けること                                                     |
-| 事務局郵便番号前             | secretariatPostal1     | String                               | 事務局郵便番号前3桁の入力を受け付けること                                                    |
-| 事務局郵便番号後             | secretariatPostal2     | String                               | 事務局郵便番号後4桁の入力を受け付けること                                                    |
-| 事務局住所(郵便番号)         | secretariatAddress1    | String                               | 事務局の住所で郵便番号が自動入力できるまでの住所の入力を受け付けること                       |
-| 事務局番地                   | secretariatAddress2    | String                               | 事務局住所の番地の入力を受け付けること                                                       |
-| 事務局建物                   | secretariatAddress3    | String                               | 事務局住所の建物の入力を受け付けること                                                       |
-| 事務局メールアドレス         | secretariatMail        | String                               | 事務局のメールアドレスの入力を受け付けること                                                 |
-| 管理議会リスト               | listParliament         | List<ElectionHasParliamentInterface> | 選挙管理委員会が選挙管理する議会リスト                                                       |
+|            論理名            |         物理名         |                   型                   |                                           説明(例)                                           |
+| ---------------------------- | ---------------------- | -------------------------------------- | -------------------------------------------------------------------------------------------- |
+| 選挙管理委員会id             | electionCommissionId   | Long                                   | 選挙管理委員会同一識別コードを表示すること                                                   |
+| 選挙管理委員会同一識別コード | electionCommissionCode | Integer                                | 選挙管理委員会同一識別コードを表示すること                                                   |
+| 選挙管理委員会名称           | electionCommissionName | String                                 | 選挙管理委員会名称の入力を受け付けること                                                     |
+| 選挙管理委員会名称かな       | commissionNameKana     | String                                 | 選挙管理委員会名称かなの入力を受け付けること                                                 |
+| 地方自治体コード             | commissionLocalGovCode | String                                 | 選挙管理委員会が存在する都道府県・広域自治体(市まで)の地方自治体コードの入力を受け付けること |
+| 事務局名称                   | secretariatName        | String                                 | 事務局名称の入力を受け付けること                                                             |
+| 事務局名称かな               | secretariatNameKana    | String                                 | 事務局名称かなの入力を受け付けること                                                         |
+| 事務局電話番号市外局番       | secretariatTel1        | String                                 | 事務局電話番号市外局番の入力を受け付けること                                                 |
+| 事務局電話番号局番           | secretariatTel2        | String                                 | 事務局電話番号局番の入力を受け付けること                                                     |
+| 事務局電話番号番号           | secretariatTel3        | String                                 | 事務局電話番号番号の入力を受け付けること                                                     |
+| 事務局郵便番号前             | secretariatPostal1     | String                                 | 事務局郵便番号前3桁の入力を受け付けること                                                    |
+| 事務局郵便番号後             | secretariatPostal2     | String                                 | 事務局郵便番号後4桁の入力を受け付けること                                                    |
+| 事務局住所(郵便番号)         | secretariatAddress1    | String                                 | 事務局の住所で郵便番号が自動入力できるまでの住所の入力を受け付けること                       |
+| 事務局番地                   | secretariatAddress2    | String                                 | 事務局住所の番地の入力を受け付けること                                                       |
+| 事務局建物                   | secretariatAddress3    | String                                 | 事務局住所の建物の入力を受け付けること                                                       |
+| 事務局メールアドレス         | secretariatMail        | String                                 | 事務局のメールアドレスの入力を受け付けること                                                 |
+| 管理議会リスト               | listParliament         | List\<ElectionHasParliamentInterface\> | 選挙管理委員会が選挙管理する議会リスト                                                       |
 
 ## 6.1 議会選挙インターフェイス
 

@@ -82,27 +82,27 @@
 
 ElectionCommissionInterface
 
-|            論理名             |         物理名          |                  型                  |                                                         説明(例)                                                          |
-| ----------------------------- | ----------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| 選挙管理委員会id              | electionCommissionId    | Long                                 | 選挙管理委員会同一識別Id                                                                                                  |
-| 選挙管理委員会同一識別コード  | electionCommissionCode  | Integer                              | 選挙管理委員会同一識別コード                                                                                              |
-| 選挙管理委員会名称            | electionCommissionName  | String                               | 選挙管理委員会名称                                                                                                        |
-| 選挙管理委員会名称かな        | commissionNameKana      | String                               | 選挙管理委員会名称かな                                                                                                    |
-| 地方自治体コード              | commissionLocalGovCode  | String                               | 選挙管理委員会が存在する都道府県・広域自治体(市まで)の地方自治体コード                                                    |
-| 事務局公式サイト              | secretariatOfficialUrl  | String                               | 委員会公式サイトトップページ                                                                                              |
-| 収支報告書格納ページ最上位URL | officialBalancesheetUrl | String                               | 委員会内の政治資金収支報告書が格納されているの最上位ページ(法律で公開が義務付けられている提出年すべてにアクセスできる)URL |
-| 事務局名称                    | secretariatName         | String                               | 事務局名称                                                                                                                |
-| 事務局名称かな                | secretariatNameKana     | String                               | 事務局名称かな                                                                                                            |
-| 事務局電話番号市外局番        | secretariatTel1         | String                               | 事務局電話番号市外局番                                                                                                    |
-| 事務局電話番号局番            | secretariatTel2         | String                               | 事務局電話番号局番                                                                                                        |
-| 事務局電話番号番号            | secretariatTel3         | String                               | 事務局電話番号番号                                                                                                        |
-| 事務局郵便番号前              | secretariatPostal1      | String                               | 事務局郵便番号前3桁                                                                                                       |
-| 事務局郵便番号後              | secretariatPostal2      | String                               | 事務局郵便番号後4桁                                                                                                       |
-| 事務局住所(郵便番号)          | secretariatAddress1     | String                               | 事務局の住所で郵便番号が自動入力できるまでの住所                                                                          |
-| 事務局番地                    | secretariatAddress2     | String                               | 事務局住所の番地                                                                                                          |
-| 事務局建物                    | secretariatAddress3     | String                               | 事務局住所の建物                                                                                                          |
-| 事務局メールアドレス          | secretariatMail         | String                               | 事務局のメールアドレス                                                                                                    |
-| 管理議会リスト                | listParliament          | List<ElectionHasParliamentInterface> | 選挙管理委員会が選挙管理する議会リスト                                                                                    |
+|            論理名             |         物理名          |                   型                   |                                                         説明(例)                                                          |
+| ----------------------------- | ----------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| 選挙管理委員会id              | electionCommissionId    | Long                                   | 選挙管理委員会同一識別Id                                                                                                  |
+| 選挙管理委員会同一識別コード  | electionCommissionCode  | Integer                                | 選挙管理委員会同一識別コード                                                                                              |
+| 選挙管理委員会名称            | electionCommissionName  | String                                 | 選挙管理委員会名称                                                                                                        |
+| 選挙管理委員会名称かな        | commissionNameKana      | String                                 | 選挙管理委員会名称かな                                                                                                    |
+| 地方自治体コード              | commissionLocalGovCode  | String                                 | 選挙管理委員会が存在する都道府県・広域自治体(市まで)の地方自治体コード                                                    |
+| 事務局公式サイト              | secretariatOfficialUrl  | String                                 | 委員会公式サイトトップページ                                                                                              |
+| 収支報告書格納ページ最上位URL | officialBalancesheetUrl | String                                 | 委員会内の政治資金収支報告書が格納されているの最上位ページ(法律で公開が義務付けられている提出年すべてにアクセスできる)URL |
+| 事務局名称                    | secretariatName         | String                                 | 事務局名称                                                                                                                |
+| 事務局名称かな                | secretariatNameKana     | String                                 | 事務局名称かな                                                                                                            |
+| 事務局電話番号市外局番        | secretariatTel1         | String                                 | 事務局電話番号市外局番                                                                                                    |
+| 事務局電話番号局番            | secretariatTel2         | String                                 | 事務局電話番号局番                                                                                                        |
+| 事務局電話番号番号            | secretariatTel3         | String                                 | 事務局電話番号番号                                                                                                        |
+| 事務局郵便番号前              | secretariatPostal1      | String                                 | 事務局郵便番号前3桁                                                                                                       |
+| 事務局郵便番号後              | secretariatPostal2      | String                                 | 事務局郵便番号後4桁                                                                                                       |
+| 事務局住所(郵便番号)          | secretariatAddress1     | String                                 | 事務局の住所で郵便番号が自動入力できるまでの住所                                                                          |
+| 事務局番地                    | secretariatAddress2     | String                                 | 事務局住所の番地                                                                                                          |
+| 事務局建物                    | secretariatAddress3     | String                                 | 事務局住所の建物                                                                                                          |
+| 事務局メールアドレス          | secretariatMail         | String                                 | 事務局のメールアドレス                                                                                                    |
+| 管理議会リスト                | listParliament          | List\<ElectionHasParliamentInterface\> | 選挙管理委員会が選挙管理する議会リスト                                                                                    |
 
 ## 6.1 議会選挙インターフェイス
 

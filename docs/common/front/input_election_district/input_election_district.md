@@ -78,4 +78,4 @@ ElectionDistrictInterface
 
 ## 7. 連携
 
-入力内容が変更された都度、入力チェックを行い親画面に変更内容を通知する`emit[sendSampleTemplateInterface(data,errorInfo)]`
+親画面から`props{electionDistrictDto:ElectionDistrictInterface}`を受け取り、`computed`を設定することで変更状態を常に親画面に通知すること

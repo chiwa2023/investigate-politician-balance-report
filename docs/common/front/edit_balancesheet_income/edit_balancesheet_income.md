@@ -285,40 +285,40 @@ b.編集が選択された場合
 
 ## 6. 収支報告書収入データBalancesheetIncomeInterface
 
-|                    論理名                     |         物理名         |      型      |                              説明(例)                               |
-| --------------------------------------------- | ---------------------- | ------------ | ------------------------------------------------------------------- |
-| 収入データId                                  | incomeId               | String       | 読み込みした書証Id。例示：「111-20221101-333」                      |
-| 収入データ同一識別コード                      | incomeCode             | Long         | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| 書証Id                                        | shoshouId              | String       | 読み込みした書証Id。例示：「111-20221101-333」                      |
-| 書証識別コード                                | shoshouHistroyCode     | Long         | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| 書証区分                                      | shoshouKbn             | String       | 書証を区分する。書証アップロード機能参照                            |
-| 参照した摘要                                  | referDigest            | String       | 書証に記載された取引概要。例示：「ﾌﾘｺﾐ ﾕｳｹﾝｼｬﾀﾛｳ」                  |
-| 入力済項目編集区分                            | isEditAutoInput        | Boolean      | 自動入力部を編集しようとしているかどうか。編集している場合は`true`  |
-| 収支報告区分                                  | reportKbn              | Integer      | 支出／収入                                                          |
-| 様式仕訳区分                                  | yoshikiKbn             | String       | 様式仕訳区分。収入データ編集参照                                    |
-| 様式仕訳枝項目区分                            | yoshikiEdaKbn          | String       | 様式仕訳枝項目区分。収入データ編集参照                              |
-| 発生日                                        | accrualDate            | String       | 取引発生日                                                          |
-| 取引金額                                      | amount                 | Long         | 取引した金額                                                        |
-| 集めた期間開始日                              | mediationStartDate     | String       | あっせんのする場合、期間開始日                                      |
-| 集めた期間終了日                              | mediationEndDate       | String       | あっせんのする場合、期間終了日                                      |
-| パーティ開催日                                | partyDate              | String       | パーティ開催日                                                      |
-| 氏名・団体名称                                | shimeiOrgnizationName  | String       | 氏名(職業)、または団体名称                                          |
-| 項目名称                                      | itemName               | String       | 項目名称                                                            |
-| 個人・団体住所                                | orgnizationAddress     | Integer      | 個人または団体住所                                                  |
-| 備考                                          | biko                   | String       | 備考                                                                |
-| 税額控除有無                                  | isCreditTax            | Boolean      | 税控除対象かどうか。該当する場合は`true`                            |
-| 寄付が遺贈有無フラグ                          | isBequest              | Boolean      | 寄付が遺贈かどうか。該当する場合は`true`                            |
-| 寄付法人が上場または外資50%超え会社有無フラグ | isPrimeListedOrForeign | Boolean      | 寄付法人が上場または外資50%超え会社有無。該当する場合は`true`       |
-| 政治資金パーティ名称                          | partyName              | String       | 政治資金パーティ名称                                                |
-| 意見付記                                      | note                   | String       | 仕訳に対する意見、メモ                                              |
-| 前例と異なる処理フラグ                        | isDifferPrecedent      | String       | 前例と異なる処理を行った場合`true`(仕訳者の主観)                    |
-| 保全書証リスト                                | storagedDocumentIdList | List<String> | この仕訳に関して指示内容等を保全した場合の書証Idリスト              |
-| ユーザーId                                    | userId                 | String       | 読み込みした書証Id。例示：「111-20221101-333」                      |
-| ユーザ識別コード                              | userCode               | Long         | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| ユーザ名称                                    | userName               | String       | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| ユーザ団体内役割区分                          | roleOrgCode            | Long         | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| ユーザ団体内役割区分名称                      | roleOrgName            | String       | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| 処理時間                                      | update_datetime        | Timestamp    | 処理が行われた時間のタイムスタンプ                                  |
+|                    論理名                     |         物理名         |       型       |                              説明(例)                               |
+| --------------------------------------------- | ---------------------- | -------------- | ------------------------------------------------------------------- |
+| 収入データId                                  | incomeId               | String         | 読み込みした書証Id。例示：「111-20221101-333」                      |
+| 収入データ同一識別コード                      | incomeCode             | Long           | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
+| 書証Id                                        | shoshouId              | String         | 読み込みした書証Id。例示：「111-20221101-333」                      |
+| 書証識別コード                                | shoshouHistroyCode     | Long           | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
+| 書証区分                                      | shoshouKbn             | String         | 書証を区分する。書証アップロード機能参照                            |
+| 参照した摘要                                  | referDigest            | String         | 書証に記載された取引概要。例示：「ﾌﾘｺﾐ ﾕｳｹﾝｼｬﾀﾛｳ」                  |
+| 入力済項目編集区分                            | isEditAutoInput        | Boolean        | 自動入力部を編集しようとしているかどうか。編集している場合は`true`  |
+| 収支報告区分                                  | reportKbn              | Integer        | 支出／収入                                                          |
+| 様式仕訳区分                                  | yoshikiKbn             | String         | 様式仕訳区分。収入データ編集参照                                    |
+| 様式仕訳枝項目区分                            | yoshikiEdaKbn          | String         | 様式仕訳枝項目区分。収入データ編集参照                              |
+| 発生日                                        | accrualDate            | String         | 取引発生日                                                          |
+| 取引金額                                      | amount                 | Long           | 取引した金額                                                        |
+| 集めた期間開始日                              | mediationStartDate     | String         | あっせんのする場合、期間開始日                                      |
+| 集めた期間終了日                              | mediationEndDate       | String         | あっせんのする場合、期間終了日                                      |
+| パーティ開催日                                | partyDate              | String         | パーティ開催日                                                      |
+| 項目名称                                      | itemName               | String         | 項目名称                                                            |
+| 個人・団体住所                                | orgnizationAddress     | Integer        | 個人または団体住所                                                  |
+| 氏名・団体名称                                | shimeiOrgnizationName  | String         | 氏名(職業)、または団体名称                                          |
+| 備考                                          | biko                   | String         | 備考                                                                |
+| 税額控除有無                                  | isCreditTax            | Boolean        | 税控除対象かどうか。該当する場合は`true`                            |
+| 寄付が遺贈有無フラグ                          | isBequest              | Boolean        | 寄付が遺贈かどうか。該当する場合は`true`                            |
+| 寄付法人が上場または外資50%超え会社有無フラグ | isPrimeListedOrForeign | Boolean        | 寄付法人が上場または外資50%超え会社有無。該当する場合は`true`       |
+| 政治資金パーティ名称                          | partyName              | String         | 政治資金パーティ名称                                                |
+| 意見付記                                      | note                   | String         | 仕訳に対する意見、メモ                                              |
+| 前例と異なる処理フラグ                        | isDifferPrecedent      | String         | 前例と異なる処理を行った場合`true`(仕訳者の主観)                    |
+| 保全書証リスト                                | storagedDocumentIdList | List\<String\> | この仕訳に関して指示内容等を保全した場合の書証Idリスト              |
+| ユーザーId                                    | userId                 | String         | 読み込みした書証Id。例示：「111-20221101-333」                      |
+| ユーザ識別コード                              | userCode               | Long           | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
+| ユーザ名称                                    | userName               | String         | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
+| ユーザ団体内役割区分                          | roleOrgCode            | Long           | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
+| ユーザ団体内役割区分名称                      | roleOrgName            | String         | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
+| 処理時間                                      | update_datetime        | Timestamp      | 処理が行われた時間のタイムスタンプ                                  |
 
 ## 7. 連携
 
