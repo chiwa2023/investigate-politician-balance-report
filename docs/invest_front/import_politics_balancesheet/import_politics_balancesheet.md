@@ -71,7 +71,7 @@ CheckConmbinedBalancesheetInterface
 | 取込み前確認・政治団体名称         | isConfirmPoliticianOrganization | boolean | 政治団体名称の一致を確認したら`true`                   |
 | 取込み前確認・報告年               | isConfirmYear                   | boolean | 指定報告年のデータが不存在なら`true`                   |
 | 取込み前確認・代表者名             | isConfirmDelegate               | boolean | 団体責任者の一致を確認したら`true`                     |
-| 取込み前確認・会計責任者名         | isConfirmAccountOfiicerName     | boolean | 会計責任者の一致を確認したら`true`                     |
+| 取込み前確認・会計責任者名         | isConfirmAccountOfficerName     | boolean | 会計責任者の一致を確認したら`true`                     |
 | 取込み前確認・主たる事務所の住所   | isConfirmOfficeAddress          | boolean | 主たる事務所の住所の一致を確認したら`true`             |
 | 取込み前確認・政治団体区分         | isConfirmRepresentName          | boolean | 政治団体区分の一致を確認したら`true`                   |
 | 取込み前確認・政治資金団体の有無   | isConfirmHasOtherOrg            | boolean | 政治資金団体の有無の一致を確認したら`true`             |

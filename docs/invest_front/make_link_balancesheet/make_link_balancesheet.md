@@ -83,7 +83,7 @@ PoliticsBalancesheetHistoryLinkInterface
  | 政治資金収支報告書名称                   | politicsBalancesheetName | String                                                         | 政治資金収支報告書名称                                                                                                                                                                                  |
  | 政治資金収支報告書Idリスト               | mapBalacesheetId         | Map\<Integer,Map\<Integer,String\>\>                           | このシステムに保存された政治資金収支報告書Idを.提出年、2.提出回数をキーとして呼び出すことができるようMapに格納                                                                                          |
  | 選挙管理委員会提出収支報告書データリスト | mapSubmissionPublish     | Map\<Integer,Map\<Integer,PublishDirectLinkInterface\>\>       | 公式サイト(提出選挙管理委員会)の政治資金収支報告書へのリンク情報を1.提出年、2.提出回数をキーとして呼び出すことができるようMapに格納。格納される情報は掲載されたページタイトルとリンクの組み合わせリスト |
- | 非公式データリスト                       | mapNotOfiicialSiteLink   | Map\<Integer,Map\<Integer,List\<PublishDirectLinkInterface\>\> | 非公式サイトへのリンク情報を1.提出年、2.提出回数をキーとして呼び出すことができるようMapに格納。掲載されたページタイトルとリンクの組み合わせリスト                                                       |
+ | 非公式データリスト                       | mapNotOfficialSiteLink   | Map\<Integer,Map\<Integer,List\<PublishDirectLinkInterface\>\> | 非公式サイトへのリンク情報を1.提出年、2.提出回数をキーとして呼び出すことができるようMapに格納。掲載されたページタイトルとリンクの組み合わせリスト                                                       |
 
 PublishDirectLinkInterfaceは[収支報告書欠損検出](../detect_balancesheet_defect/detect_balancesheet_defect.md)を参照すること
 

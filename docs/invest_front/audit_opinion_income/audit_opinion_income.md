@@ -96,28 +96,17 @@
 
 AuditIncomeOpinionInterface
 
+※BalancesheetIncomeInterfaceを継承すること
+
 |          論理名          |        論理名        |             型              |                              説明(例)                               |
 | ------------------------ | -------------------- | --------------------------- | ------------------------------------------------------------------- |
-| 書証Id                   | shoshouId            | String                      | 読み込みした書証Id。例示：「111-20221101-333」                      |
-| 書証識別コード           | shoshouHistroyCode   | Long                        | 変更した際に同一意味の書証であることを識別するコード。例示：「333」 |
-| 書証区分                 | shoshouKbn           | String                      | 書証を区分する。書証アップロード機能参照                            |
-| 支持意見団体役割コード   | opinionCode          | Integer                     | 支持したい意見が存在する場合、団体内での役割を識別するコード        |
+| 監査意見付記Id             | userId               | Long                        | ユーザを識別する一意のId                                            |
 | 支持ユーザId             | userId               | Long                        | ユーザを識別する一意のId                                            |
 | 支持ユーザ同一識別コード | uerCode              | Integer                     | ユーザを変更履歴にかかわらず同一識別するコード                      |
 | 支持ユーザ名称           | userName             | Long                        | ユーザ名称                                                          |
-| データ対象項目           | itemNumber           | Integer                     | このデータの書証における項番(順番)                                  |
-| 具体的入力               | incomeDirectTeaching | BalancesheetIncomeInterface | オンブズマンによる具体的な仕訳入力                                  |
-
-### 6.1 監査意見付記過去履歴インターフェイス
-
-IncomeEditHistoryInterface
-
- |         論理名         |       論理名       |                 型                  |               説明(例)               |
- | ---------------------- | ------------------ | ----------------------------------- | ------------------------------------ |
- | 最新収支入力データ     | outcomeDataNew     | BalancesheetIncomeInterface         | 最新の収支報告書支出データ           |
- | 最新以外収支入力データ | listOutcomeHistory | List\<BalancesheetIncomeInterface\> | 最新以外の収支報告書支出データリスト |
-
-BalancesheetIncomeInterfaceは[収入データ表示コンポーネントを](../../common/front/edit_balancesheet_income/edit_balancesheet_income.md)参照
+| 支持意見の団体役割区分   | agreeRolePoliticOrgKbn          | Integer                     | 支持したい意見が存在する場合、団体内での役割を識別するコード        |
+| 支持意見の団体役割名称   | agreeRolePoliticOrgName          | Integer                     | 支持したい意見が存在する場合、団体内での役割を識別するコード        |
+| 保全書証Id                   | shoshouId            | String                      | 読み込みした書証Id。例示：「111-20221101-333」                      |
 
 ## 7. 連携
 
