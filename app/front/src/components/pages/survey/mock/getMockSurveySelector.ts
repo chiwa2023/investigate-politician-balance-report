@@ -1,5 +1,5 @@
-﻿import SurveySelecterInterface from "../../../dto/survey/surveySelecterDto";
-import SurveySelecterDto from "../../../dto/survey/surveySelecterDto";
+﻿import SurveySelecterInterface from "../../../../dto/survey/surveySelecterDto";
+import SurveySelecterDto from "../../../../dto/survey/surveySelecterDto";
 
 /**
  * 組織選択データを生成する

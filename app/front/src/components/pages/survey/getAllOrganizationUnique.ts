@@ -1,6 +1,6 @@
-﻿import SelectOptionInterface from "../../dto/selectOptionDto";
-import SelectOptionDto from "../../dto/selectOptionDto";
-import SurveySelecterInterface from "../../dto/survey/surveySelecterDto";
+﻿import SelectOptionInterface from "../../../dto/selectOptionDto";
+import SelectOptionDto from "../../../dto/selectOptionDto";
+import SurveySelecterInterface from "../../../dto/survey/surveySelecterDto";
 
 /**
  * 組織名で重複のないリストを生成すつ

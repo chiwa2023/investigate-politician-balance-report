@@ -1,5 +1,5 @@
-﻿import SelectOptionInterface from "../../../dto/selectOptionDto";
-import SelectOptionDto from "../../../dto/selectOptionDto";
+﻿import SelectOptionInterface from "../../../../dto/selectOptionDto";
+import SelectOptionDto from "../../../../dto/selectOptionDto";
 
 /**
  * 組織セレクトボックスを生成する

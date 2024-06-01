@@ -1,18 +1,18 @@
 ﻿<script setup lang="ts">
 import { Ref, ref } from "vue";
-import PoliticalOrganizationLeastInterface from "../../../dto/political_organization/politicalOrganizationLeastDto";
-import PoliticalOrganizationLeastDto from "../../../dto/political_organization/politicalOrganizationLeastDto";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
-import SearchPoliticalOrganizationLeastCapsuleDto from "../../../dto/political_organization/searchPoliticalOrganizationLeastCapsuleDto";
-import mockGetPoliticalOrgLeast from "./mock/mockGetPoliticalOrgLeast";
+import ElectionCommissionLeastInterface from "../../../dto/election_commission/electionCommissionDto";
+import ElectionCommissionLeastDto from "../../../dto/election_commission/electionCommissionDto";
+import SearchElectionCommissionLeastCapsuleDto from "../../../dto/election_commission/searchElectionCommissionLeastCapsuleDto";
+import mockGetElectionCommissionLeast from "./mock/mockGetElectionCommissionLeast";
 
 //props,emit
 const props = defineProps<{ isEditable: boolean }>();
-const emits = defineEmits(["sendCancelSearchPoliticalOrganizationLeast", "sendPoliticalOrganizationLeastInterface"]);
+const emits = defineEmits(["sendCancelSearchElectionCommissionLeast", "sendElectionCommissionLeastInterface"]);
 
 /** 表示行 */
-const list: Ref<PoliticalOrganizationLeastInterface[]> = ref([]);
+const list: Ref<ElectionCommissionLeastInterface[]> = ref([]);
 /** ラジオボタン選択 */
 const selectedRow: Ref<number> = ref(0);
 
@@ -39,14 +39,14 @@ function onSelect() {
  */
 function sendData(rowId: number) {
     //PrimaryIdをKeyにしているので、1件だけに絞られることが保証されている
-    const selectedDto: PoliticalOrganizationLeastInterface = list.value.filter((dto) => dto.politicalOrganizationId == rowId)[0];
-    emits("sendPoliticalOrganizationLeastInterface", selectedDto);
+    const selectedDto: ElectionCommissionLeastInterface = list.value.filter((dto) => dto.electionCommissionId == rowId)[0];
+    emits("sendElectionCommissionLeastInterface", selectedDto);
 }
 /**  
  * 入力内容を破棄する
  */
 function onCancel() {
-    emits("sendCancelSearchPoliticalOrganizationLeast");
+    emits("sendCancelSearchElectionCommissionLeast");
 }
 
 /**  
@@ -54,7 +54,7 @@ function onCancel() {
  * @param rowId その行のDtoのId
  */
 function deleteRow(rowId: number) {
-    const newList: PoliticalOrganizationLeastInterface[] = list.value.filter((dto) => dto.politicalOrganizationId != rowId);
+    const newList: ElectionCommissionLeastInterface[] = list.value.filter((dto) => dto.electionCommissionId != rowId);
     list.value = newList;
 }
 /**  
@@ -63,12 +63,12 @@ function deleteRow(rowId: number) {
 function addRow() {
     let maxId = 0;
     for (const dto of list.value) {
-        if (maxId < dto.politicalOrganizationId) {
-            maxId = dto.politicalOrganizationId;
+        if (maxId < dto.electionCommissionId) {
+            maxId = dto.electionCommissionId;
         }
     }
-    const addDto: PoliticalOrganizationLeastInterface = new PoliticalOrganizationLeastDto();
-    addDto.politicalOrganizationId = maxId;
+    const addDto: ElectionCommissionLeastInterface = new ElectionCommissionLeastDto();
+    addDto.electionCommissionId = maxId;
     list.value.push(addDto);
 }
 
@@ -77,8 +77,11 @@ const searchWords: Ref<string> = ref("");
  * 検索条件に基づき検索を行う
  */
 async function onSearch() {
+    //Mockリストの取得
+
+    //実接続
     //セッションストレージ取得
-    const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
+    const searchPoliticalOrganizationLeastCapsuleDto: SearchElectionCommissionLeastCapsuleDto = new SearchElectionCommissionLeastCapsuleDto();
     searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
     searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
     //編集フラグがある場合は、そのフラグ(の反転した値)を照会フラグに設定する
@@ -88,11 +91,11 @@ async function onSearch() {
     searchPoliticalOrganizationLeastCapsuleDto.searchWords = searchWords.value;
 
     //Mockリストの取得
-    list.value = mockGetPoliticalOrgLeast();
+    list.value = mockGetElectionCommissionLeast();
 }
 </script>
 <template>
-    <h3>政治団体検索</h3>
+    <h3>選挙管理員会検索</h3>
     <div class="online">
         検索条件の指定
     </div>
@@ -113,14 +116,14 @@ async function onSearch() {
                 <th>名前</th>
                 <th v-if="props.isEditable" style="width:20%;">&nbsp;</th>
             </tr>
-            <tr v-for="searchedDto in list" :key="searchedDto.politicalOrganizationId">
+            <tr v-for="searchedDto in list" :key="searchedDto.electionCommissionId">
                 <td style="text-align: center;"><input type="radio" id="searchedDto.politicalOrganizationId"
-                        :value="searchedDto.politicalOrganizationId" v-model="selectedRow"
-                        @click="onSelectChange(searchedDto.politicalOrganizationId)" /></td>
-                <td style="text-align: right;">{{ searchedDto.politicalOrganizationCode }}</td>
-                <td>{{ searchedDto.politicalOrganizationName }}</td>
+                        :value="searchedDto.electionCommissionId" v-model="selectedRow"
+                        @click="onSelectChange(searchedDto.electionCommissionId)" /></td>
+                <td style="text-align: right;">{{ searchedDto.electionCommissionCode }}</td>
+                <td>{{ searchedDto.electionCommissionName }}</td>
                 <td v-if="props.isEditable" style="text-align: center;"><button
-                        @click="deleteRow(searchedDto.politicalOrganizationId)">削除</button></td>
+                        @click="deleteRow(searchedDto.electionCommissionId)">削除</button></td>
             </tr>
         </table>
         <button v-if="props.isEditable" @click="addRow">新規行追加</button>

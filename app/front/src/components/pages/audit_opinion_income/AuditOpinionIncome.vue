@@ -1,14 +1,14 @@
 ﻿<script setup lang="ts">
 import { ref, Ref } from "vue";
-import EditIncome from "../common/edit_income/EditIncome.vue";
-import CompareAuditIncome from "../common/compare_audit_income/CompareAuditIncome.vue";
-import ShowBalancesheetIncomeHistory from "../common/show_balancesheet_income_history/ShowBalancesheetIncomeHistory.vue";
-import SearchBalancesheetIncome from "../common/search_balancesheet_income/SearchBalancesheetIncome.vue";
-import SearchPoliticalOrganization from "../common/search_political_organization/SearchPoliticalOrganization.vue";
-import PoliticalOrganizationLeastInterface from "../../dto/political_organization/politicalOrganizationLeastDto";
-import AuditOpinionIncomeDto from "../../dto/audit_opinion/auditOpinionIncomeDto";
-import AuditOpinionIncomeInterface from "../../dto/audit_opinion/auditOpinionIncomeDto";
-import SelectOptionInterface from "../../dto/selectOptionDto";
+import EditIncome from "../../common/edit_income/EditIncome.vue";
+import CompareAuditIncome from "../../common/compare_audit_income/CompareAuditIncome.vue";
+import ShowBalancesheetIncomeHistory from "../../common/show_balancesheet_income_history/ShowBalancesheetIncomeHistory.vue";
+import SearchBalancesheetIncome from "../../common/search_balancesheet_income/SearchBalancesheetIncome.vue";
+import SearchPoliticalOrganization from "../../common/search_political_organization/SearchPoliticalOrganization.vue";
+import PoliticalOrganizationLeastInterface from "../../../dto/political_organization/politicalOrganizationLeastDto";
+import AuditOpinionIncomeDto from "../../../dto/audit_opinion/auditOpinionIncomeDto";
+import AuditOpinionIncomeInterface from "../../../dto/audit_opinion/auditOpinionIncomeDto";
+import SelectOptionInterface from "../../../dto/selectOptionDto";
 
 //検索コンポーネント表示／非表示
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);

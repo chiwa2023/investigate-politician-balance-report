@@ -1,9 +1,9 @@
 ﻿<script setup lang="ts">
 
 import { Ref,computed,ref } from "vue";
-import  SurveyIndicatorDto from "../../dto/surveyIndicatorDto";
-import  SurveyIndicatorInterface from "../../dto/surveyIndicatorDto";
-import  TerminologyHelp from "../common/TerminologyHelp.vue";
+import  SurveyIndicatorDto from "../../../dto/surveyIndicatorDto";
+import  SurveyIndicatorInterface from "../../../dto/surveyIndicatorDto";
+import  TerminologyHelp from "../../common/TerminologyHelp.vue";
 
 const props = defineProps<{
     indicator: SurveyIndicatorDto

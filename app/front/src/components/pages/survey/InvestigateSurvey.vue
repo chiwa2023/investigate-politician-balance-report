@@ -1,12 +1,12 @@
 ﻿<script setup lang="ts">
-import SurveyIndicatorDto from "./../../dto/surveyIndicatorDto";
-import SelectOptionDto from "./../../dto/selectOptionDto";
+import SurveyIndicatorDto from "./../../../dto/surveyIndicatorDto";
+import SelectOptionDto from "./../../../dto/selectOptionDto";
 import createMockSurveyGroupOptions from "./mock/createMockSurveyGroupOptions";
 import getMockSurveySelector from "./mock/getMockSurveySelector";
 import getMockSurveyView from "./mock/getMockSurveyView";
 import { Ref, ref ,onBeforeMount ,watch} from "vue";
 import SurveyIndicator from "./SurveyIndicator.vue";
-import SurveySelecterInterface from "../../dto/survey/surveySelecterDto";
+import SurveySelecterInterface from "../../../dto/survey/surveySelecterDto";
 import getAllOrganizationUnique from "./getAllOrganizationUnique";
 import getAllYearTeishutsuUnique from "./getAllYearTeishutsuUnique";
 import filterYearTeishutsu from "./filterYearTeishutsu";

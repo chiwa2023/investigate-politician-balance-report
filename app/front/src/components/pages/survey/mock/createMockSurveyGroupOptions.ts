@@ -1,5 +1,5 @@
-﻿import SelectOptionInterface from "../../../dto/selectOptionDto";
-import SelectOptionDto from "../../../dto/selectOptionDto";
+﻿import SelectOptionInterface from "../../../../dto/selectOptionDto";
+import SelectOptionDto from "../../../../dto/selectOptionDto";
 
 /**
  * 調査グループ選択肢を生成する

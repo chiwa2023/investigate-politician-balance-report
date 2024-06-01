@@ -1,5 +1,5 @@
-﻿import SurveyIndicatorInterface from "../../../dto/surveyIndicatorDto";
-import SurveyIndicatorDto from "../../../dto/surveyIndicatorDto";
+﻿import SurveyIndicatorInterface from "../../../../dto/surveyIndicatorDto";
+import SurveyIndicatorDto from "../../../../dto/surveyIndicatorDto";
 
 /**
  * 調査表示用データを生成制する

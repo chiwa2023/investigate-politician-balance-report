@@ -1,6 +1,6 @@
-﻿import SelectOptionInterface from "../../dto/selectOptionDto";
-import SelectOptionDto from "../../dto/selectOptionDto";
-import SurveySelecterInterface from "../../dto/survey/surveySelecterDto";
+﻿import SelectOptionInterface from "../../../dto/selectOptionDto";
+import SelectOptionDto from "../../../dto/selectOptionDto";
+import SurveySelecterInterface from "../../../dto/survey/surveySelecterDto";
 
 /**
  * 重複のないセレクトボックス用組織リストを作成する

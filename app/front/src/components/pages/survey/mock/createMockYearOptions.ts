@@ -1,5 +1,5 @@
-﻿import SelectOptionInterface from "../../../dto/selectOptionDto";
-import SelectOptionDto from "../../../dto/selectOptionDto";
+﻿import SelectOptionInterface from "../../../../dto/selectOptionDto";
+import SelectOptionDto from "../../../../dto/selectOptionDto";
 
 /**
  * 提出年選択肢を生成する
