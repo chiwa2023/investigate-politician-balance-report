@@ -2,7 +2,6 @@ package mitei.mitei.investigate.report.balance.politician.batch.trial.read_csv;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
@@ -16,12 +15,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import mitei.mitei.investigate.report.balance.politician.batch.trial.read_csv.dto.PersonDto;
 import mitei.mitei.investigate.report.balance.politician.batch.trial.read_csv.dto.ReportDto;
 
-
 /**
  * Csv読み取りし書き込みするバッチ
  */
 @Configuration
-@EnableBatchProcessing
 public class ReadCsvBatchConfiguration {
 
     /** 機能名 */
@@ -29,6 +26,7 @@ public class ReadCsvBatchConfiguration {
 
     /** Step(接尾語) */
     private static final String STEP = "Step";
+    
     /** Job(接尾語) */
     private static final String JOB = "Job";
 
@@ -36,7 +34,7 @@ public class ReadCsvBatchConfiguration {
     public static final String JOB_NAME = FUNCTION_NAME + JOB;
 
     /** Step名 */
-    private static final String STEP_NAME = FUNCTION_NAME + STEP;
+    public static final String STEP_NAME = FUNCTION_NAME + STEP;
 
     /** チャンクサイズ */
     private static final int CHUNK_SIZE = 3;
@@ -61,9 +59,7 @@ public class ReadCsvBatchConfiguration {
      * @return ジョブ
      */
     @Bean(JOB_NAME)
-    protected Job job(final JobRepository jobRepository, @Qualifier(STEP_NAME) final Step step) {
-
-        System.out.println("batch " + JOB_NAME);
+    protected Job getJob(final JobRepository jobRepository,@Qualifier(STEP_NAME) final Step step) {
 
         return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(step).end().build();
     }
@@ -73,17 +69,10 @@ public class ReadCsvBatchConfiguration {
      *
      * @param jobRepository ジョブレポジトリ
      * @param transactionManager トランザクションマネージャ
-     * @param readCsvTasklet タスクレット
      * @return step
      */
     @Bean(STEP_NAME)
-    protected Step step(final JobRepository jobRepository, final PlatformTransactionManager transactionManager,
-            final ReadCsvTasklet readCsvTasklet) {
-
-        System.out.println("batch " + STEP_NAME);
-
-        // return new StepBuilder(STEP_NAME, jobRepository).tasklet(readCsvTasklet,
-        // transactionManager).build();
+    protected Step getStep(final JobRepository jobRepository, final PlatformTransactionManager transactionManager) {
         
         return new StepBuilder(STEP_NAME, jobRepository).<PersonDto, ReportDto>chunk(CHUNK_SIZE, transactionManager)
                 .reader(readCsvPersonItemReader).processor(readCsvItemProcessor).writer(readCsvReportItemWriter).build();
