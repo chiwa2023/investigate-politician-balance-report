@@ -78,8 +78,11 @@ end
 ### 1. front側
 
 1. Vue+Vite
-a. vue/cli  5.0.8
-b. vitejs/plugin-vue:4.5.2
+a. vitejs/plugin-vue:5.0.4
+d. vite:5.2.0
+b. eslint:9.4.0
+c. typesceipt:5.2.2
+d. vitest:1.6.0
 
 ### 2. back側
 
@@ -90,25 +93,41 @@ b. vitejs/plugin-vue:4.5.2
 
 1. MySQL
 
+### 4. Upgrade
+
+a.back側
+
+pom.xml内のspring-boot-starter-parentのVersion番号を通知があり次第修正
+
+b.front側
+
+1. vite-vue導入 'npm create vite@latest --save-dev  . -- --template vue-ts'
+
+2. axios 'npm install axios --save-dev'
+
+3. vue-router導入 'npm install vue-router --save-dev'
+
+4. eslint導入 'npm install eslint --save-dev'
+
+5. vitest導入 'npm i -D vitest'
+
 ## 4.起動
 
 ### 1. front
 
-viteを起動`npm run dev`
-
-### 1.1 frontのテスト
-
-viteを起動`npm run dev`
+viteを起動 `npm run dev`
 
 ### 2. back
 
-mvnからspring起動`mvn spring-boot:run`
+mvnからspring起動 `mvnw spring-boot:run`
+
+JAVA_HOMEの設定が必要。powershell起動の場合は`./mvnw spring-boot:run`
 
 ## 5.テスト
 
 ### a. front
 
-vitestを起動`npm test`
+vitestを起動`npm run test`
 VsCodeを使用している場合はJUnit感覚でテスト駆動できる[Vitestプラグイン](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)の利用をお勧めする
 
 ### b. back
