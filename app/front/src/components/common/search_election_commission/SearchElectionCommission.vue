@@ -117,7 +117,7 @@ async function onSearch() {
                 <th v-if="props.isEditable" style="width:20%;">&nbsp;</th>
             </tr>
             <tr v-for="searchedDto in list" :key="searchedDto.electionCommissionId">
-                <td style="text-align: center;"><input type="radio" id="searchedDto.politicalOrganizationId"
+                <td style="text-align: center;"><input type="radio" id="searchedDto.electionCommissionId"
                         :value="searchedDto.electionCommissionId" v-model="selectedRow"
                         @click="onSelectChange(searchedDto.electionCommissionId)" /></td>
                 <td style="text-align: right;">{{ searchedDto.electionCommissionCode }}</td>

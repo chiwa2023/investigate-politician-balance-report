@@ -413,10 +413,8 @@ function onSave() {
         <button @click="onSave" class="footer-button">保存</button>
     </div>
 
-    <!-- ベースを操作禁止するレイヤ -->
-    <div v-if="isVisibleSearchPoliticalOrganizationLeast" class="overBackground"></div>
-    <div v-if="isVisibleSearchElectionCommision" class="overBackground"></div>
     <!-- 政治団体検索コンポーネント -->
+    <div v-if="isVisibleSearchPoliticalOrganizationLeast" class="overBackground"></div>
     <div v-if="isVisibleSearchPoliticalOrganizationLeast">
         <div class="overComponent">
             <SearchPoliticalOrganization :isEditable="false"
@@ -426,6 +424,7 @@ function onSave() {
         </div>
     </div>
     <!-- 選挙管理委員会検索コンポーネント -->
+    <div v-if="isVisibleSearchElectionCommision" class="overBackground"></div>
     <div v-if="isVisibleSearchElectionCommision">
         <div class="overComponent">
             <SearchElectionCommission :isEditable="false"

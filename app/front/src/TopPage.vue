@@ -4,7 +4,7 @@ import CheckPrivilegeDto from "./dto/common_check/checkPrivilegeDto";
 import SessionStorageCommonCheck from "./dto/common_check/sessionStorageCommonCheck";
 
 //本来はログインページで設定されているセキュリティ・権限情報は
-//未実装のため、このページでパスする実装する。
+//未実装のため、このページでパスする実装をする。
 //TODO ログインの仕様が決定次第修正する
 /* 値設定は基本的に1回のみ */
 
@@ -44,6 +44,7 @@ SessionStorageCommonCheck.setPrivilege(checkPrivilegeDto);
     <RouterLink to="/audit-option-income">監査意見収入</RouterLink><br>
     <RouterLink to="/detect-balancesheet-defect">政治資金収支報告書欠損検出(版管理)</RouterLink><br>
     <RouterLink to="/make-link-balancesheet">政治資金収支報告書リンク編集</RouterLink><br>
+    <RouterLink to="/propse-accept-read-csv-template">読み取りCSV申請承認</RouterLink><br>
     <RouterLink to="/survey">基礎調査</RouterLink><br>
     <RouterLink to="/component">コンポーネント作成台紙</RouterLink><br>
 </template>
