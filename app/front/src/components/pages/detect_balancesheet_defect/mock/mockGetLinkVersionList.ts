@@ -1,4 +1,5 @@
 ﻿import LinkBalancesheetVersionDto from "../../../../dto/make_balancesheet_link/linkBalancesheetVersionDto";
+import SearchConditionDetectDefectInterface from "../../../../dto/make_balancesheet_link/searchConditionDetectDefectDto";
 
 /**
  * 収支報告書版Dtoリストを取得する
@@ -6,10 +7,10 @@
  * @param endYear 終了年
  * @returns 収支報告書版Dtoリスト
  */
-export default function mockGetLinkVersionList(startYear: number, endYear: number): LinkBalancesheetVersionDto[] {
+export default function mockGetLinkVersionList(conditionDto:SearchConditionDetectDefectInterface): LinkBalancesheetVersionDto[] {
     const list: LinkBalancesheetVersionDto[] = [];
 
-    for (let year = startYear; year <= endYear; year++) {
+    for (let year = conditionDto.conditionStartYear; year <= conditionDto.conditionEndYear; year++) {
         const versionDto = createDto(year, 1);
         list.push(versionDto);
 

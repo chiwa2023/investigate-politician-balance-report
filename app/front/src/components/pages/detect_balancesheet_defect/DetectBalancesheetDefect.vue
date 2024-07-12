@@ -7,6 +7,8 @@ import LinkBalancesheetVersionDto from "../../../dto/make_balancesheet_link/link
 import mockGetLinkVersionList from "./mock/mockGetLinkVersionList";
 import createNewLinkversionDto from "../../../dto/make_balancesheet_link/createNewLinkversionDto";
 import { useRouter } from "vue-router";
+import SearchConditionDetectDefectInterface from "../../../dto/make_balancesheet_link/searchConditionDetectDefectDto";
+import SearchConditionDetectDefectDto from "../../../dto/make_balancesheet_link/searchConditionDetectDefectDto";
 
 //版Dtoリスト
 const listVersion: Ref<LinkBalancesheetVersionDto[]> = ref([]);
@@ -72,7 +74,13 @@ function onSearch() {
         return;
     }
     //政治団体と提出年から最新状態を検索
-    listVersion.value = mockGetLinkVersionList(yearStart.value, yearEnd.value);
+    const conditionDto:SearchConditionDetectDefectInterface = new SearchConditionDetectDefectDto();
+    conditionDto.orgnaizationId = politicalOrgnaizationId.value;
+    conditionDto.orgnaizationCode = politicalOrgnaizationCode.value;
+    conditionDto.orgnaizationName = politicalOrgnaizationName.value;
+    conditionDto.conditionStartYear = yearStart.value;
+    conditionDto.conditionEndYear = yearEnd.value;
+    listVersion.value = mockGetLinkVersionList(conditionDto);
 }
 /**
  * 新バージョン追加

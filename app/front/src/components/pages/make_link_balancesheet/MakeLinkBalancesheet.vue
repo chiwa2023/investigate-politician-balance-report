@@ -60,9 +60,9 @@ onBeforeMount(() => {
         }
 
         //政治団体設定に値を入れる
-        politicalOrgnaizationId.value = formalDto.value.politicalOrgnaizationId;
-        politicalOrgnaizationCode.value = formalDto.value.politicalOrgnaizationCode;
-        politicalOrgnaizationName.value = formalDto.value.politicalOrgnaizationName;
+        politicalOrgnaizationId.value = formalDto.value.orgnaizationId;
+        politicalOrgnaizationCode.value = formalDto.value.orgnaizationCode;
+        politicalOrgnaizationName.value = formalDto.value.orgnaizationName;
 
         //リストを作成してフィルタ
         selectedOfferingYear.value = String(formalDto.value.offeringYear);
@@ -322,7 +322,7 @@ function onSave() {
         提出回
     </div>
     <div class="right-area">
-        <input type="number" v-model="formalDto.offeringYear" disabled="true">年&nbsp;
+        <input type="number" v-model="formalDto.offeringTimes" disabled="true">回目&nbsp;
         提出日<input type="date" v-model="formalDto.offeringDate" disabled="true">
         <button @click="onDeleteFormal(formalDto.publicationFormalItemId)">削除</button>
     </div>

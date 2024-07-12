@@ -43,9 +43,9 @@ function createDto(year:number,times: number): PublicationFormalItemInterface {
     dto.publicationLinkUrl = "https://balancesheet/store" + index;
     dto.publishingDate = "2022/12/01";
 
-    dto.politicalOrgnaizationId = 33;
-    dto.politicalOrgnaizationCode = 30;
-    dto.politicalOrgnaizationName = "サンプル政治団体3";
+    dto.orgnaizationId = 33;
+    dto.orgnaizationCode = 30;
+    dto.orgnaizationName = "サンプル政治団体3";
 
     return dto;
 }

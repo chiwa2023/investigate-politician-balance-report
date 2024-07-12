@@ -46,6 +46,9 @@ export default class LinkBalancesheetVersionDto {
     /** 公式(選挙管理委員会)掲載リンク */
     publicationLinkUrl: string;
 
+    /** 公式公開終了該否 */
+    isClosed: boolean;
+
     /** 公式政治資金収支報告書リンクId */
     publicationFormalItemId: number;
 
@@ -74,6 +77,7 @@ export default class LinkBalancesheetVersionDto {
         this.electionCommitionCode = initInt;
         this.electionCommitionName = initString;
         this.publicationLinkUrl = initString;
+        this.isClosed = initBoolean;
         this.publicationFormalItemId = initInt;
         this.publicationFormalItemCode = initInt;
     }

@@ -201,6 +201,10 @@ const headerClass = (index: number): string => {
     <div v-if="hasSimilarData">
         <h3>類似仕様を抽出しています…</h3>
         <table>
+            <tr>
+                <th>コード</th>
+                <th>名称</th>
+            </tr>
             <tr v-for="(line, indexLine) in listSimilar" :key="indexLine">
                 <td v-for="(cell, indexCell) in line" :key="indexCell">
                     {{ cell }}
