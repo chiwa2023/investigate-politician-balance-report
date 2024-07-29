@@ -2,6 +2,10 @@
 import CheckSecurityDto from "./dto/common_check/checkSecurityDto";
 import CheckPrivilegeDto from "./dto/common_check/checkPrivilegeDto";
 import SessionStorageCommonCheck from "./dto/common_check/sessionStorageCommonCheck";
+import { useRouter } from "vue-router";
+
+//router    
+const routerDestination = useRouter();//遷移先への移動用
 
 //本来はログインページで設定されているセキュリティ・権限情報は
 //未実装のため、このページでパスする実装する。
@@ -37,6 +41,14 @@ checkPrivilegeDto.loginUserName = loginUserName;
 SessionStorageCommonCheck.setSecurity(checkSecurityDto);
 SessionStorageCommonCheck.setPrivilege(checkPrivilegeDto);
 /* ここまで */
+
+// 直接アクセスしかされないので、ログインされているかをチェックする
+// ログインされていない場合はログインページへ
+const securityDto: CheckSecurityDto = SessionStorageCommonCheck.getSecurity();
+if (0 === securityDto.loginUserId) {
+    // loginUserIdが0=初期値の場合は、ログインしていないのでログインページに遷移する
+    routerDestination.push("/login_user"+"?directPath=/");
+}
 
 </script>
 <template>
