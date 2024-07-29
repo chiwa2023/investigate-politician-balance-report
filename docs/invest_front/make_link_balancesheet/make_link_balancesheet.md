@@ -99,50 +99,50 @@
 
 2.ページ表示時、値`公式政治資金収支報告書リンクId:publicationFormalItemId`を受け取らない場合は、(対象政治団体が指定されるまで)、特に何もしない
 
-## 6. 政治資金収支報告書公式情報インターフェイス
+## 6. 政治資金収支報告書／政党交付金使途報告書公式情報インターフェイス
 
 PublicationFormalItemInterface
 
- |                論理名                |          論理名           |                    型                    |                                         説明(例)                                         |
- | ------------------------------------ | ------------------------- | ---------------------------------------- | ---------------------------------------------------------------------------------------- |
- | 公式政治資金収支報告書リンクId       | publicationFormalItemId   | Long                                     | 政治資金収支報告書を識別する一意のId                                                     |
- | 公式政治資金収支報告書同一識別コード | publicationFormalItemCode | Integer                                  | 変更履歴にかかわらず政治資金収支報告書を識別する一意のId                                 |
- | データセット該否                     | isDataSet                 | String                                   | 政治資金収支報告書名称                                                                   |
- | 政治団体Id                           | politicOrgnaizationId     | Long                                     | 政治家団体を識別する一意のId                                                             |
- | 政治団体同一識別コード               | politicOrgnaizationCode   | Integer                                  | 履歴にかかわらず政治家団体を識別する一意のId                                             |
- | 政治団体名称                         | politicOrgnaizationName   | String                                   | 政治家団体名称                                                                           |
- | 選挙管理委員会Id                     | electionCommitionId       | Long                                     | 政治家団体を識別する一意のId                                                             |
- | 選挙管理委員会同一識別コード         | electionCommitionCode     | Integer                                  | 履歴にかかわらず政治家団体を識別する一意のId                                             |
- | 選挙管理委員会名称                   | electionCommitionName     | String                                   | 政治家団体名称                                                                           |
- | 報告年                               | offeringYear              | Integer                                  | 報告年                                                                                   |
- | 提出回数                             | offeringTimes             | Integer                                  | 提出回数(永続化しない)                                                                   |
- | 報告日                               | offeringDate              | Date                                     | 報告日                                                                                   |
- | 公式サイト公開該否                   | isClosed                  | Boolean                                  | 公式サイトで情報公開されていることが確認できている場合は`true`                           |
- | 公式(選挙管理委員会)掲載リンク       | publicationLinkUrl        | String                                   | 公式サイトで保存されている収支報告書への絶対リンク                                       |
- | システムへの保存該否                 | isImported                | Boolean                                  | このシステムに解析可能な形で保存されている場合`true`                                     |
- | 公開済収支報告書Id                   | publishedBalancesheetId   | Long                                     | 公開されたこのサイトで(作成されていないが)読み取りされた政治資金収支報告書Id             |
- | 公開済収支報告書同一識別コード       | publishedBalancesheetCode | Integer                                  | 公開されたこのサイトで(作成されていないが)読み取りされた政治資金収支報告書同一識別コード |
- | 非公式データリスト                   | listInformalData          | List\<PublicationInformalDataInterface\> | 非公式サイトへのリンク情報リスト                                                         |
+ |                   論理名                   |          論理名           |                    型                    |                                           説明(例)                                           |
+ | ------------------------------------------ | ------------------------- | ---------------------------------------- | -------------------------------------------------------------------------------------------- |
+ | 公式収支報告書／使途報告書リンクId         | publicationFormalItemId   | Long                                     | 収支報告書／使途報告書を識別する一意のId                                                     |
+ | 公式収支報告書／使途報告書同一識別コード   | publicationFormalItemCode | Integer                                  | 変更履歴にかかわらず収支報告書／使途報告書を識別する一意のId                                 |
+ | データセット該否                           | isDataSet                 | Boolean                                  | 公式、非公式ともデータ設定がない場合は`false`                                                |
+ | 団体Id                                     | organizationId            | Long                                     | 政党／政治団体を識別する一意のId                                                             |
+ | 団体同一識別コード                         | organizationCode          | Integer                                  | 履歴にかかわらず政党／政治団体を識別する一意のコード                                         |
+ | 団体名称                                   | organizationName          | String                                   | 政党／政治団体名称                                                                           |
+ | 選挙管理委員会Id                           | electionCommitionId       | Long                                     | 選挙管理委員会を識別する一意のId                                                             |
+ | 選挙管理委員会同一識別コード               | electionCommitionCode     | Integer                                  | 履歴にかかわらず選挙管理委員会を識別する一意のコード                                         |
+ | 選挙管理委員会名称                         | electionCommitionName     | String                                   | 選挙管理委員会名称                                                                           |
+ | 報告年                                     | offeringYear              | Integer                                  | 報告年                                                                                       |
+ | 提出回数                                   | offeringTimes             | Integer                                  | 提出回数(永続化しない)                                                                       |
+ | 報告日                                     | offeringDate              | Date                                     | 報告日                                                                                       |
+ | 公式サイト公開該否                         | isClosed                  | Boolean                                  | 公式サイトで情報公開されていることが確認できている場合は`true`                               |
+ | 公式(選挙管理委員会)掲載リンク             | publicationLinkUrl        | String                                   | 公式サイトで保存されている使途報告書への絶対リンク                                           |
+ | システムへの保存該否                       | isImported                | Boolean                                  | このシステムに解析可能な形で保存されている場合`true`                                         |
+ | 公開済収支報告書／使途報告書Id             | publishedBalancesheetId   | Long                                     | 公開されたこのサイトで(作成されていないが)読み取りされた収支報告書／使途報告書書Id           |
+ | 公開済収支報告書／使途報告書同一識別コード | publishedBalancesheetCode | Integer                                  | 公開されたこのサイトで(作成されていないが)読み取りされた収支報告書／使途報告書同一識別コード |
+ | 非公式データリスト                         | listInformalData          | List\<PublicationInformalDataInterface\> | 非公式サイトへのリンク情報リスト                                                             |
 
-### 6.1 政治資金収支報告書非公式情報インターフェイス
+### 6.1 政治資金収支報告書／政党交付金使途報告書非公式情報インターフェイス
 
 PublicationInformalDataInterface
 
- |             論理名             |          論理名           |   型    |                                         説明(例)                                         |
- | ------------------------------ | ------------------------- | ------- | ---------------------------------------------------------------------------------------- |
- | 非公式データId                 | publicationInformalId     | Long    | 政治資金収支報告書を識別する一意のId                                                     |
- | 非公式データ同一識別コード     | publicationInformalCode   | Integer | 変更履歴にかかわらず政治資金収支報告書を識別する一意のId                                 |
- | 政治団体Id                     | politicOrgnaizationId     | Long    | 政治家団体を識別する一意のId                                                             |
- | 政治団体同一識別コード         | politicOrgnaizationCode   | Integer | 履歴にかかわらず政治家団体を識別する一意のId                                             |
- | 政治団体名称                   | politicOrgnaizationName   | String  | 政治家団体名称                                                                           |
- | 報告年                         | offeringYear              | Integer | 方向年                                                                                   |
- | 提出回数                       | offeringTimes             | Integer | 提出回数(永続化しない)                                                                   |
- | 報告日                         | offeringDate              | Date    | 報告日                                                                                   |
- | リンクラベル                   | linkLabel                 | String  | 該当収支報告書を保存している非公式サイト名称                                             |
- | リンクURL                      | linkUrl                   | String  | 非公式サイトへの絶対リンク                                                               |
- | システムへの保存該否           | isImported                | Boolean | 解析可能な形式でこのサイトで保存されている場合は`true`                                   |
- | 公開済収支報告書Id             | publishedBalancesheetId   | Long    | 公開されたこのサイトで(作成されていないが)読み取りされた政治資金収支報告書Id             |
- | 公開済収支報告書同一識別コード | publishedBalancesheetCode | Integer | 公開されたこのサイトで(作成されていないが)読み取りされた政治資金収支報告書同一識別コード |
+ |                   論理名                   |          論理名           |   型    |                                           説明(例)                                           |
+ | ------------------------------------------ | ------------------------- | ------- | -------------------------------------------------------------------------------------------- |
+ | 非公式データId                             | publicationInformalId     | Long    | 政党交付金使途報告書を識別する一意のId                                                       |
+ | 非公式データ同一識別コード                 | publicationInformalCode   | Integer | 変更履歴にかかわらず政党交付金使途報告書を識別する一意のId                                   |
+ | 団体Id                                     | organizationId            | Long    | 政治団体を識別する一意のId                                                                   |
+ | 団体同一識別コード                         | organizationCode          | Integer | 履歴にかかわらず団体を識別する一意のId                                                       |
+ | 団体名称                                   | organizationName          | String  | 政治団体名称                                                                                 |
+ | 報告年                                     | offeringYear              | Integer | 方向年                                                                                       |
+ | 提出回数                                   | offeringTimes             | Integer | 提出回数(永続化しない)                                                                       |
+ | 報告日                                     | offeringDate              | Date    | 報告日                                                                                       |
+ | リンクラベル                               | linkLabel                 | String  | 該当使途報告書を保存している非公式サイト名称                                                 |
+ | リンクURL                                  | linkUrl                   | String  | 非公式サイトへの絶対リンク                                                                   |
+ | システムへの保存該否                       | isImported                | Boolean | 解析可能な形式でこのサイトで保存されている場合は`true`                                       |
+ | 公開済収支報告書／使途報告書Id             | publishedBalancesheetId   | Long    | 公開されたこのサイトで(作成されていないが)読み取りされた収支報告書／使途報告書Id             |
+ | 公開済収支報告書／使途報告書同一識別コード | publishedBalancesheetCode | Integer | 公開されたこのサイトで(作成されていないが)読み取りされた収支報告書／使途報告書同一識別コード |
 
 ## 7. 連携
 

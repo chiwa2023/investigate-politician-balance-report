@@ -53,8 +53,8 @@ StorageFileUploadInterface
 
 |         論理名         |         物理名          |   型   |                   説明(例)                   |
 | ---------------------- | ----------------------- | ------ | -------------------------------------------- |
-| 政治団体Id             | politicOrgnaizationId   | Long   | 政治家団体を識別する一意のId                 |
-| 政治団体同一識別コード | politicOrgnaizationCode | Long   | 履歴にかかわらず政治家団体を識別する一意のId |
+| 政治団体Id             | politicOrgnaizationId   | Long   | 政治団体を識別する一意のId                 |
+| 政治団体同一識別コード | politicOrgnaizationCode | Long   | 履歴にかかわらず政治団体を識別する一意のId |
 | ファイル名             | fileName                | String | アップロードされたファイル名                 |
 
 ## 7. 連携
