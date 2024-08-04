@@ -15,6 +15,9 @@ const routes = [
     //パスワードリセット
     { path: '/reset_password/propose', name: 'PropseResetPassword', component: () => import("./components/pages/reset_password/PropseResetPassword.vue") },
     { path: '/reset_password/execute', name: 'ExecuteResetPassword', component: () => import("./components/pages/reset_password/ExecuteResetPassword.vue") },
+
+    { path: "/propose-accept-not-regist-organization", name: "ProposeAcceptNotRegistOrganization", component: () => import("./components/pages/propose_accept_not_regist_organization/ProposeAcceptNotRegistOrganization.vue")},
+
 ];
 
 const router = createRouter({
