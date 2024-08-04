@@ -253,9 +253,9 @@ const headerClass = (index: number): string => {
     </div>
 
     <div class="footer">
-        <button @click="onCancel">キャンセル</button>
-        <button @click="onRefuse">却下</button>
-        <button @click="onAccept">承認</button>
+        <button @click="onCancel" class="footer-button">キャンセル</button>
+        <button @click="onRefuse" class="footer-button">却下</button>
+        <button @click="onAccept" class="footer-button">承認</button>
     </div>
 
     <!-- 申請中CSV読み取りテンプレート -->

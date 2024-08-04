@@ -160,8 +160,8 @@ function getKbnName(kbn: number): string {
     </div>
     <br>
     <div class="footer" v-if="!props.isEditable">
-        <button @click="onCancel">キャンセル</button>
-        <button @click="onSelect">選択</button>
+        <button @click="onCancel" class="footer-button">キャンセル</button>
+        <button @click="onSelect" class="footer-button">選択</button>
     </div>
 </template>
 <style scoped>

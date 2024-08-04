@@ -40,8 +40,8 @@ function addContent() {
     </div>
     <div class="right-area">
         <select v-model="selectedOptionReason" @change="addContent">
-            <option>類似の仕様がすでに存在する</option>
-            <option>新規申し込みだが変更だった</option>
+            <option>すでに登録済である</option>
+            <option>送付された資料が不十分</option>
         </select>
     </div>
     <div class="clear-both"></div>
