@@ -1,7 +1,7 @@
 ﻿<script setup lang="ts">
-import axios from 'axios';
-import OneFileBlobDto from '../../../dto/storage/oneFileBlobDto';
-import showErrorMessage from '../../../dto/common_check/showErrorMessage';
+//import axios from 'axios';
+//import OneFileBlobDto from '../../../dto/storage/oneFileBlobDto';
+//import showErrorMessage from '../../../dto/common_check/showErrorMessage';
 import SaveStorageResultDto from '../../../dto/storage/saveStorageResultDto';
 
 //props

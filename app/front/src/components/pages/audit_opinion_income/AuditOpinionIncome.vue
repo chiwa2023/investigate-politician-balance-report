@@ -18,7 +18,7 @@ const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
 const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
 searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
 searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
-searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(true);// 変更を許可しない
 
 
 const isVisibleSearchAuditOpinionIncome: Ref<boolean> = ref(false);

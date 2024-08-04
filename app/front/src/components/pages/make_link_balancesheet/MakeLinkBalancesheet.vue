@@ -29,14 +29,14 @@ const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
 const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
 searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
 searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
-searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(true);// 変更を許可しない
 
 //選挙管理委員会検索コンポーネント
 const isVisibleSearchElectionCommision: Ref<boolean> = ref(false);
 const searchElectionCommissionLeastCapsuleDto: SearchElectionCommissionLeastCapsuleDto = new SearchElectionCommissionLeastCapsuleDto();
 searchElectionCommissionLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
 searchElectionCommissionLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
-searchElectionCommissionLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+searchElectionCommissionLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(true);// 変更を許可しない
 
 //公式情報リスト
 const listAllFormal: Ref<PublicationFormalItemInterface[]> = ref([]);
