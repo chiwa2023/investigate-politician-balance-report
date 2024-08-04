@@ -52,29 +52,32 @@ export default class LinkBalancesheetVersionDto {
     /** 公式政治資金収支報告書同一識別コード */
     publicationFormalItemCode: number;
 
+    isClosed:boolean;
+
     constructor() {
         //初期値
-        const initInt: number = 0;
-        const initString: string = "";
-        const initDate: string = "1980-01-01";
-        const initBoolean: boolean = false;
+        const INIT_NUMBER: number = 0;
+        const INIT_STRING: string = "";
+        const INIT_DATE: string = "1980-01-01";
+        const INIT_BOOLEAN: boolean = false;
 
-        this.linkBalancesheetVersionId = initInt;
-        this.linkBalancesheetVersionCode = initInt;
-        this.politicalOrgnaizationId = initInt;
-        this.politicalOrgnaizationCode = initInt;
-        this.politicalOrgnaizationName = initString;
-        this.offeringYear = initInt;
-        this.offeringTimes = initInt;
-        this.offeringDate = initDate;
-        this.publicationDate = initDate;
-        this.isDataSetFormal = initBoolean;
-        this.isDataSetInformal = initBoolean;
-        this.electionCommitionId = initInt;
-        this.electionCommitionCode = initInt;
-        this.electionCommitionName = initString;
-        this.publicationLinkUrl = initString;
-        this.publicationFormalItemId = initInt;
-        this.publicationFormalItemCode = initInt;
+        this.linkBalancesheetVersionId = INIT_NUMBER;
+        this.linkBalancesheetVersionCode = INIT_NUMBER;
+        this.politicalOrgnaizationId = INIT_NUMBER;
+        this.politicalOrgnaizationCode = INIT_NUMBER;
+        this.politicalOrgnaizationName = INIT_STRING;
+        this.offeringYear = INIT_NUMBER;
+        this.offeringTimes = INIT_NUMBER;
+        this.offeringDate = INIT_DATE;
+        this.publicationDate = INIT_DATE;
+        this.isDataSetFormal = INIT_BOOLEAN;
+        this.isDataSetInformal = INIT_BOOLEAN;
+        this.electionCommitionId = INIT_NUMBER;
+        this.electionCommitionCode = INIT_NUMBER;
+        this.electionCommitionName = INIT_STRING;
+        this.publicationLinkUrl = INIT_STRING;
+        this.publicationFormalItemId = INIT_NUMBER;
+        this.publicationFormalItemCode = INIT_NUMBER;
+        this.isClosed = INIT_BOOLEAN;
     }
 }

@@ -1,14 +1,12 @@
 ﻿<script setup lang="ts">
-import { Ref, ref } from "vue";
-import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
-import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
+import {  Ref, ref } from "vue";
 import ElectionCommissionLeastInterface from "../../../dto/election_commission/electionCommissionDto";
 import ElectionCommissionLeastDto from "../../../dto/election_commission/electionCommissionDto";
 import SearchElectionCommissionLeastCapsuleDto from "../../../dto/election_commission/searchElectionCommissionLeastCapsuleDto";
 import mockGetElectionCommissionLeast from "./mock/mockGetElectionCommissionLeast";
 
 //props,emit
-const props = defineProps<{ isEditable: boolean }>();
+const props = defineProps<{ searchDto: SearchElectionCommissionLeastCapsuleDto, }>();
 const emits = defineEmits(["sendCancelSearchElectionCommissionLeast", "sendElectionCommissionLeastInterface"]);
 
 /** 表示行 */
@@ -16,12 +14,15 @@ const list: Ref<ElectionCommissionLeastInterface[]> = ref([]);
 /** ラジオボタン選択 */
 const selectedRow: Ref<number> = ref(0);
 
+/** 編集フラグ */
+const isEditable:Ref<boolean> = ref(!props.searchDto.checkTransactionDto.isSelectOnly); 
+
 /**  
  * 選択行を通知する
  * @param rowId その行のDtoのId
  */
 function onSelectChange(rowId: number) {
-    if (true === props.isEditable) {
+    if (true === isEditable.value) {
         sendData(rowId);
     }
 }
@@ -82,10 +83,9 @@ async function onSearch() {
     //実接続
     //セッションストレージ取得
     const searchPoliticalOrganizationLeastCapsuleDto: SearchElectionCommissionLeastCapsuleDto = new SearchElectionCommissionLeastCapsuleDto();
-    searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
-    searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
-    //編集フラグがある場合は、そのフラグ(の反転した値)を照会フラグに設定する
-    searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(!props.isEditable);
+    searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = props.searchDto.checkSecurityDto;
+    searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = props.searchDto.checkPrivilegeDto;
+    searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = props.searchDto.checkTransactionDto;
 
     //独自変数設定
     searchPoliticalOrganizationLeastCapsuleDto.searchWords = searchWords.value;
@@ -114,7 +114,7 @@ async function onSearch() {
                 <th style="width:10%;">&nbsp;</th>
                 <th style="width:30%;">コード</th>
                 <th>名前</th>
-                <th v-if="props.isEditable" style="width:20%;">&nbsp;</th>
+                <th v-if="isEditable" style="width:20%;">&nbsp;</th>
             </tr>
             <tr v-for="searchedDto in list" :key="searchedDto.electionCommissionId">
                 <td style="text-align: center;"><input type="radio" id="searchedDto.politicalOrganizationId"
@@ -122,14 +122,14 @@ async function onSearch() {
                         @click="onSelectChange(searchedDto.electionCommissionId)" /></td>
                 <td style="text-align: right;">{{ searchedDto.electionCommissionCode }}</td>
                 <td>{{ searchedDto.electionCommissionName }}</td>
-                <td v-if="props.isEditable" style="text-align: center;"><button
+                <td v-if="isEditable" style="text-align: center;"><button
                         @click="deleteRow(searchedDto.electionCommissionId)">削除</button></td>
             </tr>
         </table>
-        <button v-if="props.isEditable" @click="addRow">新規行追加</button>
+        <button v-if="isEditable" @click="addRow">新規行追加</button>
     </div>
     <br>
-    <div class="footer" v-if="!props.isEditable">
+    <div class="footer" v-if="!isEditable">
         <button @click="onCancel">キャンセル</button>
         <button @click="onSelect">選択</button>
     </div>

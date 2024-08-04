@@ -1,15 +1,23 @@
 ﻿<script setup lang="ts">
 import { ref, Ref } from "vue";
-import PoliticalOrganizationLeastInterface from "../../../dto/political_organization/politicalOrganizationLeastDto";
-import SearchPoliticalOrganization from "../../common/search_political_organization/SearchPoliticalOrganization.vue";
-import PublicationFormalItemItemface from "../../../dto/make_balancesheet_link/publicationFormalItemDto";
+import PublicationFormalItemItemface from "../../dto/make_balancesheet_link/publicationFormalItemDto";
 import mockGetNewestPublicOfferingList from "./mock/mockGetNewestPublicOfferingList";
+import SearchPoliticalOrganizationLeastCapsuleDto from "../../dto/political_organization/searchPoliticalOrganizationLeastCapsuleDto";
+import SessionStorageCommonCheck from "../../dto/common_check/sessionStorageCommonCheck";
+import createCheckTransactionDto from "../../dto/common_check/createCheckTransactionDto";
+import PoliticalOrganizationLeastInterface from "../../dto/political_organization/politicalOrganizationLeastDto";
+import SearchPoliticalOrganization from "../../components/common/search_political_organization/SearchPoliticalOrganization.vue";
 
 /* 各提出年最新データリスト */
 const listPublishing: Ref<PublicationFormalItemItemface[]> = ref([]);
 
 /* 政治団体 */
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
+const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
+searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
+searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
+searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+
 const politicalOrgnaizationId: Ref<number> = ref(0);
 const politicalOrgnaizationCode: Ref<number> = ref(0);
 const politicalOrgnaizationName: Ref<string> = ref("");
@@ -139,13 +147,12 @@ function onShowBalancesheet() {
     <!-- 政治団体検索コンポーネント -->
     <div v-if="isVisibleSearchPoliticalOrganizationLeast">
         <div class="overComponent">
-            <SearchPoliticalOrganization :isEditable="false"
+            <SearchPoliticalOrganization :search-dto="searchPoliticalOrganizationLeastCapsuleDto"
                 @send-cancel-search-political-organization-least="recieveCancelSearchPoliticalOrganizationLeast"
                 @send-political-organization-least-interface="recievePoliticalOrganizationLeastInterface">
             </SearchPoliticalOrganization>
         </div>
     </div>
-
 
 </template>
 <style scoped>

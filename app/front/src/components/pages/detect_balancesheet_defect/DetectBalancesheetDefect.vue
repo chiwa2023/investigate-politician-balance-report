@@ -7,6 +7,9 @@ import LinkBalancesheetVersionDto from "../../../dto/make_balancesheet_link/link
 import mockGetLinkVersionList from "./mock/mockGetLinkVersionList";
 import createNewLinkversionDto from "../../../dto/make_balancesheet_link/createNewLinkversionDto";
 import { useRouter } from "vue-router";
+import SearchPoliticalOrganizationLeastCapsuleDto from "../../../dto/political_organization/searchPoliticalOrganizationLeastCapsuleDto";
+import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
+import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
 
 //版Dtoリスト
 const listVersion: Ref<LinkBalancesheetVersionDto[]> = ref([]);
@@ -14,8 +17,14 @@ const listVersion: Ref<LinkBalancesheetVersionDto[]> = ref([]);
 //router
 const router = useRouter();
 
-/* 政治団体 */
+/* 政治団体検索 */
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
+const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
+searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
+searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
+searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+
+/* 政治団体 */
 const politicalOrgnaizationId: Ref<number> = ref(0);
 const politicalOrgnaizationCode: Ref<number> = ref(0);
 const politicalOrgnaizationName: Ref<string> = ref("");
@@ -180,7 +189,7 @@ function onRefer(rowId: number) {
     if (list.length > 0) {
         //稼働時にはListサイズは常に1
         formalId = list[0].publicationFormalItemId;
-        
+
     }
     //個別編集ページへ遷移
     router.push({
@@ -278,7 +287,7 @@ function onSave() {
     <!-- 政治団体検索コンポーネント -->
     <div v-if="isVisibleSearchPoliticalOrganizationLeast">
         <div class="overComponent">
-            <SearchPoliticalOrganization :isEditable="false"
+            <SearchPoliticalOrganization :search-dto="searchPoliticalOrganizationLeastCapsuleDto"
                 @send-cancel-search-political-organization-least="recieveCancelSearchPoliticalOrganizationLeast"
                 @send-political-organization-least-interface="recievePoliticalOrganizationLeastInterface">
             </SearchPoliticalOrganization>

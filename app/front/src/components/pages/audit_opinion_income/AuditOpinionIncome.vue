@@ -9,9 +9,18 @@ import PoliticalOrganizationLeastInterface from "../../../dto/political_organiza
 import AuditOpinionIncomeDto from "../../../dto/audit_opinion/auditOpinionIncomeDto";
 import AuditOpinionIncomeInterface from "../../../dto/audit_opinion/auditOpinionIncomeDto";
 import SelectOptionInterface from "../../../dto/selectOptionDto";
+import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
+import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
+import SearchPoliticalOrganizationLeastCapsuleDto from "../../../dto/political_organization/searchPoliticalOrganizationLeastCapsuleDto";
 
 //検索コンポーネント表示／非表示
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
+const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
+searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
+searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
+searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+
+
 const isVisibleSearchAuditOpinionIncome: Ref<boolean> = ref(false);
 
 //政治団体指定(政治団体を指定しないと収支項目を検索させない)
@@ -32,7 +41,7 @@ const auditOpinionIncomeNewestDto: Ref<AuditOpinionIncomeInterface> = ref(new Au
 const auditOpinionIncomeSelectedDto: Ref<AuditOpinionIncomeInterface> = ref(new AuditOpinionIncomeDto());
 
 //入力用Dto
-const listAgreement:Ref<SelectOptionInterface[]> = ref([]);
+const listAgreement: Ref<SelectOptionInterface[]> = ref([]);
 const auditOpinionIncomeAuditoDto: Ref<AuditOpinionIncomeDto> = ref(new AuditOpinionIncomeDto());
 
 /**
@@ -40,13 +49,13 @@ const auditOpinionIncomeAuditoDto: Ref<AuditOpinionIncomeDto> = ref(new AuditOpi
  * @param newestDto 最新データ
  * @param list 賛成意見候補リスト
  */
-function recieveNewestIncome(newestDto: AuditOpinionIncomeInterface,list:SelectOptionInterface[]) {
+function recieveNewestIncome(newestDto: AuditOpinionIncomeInterface, list: SelectOptionInterface[]) {
     auditOpinionIncomeNewestDto.value = newestDto;
-    
+
     listAgreement.value.splice(0);
-    for(const option of list){
+    for (const option of list) {
         listAgreement.value.push(option);
-    }    
+    }
 }
 
 /**
@@ -154,7 +163,8 @@ function onSave() {
     <div class="right-area">
         <input type="number" v-model="auditOpinionIncomeCode" disabled="true" class="code-input">
         <input type="text" v-model="auditOpinionIncomeItemName" disabled="true" class="left-space text-input">
-        <button class="left-space" @click="onSearchBalancesheetIncome" :disabled="enableSelectIncome">収支報告書収入項目検索</button>
+        <button class="left-space" @click="onSearchBalancesheetIncome"
+            :disabled="enableSelectIncome">収支報告書収入項目検索</button>
     </div>
     <div class="clear-both" />
 
@@ -205,7 +215,8 @@ function onSave() {
                         意見人数
                     </div>
                     <div class="right-area">
-                        <input type="number" v-model="auditOpinionIncomeAuditoDto.researcherAmount" disabled="true" class="code-input">人目
+                        <input type="number" v-model="auditOpinionIncomeAuditoDto.researcherAmount" disabled="true"
+                            class="code-input">人目
                     </div>
                     <div class="clear-both" />
 
@@ -214,7 +225,8 @@ function onSave() {
                     </div>
                     <div class="right-area">
                         <select v-model="auditOpinionIncomeAuditoDto.auditAgreeItemValue">
-                            <option v-for="optionDto in listAgreement" :key="optionDto.value" :value="optionDto.value">{{ optionDto.text  }}</option>
+                            <option v-for="optionDto in listAgreement" :key="optionDto.value" :value="optionDto.value">
+                                {{ optionDto.text }}</option>
                         </select>を支持
                     </div>
                     <div class="clear-both" />
@@ -223,7 +235,8 @@ function onSave() {
                         追加意見
                     </div>
                     <div class="right-area">
-                        <textarea v-model="auditOpinionIncomeAuditoDto.auditDetailOpinion" class="code-input"></textarea>
+                        <textarea v-model="auditOpinionIncomeAuditoDto.auditDetailOpinion"
+                            class="code-input"></textarea>
                     </div>
                     <div class="clear-both" />
 
@@ -245,7 +258,7 @@ function onSave() {
     <!-- 政治団体検索コンポーネント -->
     <div v-if="isVisibleSearchPoliticalOrganizationLeast">
         <div class="overComponent">
-            <SearchPoliticalOrganization :isEditable="false"
+            <SearchPoliticalOrganization :search-dto="searchPoliticalOrganizationLeastCapsuleDto"
                 @send-cancel-search-political-organization-least="recieveCancelSearchPoliticalOrganizationLeast"
                 @send-political-organization-least-interface="recievePoliticalOrganizationLeastInterface">
             </SearchPoliticalOrganization>

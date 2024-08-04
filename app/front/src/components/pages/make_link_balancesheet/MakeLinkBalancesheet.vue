@@ -14,14 +14,29 @@ import SelectOptionDto from "../../../dto/selectOptionDto";
 import SearchElectionCommission from "../../common/search_election_commission/SearchElectionCommission.vue";
 import ElectionCommissionLeastInterface from "../../../dto/election_commission/electionCommissionDto";
 import { useRoute } from "vue-router";
+import SearchPoliticalOrganizationLeastCapsuleDto from "../../../dto/political_organization/searchPoliticalOrganizationLeastCapsuleDto";
+import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
+import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
+import SearchElectionCommissionLeastCapsuleDto from "../../../dto/election_commission/searchElectionCommissionLeastCapsuleDto";
 
 //政治団体
 const politicalOrgnaizationId: Ref<number> = ref(0);
 const politicalOrgnaizationCode: Ref<number> = ref(0);
 const politicalOrgnaizationName: Ref<string> = ref("");
 
+//政治団体検索コンポーネント
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
+const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
+searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
+searchPoliticalOrganizationLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
+searchPoliticalOrganizationLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
+
+//選挙管理委員会検索コンポーネント
 const isVisibleSearchElectionCommision: Ref<boolean> = ref(false);
+const searchElectionCommissionLeastCapsuleDto: SearchElectionCommissionLeastCapsuleDto = new SearchElectionCommissionLeastCapsuleDto();
+searchElectionCommissionLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
+searchElectionCommissionLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
+searchElectionCommissionLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(false);// 変更を許可しない
 
 //公式情報リスト
 const listAllFormal: Ref<PublicationFormalItemInterface[]> = ref([]);
@@ -419,7 +434,7 @@ function onSave() {
     <!-- 政治団体検索コンポーネント -->
     <div v-if="isVisibleSearchPoliticalOrganizationLeast">
         <div class="overComponent">
-            <SearchPoliticalOrganization :isEditable="false"
+            <SearchPoliticalOrganization :search-dto="searchPoliticalOrganizationLeastCapsuleDto"
                 @send-cancel-search-political-organization-least="recieveCancelSearchPoliticalOrganizationLeast"
                 @send-political-organization-least-interface="recievePoliticalOrganizationLeastInterface">
             </SearchPoliticalOrganization>
@@ -428,7 +443,7 @@ function onSave() {
     <!-- 選挙管理委員会検索コンポーネント -->
     <div v-if="isVisibleSearchElectionCommision">
         <div class="overComponent">
-            <SearchElectionCommission :isEditable="false"
+            <SearchElectionCommission :search-dto="searchElectionCommissionLeastCapsuleDto"
                 @send-cancel-search-election-commission-least="recieveCancelSearchElectionCommissionLeast"
                 @send-election-commission-least-interface="recieveSearchElectionCommissionLeastInterface">
             </SearchElectionCommission>
