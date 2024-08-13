@@ -48,7 +48,7 @@ class GetFileBinaryControllerTest {
         Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "/file/src.md");
         saveStorageResultDto.setShoshouId(path.toString());
 
-        assertThat(this.mockMvc
+        assertThat(this.mockMvc // NOPMD
                 .perform(post("/get-file-binary").content(objectMapper.writeValueAsString(saveStorageResultDto)) // リクエストボディを指定
                         .contentType(MediaType.APPLICATION_JSON_VALUE)) // Content Typeを指定
                 .andExpect(status().isOk()).andReturn() // NOPMD

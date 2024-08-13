@@ -28,7 +28,7 @@ public class CallFileByShoshouLogic {
     public OneFileBlobDto practice(final String dirParent, final String shoshouId, final String fileName)
             throws IOException {
 
-        Path path = Paths.get(dirParent.toString(), shoshouId, fileName);
+        Path path = Paths.get(dirParent, shoshouId, fileName);
 
         OneFileBlobDto oneFileBlobDto = new OneFileBlobDto();
 

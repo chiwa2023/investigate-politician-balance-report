@@ -5,13 +5,13 @@ import java.io.Serializable;
 /**
  * ファイル内容伝送Dto
  */
-public class OneFileBlobDto implements Serializable {
+public class OneFileBlobDto implements Serializable { // NOPMD DataClass
 
     /** SerialId */
     private static final long serialVersionUID = 1L;
 
     /** 文字列初期値 */
-    private final String INIT_STRING = "";
+    private  static final String INIT_STRING = "";
 
     /** ファイル名 */
     private String fileName = INIT_STRING;
