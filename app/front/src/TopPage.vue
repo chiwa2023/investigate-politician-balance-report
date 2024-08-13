@@ -57,7 +57,12 @@ if (0 === securityDto.loginUserId) {
     <RouterLink to="/detect-balancesheet-defect">政治資金収支報告書欠損検出(版管理)</RouterLink><br>
     <RouterLink to="/make-link-balancesheet">政治資金収支報告書リンク編集</RouterLink><br>
     <RouterLink to="/propose-accept-not-regist-organization">未登録政治団体登録承認</RouterLink><br>
+    <br>
+    <RouterLink to="/show-org-balancesheet-report">政治資金収支報告書照会(公式フォーマット)</RouterLink><br>
+    <RouterLink to="/show-party-usage-report">政党交付金使途報告書(公式フォーマット)</RouterLink><br>
+    <br>
     <RouterLink to="/survey">基礎調査</RouterLink><br>
+    <br>
     <RouterLink to="/component">コンポーネント作成台紙</RouterLink><br>
 </template>
 <style scoped></style>
