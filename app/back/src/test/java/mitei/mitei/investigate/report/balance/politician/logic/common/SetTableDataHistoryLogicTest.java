@@ -20,13 +20,13 @@ class SetTableDataHistoryLogicTest {
     // CHECKSTYLE:OFF
 
     /** Long初期値 */
-    private final Long INIT_LONG = 0L;
+    private static final Long INIT_LONG = 0L;
 
     /** Integer初期値 */
-    private final Integer INIT_INTEGER = 0;
+    private static final Integer INIT_INTEGER = 0;
 
     /** String初期値 */
-    private final String INIT_STRING = "";
+    private static final String INIT_STRING = "";
 
     /** Timestamp初期値 */
     private final Timestamp INIT_TIMESTAMP = Timestamp.valueOf(LocalDateTime.of(1980, 1, 1, 0, 0, 0));
@@ -37,7 +37,7 @@ class SetTableDataHistoryLogicTest {
         AllTabeDataHistoryInterfaceForTestEntity dataEntity = new AllTabeDataHistoryInterfaceForTestEntity();
 
         CheckPrivilegeDto checkPrivilegeDto = new CheckPrivilegeDto();
-        final long ID = 123321L;
+        final long ID = 123321L; // NOPMD
         final int CODE = 987;
         final String NAME = "ユーザ";
 
@@ -57,8 +57,8 @@ class SetTableDataHistoryLogicTest {
         assertThat(dataEntity.getInsertUserName()).isEqualTo(checkPrivilegeDto.getLoginUserName());
         // データ挿入時間
         // 実行時には誤差1秒以内におさまっているでしょう…
-        assertTrue(dataEntity.getInsertTimestamp().getTime() > new Date().getTime() - 1000);
-        assertTrue(dataEntity.getInsertTimestamp().getTime() < new Date().getTime() + 1000);
+        assertTrue(dataEntity.getInsertTimestamp().getTime() > new Date().getTime() - 1000); // NOPMD
+        assertTrue(dataEntity.getInsertTimestamp().getTime() < new Date().getTime() + 1000); // NOPMD
 
         // データ挿入ユーザId
         assertThat(dataEntity.getUpdateUserId()).isEqualTo(INIT_LONG);
@@ -67,7 +67,7 @@ class SetTableDataHistoryLogicTest {
         // データ挿入ユーザ名称
         assertThat(dataEntity.getUpdateUserName()).isEqualTo(INIT_STRING);
         // データ挿入時間
-        assertTrue(INIT_TIMESTAMP.compareTo(dataEntity.getUpdateTimestamp()) == 0);
+        assertTrue(INIT_TIMESTAMP.compareTo(dataEntity.getUpdateTimestamp()) == 0); // NOPMD
     }
 
     @Test
@@ -76,7 +76,7 @@ class SetTableDataHistoryLogicTest {
         AllTabeDataHistoryInterfaceForTestEntity dataEntity = new AllTabeDataHistoryInterfaceForTestEntity();
 
         CheckPrivilegeDto checkPrivilegeDto = new CheckPrivilegeDto();
-        final long ID = 123321L;
+        final long ID = 123321L; // NOPMD
         final int CODE = 987;
         final String NAME = "ユーザ";
 
@@ -96,8 +96,8 @@ class SetTableDataHistoryLogicTest {
         assertThat(dataEntity.getUpdateUserName()).isEqualTo(checkPrivilegeDto.getLoginUserName());
         // データ挿入時間
         // 実行時には誤差1秒以内におさまっているでしょう…
-        assertTrue(dataEntity.getUpdateTimestamp().getTime() > new Date().getTime() - 1000);
-        assertTrue(dataEntity.getUpdateTimestamp().getTime() < new Date().getTime() + 1000);
+        assertTrue(dataEntity.getUpdateTimestamp().getTime() > new Date().getTime() - 1000); // NOPMD
+        assertTrue(dataEntity.getUpdateTimestamp().getTime() < new Date().getTime() + 1000); // NOPMD
 
         // データ挿入ユーザId
         assertThat(dataEntity.getInsertUserId()).isEqualTo(INIT_LONG);
@@ -106,7 +106,7 @@ class SetTableDataHistoryLogicTest {
         // データ挿入ユーザ名称
         assertThat(dataEntity.getInsertUserName()).isEqualTo(INIT_STRING);
         // データ挿入時間
-        assertTrue(INIT_TIMESTAMP.compareTo(dataEntity.getInsertTimestamp()) == 0);
+        assertTrue(INIT_TIMESTAMP.compareTo(dataEntity.getInsertTimestamp()) == 0); // NOPMD
     }
 
 }

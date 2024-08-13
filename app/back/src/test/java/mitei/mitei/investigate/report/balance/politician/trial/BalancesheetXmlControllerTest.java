@@ -30,8 +30,8 @@ class BalancesheetXmlControllerTest {
     @Test
     void test() throws Exception {
 
-        assertThat(this.mockMvc.perform(get("/convert-balancesheet-xml")).andReturn().getResponse().getStatus())
-                .isEqualTo(HttpStatus.OK.value()); // NOPMD
+        assertThat(this.mockMvc.perform(get("/convert-balancesheet-xml")).andReturn().getResponse().getStatus()) // NOPMD
+                .isEqualTo(HttpStatus.OK.value());
 
         // String responsContent =
         // this.mockMvc.perform(get("/convert-balancesheet-xml")).andExpect(status().isOk()).andReturn()

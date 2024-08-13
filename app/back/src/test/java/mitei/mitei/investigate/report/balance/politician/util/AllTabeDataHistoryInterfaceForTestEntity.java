@@ -8,16 +8,16 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
 /**
  * テーブル履歴Interfaceテスト専用Entity
  */
-public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHistoryInterface {
+public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHistoryInterface { // NOPMD DataClass
     
     /**　Long初期値 */
-    private final Long INIT_LONG = 0L;
+    private static final Long INIT_LONG = 0L;
 
     /**　Integer初期値 */
-    private final Integer INIT_INTEGER = 0;
+    private static final Integer INIT_INTEGER = 0;
 
     /**　String初期値 */
-    private final String INIT_STRING = "";
+    private static final String INIT_STRING = "";
 
     /**　Timestamp初期値 */
     private final Timestamp INIT_TIMESTAMP = Timestamp.valueOf(LocalDateTime.of(1980, 1, 1, 0, 0, 0));
