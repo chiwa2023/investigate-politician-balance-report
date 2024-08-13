@@ -25,7 +25,7 @@ public class MockGetAllBookDtoLogic {
 
         Sheet070100CoverAndOrganizationDetailsDto sheet0701 = allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto().getSheet070100CoverAndOrganizationDetailsDto();
         
-        sheet0701.setHoukokuNen(2022); // CHECKSTYLE:OFF
+        sheet0701.setHoukokuNen(2022); // SUPPRESS CHECKSTYLE MagicNumber
         sheet0701.setDantaiName("backサンプル政治団体");
         sheet0701.setDaihyoushaNameLast("back政治団体");
         sheet0701.setDaihyoushaNameFirst("back太郎");
