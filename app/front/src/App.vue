@@ -1,8 +1,32 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import axios from "axios";
+
+async function onExecute(){
+
+  alert("実行");
+
+  const url = "http://localhost:8080/trial-api-rest";
+    await axios.get(url)
+        .then((response) => {
+            //データを取得
+            if (200 === response.status) {
+              alert("正常");
+            }
+            //正常にデータが取得できなかった
+            if (204 === response.status) {
+                alert("異常かも");
+            }
+
+        })
+        .catch((error) => alert(error));
+
+}
 </script>
 
 <template>
+
+<button @click="onExecute">テストBack起動</button>
+<!--
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -12,6 +36,8 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+-->
+
 </template>
 
 <style scoped>
