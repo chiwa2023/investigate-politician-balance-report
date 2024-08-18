@@ -89,6 +89,7 @@ public class OfferingBalancesheetOutcome2025Entity  implements Serializable,AllT
      *
      * @return 最新区分
      */
+    @Override
     public Integer getSaishinKbn() {
         return saishinKbn;
     }
@@ -98,6 +99,7 @@ public class OfferingBalancesheetOutcome2025Entity  implements Serializable,AllT
      *
      * @param saishinKbn 最新区分
      */
+    @Override
     public void setSaishinKbn(final Integer saishinKbn) {
         this.saishinKbn = saishinKbn;
     }

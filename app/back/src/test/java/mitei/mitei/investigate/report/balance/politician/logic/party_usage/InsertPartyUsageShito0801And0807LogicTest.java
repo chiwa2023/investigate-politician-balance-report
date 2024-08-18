@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.dto.publish.logic.party_usage;
+package mitei.mitei.investigate.report.balance.politician.logic.party_usage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,6 +27,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.OfferingPartyUsa
 import mitei.mitei.investigate.report.balance.politician.repository.OfferingPartyUsage0801And0807Report2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPartyUsageShito0801And0807Logic単体テスト
@@ -143,6 +144,7 @@ class InsertPartyUsageShito0801And0807LogicTest {
         assertThat(entityRecord.getPartyUsage0801And0807ReportCode()).isEqualTo(code);
 
         /* 全テーブル共通政治団体基礎情報 */
+        assertThat(entityRecord.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
         assertThat(entityRecord.getNendo()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getNendo());
         assertThat(entityRecord.getOfferingDate()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getOfferingDate());
         assertThat(entityRecord.getPoliticalOrganizationId())

@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.dto.publish.logic.party_usage;
+package mitei.mitei.investigate.report.balance.politician.logic.party_usage;
 
 import java.util.Optional;
 
@@ -34,7 +34,6 @@ public class InsertPartyUsageShito0801And0807Logic {
 
         // 必ず情報が入っている表紙と宣誓書を同じテーブルで保存する
         OfferingPartyUsage0801And0807Report2025Entity reportEntity = new OfferingPartyUsage0801And0807Report2025Entity();
-
         
         // 政治団体基礎情報(団体名称・代表者名)
         BeanUtils.copyProperties(partyUsageDocumentPoliticalPropertyDto, reportEntity);

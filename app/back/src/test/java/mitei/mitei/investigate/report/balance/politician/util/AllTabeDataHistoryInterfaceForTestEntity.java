@@ -40,6 +40,33 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     /**　データ挿入時間 */
     private Timestamp updateTimestamp = INIT_TIMESTAMP;
 
+    
+    /** 最新区分 */
+    private Integer saishinKbn = INIT_INTEGER;
+
+    /**
+     * 最新区分を取得する
+     *
+     * @return 最新区分
+     */
+    @Override
+    public Integer getSaishinKbn() {
+        return saishinKbn;
+    }
+
+    /**
+     * 最新区分を設定する
+     *
+     * @param saishinKbn 最新区分
+     */
+    @Override
+    public void setSaishinKbn(final Integer saishinKbn) {
+        this.saishinKbn = saishinKbn;
+    }
+
+
+    
+    
     /** INSERT時ログインユーザIdを取得する */
     @Override
     public Long getInsertUserId() {
@@ -135,9 +162,5 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     public void setUpdateTimestamp(final Timestamp updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
-    
-    
-    
-    
-    
+   
 }

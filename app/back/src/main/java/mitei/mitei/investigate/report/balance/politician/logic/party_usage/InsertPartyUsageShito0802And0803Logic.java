@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.dto.publish.logic.party_usage;
+package mitei.mitei.investigate.report.balance.politician.logic.party_usage;
 
 import java.util.List;
 import java.util.Optional;

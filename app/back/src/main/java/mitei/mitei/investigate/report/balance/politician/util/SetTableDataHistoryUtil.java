@@ -12,11 +12,9 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  */
 public final class SetTableDataHistoryUtil {
 
-    /** INSERT処理を表す区分 */
-    public static final int DATA_INSERT = 1;
-    /** UPDATE処理を表す区分 */
-    public static final int DATA_UPDATE = 2;
-
+    /** 最新区分のうち最新(TODO 定数に移す予定) */
+    public static final int IS_SAISHIN = 1;
+    
     // インスタンス生成よけ
     private SetTableDataHistoryUtil() {
 
@@ -36,6 +34,8 @@ public final class SetTableDataHistoryUtil {
 
         // Insert(初回)データセット
         if (DataHistoryStatusConstants.INSERT.equals(status)) {
+            
+            interfaceImple.setSaishinKbn(IS_SAISHIN);
             interfaceImple.setInsertUserId(checkPrivilegeDto.getLoginUserId());
             interfaceImple.setInsertUserCode(checkPrivilegeDto.getLoginUserCode());
             interfaceImple.setInsertUserName(checkPrivilegeDto.getLoginUserName());
@@ -44,6 +44,7 @@ public final class SetTableDataHistoryUtil {
 
         // Update(更新)データセット
         if (DataHistoryStatusConstants.UPDATE.equals(status)) {
+            // TODO 更新時に最新区分0とするかは検討し修正する
             interfaceImple.setUpdateUserId(checkPrivilegeDto.getLoginUserId());
             interfaceImple.setUpdateUserCode(checkPrivilegeDto.getLoginUserCode());
             interfaceImple.setUpdateUserName(checkPrivilegeDto.getLoginUserName());

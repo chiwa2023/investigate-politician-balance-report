@@ -1,6 +1,7 @@
 CREATE TABLE `offering_party_usage_0801_and_0807_report_2025` (
   `party_usage_0801_and_0807_report_id` bigint NOT NULL AUTO_INCREMENT COMMENT '使途報告書様式8その1と7Id',
   `party_usage_0801_and_0807_report_code` bigint DEFAULT NULL COMMENT '使途報告書様式8その1と7同一識別コード',
+  `saishin_kbn` int DEFAULT NULL COMMENT '最新区分',
   `version` varchar(30) DEFAULT NULL COMMENT 'ヘッダのバージョン番号',
   `apli_name` varchar(50) DEFAULT NULL COMMENT 'ヘッダのアプリ名称',
   `flg_apli` varchar(2) DEFAULT NULL COMMENT 'ヘッダのアプリフラグ',
@@ -38,7 +39,7 @@ CREATE TABLE `offering_party_usage_0801_and_0807_report_2025` (
   `shibu_document` smallint DEFAULT NULL COMMENT '支部から受領下書類提出(フラグ)',
   `governing_document` smallint DEFAULT NULL COMMENT '統括文書提出(フラグ)',
   `flg_confirm` smallint DEFAULT NULL COMMENT '真実であることの宣誓フラグ',
-  `accural_date` varchar(45) DEFAULT NULL COMMENT '提出日和暦',
+  `accrual_date` varchar(45) DEFAULT NULL COMMENT '提出日和暦',
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
   `insert_user_name` varchar(300) DEFAULT NULL COMMENT '挿入ユーザ姓名',
@@ -48,4 +49,4 @@ CREATE TABLE `offering_party_usage_0801_and_0807_report_2025` (
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` timestamp NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`party_usage_0801_and_0807_report_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

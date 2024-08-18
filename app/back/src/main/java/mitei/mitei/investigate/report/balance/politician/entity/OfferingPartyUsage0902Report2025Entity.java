@@ -82,6 +82,29 @@ public class OfferingPartyUsage0902Report2025Entity  implements Serializable,All
         this.partyUsage0902ReportCode = partyUsage0902ReportCode;
     }
 
+    /** 最新区分 */
+    private Integer saishinKbn = INIT_Integer;
+
+    /**
+     * 最新区分を取得する
+     *
+     * @return 最新区分
+     */
+    @Override
+    public Integer getSaishinKbn() {
+        return saishinKbn;
+    }
+
+    /**
+     * 最新区分を設定する
+     *
+     * @param saishinKbn 最新区分
+     */
+    @Override
+    public void setSaishinKbn(final Integer saishinKbn) {
+        this.saishinKbn = saishinKbn;
+    }
+
     /** 文書同一識別コード */
     @Column(name = "document_code")
     private Long documentCode = INIT_Long;

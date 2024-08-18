@@ -25,8 +25,7 @@ class InsertPartyUsageReportServiceTest {
     @Test
     void test()throws Exception {
         
-        
-        insertPartyUsageReportService.practice(null,null,null);
+        insertPartyUsageReportService.practice(null, null, null, false);
         
         fail("Not yet implemented");
     }
