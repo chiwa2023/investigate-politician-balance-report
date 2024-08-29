@@ -29,8 +29,10 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071508DonationsGrantsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071509OtherExpensesDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.OfferingBalancesheetOutcome2025Entity;
+import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * 政治資金収支報告書の支出を登録する
@@ -47,7 +49,7 @@ public class InsertPoliticalOrganizationOutcomeAllLogic {
      * @param checkPrivilegeDto 権限Dto
      * @return 登録件数
      */
-    public int practice(final Long documentCode,
+    public int practice(final Long documentCode, // SUPPRESS CHECKSTYLE
             final BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto,
             final AllBookDto allBookDto, final CheckPrivilegeDto checkPrivilegeDto) {
 
@@ -72,8 +74,6 @@ public class InsertPoliticalOrganizationOutcomeAllLogic {
         list.addAll(this.createList(allSheetKbn071403Dto.getSheet071403OfficeExpensesDto().getList(),
                 allSheetKbn071403Dto.getSheet071403OfficeExpensesDto().getPageTotal(),
                 allSheetKbn071403Dto.getSheet071403OfficeExpensesDto().getSonotaTotal(), HIMOKU_BLANK));
-
-        
         
         
         // シート15-1を登録する
@@ -158,8 +158,13 @@ public class InsertPoliticalOrganizationOutcomeAllLogic {
 
     private OfferingBalancesheetOutcome2025Entity createEntity(final Row071415OrdinaryExpensesDto rowDto,
             final Long pageTotal, final String sonotaTotal, final String himoku) {
-        OfferingBalancesheetOutcome2025Entity entity = new OfferingBalancesheetOutcome2025Entity();
+        
+        OfferingBalancesheetOutcome2025Entity outcomeEntity = new OfferingBalancesheetOutcome2025Entity();
 
+        //final Long pageTotal,page_total
+        //final String sonotaTotal,sonota_total
+        //final String himoku_himoku
+        
         // 
         // @JacksonXmlProperty(localName = "ICHIREN_NO")
         // private Integer ichirenNo;ichirenNo
@@ -195,6 +200,25 @@ public class InsertPoliticalOrganizationOutcomeAllLogic {
         // 
         // @JacksonXmlProperty(localName = "KOUFUKIN")
         // private Integer flgKouufukin;flg_kouufukin
+        
+        
+        //`relation_kbn_outcome` int DEFAULT NULL COMMENT '支払者関連者区分',
+        //`relation_person_id_outcome` bigint DEFAULT NULL COMMENT '支払者関連者Id(個人)',
+        //`relation_person_code_outcome` int DEFAULT NULL COMMENT '支払者関連者同一識別コード(個人)',
+        //`relation_person_name_outcome` varchar(210) DEFAULT NULL COMMENT '支払者関連者名称(個人)',
+        //`relation_corp_id_outcome` bigint DEFAULT NULL COMMENT '支払者関連者Id(法人)',
+        //`relation_corp_code_outcome` int DEFAULT NULL COMMENT '支払者関連者同一識別コード(法人)',
+        //`relation_corp_name_outcome` varchar(210) DEFAULT NULL COMMENT '支払者関連者Id(法人)',
+        //`relation_political_org_id_outcome` bigint DEFAULT NULL COMMENT '支払者関連者同一識別コード(政治団体)',
+        //`relation_political_org_code_outcome` int DEFAULT NULL COMMENT '支払者関連者名称(政治団体)',
+        //`relation_political_org_name_outcome` varchar(210) DEFAULT NULL COMMENT '支払者関連者名称(政治団体)',
+
+        
+        //`accrual_date_value` date DEFAULT NULL COMMENT '発生日実値',
+        //`search_wards` date DEFAULT NULL COMMENT '発生日実値',
+        
+        SetTableDataHistoryUtil.practice(checkPrivilegeDto, outcomeEntity, DataHistoryStatusConstants.INSERT);
+
 
         return entity;
     }
