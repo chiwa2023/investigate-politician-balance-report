@@ -6,17 +6,17 @@ import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
-
 
 /**
  * offering_balancesheet_income_2025接続用Entity
  */
 @Entity
 @Table(name = "offering_balancesheet_income_2025")
-public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTabeDataHistoryInterface { // NOPMD
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -25,64 +25,68 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     private static final String INIT_String = "";
 
     /** 初期データ(Integer) */
+    private static final Short INIT_Short = 0;
+
+    /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-    
+
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
-    /** 初期データ(Boolean) */
-    private static final Boolean INIT_Boolean = false;
-
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980,1,1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1980, 1, 1);
 
     /** 初期データ(Timestamp) */
     private static final Timestamp INIT_Timestamp = Timestamp.valueOf(INIT_LocalDate.atTime(0, 0, 0));
 
-    /** 政治資金収支報告書収入項目Id */
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long balancesheetIncomeId = INIT_Long;
+    /** 収支報告書収入(その3から12)Id */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "offering_balancesheet_income_id")
+    private Long offeringBalancesheetIncomeId = INIT_Long;
 
     /**
-     * 政治資金収支報告書収入項目Idを取得する
+     * 収支報告書収入(その3から12)Idを取得する
      *
-     * @return 政治資金収支報告書収入項目Id
+     * @return 収支報告書収入(その3から12)Id
      */
-    public Long getBalancesheetIncomeId() {
-        return balancesheetIncomeId;
+    public Long getOfferingBalancesheetIncomeId() {
+        return offeringBalancesheetIncomeId;
     }
 
     /**
-     * 政治資金収支報告書収入項目Idを設定する
+     * 収支報告書収入(その3から12)Idを設定する
      *
-     * @param balancesheetIncomeId 政治資金収支報告書収入項目Id
+     * @param offeringBalancesheetIncomeId 収支報告書収入(その3から12)Id
      */
-    public void setBalancesheetIncomeId(final Long balancesheetIncomeId) {
-        this.balancesheetIncomeId = balancesheetIncomeId;
+    public void setOfferingBalancesheetIncomeId(final Long offeringBalancesheetIncomeId) {
+        this.offeringBalancesheetIncomeId = offeringBalancesheetIncomeId;
     }
 
-    /** 政治資金収支報告書収入項目同一識別コード */
-    private Long balancesheetIncomeCode = INIT_Long;
+    /** 収支報告書収入(その3から12)同一識別コード */
+    @Column(name = "offering_balancesheet_income_code")
+    private Long offeringBalancesheetIncomeCode = INIT_Long;
 
     /**
-     * 政治資金収支報告書収入項目同一識別コードを取得する
+     * 収支報告書収入(その3から12)同一識別コードを取得する
      *
-     * @return 政治資金収支報告書収入項目同一識別コード
+     * @return 収支報告書収入(その3から12)同一識別コード
      */
-    public Long getBalancesheetIncomeCode() {
-        return balancesheetIncomeCode;
+    public Long getOfferingBalancesheetIncomeCode() {
+        return offeringBalancesheetIncomeCode;
     }
 
     /**
-     * 政治資金収支報告書収入項目同一識別コードを設定する
+     * 収支報告書収入(その3から12)同一識別コードを設定する
      *
-     * @param balancesheetIncomeCode 政治資金収支報告書収入項目同一識別コード
+     * @param offeringBalancesheetIncomeCode 収支報告書収入(その3から12)同一識別コード
      */
-    public void setBalancesheetIncomeCode(final Long balancesheetIncomeCode) {
-        this.balancesheetIncomeCode = balancesheetIncomeCode;
+    public void setOfferingBalancesheetIncomeCode(final Long offeringBalancesheetIncomeCode) {
+        this.offeringBalancesheetIncomeCode = offeringBalancesheetIncomeCode;
     }
 
     /** 最新区分 */
+    @Column(name = "saishin_kbn")
     private Integer saishinKbn = INIT_Integer;
 
     /**
@@ -105,70 +109,52 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
         this.saishinKbn = saishinKbn;
     }
 
-    /** 政治資金団体Id */
-    private Long politicalOrganizationId = INIT_Long;
+    /** 文書同一識別コード */
+    @Column(name = "document_code")
+    private Long documentCode = INIT_Long;
 
     /**
-     * 政治資金団体Idを取得する
+     * 文書同一識別コードを取得する
      *
-     * @return 政治資金団体Id
+     * @return 文書同一識別コード
      */
-    public Long getPoliticalOrganizationId() {
-        return politicalOrganizationId;
+    public Long getDocumentCode() {
+        return documentCode;
     }
 
     /**
-     * 政治資金団体Idを設定する
+     * 文書同一識別コードを設定する
      *
-     * @param politicalOrganizationId 政治資金団体Id
+     * @param documentCode 文書同一識別コード
      */
-    public void setPoliticalOrganizationId(final Long politicalOrganizationId) {
-        this.politicalOrganizationId = politicalOrganizationId;
+    public void setDocumentCode(final Long documentCode) {
+        this.documentCode = documentCode;
     }
 
-    /** 政治資金団体同一識別コード */
-    private Integer politicalOrganizationCode = INIT_Integer;
+    /** 報告年 */
+    @Column(name = "houkoku_nen")
+    private Integer houkokuNen = INIT_Integer;
 
     /**
-     * 政治資金団体同一識別コードを取得する
+     * 報告年を取得する
      *
-     * @return 政治資金団体同一識別コード
+     * @return 報告年
      */
-    public Integer getPoliticalOrganizationCode() {
-        return politicalOrganizationCode;
-    }
-
-    /**
-     * 政治資金団体同一識別コードを設定する
-     *
-     * @param politicalOrganizationCode 政治資金団体同一識別コード
-     */
-    public void setPoliticalOrganizationCode(final Integer politicalOrganizationCode) {
-        this.politicalOrganizationCode = politicalOrganizationCode;
-    }
-
-    /** 政治資金団体名称 */
-    private String politicalOrganizationName = INIT_String;
-
-    /**
-     * 政治資金団体名称を取得する
-     *
-     * @return 政治資金団体名称
-     */
-    public String getPoliticalOrganizationName() {
-        return politicalOrganizationName;
+    public Integer getHoukokuNen() {
+        return houkokuNen;
     }
 
     /**
-     * 政治資金団体名称を設定する
+     * 報告年を設定する
      *
-     * @param politicalOrganizationName 政治資金団体名称
+     * @param houkokuNen 報告年
      */
-    public void setPoliticalOrganizationName(final String politicalOrganizationName) {
-        this.politicalOrganizationName = politicalOrganizationName;
+    public void setHoukokuNen(final Integer houkokuNen) {
+        this.houkokuNen = houkokuNen;
     }
 
-    /** 提出日  */
+    /** 提出日 */
+    @Column(name = "offering_date")
     private LocalDate offeringDate = INIT_LocalDate;
 
     /**
@@ -189,364 +175,118 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
         this.offeringDate = offeringDate;
     }
 
-    /** 書証Id */
-    private String shoshouId = INIT_String;
+    /** 政治団体Id */
+    @Column(name = "political_organization_id")
+    private Long politicalOrganizationId = INIT_Long;
 
     /**
-     * 書証Idを取得する
+     * 政治団体Idを取得する
      *
-     * @return 書証Id
+     * @return 政治団体Id
      */
-    public String getShoshouId() {
-        return shoshouId;
+    public Long getPoliticalOrganizationId() {
+        return politicalOrganizationId;
     }
 
     /**
-     * 書証Idを設定する
+     * 政治団体Idを設定する
      *
-     * @param shoshouId 書証Id
+     * @param politicalOrganizationId 政治団体Id
      */
-    public void setShoshouId(final String shoshouId) {
-        this.shoshouId = shoshouId;
+    public void setPoliticalOrganizationId(final Long politicalOrganizationId) {
+        this.politicalOrganizationId = politicalOrganizationId;
     }
 
-    /** 書証識別コード */
-    private Long shoshouHistoryCode = INIT_Long;
+    /** 政治団体同一識別コード */
+    @Column(name = "political_organization_code")
+    private Integer politicalOrganizationCode = INIT_Integer;
 
     /**
-     * 書証識別コードを取得する
+     * 政治団体同一識別コードを取得する
      *
-     * @return 書証識別コード
+     * @return 政治団体同一識別コード
      */
-    public Long getShoshouHistoryCode() {
-        return shoshouHistoryCode;
-    }
-
-    /**
-     * 書証識別コードを設定する
-     *
-     * @param shoshouHistoryCode 書証識別コード
-     */
-    public void setShoshouHistoryCode(final Long shoshouHistoryCode) {
-        this.shoshouHistoryCode = shoshouHistoryCode;
-    }
-
-    /** 書証区分 */
-    private Integer shoshouKbn = INIT_Integer;
-
-    /**
-     * 書証区分を取得する
-     *
-     * @return 書証区分
-     */
-    public Integer getShoshouKbn() {
-        return shoshouKbn;
+    public Integer getPoliticalOrganizationCode() {
+        return politicalOrganizationCode;
     }
 
     /**
-     * 書証区分を設定する
+     * 政治団体同一識別コードを設定する
      *
-     * @param shoshouKbn 書証区分
+     * @param politicalOrganizationCode 政治団体同一識別コード
      */
-    public void setShoshouKbn(final Integer shoshouKbn) {
-        this.shoshouKbn = shoshouKbn;
+    public void setPoliticalOrganizationCode(final Integer politicalOrganizationCode) {
+        this.politicalOrganizationCode = politicalOrganizationCode;
     }
 
-    /** 書証読み取り行 */
-    private Integer readingLine = INIT_Integer;
+    /** 政治団体名称 */
+    @Column(name = "political_organization_name")
+    private String politicalOrganizationName = INIT_String;
 
     /**
-     * 書証読み取り行を取得する
+     * 政治団体名称を取得する
      *
-     * @return 書証読み取り行
+     * @return 政治団体名称
      */
-    public Integer getReadingLine() {
-        return readingLine;
-    }
-
-    /**
-     * 書証読み取り行を設定する
-     *
-     * @param readingLine 書証読み取り行
-     */
-    public void setReadingLine(final Integer readingLine) {
-        this.readingLine = readingLine;
-    }
-
-    /** 参照した摘要 */
-    private String referDigest = INIT_String;
-
-    /**
-     * 参照した摘要を取得する
-     *
-     * @return 参照した摘要
-     */
-    public String getReferDigest() {
-        return referDigest;
+    public String getPoliticalOrganizationName() {
+        return politicalOrganizationName;
     }
 
     /**
-     * 参照した摘要を設定する
+     * 政治団体名称を設定する
      *
-     * @param referDigest 参照した摘要
+     * @param politicalOrganizationName 政治団体名称
      */
-    public void setReferDigest(final String referDigest) {
-        this.referDigest = referDigest;
+    public void setPoliticalOrganizationName(final String politicalOrganizationName) {
+        this.politicalOrganizationName = politicalOrganizationName;
     }
 
-    /** 取引金額 */
-    private Long amount = INIT_Long;
+    /** 原文書政治団体代表者名 */
+    @Column(name = "daihyou_name")
+    private String daihyouName = INIT_String;
 
     /**
-     * 取引金額を取得する
+     * 原文書政治団体代表者名を取得する
      *
-     * @return 取引金額
+     * @return 原文書政治団体代表者名
      */
-    public Long getAmount() {
-        return amount;
-    }
-
-    /**
-     * 取引金額を設定する
-     *
-     * @param amount 取引金額
-     */
-    public void setAmount(final Long amount) {
-        this.amount = amount;
-    }
-
-    /** 発生日 */
-    private LocalDate accrualDate = INIT_LocalDate;
-
-    /**
-     * 発生日を取得する
-     *
-     * @return 発生日
-     */
-    public LocalDate getAccrualDate() {
-        return accrualDate;
+    public String getDaihyouName() {
+        return daihyouName;
     }
 
     /**
-     * 発生日を設定する
+     * 原文書政治団体代表者名を設定する
      *
-     * @param accrualDate 発生日
+     * @param daihyouName 原文書政治団体代表者名
      */
-    public void setAccrualDate(final LocalDate accrualDate) {
-        this.accrualDate = accrualDate;
+    public void setDaihyouName(final String daihyouName) {
+        this.daihyouName = daihyouName;
     }
 
-    /** 自動入力編集の有無 */
-    private Boolean isEditAutoInput = INIT_Boolean;
+    /** 原文書政治団体名称 */
+    @Column(name = "dantai_name")
+    private String dantaiName = INIT_String;
 
     /**
-     * 自動入力編集の有無を取得する
+     * 原文書政治団体名称を取得する
      *
-     * @return 自動入力編集の有無
+     * @return 原文書政治団体名称
      */
-    public Boolean getIsEditAutoInput() {
-        return isEditAutoInput;
-    }
-
-    /**
-     * 自動入力編集の有無を設定する
-     *
-     * @param isEditAutoInput 自動入力編集の有無
-     */
-    public void setIsEditAutoInput(final Boolean isEditAutoInput) {
-        this.isEditAutoInput = isEditAutoInput;
-    }
-
-    /** 収支報告区分 */
-    private Integer reportKbn = INIT_Integer;
-
-    /**
-     * 収支報告区分を取得する
-     *
-     * @return 収支報告区分
-     */
-    public Integer getReportKbn() {
-        return reportKbn;
+    public String getDantaiName() {
+        return dantaiName;
     }
 
     /**
-     * 収支報告区分を設定する
+     * 原文書政治団体名称を設定する
      *
-     * @param reportKbn 収支報告区分
+     * @param dantaiName 原文書政治団体名称
      */
-    public void setReportKbn(final Integer reportKbn) {
-        this.reportKbn = reportKbn;
-    }
-
-    /** 様式仕訳区分 */
-    private Integer youshikiKbn = INIT_Integer;
-
-    /**
-     * 様式仕訳区分を取得する
-     *
-     * @return 様式仕訳区分
-     */
-    public Integer getYoushikiKbn() {
-        return youshikiKbn;
-    }
-
-    /**
-     * 様式仕訳区分を設定する
-     *
-     * @param youshikiKbn 様式仕訳区分
-     */
-    public void setYoushikiKbn(final Integer youshikiKbn) {
-        this.youshikiKbn = youshikiKbn;
-    }
-
-    /** 様式仕訳枝項目区分 */
-    private Integer youshikiEdaKbn = INIT_Integer;
-
-    /**
-     * 様式仕訳枝項目区分を取得する
-     *
-     * @return 様式仕訳枝項目区分
-     */
-    public Integer getYoushikiEdaKbn() {
-        return youshikiEdaKbn;
-    }
-
-    /**
-     * 様式仕訳枝項目区分を設定する
-     *
-     * @param youshikiEdaKbn 様式仕訳枝項目区分
-     */
-    public void setYoushikiEdaKbn(final Integer youshikiEdaKbn) {
-        this.youshikiEdaKbn = youshikiEdaKbn;
-    }
-
-    /** 項目名称 */
-    private String itemName = INIT_String;
-
-    /**
-     * 項目名称を取得する
-     *
-     * @return 項目名称
-     */
-    public String getItemName() {
-        return itemName;
-    }
-
-    /**
-     * 項目名称を設定する
-     *
-     * @param itemName 項目名称
-     */
-    public void setItemName(final String itemName) {
-        this.itemName = itemName;
-    }
-
-    /** 項目名称Id区分 */
-    private Integer itemIdKbn = INIT_Integer;
-
-    /**
-     * 項目名称Id区分を取得する
-     *
-     * @return 項目名称Id区分
-     */
-    public Integer getItemIdKbn() {
-        return itemIdKbn;
-    }
-
-    /**
-     * 項目名称Id区分を設定する
-     *
-     * @param itemIdKbn 項目名称Id区分
-     */
-    public void setItemIdKbn(final Integer itemIdKbn) {
-        this.itemIdKbn = itemIdKbn;
-    }
-
-    /** 一般項目名称Id */
-    private Long generalItemId = INIT_Long;
-
-    /**
-     * 一般項目名称Idを取得する
-     *
-     * @return 一般項目名称Id
-     */
-    public Long getGeneralItemId() {
-        return generalItemId;
-    }
-
-    /**
-     * 一般項目名称Idを設定する
-     *
-     * @param generalItemId 一般項目名称Id
-     */
-    public void setGeneralItemId(final Long generalItemId) {
-        this.generalItemId = generalItemId;
-    }
-
-    /** 一般名称同一識別コード */
-    private Integer generalItemCode = INIT_Integer;
-
-    /**
-     * 一般名称同一識別コードを取得する
-     *
-     * @return 一般名称同一識別コード
-     */
-    public Integer getGeneralItemCode() {
-        return generalItemCode;
-    }
-
-    /**
-     * 一般名称同一識別コードを設定する
-     *
-     * @param generalItemCode 一般名称同一識別コード
-     */
-    public void setGeneralItemCode(final Integer generalItemCode) {
-        this.generalItemCode = generalItemCode;
-    }
-
-    /** 継続事業Id */
-    private Long continueBuissinessId = INIT_Long;
-
-    /**
-     * 継続事業Idを取得する
-     *
-     * @return 継続事業Id
-     */
-    public Long getContinueBuissinessId() {
-        return continueBuissinessId;
-    }
-
-    /**
-     * 継続事業Idを設定する
-     *
-     * @param continueBuissinessId 継続事業Id
-     */
-    public void setContinueBuissinessId(final Long continueBuissinessId) {
-        this.continueBuissinessId = continueBuissinessId;
-    }
-
-    /** 継続事業同一識別コード */
-    private Integer continueBuissinessCode = INIT_Integer;
-
-    /**
-     * 継続事業同一識別コードを取得する
-     *
-     * @return 継続事業同一識別コード
-     */
-    public Integer getContinueBuissinessCode() {
-        return continueBuissinessCode;
-    }
-
-    /**
-     * 継続事業同一識別コードを設定する
-     *
-     * @param continueBuissinessCode 継続事業同一識別コード
-     */
-    public void setContinueBuissinessCode(final Integer continueBuissinessCode) {
-        this.continueBuissinessCode = continueBuissinessCode;
+    public void setDantaiName(final String dantaiName) {
+        this.dantaiName = dantaiName;
     }
 
     /** 関連者区分 */
+    @Column(name = "relation_kbn")
     private Integer relationKbn = INIT_Integer;
 
     /**
@@ -567,406 +307,778 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
         this.relationKbn = relationKbn;
     }
 
-    /** 関連者個人Id */
-    private Long relationPersonId = INIT_Long;
+    /** 代表者関連者Id */
+    @Column(name = "relation_person_id_delegate")
+    private Long relationPersonIdDelegate = INIT_Long;
 
     /**
-     * 関連者個人Idを取得する
+     * 代表者関連者Idを取得する
      *
-     * @return 関連者個人Id
+     * @return 代表者関連者Id
      */
-    public Long getRelationPersonId() {
-        return relationPersonId;
+    public Long getRelationPersonIdDelegate() {
+        return relationPersonIdDelegate;
     }
 
     /**
-     * 関連者個人Idを設定する
+     * 代表者関連者Idを設定する
      *
-     * @param relationPersonId 関連者個人Id
+     * @param relationPersonIdDelegate 代表者関連者Id
      */
-    public void setRelationPersonId(final Long relationPersonId) {
-        this.relationPersonId = relationPersonId;
+    public void setRelationPersonIdDelegate(final Long relationPersonIdDelegate) {
+        this.relationPersonIdDelegate = relationPersonIdDelegate;
     }
 
-    /** 関連者個人同一識別コード */
-    private Integer relationPersonCode = INIT_Integer;
+    /** 代表者関連者同一識別コード */
+    @Column(name = "relation_person_code_delegate")
+    private Integer relationPersonCodeDelegate = INIT_Integer;
 
     /**
-     * 関連者個人同一識別コードを取得する
+     * 代表者関連者同一識別コードを取得する
      *
-     * @return 関連者個人同一識別コード
+     * @return 代表者関連者同一識別コード
      */
-    public Integer getRelationPersonCode() {
-        return relationPersonCode;
-    }
-
-    /**
-     * 関連者個人同一識別コードを設定する
-     *
-     * @param relationPersonCode 関連者個人同一識別コード
-     */
-    public void setRelationPersonCode(final Integer relationPersonCode) {
-        this.relationPersonCode = relationPersonCode;
-    }
-
-    /** 関連者法人Id */
-    private Long relationCorporationId = INIT_Long;
-
-    /**
-     * 関連者法人Idを取得する
-     *
-     * @return 関連者法人Id
-     */
-    public Long getRelationCorporationId() {
-        return relationCorporationId;
+    public Integer getRelationPersonCodeDelegate() {
+        return relationPersonCodeDelegate;
     }
 
     /**
-     * 関連者法人Idを設定する
+     * 代表者関連者同一識別コードを設定する
      *
-     * @param relationCorporationId 関連者法人Id
+     * @param relationPersonCodeDelegate 代表者関連者同一識別コード
      */
-    public void setRelationCorporationId(final Long relationCorporationId) {
-        this.relationCorporationId = relationCorporationId;
+    public void setRelationPersonCodeDelegate(final Integer relationPersonCodeDelegate) {
+        this.relationPersonCodeDelegate = relationPersonCodeDelegate;
     }
 
-    /** 関連者法人同一識別コード */
-    private Integer relationCorporationCode = INIT_Integer;
+    /** 代表者関連者名称 */
+    @Column(name = "relation_person_name_delegate")
+    private String relationPersonNameDelegate = INIT_String;
 
     /**
-     * 関連者法人同一識別コードを取得する
+     * 代表者関連者名称を取得する
      *
-     * @return 関連者法人同一識別コード
+     * @return 代表者関連者名称
      */
-    public Integer getRelationCorporationCode() {
-        return relationCorporationCode;
-    }
-
-    /**
-     * 関連者法人同一識別コードを設定する
-     *
-     * @param relationCorporationCode 関連者法人同一識別コード
-     */
-    public void setRelationCorporationCode(final Integer relationCorporationCode) {
-        this.relationCorporationCode = relationCorporationCode;
-    }
-
-    /** 関連者政治団体Id */
-    private Long relationPoliticsOrganizationId = INIT_Long;
-
-    /**
-     * 関連者政治団体Idを取得する
-     *
-     * @return 関連者政治団体Id
-     */
-    public Long getRelationPoliticsOrganizationId() {
-        return relationPoliticsOrganizationId;
+    public String getRelationPersonNameDelegate() {
+        return relationPersonNameDelegate;
     }
 
     /**
-     * 関連者政治団体Idを設定する
+     * 代表者関連者名称を設定する
      *
-     * @param relationPoliticsOrganizationId 関連者政治団体Id
+     * @param relationPersonNameDelegate 代表者関連者名称
      */
-    public void setRelationPoliticsOrganizationId(final Long relationPoliticsOrganizationId) {
-        this.relationPoliticsOrganizationId = relationPoliticsOrganizationId;
+    public void setRelationPersonNameDelegate(final String relationPersonNameDelegate) {
+        this.relationPersonNameDelegate = relationPersonNameDelegate;
     }
 
-    /** 関連者政治団体同一識別コード */
-    private Integer relationPoliticsOrganizationCode = INIT_Integer;
+    /** 様式区分 */
+    @Column(name = "youshiki_kbn")
+    private Integer youshikiKbn = INIT_Integer;
 
     /**
-     * 関連者政治団体同一識別コードを取得する
+     * 様式区分を取得する
      *
-     * @return 関連者政治団体同一識別コード
+     * @return 様式区分
      */
-    public Integer getRelationPoliticsOrganizationCode() {
-        return relationPoliticsOrganizationCode;
-    }
-
-    /**
-     * 関連者政治団体同一識別コードを設定する
-     *
-     * @param relationPoliticsOrganizationCode 関連者政治団体同一識別コード
-     */
-    public void setRelationPoliticsOrganizationCode(final Integer relationPoliticsOrganizationCode) {
-        this.relationPoliticsOrganizationCode = relationPoliticsOrganizationCode;
-    }
-
-    /** 個人・団体住所 */
-    private String orgnizationAddress = INIT_String;
-
-    /**
-     * 個人・団体住所を取得する
-     *
-     * @return 個人・団体住所
-     */
-    public String getOrgnizationAddress() {
-        return orgnizationAddress;
+    public Integer getYoushikiKbn() {
+        return youshikiKbn;
     }
 
     /**
-     * 個人・団体住所を設定する
+     * 様式区分を設定する
      *
-     * @param orgnizationAddress 個人・団体住所
+     * @param youshikiKbn 様式区分
      */
-    public void setOrgnizationAddress(final String orgnizationAddress) {
-        this.orgnizationAddress = orgnizationAddress;
+    public void setYoushikiKbn(final Integer youshikiKbn) {
+        this.youshikiKbn = youshikiKbn;
     }
 
-    /** 団体代表者・職業 */
-    private String professionOrgnizationName = INIT_String;
+    /** 様式枝区分項目 */
+    @Column(name = "youshiki_eda_kbn")
+    private Integer youshikiEdaKbn = INIT_Integer;
 
     /**
-     * 団体代表者・職業を取得する
+     * 様式枝区分項目を取得する
      *
-     * @return 団体代表者・職業
+     * @return 様式枝区分項目
      */
-    public String getProfessionOrgnizationName() {
-        return professionOrgnizationName;
-    }
-
-    /**
-     * 団体代表者・職業を設定する
-     *
-     * @param professionOrgnizationName 団体代表者・職業
-     */
-    public void setProfessionOrgnizationName(final String professionOrgnizationName) {
-        this.professionOrgnizationName = professionOrgnizationName;
-    }
-
-    /** あっせん期間開始日 */
-    private LocalDate mediationStartDate = INIT_LocalDate;
-
-    /**
-     * あっせん期間開始日を取得する
-     *
-     * @return あっせん期間開始日
-     */
-    public LocalDate getMediationStartDate() {
-        return mediationStartDate;
+    public Integer getYoushikiEdaKbn() {
+        return youshikiEdaKbn;
     }
 
     /**
-     * あっせん期間開始日を設定する
+     * 様式枝区分項目を設定する
      *
-     * @param mediationStartDate あっせん期間開始日
+     * @param youshikiEdaKbn 様式枝区分項目
      */
-    public void setMediationStartDate(final LocalDate mediationStartDate) {
-        this.mediationStartDate = mediationStartDate;
+    public void setYoushikiEdaKbn(final Integer youshikiEdaKbn) {
+        this.youshikiEdaKbn = youshikiEdaKbn;
     }
 
-    /** あっせん期間終了日 */
-    private LocalDate mediationEndDate = INIT_LocalDate;
+    /** ページ計 */
+    @Column(name = "page_total")
+    private Long pageTotal = INIT_Long;
 
     /**
-     * あっせん期間終了日を取得する
+     * ページ計を取得する
      *
-     * @return あっせん期間終了日
+     * @return ページ計
      */
-    public LocalDate getMediationEndDate() {
-        return mediationEndDate;
-    }
-
-    /**
-     * あっせん期間終了日を設定する
-     *
-     * @param mediationEndDate あっせん期間終了日
-     */
-    public void setMediationEndDate(final LocalDate mediationEndDate) {
-        this.mediationEndDate = mediationEndDate;
-    }
-
-    /** パーティ日付 */
-    private LocalDate partyDate = INIT_LocalDate;
-
-    /**
-     * パーティ日付を取得する
-     *
-     * @return パーティ日付
-     */
-    public LocalDate getPartyDate() {
-        return partyDate;
+    public Long getPageTotal() {
+        return pageTotal;
     }
 
     /**
-     * パーティ日付を設定する
+     * ページ計を設定する
      *
-     * @param partyDate パーティ日付
+     * @param pageTotal ページ計
      */
-    public void setPartyDate(final LocalDate partyDate) {
-        this.partyDate = partyDate;
+    public void setPageTotal(final Long pageTotal) {
+        this.pageTotal = pageTotal;
     }
 
-    /** 備考 */
-    private String biko = INIT_String;
+    /** 未満計 */
+    @Column(name = "miman_total")
+    private String mimanTotal = INIT_String;
 
     /**
-     * 備考を取得する
+     * 未満計を取得する
      *
-     * @return 備考
+     * @return 未満計
      */
-    public String getBiko() {
-        return biko;
-    }
-
-    /**
-     * 備考を設定する
-     *
-     * @param biko 備考
-     */
-    public void setBiko(final String biko) {
-        this.biko = biko;
-    }
-
-    /** 税額控除有無 */
-    private Boolean isCreditTax = INIT_Boolean;
-
-    /**
-     * 税額控除有無を取得する
-     *
-     * @return 税額控除有無
-     */
-    public Boolean getIsCreditTax() {
-        return isCreditTax;
+    public String getMimanTotal() {
+        return mimanTotal;
     }
 
     /**
-     * 税額控除有無を設定する
+     * 未満計を設定する
      *
-     * @param isCreditTax 税額控除有無
+     * @param mimanTotal 未満計
      */
-    public void setIsCreditTax(final Boolean isCreditTax) {
-        this.isCreditTax = isCreditTax;
+    public void setMimanTotal(final String mimanTotal) {
+        this.mimanTotal = mimanTotal;
     }
 
-    /** 寄付が遺贈有無フラグ */
-    private Boolean isBequest = INIT_Boolean;
+    /** その他合計 */
+    @Column(name = "sonota_total")
+    private String sonotaTotal = INIT_String;
 
     /**
-     * 寄付が遺贈有無フラグを取得する
+     * その他合計を取得する
      *
-     * @return 寄付が遺贈有無フラグ
+     * @return その他合計
      */
-    public Boolean getIsBequest() {
-        return isBequest;
-    }
-
-    /**
-     * 寄付が遺贈有無フラグを設定する
-     *
-     * @param isBequest 寄付が遺贈有無フラグ
-     */
-    public void setIsBequest(final Boolean isBequest) {
-        this.isBequest = isBequest;
-    }
-
-    /** 寄付法人が上場または外資50%超え会社有無フラグ */
-    private Boolean isPrimeListedOrForeign = INIT_Boolean;
-
-    /**
-     * 寄付法人が上場または外資50%超え会社有無フラグを取得する
-     *
-     * @return 寄付法人が上場または外資50%超え会社有無フラグ
-     */
-    public Boolean getIsPrimeListedOrForeign() {
-        return isPrimeListedOrForeign;
+    public String getSonotaTotal() {
+        return sonotaTotal;
     }
 
     /**
-     * 寄付法人が上場または外資50%超え会社有無フラグを設定する
+     * その他合計を設定する
      *
-     * @param isPrimeListedOrForeign 寄付法人が上場または外資50%超え会社有無フラグ
+     * @param sonotaTotal その他合計
      */
-    public void setIsPrimeListedOrForeign(final Boolean isPrimeListedOrForeign) {
-        this.isPrimeListedOrForeign = isPrimeListedOrForeign;
+    public void setSonotaTotal(final String sonotaTotal) {
+        this.sonotaTotal = sonotaTotal;
     }
 
-    /** 政治資金パーティ名称 */
+    /** パーティ名称 */
+    @Column(name = "party_name")
     private String partyName = INIT_String;
 
     /**
-     * 政治資金パーティ名称を取得する
+     * パーティ名称を取得する
      *
-     * @return 政治資金パーティ名称
+     * @return パーティ名称
      */
     public String getPartyName() {
         return partyName;
     }
 
     /**
-     * 政治資金パーティ名称を設定する
+     * パーティ名称を設定する
      *
-     * @param partyName 政治資金パーティ名称
+     * @param partyName パーティ名称
      */
     public void setPartyName(final String partyName) {
         this.partyName = partyName;
     }
 
-    /** 意見付記 */
-    private String note = INIT_String;
+    /** ソート番号 */
+    @Column(name = "sort_no")
+    private String sortNo = INIT_String;
 
     /**
-     * 意見付記を取得する
+     * ソート番号を取得する
      *
-     * @return 意見付記
+     * @return ソート番号
      */
-    public String getNote() {
-        return note;
+    public String getSortNo() {
+        return sortNo;
     }
 
     /**
-     * 意見付記を設定する
+     * ソート番号を設定する
      *
-     * @param note 意見付記
+     * @param sortNo ソート番号
      */
-    public void setNote(final String note) {
-        this.note = note;
+    public void setSortNo(final String sortNo) {
+        this.sortNo = sortNo;
     }
 
-    /** 前例と異なる処理フラグ */
-    private Boolean isDifferPrecedent = INIT_Boolean;
+    /** 連番 */
+    @Column(name = "ichiren_no")
+    private Integer ichirenNo = INIT_Integer;
 
     /**
-     * 前例と異なる処理フラグを取得する
+     * 連番を取得する
      *
-     * @return 前例と異なる処理フラグ
+     * @return 連番
      */
-    public Boolean getIsDifferPrecedent() {
-        return isDifferPrecedent;
-    }
-
-    /**
-     * 前例と異なる処理フラグを設定する
-     *
-     * @param isDifferPrecedent 前例と異なる処理フラグ
-     */
-    public void setIsDifferPrecedent(final Boolean isDifferPrecedent) {
-        this.isDifferPrecedent = isDifferPrecedent;
-    }
-
-    /** 保全証票リスト */
-    private String storagedDocumentIdList = INIT_String;
-
-    /**
-     * 保全証票リストを取得する
-     *
-     * @return 保全証票リスト
-     */
-    public String getStoragedDocumentIdList() {
-        return storagedDocumentIdList;
+    public Integer getIchirenNo() {
+        return ichirenNo;
     }
 
     /**
-     * 保全証票リストを設定する
+     * 連番を設定する
      *
-     * @param storagedDocumentIdList 保全証票リスト
+     * @param ichirenNo 連番
      */
-    public void setStoragedDocumentIdList(final String storagedDocumentIdList) {
-        this.storagedDocumentIdList = storagedDocumentIdList;
+    public void setIchirenNo(final Integer ichirenNo) {
+        this.ichirenNo = ichirenNo;
+    }
+
+    /** 項目名称 */
+    @Column(name = "item_name")
+    private String itemName = INIT_String;
+
+    /**
+     * 項目名称を取得する
+     *
+     * @return 項目名称
+     */
+    public String getItemName() {
+        return itemName;
+    }
+
+    /**
+     * 項目名称を設定する
+     *
+     * @param itemName 項目名称
+     */
+    public void setItemName(final String itemName) {
+        this.itemName = itemName;
+    }
+
+    /** 金額 */
+    @Column(name = "kingaku")
+    private Long kingaku = INIT_Long;
+
+    /**
+     * 金額を取得する
+     *
+     * @return 金額
+     */
+    public Long getKingaku() {
+        return kingaku;
+    }
+
+    /**
+     * 金額を設定する
+     *
+     * @param kingaku 金額
+     */
+    public void setKingaku(final Long kingaku) {
+        this.kingaku = kingaku;
+    }
+
+    /** 発生日 */
+    @Column(name = "accrual_date")
+    private String accrualDate = INIT_String;
+
+    /**
+     * 発生日を取得する
+     *
+     * @return 発生日
+     */
+    public String getAccrualDate() {
+        return accrualDate;
+    }
+
+    /**
+     * 発生日を設定する
+     *
+     * @param accrualDate 発生日
+     */
+    public void setAccrualDate(final String accrualDate) {
+        this.accrualDate = accrualDate;
+    }
+
+    /** 発生日実値 */
+    @Column(name = "accrual_date_value")
+    private LocalDate accrualDateValue = INIT_LocalDate;
+
+    /**
+     * 発生日実値を取得する
+     *
+     * @return 発生日実値
+     */
+    public LocalDate getAccrualDateValue() {
+        return accrualDateValue;
+    }
+
+    /**
+     * 発生日実値を設定する
+     *
+     * @param accrualDateValue 発生日実値
+     */
+    public void setAccrualDateValue(final LocalDate accrualDateValue) {
+        this.accrualDateValue = accrualDateValue;
+    }
+
+    /** 備考 */
+    @Column(name = "bikou")
+    private String bikou = INIT_String;
+
+    /**
+     * 備考を取得する
+     *
+     * @return 備考
+     */
+    public String getBikou() {
+        return bikou;
+    }
+
+    /**
+     * 備考を設定する
+     *
+     * @param bikou 備考
+     */
+    public void setBikou(final String bikou) {
+        this.bikou = bikou;
+    }
+
+    /** 支出した相手先名 */
+    @Column(name = "partner_name")
+    private String partnerName = INIT_String;
+
+    /**
+     * 支出した相手先名を取得する
+     *
+     * @return 支出した相手先名
+     */
+    public String getPartnerName() {
+        return partnerName;
+    }
+
+    /**
+     * 支出した相手先名を設定する
+     *
+     * @param partnerName 支出した相手先名
+     */
+    public void setPartnerName(final String partnerName) {
+        this.partnerName = partnerName;
+    }
+
+    /** 支出した相手先住所 */
+    @Column(name = "partner_juusho")
+    private String partnerJuusho = INIT_String;
+
+    /**
+     * 支出した相手先住所を取得する
+     *
+     * @return 支出した相手先住所
+     */
+    public String getPartnerJuusho() {
+        return partnerJuusho;
+    }
+
+    /**
+     * 支出した相手先住所を設定する
+     *
+     * @param partnerJuusho 支出した相手先住所
+     */
+    public void setPartnerJuusho(final String partnerJuusho) {
+        this.partnerJuusho = partnerJuusho;
+    }
+
+    /** パーティ支払人数 */
+    @Column(name = "shiharaisu")
+    private Integer shiharaisu = INIT_Integer;
+
+    /**
+     * パーティ支払人数を取得する
+     *
+     * @return パーティ支払人数
+     */
+    public Integer getShiharaisu() {
+        return shiharaisu;
+    }
+
+    /**
+     * パーティ支払人数を設定する
+     *
+     * @param shiharaisu パーティ支払人数
+     */
+    public void setShiharaisu(final Integer shiharaisu) {
+        this.shiharaisu = shiharaisu;
+    }
+
+    /** パーティ開催場所 */
+    @Column(name = "kaisai_basho")
+    private String kaisaiBasho = INIT_String;
+
+    /**
+     * パーティ開催場所を取得する
+     *
+     * @return パーティ開催場所
+     */
+    public String getKaisaiBasho() {
+        return kaisaiBasho;
+    }
+
+    /**
+     * パーティ開催場所を設定する
+     *
+     * @param kaisaiBasho パーティ開催場所
+     */
+    public void setKaisaiBasho(final String kaisaiBasho) {
+        this.kaisaiBasho = kaisaiBasho;
+    }
+
+    /** 税額控除フラグ */
+    @Column(name = "flg_zeigaku_kohjo")
+    private Short flgZeigakuKohjo = INIT_Short;
+
+    /**
+     * 税額控除フラグを取得する
+     *
+     * @return 税額控除フラグ
+     */
+    public Short getFlgZeigakuKohjo() {
+        return flgZeigakuKohjo;
+    }
+
+    /**
+     * 税額控除フラグを設定する
+     *
+     * @param flgZeigakuKohjo 税額控除フラグ
+     */
+    public void setFlgZeigakuKohjo(final Short flgZeigakuKohjo) {
+        this.flgZeigakuKohjo = flgZeigakuKohjo;
+    }
+
+    /** 通し番号 */
+    @Column(name = "tohshibangou")
+    private Integer tohshibangou = INIT_Integer;
+
+    /**
+     * 通し番号を取得する
+     *
+     * @return 通し番号
+     */
+    public Integer getTohshibangou() {
+        return tohshibangou;
+    }
+
+    /**
+     * 通し番号を設定する
+     *
+     * @param tohshibangou 通し番号
+     */
+    public void setTohshibangou(final Integer tohshibangou) {
+        this.tohshibangou = tohshibangou;
+    }
+
+    /** 行区分 */
+    @Column(name = "gyoukubun")
+    private Short gyoukubun = INIT_Short;
+
+    /**
+     * 行区分を取得する
+     *
+     * @return 行区分
+     */
+    public Short getGyoukubun() {
+        return gyoukubun;
+    }
+
+    /**
+     * 行区分を設定する
+     *
+     * @param gyoukubun 行区分
+     */
+    public void setGyoukubun(final Short gyoukubun) {
+        this.gyoukubun = gyoukubun;
+    }
+
+    /** 職業 */
+    @Column(name = "shokugyou")
+    private String shokugyou = INIT_String;
+
+    /**
+     * 職業を取得する
+     *
+     * @return 職業
+     */
+    public String getShokugyou() {
+        return shokugyou;
+    }
+
+    /**
+     * 職業を設定する
+     *
+     * @param shokugyou 職業
+     */
+    public void setShokugyou(final String shokugyou) {
+        this.shokugyou = shokugyou;
+    }
+
+    /** あっせんの期間 */
+    @Column(name = "period_mediate")
+    private String periodMediate = INIT_String;
+
+    /**
+     * あっせんの期間を取得する
+     *
+     * @return あっせんの期間
+     */
+    public String getPeriodMediate() {
+        return periodMediate;
+    }
+
+    /**
+     * あっせんの期間を設定する
+     *
+     * @param periodMediate あっせんの期間
+     */
+    public void setPeriodMediate(final String periodMediate) {
+        this.periodMediate = periodMediate;
+    }
+
+    /** 支払者関連者Id(個人) */
+    @Column(name = "relation_person_id_income")
+    private Long relationPersonIdIncome = INIT_Long;
+
+    /**
+     * 支払者関連者Id(個人)を取得する
+     *
+     * @return 支払者関連者Id(個人)
+     */
+    public Long getRelationPersonIdIncome() {
+        return relationPersonIdIncome;
+    }
+
+    /**
+     * 支払者関連者Id(個人)を設定する
+     *
+     * @param relationPersonIdIncome 支払者関連者Id(個人)
+     */
+    public void setRelationPersonIdIncome(final Long relationPersonIdIncome) {
+        this.relationPersonIdIncome = relationPersonIdIncome;
+    }
+
+    /** 支払者関連者同一識別コード(個人) */
+    @Column(name = "relation_person_code_income")
+    private Integer relationPersonCodeIncome = INIT_Integer;
+
+    /**
+     * 支払者関連者同一識別コード(個人)を取得する
+     *
+     * @return 支払者関連者同一識別コード(個人)
+     */
+    public Integer getRelationPersonCodeIncome() {
+        return relationPersonCodeIncome;
+    }
+
+    /**
+     * 支払者関連者同一識別コード(個人)を設定する
+     *
+     * @param relationPersonCodeIncome 支払者関連者同一識別コード(個人)
+     */
+    public void setRelationPersonCodeIncome(final Integer relationPersonCodeIncome) {
+        this.relationPersonCodeIncome = relationPersonCodeIncome;
+    }
+
+    /** 支払者関連者名称(個人) */
+    @Column(name = "relation_person_name_income")
+    private String relationPersonNameIncome = INIT_String;
+
+    /**
+     * 支払者関連者名称(個人)を取得する
+     *
+     * @return 支払者関連者名称(個人)
+     */
+    public String getRelationPersonNameIncome() {
+        return relationPersonNameIncome;
+    }
+
+    /**
+     * 支払者関連者名称(個人)を設定する
+     *
+     * @param relationPersonNameIncome 支払者関連者名称(個人)
+     */
+    public void setRelationPersonNameIncome(final String relationPersonNameIncome) {
+        this.relationPersonNameIncome = relationPersonNameIncome;
+    }
+
+    /** 支払者関連者Id(法人) */
+    @Column(name = "relation_corp_id_income")
+    private Long relationCorpIdIncome = INIT_Long;
+
+    /**
+     * 支払者関連者Id(法人)を取得する
+     *
+     * @return 支払者関連者Id(法人)
+     */
+    public Long getRelationCorpIdIncome() {
+        return relationCorpIdIncome;
+    }
+
+    /**
+     * 支払者関連者Id(法人)を設定する
+     *
+     * @param relationCorpIdIncome 支払者関連者Id(法人)
+     */
+    public void setRelationCorpIdIncome(final Long relationCorpIdIncome) {
+        this.relationCorpIdIncome = relationCorpIdIncome;
+    }
+
+    /** 支払者関連者同一識別コード(法人) */
+    @Column(name = "relation_corp_code_income")
+    private Integer relationCorpCodeIncome = INIT_Integer;
+
+    /**
+     * 支払者関連者同一識別コード(法人)を取得する
+     *
+     * @return 支払者関連者同一識別コード(法人)
+     */
+    public Integer getRelationCorpCodeIncome() {
+        return relationCorpCodeIncome;
+    }
+
+    /**
+     * 支払者関連者同一識別コード(法人)を設定する
+     *
+     * @param relationCorpCodeIncome 支払者関連者同一識別コード(法人)
+     */
+    public void setRelationCorpCodeIncome(final Integer relationCorpCodeIncome) {
+        this.relationCorpCodeIncome = relationCorpCodeIncome;
+    }
+
+    /** 支払者関連者Id(法人) */
+    @Column(name = "relation_corp_name_inccome")
+    private String relationCorpNameInccome = INIT_String;
+
+    /**
+     * 支払者関連者Id(法人)を取得する
+     *
+     * @return 支払者関連者Id(法人)
+     */
+    public String getRelationCorpNameInccome() {
+        return relationCorpNameInccome;
+    }
+
+    /**
+     * 支払者関連者Id(法人)を設定する
+     *
+     * @param relationCorpNameInccome 支払者関連者Id(法人)
+     */
+    public void setRelationCorpNameInccome(final String relationCorpNameInccome) {
+        this.relationCorpNameInccome = relationCorpNameInccome;
+    }
+
+    /** 支払者関連者同一識別コード(政治団体) */
+    @Column(name = "relation_political_org_id_income")
+    private Long relationPoliticalOrgIdIncome = INIT_Long;
+
+    /**
+     * 支払者関連者同一識別コード(政治団体)を取得する
+     *
+     * @return 支払者関連者同一識別コード(政治団体)
+     */
+    public Long getRelationPoliticalOrgIdIncome() {
+        return relationPoliticalOrgIdIncome;
+    }
+
+    /**
+     * 支払者関連者同一識別コード(政治団体)を設定する
+     *
+     * @param relationPoliticalOrgIdIncome 支払者関連者同一識別コード(政治団体)
+     */
+    public void setRelationPoliticalOrgIdIncome(final Long relationPoliticalOrgIdIncome) {
+        this.relationPoliticalOrgIdIncome = relationPoliticalOrgIdIncome;
+    }
+
+    /** 支払者関連者名称(政治団体) */
+    @Column(name = "relation_political_org_code_income")
+    private Integer relationPoliticalOrgCodeIncome = INIT_Integer;
+
+    /**
+     * 支払者関連者名称(政治団体)を取得する
+     *
+     * @return 支払者関連者名称(政治団体)
+     */
+    public Integer getRelationPoliticalOrgCodeIncome() {
+        return relationPoliticalOrgCodeIncome;
+    }
+
+    /**
+     * 支払者関連者名称(政治団体)を設定する
+     *
+     * @param relationPoliticalOrgCodeIncome 支払者関連者名称(政治団体)
+     */
+    public void setRelationPoliticalOrgCodeIncome(final Integer relationPoliticalOrgCodeIncome) {
+        this.relationPoliticalOrgCodeIncome = relationPoliticalOrgCodeIncome;
+    }
+
+    /** 支払者関連者名称(政治団体) */
+    @Column(name = "relation_political_org_name_income")
+    private String relationPoliticalOrgNameIncome = INIT_String;
+
+    /**
+     * 支払者関連者名称(政治団体)を取得する
+     *
+     * @return 支払者関連者名称(政治団体)
+     */
+    public String getRelationPoliticalOrgNameIncome() {
+        return relationPoliticalOrgNameIncome;
+    }
+
+    /**
+     * 支払者関連者名称(政治団体)を設定する
+     *
+     * @param relationPoliticalOrgNameIncome 支払者関連者名称(政治団体)
+     */
+    public void setRelationPoliticalOrgNameIncome(final String relationPoliticalOrgNameIncome) {
+        this.relationPoliticalOrgNameIncome = relationPoliticalOrgNameIncome;
+    }
+
+    /** 自由検索用カラム */
+    @Column(name = "search_words")
+    private String searchWords = INIT_String;
+
+    /**
+     * 自由検索用カラムを取得する
+     *
+     * @return 自由検索用カラム
+     */
+    public String getSearchWords() {
+        return searchWords;
+    }
+
+    /**
+     * 自由検索用カラムを設定する
+     *
+     * @param searchWords 自由検索用カラム
+     */
+    public void setSearchWords(final String searchWords) {
+        this.searchWords = searchWords;
     }
 
     /** 挿入ユーザId */
+    @Column(name = "insert_user_id")
     private Long insertUserId = INIT_Long;
 
     /**
@@ -990,6 +1102,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 挿入ユーザ同一識別コード */
+    @Column(name = "insert_user_code")
     private Integer insertUserCode = INIT_Integer;
 
     /**
@@ -1013,6 +1126,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 挿入ユーザ姓名 */
+    @Column(name = "insert_user_name")
     private String insertUserName = INIT_String;
 
     /**
@@ -1036,6 +1150,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 挿入タイムスタンプ */
+    @Column(name = "insert_timestamp")
     private Timestamp insertTimestamp = INIT_Timestamp;
 
     /**
@@ -1059,6 +1174,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 更新ユーザId */
+    @Column(name = "update_user_id")
     private Long updateUserId = INIT_Long;
 
     /**
@@ -1082,6 +1198,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 更新ユーザ同一識別コード */
+    @Column(name = "update_user_code")
     private Integer updateUserCode = INIT_Integer;
 
     /**
@@ -1105,6 +1222,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 更新ユーザ姓名 */
+    @Column(name = "update_user_name")
     private String updateUserName = INIT_String;
 
     /**
@@ -1128,6 +1246,7 @@ public class OfferingBalancesheetIncome2025Entity  implements Serializable,AllTa
     }
 
     /** 更新タイムスタンプ */
+    @Column(name = "update_timestamp")
     private Timestamp updateTimestamp = INIT_Timestamp;
 
     /**

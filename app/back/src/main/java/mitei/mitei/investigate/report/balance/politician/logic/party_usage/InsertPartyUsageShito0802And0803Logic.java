@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mitei.mitei.common.publish.party.usage.report.dto.v5.ConstantsKbn080201Dto;
+import mitei.mitei.common.constants.party.usage.ConstantsKbn080201Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.RowShito0802Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0802Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0803Dto;

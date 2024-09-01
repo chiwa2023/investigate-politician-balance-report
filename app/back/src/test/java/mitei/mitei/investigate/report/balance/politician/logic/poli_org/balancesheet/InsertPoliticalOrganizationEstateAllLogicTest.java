@@ -14,7 +14,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-import mitei.mitei.common.publish.party.usage.report.constants.blancesheet_report.RealEstateKbnConstants;
+import mitei.mitei.common.constants.blancesheet_report.RealEstateKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0718AssetsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0719RealEstateDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheetKbn071801Dto;

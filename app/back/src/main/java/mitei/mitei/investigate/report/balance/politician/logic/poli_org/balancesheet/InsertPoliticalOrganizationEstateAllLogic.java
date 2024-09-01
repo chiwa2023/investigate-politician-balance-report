@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mitei.mitei.common.publish.party.usage.report.constants.blancesheet_report.RealEstateKbnConstants;
+import mitei.mitei.common.constants.blancesheet_report.RealEstateKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0718AssetsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0719RealEstateDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row071800ClassificationOfAssetsByItemDto;
