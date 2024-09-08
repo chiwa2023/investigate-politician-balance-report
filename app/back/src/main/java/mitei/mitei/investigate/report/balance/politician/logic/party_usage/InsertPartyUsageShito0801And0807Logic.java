@@ -1,18 +1,14 @@
 package mitei.mitei.investigate.report.balance.politician.logic.party_usage;
 
-import java.util.Optional;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.entity.OfferingPartyUsage0801And0807Report2025Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.OfferingPartyUsage0801And0807Report2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
+import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2022.InsertPartyUsageShito0801And0807Y2022Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2024.InsertPartyUsageShito0801And0807Y2024Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2025.InsertPartyUsageShito0801And0807Y2025Logic;
 
 /**
  * 使途報告書ヘッダ、表紙を保存する
@@ -20,57 +16,62 @@ import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistor
 @Component
 public class InsertPartyUsageShito0801And0807Logic {
 
-    
-    /** 政党交付金使途報告書Repository */
+    /** 登録対応年(2022) */
+    private static final int YEAR_2022 = 2022;
+    /** 登録対応年(2022)Logic */
     @Autowired
-    private OfferingPartyUsage0801And0807Report2025Repository offeringPartyUsage0801And0807Report2025Repository;
-    
+    private InsertPartyUsageShito0801And0807Y2022Logic insertPartyUsageShito0801And0807Y2022Logic;
+
+    /** 登録対応年(2024) */
+    private static final int YEAR_2024 = 2024;
+    /** 登録対応年(2024)Logic */
+    @Autowired
+    private InsertPartyUsageShito0801And0807Y2024Logic insertPartyUsageShito0801And0807Y2024Logic;
+
+    /** 登録対応年(2025) */
+    private static final int YEAR_2025 = 2025;
+    /** 登録対応年(2025)Logic */
+    @Autowired
+    private InsertPartyUsageShito0801And0807Y2025Logic insertPartyUsageShito0801And0807Y2025Logic;
+
+    // NOTE:コンポーネントとswitchラベル追加位置
+
     /**
      * 表紙と宣誓書、ヘッダ部分を保存する
      *
      * @param allShitoBook 使途報告書XML
      */
-    public Long practice(final PartyUsageDocumentPoliticalPropertyDto partyUsageDocumentPoliticalPropertyDto,final AllShitoBook allShitoBook, final CheckPrivilegeDto checkPrivilegeDto) {
+    public Long practice(final PartyUsageDocumentPoliticalPropertyDto documentPropertyDto,
+            final AllShitoBook allShitoBook, final CheckPrivilegeDto checkPrivilegeDto) {
 
-        // 必ず情報が入っている表紙と宣誓書を同じテーブルで保存する
-        OfferingPartyUsage0801And0807Report2025Entity reportEntity = new OfferingPartyUsage0801And0807Report2025Entity();
-        
-        // 政治団体基礎情報(団体名称・代表者名)
-        BeanUtils.copyProperties(partyUsageDocumentPoliticalPropertyDto, reportEntity);
-        
-        // ヘッダ
-        BeanUtils.copyProperties(allShitoBook.getBookHeadDto(), reportEntity);
+        Long code = 0L;
+        switch (documentPropertyDto.getNendo()) {
 
-        // 有無テキスト
-        reportEntity.setJohoUmuText(allShitoBook.getSitoUmuFlgDto().getUmuStatusText());
+            // 2022年
+            case YEAR_2022:
+                code = insertPartyUsageShito0801And0807Y2022Logic.practice(documentPropertyDto, allShitoBook,
+                        checkPrivilegeDto);
+                break;
 
-        // 様式8その1
-        BeanUtils.copyProperties(allShitoBook.getShito0801Dto().getSheet0801Dto(), reportEntity);
+            // 2024年
+            case YEAR_2024:
+                code = insertPartyUsageShito0801And0807Y2024Logic.practice(documentPropertyDto, allShitoBook,
+                        checkPrivilegeDto);
+                break;
 
-        // 様式8その7
-        BeanUtils.copyProperties(allShitoBook.getShito0807Dto().getSheet0807Dto(), reportEntity);
+            // 2025年
+            case YEAR_2025:
+                code = insertPartyUsageShito0801And0807Y2025Logic.practice(documentPropertyDto, allShitoBook,
+                        checkPrivilegeDto);
+                break;
 
-        // 未記載基準
-        reportEntity
-                .setKaikeiKijunKingaku(allShitoBook.getKaikeiShishutuKijunDto().getKaikeiKijunKingakuDto().getAmount());
-        // KaikeiKijunKingaku ---- kaikei_kijun_kingaku
+            // NOTE:Logic実行追加位置
 
-        SetTableDataHistoryUtil.practice(checkPrivilegeDto, reportEntity, DataHistoryStatusConstants.INSERT);
- 
-        Long code = 1L;
-        //同一識別コードの最大値を取得し、＋１する
-        Optional<OfferingPartyUsage0801And0807Report2025Entity> optional = offeringPartyUsage0801And0807Report2025Repository.findFirstByOrderByPartyUsage0801And0807ReportCodeDesc();
-        if(!optional.isEmpty()) {
-            code = code + optional.get().getPartyUsage0801And0807ReportCode();
+            default:
+                break;
         }
-        
-        reportEntity.setPartyUsage0801And0807ReportCode(code);
-        reportEntity.setPartyUsage0801And0807ReportId(0L);
-        
-        // repositoryで保存
-        offeringPartyUsage0801And0807Report2025Repository.save(reportEntity);
-        
-        return reportEntity.getPartyUsage0801And0807ReportCode();
+
+        return code;
     }
 
 }

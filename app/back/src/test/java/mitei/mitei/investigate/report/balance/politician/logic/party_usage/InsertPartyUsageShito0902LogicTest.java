@@ -18,8 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Sheet0902Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0902Dto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.entity.OfferingPartyUsage0902Report2025Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.OfferingPartyUsage0902Report2025Repository;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2022.OfferingPartyUsage0902Report2022Entity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0902Report2025Entity;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2022.OfferingPartyUsage0902Report2022Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2025.OfferingPartyUsage0902Report2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
@@ -41,9 +43,90 @@ class InsertPartyUsageShito0902LogicTest {
     @Autowired
     private OfferingPartyUsage0902Report2025Repository offeringPartyUsage0902Report2025Repository;
 
+
+    /** 様式その9その2テーブルRepository */
+    @Autowired
+    private OfferingPartyUsage0902Report2022Repository offeringPartyUsage0902Report2022Repository;
+
     @Test
     @Transactional
-    void testPractice() {
+    void testPractice2025() {
+
+        Sheet0902Dto sheet1 = new Sheet0902Dto();
+        sheet1.setItemName("事務所費1");
+        sheet1.setDigest("適当な摘要1");
+
+        Sheet0902Dto sheet2 = new Sheet0902Dto();
+        sheet2.setItemName("事務所費2");
+        sheet2.setDigest("適当な摘要2");
+
+        Shito0902Dto shito0902Dto = new Shito0902Dto();
+        shito0902Dto.getList().add(sheet1);
+        shito0902Dto.getList().add(sheet2);
+
+        // 政治団体基礎情報
+        Long documentCode = 3434L;
+        PartyUsageDocumentPoliticalPropertyDto partyUsageDocumentPoliticalPropertyDto = new PartyUsageDocumentPoliticalPropertyDto();
+        partyUsageDocumentPoliticalPropertyDto.setNendo(2025); // 実際には表紙からコピー
+        partyUsageDocumentPoliticalPropertyDto.setOfferingDate(LocalDate.of(2022, 12, 1)); // 実際には宣誓書からコピー
+        partyUsageDocumentPoliticalPropertyDto.setPoliticalOrganizationId(433L);
+        partyUsageDocumentPoliticalPropertyDto.setPoliticalOrganizationCode(431);
+        partyUsageDocumentPoliticalPropertyDto.setPoliticalOrganizationName("ちゃらんぽらん政治団体");
+        partyUsageDocumentPoliticalPropertyDto.setDantaiName("ちゃらん団体");
+        partyUsageDocumentPoliticalPropertyDto.setDaihyouName("代表者 世間芸名");
+        partyUsageDocumentPoliticalPropertyDto.setRelationKbn(223);
+        partyUsageDocumentPoliticalPropertyDto.setRelationPersonIdDelegate(9898L);
+        partyUsageDocumentPoliticalPropertyDto.setRelationPersonCodeDelegate(9867);
+        partyUsageDocumentPoliticalPropertyDto.setRelationPersonNameDelegate("代表者　戸籍の名前");
+
+
+        int size = insertPartyUsageShito0902Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+                shito0902Dto, CreateTestPrivilegeDtoUtil.pracitce());
+        
+        List<OfferingPartyUsage0902Report2025Entity> listSearch = offeringPartyUsage0902Report2025Repository.findByDocumentCodeOrderByPartyUsage0902ReportId(documentCode);
+        
+        //入力した分だけリストが取れています
+        assertThat(size).isEqualTo(shito0902Dto.getList().size());
+        //登録した分だけリストが取れています
+        assertThat(listSearch.size()).isEqualTo(size);
+        
+        //2件入力したので2件取れます
+        OfferingPartyUsage0902Report2025Entity entity1 = listSearch.get(0);
+        OfferingPartyUsage0902Report2025Entity entity2 = listSearch.get(1);
+               
+        /* 全テーブル共通政治団体基礎情報 */
+        assertThat(entity1.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity1.getNendo()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getNendo());
+        assertThat(entity1.getOfferingDate()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getOfferingDate());
+        assertThat(entity1.getPoliticalOrganizationId())
+                .isEqualTo(partyUsageDocumentPoliticalPropertyDto.getPoliticalOrganizationId());
+        assertThat(entity1.getPoliticalOrganizationCode())
+                .isEqualTo(partyUsageDocumentPoliticalPropertyDto.getPoliticalOrganizationCode());
+        assertThat(entity1.getPoliticalOrganizationName())
+                .isEqualTo(partyUsageDocumentPoliticalPropertyDto.getPoliticalOrganizationName());
+        assertThat(entity1.getDantaiName()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getDantaiName());
+        assertThat(entity1.getDaihyouName()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getDaihyouName());
+        assertThat(entity1.getRelationKbn()).isEqualTo(partyUsageDocumentPoliticalPropertyDto.getRelationKbn());
+        assertThat(entity1.getRelationPersonIdDelegate())
+                .isEqualTo(partyUsageDocumentPoliticalPropertyDto.getRelationPersonIdDelegate());
+        assertThat(entity1.getRelationPersonCodeDelegate())
+                .isEqualTo(partyUsageDocumentPoliticalPropertyDto.getRelationPersonCodeDelegate());
+        assertThat(entity1.getRelationPersonNameDelegate())
+                .isEqualTo(partyUsageDocumentPoliticalPropertyDto.getRelationPersonNameDelegate());
+
+        
+        assertThat(entity1.getItemName()).isEqualTo(sheet1.getItemName());
+        assertThat(entity1.getDigest()).isEqualTo(sheet1.getDigest());
+        
+        assertThat(entity2.getItemName()).isEqualTo(sheet2.getItemName());
+        assertThat(entity2.getDigest()).isEqualTo(sheet2.getDigest());
+        
+    }
+
+    
+    @Test
+    @Transactional
+    void testPractice2022() {
 
         Sheet0902Dto sheet1 = new Sheet0902Dto();
         sheet1.setItemName("事務所費1");
@@ -76,7 +159,7 @@ class InsertPartyUsageShito0902LogicTest {
         int size = insertPartyUsageShito0902Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 shito0902Dto, CreateTestPrivilegeDtoUtil.pracitce());
         
-        List<OfferingPartyUsage0902Report2025Entity> listSearch = offeringPartyUsage0902Report2025Repository.findByDocumentCodeOrderByPartyUsage0902ReportId(documentCode);
+        List<OfferingPartyUsage0902Report2022Entity> listSearch = offeringPartyUsage0902Report2022Repository.findByDocumentCodeOrderByPartyUsage0902ReportId(documentCode);
         
         //入力した分だけリストが取れています
         assertThat(size).isEqualTo(shito0902Dto.getList().size());
@@ -84,8 +167,8 @@ class InsertPartyUsageShito0902LogicTest {
         assertThat(listSearch.size()).isEqualTo(size);
         
         //2件入力したので2件取れます
-        OfferingPartyUsage0902Report2025Entity entity1 = listSearch.get(0);
-        OfferingPartyUsage0902Report2025Entity entity2 = listSearch.get(1);
+        OfferingPartyUsage0902Report2022Entity entity1 = listSearch.get(0);
+        OfferingPartyUsage0902Report2022Entity entity2 = listSearch.get(1);
                
         /* 全テーブル共通政治団体基礎情報 */
         assertThat(entity1.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);

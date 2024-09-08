@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.InsertPartyUsageShito0801And0807Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.InsertPartyUsageShito0802And0803Logic;
@@ -58,7 +59,7 @@ public class InsertPartyUsageReportService {
      *
      * @param allShitoBook 使途報告書XML
      */
-    public void practice(final PartyUsageDocumentPoliticalPropertyDto partyUsageDocumentPoliticalPropertyDto,
+    public RegistPoliticalPartyUsageReportResultDto practice(final PartyUsageDocumentPoliticalPropertyDto partyUsageDocumentPoliticalPropertyDto,
             final CheckPrivilegeDto checkPrivilegeDto, final AllShitoBook allShitoBook,
             final boolean isSearchRelation) {
 
@@ -67,31 +68,42 @@ public class InsertPartyUsageReportService {
                 allShitoBook, checkPrivilegeDto);
 
         // 8号様式その2と3:収支の総括表
-        insertPartyUsageShito0802And0803Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int sizeSummary = insertPartyUsageShito0802And0803Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0802Dto(), allShitoBook.getShito0803Dto(), checkPrivilegeDto);
 
         // 8号様式その2区分2
-        insertPartyUsageShito0802Kbn02Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int size2 = insertPartyUsageShito0802Kbn02Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0802Dto().getSheet0802Dto().getKbn080202Dto(), checkPrivilegeDto);
 
         // 8号様式その4
-        insertPartyUsageShito0804Logic.practice(isSearchRelation, documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int size4 = insertPartyUsageShito0804Logic.practice(isSearchRelation, documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0804Dto(), checkPrivilegeDto);
 
         // 8号様式その5:支部政党交付金の内訳
-        insertPartyUsageShito0805Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int size5 = insertPartyUsageShito0805Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0805Dto(), checkPrivilegeDto);
 
         // 8号様式その6:政党基金の内訳
-        insertPartyUsageShito0806Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int size6 = insertPartyUsageShito0806Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0806Dto(), checkPrivilegeDto);
 
         // 9号様式:領収書を徴しがたかった明細書
-        insertPartyUsageShito0901Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int size9 = insertPartyUsageShito0901Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0901Dto(), checkPrivilegeDto);
 
         // 9号様式その2:振込明細書にかかる支出目的書
-        insertPartyUsageShito0902Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
+        int size92 = insertPartyUsageShito0902Logic.practice(documentCode, partyUsageDocumentPoliticalPropertyDto,
                 allShitoBook.getShito0902Dto(), checkPrivilegeDto);
+        
+        
+        // 登録失敗はTransactionをロールバックしないといけないのですべて例外
+        RegistPoliticalPartyUsageReportResultDto resultDto = new RegistPoliticalPartyUsageReportResultDto();
+
+        resultDto.setDocumentCode(documentCode);
+        resultDto.setSuccessCount(1 + sizeSummary + size2 + size4 + size5 + size6 + size9 + size92);
+        resultDto.setIsOk(true);
+        resultDto.setMessage(resultDto.getSuccessCount() + "件登録しました");
+
+        return resultDto;
     }
 }

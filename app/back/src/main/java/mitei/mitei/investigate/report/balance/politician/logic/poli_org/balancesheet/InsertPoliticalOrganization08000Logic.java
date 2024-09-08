@@ -1,21 +1,14 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0800DifficultCollectReceiptDto;
-import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row080000DifficultCollectReceiptDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.entity.OfferingBalancesheetDifficalt0800Recipt2025Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.OfferingBalancesheetDifficalt0800Recipt2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.InsertPoliticalOrganization08000Y2022Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.InsertPoliticalOrganization08000Y2024Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.InsertPoliticalOrganization08000Y2025Logic;
 
 /**
  * 様式8 領収書を徴しがたかった支出項目一覧表登録Logic
@@ -23,9 +16,25 @@ import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistor
 @Component
 public class InsertPoliticalOrganization08000Logic {
 
-    /** 様式8 領収書を徴しがたかった支出項目一覧表Repository */
+    /** 登録対応年(2022) */
+    private static final int YEAR_2022 = 2022;
+    /** 登録対応年(2022)Logic */
     @Autowired
-    private OfferingBalancesheetDifficalt0800Recipt2025Repository offeringBalancesheetDifficalt0800Recipt2025Repository;
+    private InsertPoliticalOrganization08000Y2022Logic insertPoliticalOrganization08000y2022Logic;
+
+    /** 登録対応年(2024) */
+    private static final int YEAR_2024 = 2024;
+    /** 登録対応年(2024)Logic */
+    @Autowired
+    private InsertPoliticalOrganization08000Y2024Logic insertPoliticalOrganization08000y2024Logic;
+
+    /** 登録対応年(2025) */
+    private static final int YEAR_2025 = 2025;
+    /** 登録対応年(2025)Logic */
+    @Autowired
+    private InsertPoliticalOrganization08000Y2025Logic insertPoliticalOrganization08000Y2025Logic;
+
+    // NOTE:コンポーネントとswitchラベル追加位置
 
     /**
      * 登録作業を行う
@@ -41,37 +50,30 @@ public class InsertPoliticalOrganization08000Logic {
             final AllSheet0800DifficultCollectReceiptDto difficultReciptDto,
             final CheckPrivilegeDto checkPrivilegeDto) {
 
-        List<OfferingBalancesheetDifficalt0800Recipt2025Entity> list = new ArrayList<>();
+        int size = 0;
+        switch (documentPropertyDto.getHoukokuNen()) {
+            // 2022年
+            case YEAR_2022:
+                size = insertPoliticalOrganization08000y2022Logic.practice(documentCode, documentPropertyDto,
+                        difficultReciptDto, checkPrivilegeDto);
+                break;
+            // 2024年
+            case YEAR_2024:
+                size = insertPoliticalOrganization08000y2024Logic.practice(documentCode, documentPropertyDto,
+                        difficultReciptDto, checkPrivilegeDto);
+                break;
+            // 2025年
+            case YEAR_2025:
+                size = insertPoliticalOrganization08000Y2025Logic.practice(documentCode, documentPropertyDto,
+                        difficultReciptDto, checkPrivilegeDto);
+                break;
 
-        // コードの取得
-        Long code = 0L;
-        Optional<OfferingBalancesheetDifficalt0800Recipt2025Entity> optional = offeringBalancesheetDifficalt0800Recipt2025Repository
-                .findFirstByOrderByOfferingBalancesheetDifficalt0800ReciptCodeDesc();
-        if (!optional.isEmpty()) {
-            code = code + optional.get().getOfferingBalancesheetDifficalt0800ReciptCode();
+            // NOTE:Logic実行追加位置
+
+            default:
+                break;
         }
-        for (Row080000DifficultCollectReceiptDto rowDto : difficultReciptDto.getSheet080000DifficultCollectReceiptDto()
-                .getList()) {
-            code++;
-            list.add(this.createEntity(code, documentPropertyDto, documentCode, rowDto, checkPrivilegeDto));
-        }
 
-        return offeringBalancesheetDifficalt0800Recipt2025Repository.saveAll(list).size();
-    }
-
-    private OfferingBalancesheetDifficalt0800Recipt2025Entity createEntity(final Long code,
-            final BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto, final Long documentCode,
-            final Row080000DifficultCollectReceiptDto rowDto, final CheckPrivilegeDto checkPrivilegeDto) {
-
-        OfferingBalancesheetDifficalt0800Recipt2025Entity balancesheetEntity = new OfferingBalancesheetDifficalt0800Recipt2025Entity();
-        balancesheetEntity.setDocumentCode(documentCode);
-        balancesheetEntity.setOfferingBalancesheetDifficalt0800ReciptCode(code);
-
-        BeanUtils.copyProperties(documentPropertyDto, balancesheetEntity);
-        BeanUtils.copyProperties(rowDto, balancesheetEntity);
-
-        SetTableDataHistoryUtil.practice(checkPrivilegeDto, balancesheetEntity, DataHistoryStatusConstants.INSERT);
-
-        return balancesheetEntity;
+        return size;
     }
 }

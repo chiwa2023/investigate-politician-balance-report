@@ -29,4 +29,4 @@ CREATE TABLE `offering_balancesheet_difficalt_0800_recipt_2025` (
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` timestamp NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`offering_balancesheet_difficalt_0800_recipt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

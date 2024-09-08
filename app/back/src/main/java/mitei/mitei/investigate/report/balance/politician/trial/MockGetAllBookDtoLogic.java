@@ -2,9 +2,10 @@ package mitei.mitei.investigate.report.balance.politician.trial;
 
 import org.springframework.stereotype.Component;
 
-import mitei.mitei.create.report.balance.politician.dto.publish.AllBookDto;
-import mitei.mitei.create.report.balance.politician.dto.publish.AllSheet0701CoverAndOrganizationDetailsDto;
-import mitei.mitei.create.report.balance.politician.dto.publish.Sheet070100CoverAndOrganizationDetailsDto;
+import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookDto;
+import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0701CoverAndOrganizationDetailsDto;
+import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070100CoverAndOrganizationDetailsDto;
+
 
 /**
  * 政治資金収支報告書XMLをbackから正常に取得できるかテストしていくMock
@@ -26,7 +27,7 @@ public class MockGetAllBookDtoLogic {
         Sheet070100CoverAndOrganizationDetailsDto sheet0701 = allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto().getSheet070100CoverAndOrganizationDetailsDto();
         
         sheet0701.setHoukokuNen(2022); //  SUPPRESS CHECKSTYLE MagicNumber
-        sheet0701.setDantaiName("backサンプル政治団体");
+        sheet0701.setDantaiName01("backサンプル政治団体");
         sheet0701.setDaihyoushaNameLast("back政治団体");
         sheet0701.setDaihyoushaNameFirst("back太郎");
         sheet0701.setKaikeiSekinnshaNameLast("back政治団体");

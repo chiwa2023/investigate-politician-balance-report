@@ -29,4 +29,4 @@ CREATE TABLE `offering_party_usage_0901_report_2025` (
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` timestamp NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`party_usage_0901_report_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -26,4 +26,4 @@ CREATE TABLE `offering_balancesheet_withdrawal_0802_transfer_2025` (
   `update_timestamp` timestamp NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
   `dantai_name_0820` varchar(210) DEFAULT NULL,
   PRIMARY KEY (`offering_balancesheet_withdrawal_0802_transfer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -1,23 +1,16 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet;
 
-import java.util.Optional;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0702SummaryTableIncomeDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0713ListOfExpenditureItemsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0717SummaryTableOfAssetsDto;
-import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070200SummaryTableIncomeExpenditureDto;
-import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071300ListOfExpenditureItemsDto;
-import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071700SummaryTableOfAssetsDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.entity.OfferingBalancesheet0702And0713And0717Summary2025Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.OfferingBalancesheet0702And0713And0717Summary2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.InsertPoliticalOrganizationSummaryY2022Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.InsertPoliticalOrganizationSummaryY2024Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.InsertPoliticalOrganizationSummaryY2025Logic;
 
 /**
  * 政治資金収支報告書の集計表(収入・支出・資産)を登録する
@@ -25,9 +18,25 @@ import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistor
 @Component
 public class InsertPoliticalOrganizationSummaryLogic {
 
-    /** 政治資金収支報告書集計表登録Repository */
+    /** 登録対応年(2022) */
+    private static final int YEAR_2022 = 2022;
+    /** 登録対応年(2022)Logic */
     @Autowired
-    private OfferingBalancesheet0702And0713And0717Summary2025Repository offeringBalancesheet0702And0713And0717Summary2025Repository;
+    private InsertPoliticalOrganizationSummaryY2022Logic insertPoliticalOrganizationSummaryY2022Logic;
+
+    /** 登録対応年(2024) */
+    private static final int YEAR_2024 = 2024;
+    /** 登録対応年(2024)Logic */
+    @Autowired
+    private InsertPoliticalOrganizationSummaryY2024Logic insertPoliticalOrganizationSummaryY2024Logic;
+
+    /** 登録対応年(2025) */
+    private static final int YEAR_2025 = 2025;
+    /** 登録対応年(2025)Logic */
+    @Autowired
+    private InsertPoliticalOrganizationSummaryY2025Logic insertPoliticalOrganizationSummaryY2025Logic;
+
+    // NOTE:コンポーネントとswitchラベル追加位置
 
     /**
      * 登録作業を行う
@@ -46,47 +55,33 @@ public class InsertPoliticalOrganizationSummaryLogic {
             final AllSheet0713ListOfExpenditureItemsDto allSheet0713dto,
             final AllSheet0717SummaryTableOfAssetsDto allSheet0717dto, final CheckPrivilegeDto checkPrivilegeDto) {
 
-        OfferingBalancesheet0702And0713And0717Summary2025Entity summaryEntity = new OfferingBalancesheet0702And0713And0717Summary2025Entity();
+        int size = 0;
+        switch (documentPropertyDto.getHoukokuNen()) {
+            // 2022年
+            case YEAR_2022:
+                size = insertPoliticalOrganizationSummaryY2022Logic.practice(documentCode, documentPropertyDto,
+                        allSheet0702dto, allSheet0713dto, allSheet0717dto, checkPrivilegeDto);
+                break;
 
-        summaryEntity.setDocumentCode(documentCode);
-        BeanUtils.copyProperties(documentPropertyDto, summaryEntity);
+            // 2024年
+            case YEAR_2024:
+                size = insertPoliticalOrganizationSummaryY2024Logic.practice(documentCode, documentPropertyDto,
+                        allSheet0702dto, allSheet0713dto, allSheet0717dto, checkPrivilegeDto);
+                break;
 
-        // シート2を登録する
-        Sheet070200SummaryTableIncomeExpenditureDto sheet0702Dto = allSheet0702dto
-                .getSheet070200SummaryTableIncomeExpenditureDto();
+            // 2025年
+            case YEAR_2025:
+                size = insertPoliticalOrganizationSummaryY2025Logic.practice(documentCode, documentPropertyDto,
+                        allSheet0702dto, allSheet0713dto, allSheet0717dto, checkPrivilegeDto);
+                break;
 
-        BeanUtils.copyProperties(sheet0702Dto, summaryEntity);
+            // NOTE:Logic実行追加位置
 
-        // シート13を登録する
-        Sheet071300ListOfExpenditureItemsDto sheet0713Dto = allSheet0713dto.getSheet071300ListOfExpenditureItemsDto();
-
-        BeanUtils.copyProperties(sheet0713Dto, summaryEntity);
-
-        // シート17を登録する
-        Sheet071700SummaryTableOfAssetsDto sheet0717Dto = allSheet0717dto.getSheet071700SummaryTableOfAssetsDto();
-
-        BeanUtils.copyProperties(sheet0717Dto, summaryEntity);
-
-
-        SetTableDataHistoryUtil.practice(checkPrivilegeDto, summaryEntity, DataHistoryStatusConstants.INSERT);
-
-        // 同一識別コードの取得
-        Long code = 1L;
-        Optional<OfferingBalancesheet0702And0713And0717Summary2025Entity> optional = offeringBalancesheet0702And0713And0717Summary2025Repository
-                .findFirstByOrderByOfferingBalancesheet0702And0713And0717SummaryCodeDesc();
-        if (!optional.isEmpty()) {
-            code = code + optional.get().getOfferingBalancesheet0702And0713And0717SummaryCode();
+            default:
+                break;
         }
 
-        summaryEntity.setOfferingBalancesheet0702And0713And0717SummaryCode(code);
-        
-        Long idRecord = offeringBalancesheet0702And0713And0717Summary2025Repository.save(summaryEntity)
-                .getOfferingBalancesheet0702And0713And0717SummaryId();
+        return size;
 
-        if (idRecord.equals(0L)) {
-            return 0;// 異常登録(idがauto incrementされていない)
-        } else {
-            return 1; // 正常登録(1行しか登録しない)
-        }
     }
 }

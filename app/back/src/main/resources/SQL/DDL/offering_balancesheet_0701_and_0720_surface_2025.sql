@@ -68,6 +68,10 @@ CREATE TABLE `offering_balancesheet_0701_and_0720_surface_2025` (
   `date_oath` varchar(40) DEFAULT NULL COMMENT '宣誓日',
   `kaikei_sekininsha_name_last` varchar(210) DEFAULT NULL COMMENT '会計責任者姓名の姓',
   `kaikei_sekininsha_name_first` varchar(210) DEFAULT NULL COMMENT '会計責任者姓名の名',
+  `dantai_name01` varchar(300) DEFAULT NULL COMMENT '団体名(その1実記)',
+  `dantai_name20` varchar(300) DEFAULT NULL COMMENT '団体名(その20実記)',
+  `daihyousha_kaisan_name_last` varchar(300) DEFAULT NULL COMMENT '解散時の代表者姓名の姓',
+  `daihyousha_kaisan_name_first` varchar(300) DEFAULT NULL COMMENT '解散時の代表者姓名の名',
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
   `insert_user_name` varchar(300) DEFAULT NULL COMMENT '挿入ユーザ姓名',
@@ -76,9 +80,5 @@ CREATE TABLE `offering_balancesheet_0701_and_0720_surface_2025` (
   `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` timestamp NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
-  `dantai_name01` varchar(300) DEFAULT NULL,
-  `dantai_name20` varchar(300) DEFAULT NULL,
-  `daihyousha_kaisan_name_last` varchar(300) DEFAULT NULL,
-  `daihyousha_kaisan_name_first` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`offering_balancesheet_0701_and_0720_surface_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -44,6 +44,7 @@ CREATE TABLE `offering_party_usage_0804_report_2025` (
   `relation_political_org_id_payee` bigint DEFAULT NULL COMMENT '支払者関連者同一識別コード(政治団体)',
   `relation_political_org_code_payee` int DEFAULT NULL COMMENT '支払者関連者名称(政治団体)',
   `relation_political_org_name_payee` varchar(210) DEFAULT NULL COMMENT '支払者関連者名称(政治団体)',
+  `search_words` text COMMENT '自然検索対象',
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
   `insert_user_name` varchar(300) DEFAULT NULL COMMENT '挿入ユーザ姓名',
@@ -53,4 +54,4 @@ CREATE TABLE `offering_party_usage_0804_report_2025` (
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` timestamp NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`party_usage_0804_report_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=377 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=977 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
