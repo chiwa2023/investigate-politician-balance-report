@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHistoryInterface;
 
 /**
- * offering_balancesheet_outcome_2025接続用Entity
+ * offering_balancesheet_outcome_2022接続用Entity
  */
 @Entity
 @Table(name = "offering_balancesheet_outcome_2022")
