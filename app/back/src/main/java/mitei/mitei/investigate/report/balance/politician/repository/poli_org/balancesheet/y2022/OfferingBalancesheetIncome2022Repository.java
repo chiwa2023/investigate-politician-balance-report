@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,13 +19,28 @@ public interface OfferingBalancesheetIncome2022Repository
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
-     * 名称を検索対象として全文検索をする
+     * 全文検索をする
      *
      * @param searchWords 検索語
+     * @param offset      検索表示位置
+     * @param startDate   開始日付
+     * @param endDate     終了日付
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_income_2022 WHERE saishin_kbn= 1 AND MATCH(search_words) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<OfferingBalancesheetIncome2022Entity> findFullText(String searchWords);
+    @Query(value = "SELECT * FROM offering_balancesheet_income_2022 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4 AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE) LIMIT 100 OFFSET ?2", nativeQuery = true)
+    List<OfferingBalancesheetIncome2022Entity> findFullText(String searchWords, int offset, LocalDate startDate,
+            LocalDate endDate);
+
+    /**
+     * 検索対象行数を取得する
+     *
+     * @param searchWords 検索語
+     * @param startDate   開始日付
+     * @param endDate     終了日付
+     * @return 件数
+     */
+    @Query(value = "SELECT count(*) AS count FROM offering_balancesheet_income_2022 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?2 AND ?3 AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
+    Integer findFullTextCount(String searchWords, LocalDate startDate, LocalDate endDate);
 
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する
@@ -38,9 +54,8 @@ public interface OfferingBalancesheetIncome2022Repository
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
-    List<OfferingBalancesheetIncome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetIncomeId(
-            Long documentCode);
+    List<OfferingBalancesheetIncome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetIncomeId(Long documentCode);
 
 }

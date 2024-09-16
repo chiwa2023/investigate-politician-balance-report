@@ -39,7 +39,7 @@ public interface OfferingBalancesheet0718Estate2025Repository  extends JpaReposi
      * 文書同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheet0718Estate2025Entity> findByDocumentCodeOrderByOfferingBalancesheet0718EstateId(Long documentCode);
 

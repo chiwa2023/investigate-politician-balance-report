@@ -38,7 +38,7 @@ public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaR
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param partyUsage0801And0807ReportCode 使途報告書様式8その1と7同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingPartyUsage0801And0807Report2022Entity> findByPartyUsage0801And0807ReportCodeOrderByPartyUsage0801And0807ReportId(Long partyUsage0801And0807ReportCode);
 }

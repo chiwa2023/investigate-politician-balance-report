@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,10 +24,19 @@ public interface OfferingBalancesheetOutcome2025Repository  extends JpaRepositor
      * @param searchWords 検索語
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2025 WHERE saishin_kbn= 1 AND MATCH(search_words) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<OfferingBalancesheetOutcome2025Entity> findFullText(String searchWords);
+    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE) LIMIT 100 OFFSET ?2", nativeQuery = true)
+    List<OfferingBalancesheetOutcome2025Entity> findFullText(String searchWords, int offset, LocalDate startDate, LocalDate endDate);
 
-    
+
+    /**
+     * 名称を検索対象として全文検索をする
+     *
+     * @param searchWords 検索語
+     * @return 検索結果
+     */
+    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
+    Integer findFullTextCount(String searchWords, LocalDate startDate, LocalDate endDate);
+
     
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する
@@ -40,7 +50,7 @@ public interface OfferingBalancesheetOutcome2025Repository  extends JpaRepositor
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheetOutcome2025Entity> findByDocumentCodeOrderByOfferingBalancesheetOutcomeId(Long documentCode);
     

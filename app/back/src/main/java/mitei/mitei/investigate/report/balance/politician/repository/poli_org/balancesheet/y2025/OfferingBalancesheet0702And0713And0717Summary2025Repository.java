@@ -40,7 +40,7 @@ public interface OfferingBalancesheet0702And0713And0717Summary2025Repository  ex
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 使途報告書様式8その1と7同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheet0702And0713And0717Summary2025Entity> findByDocumentCodeOrderByOfferingBalancesheet0702And0713And0717SummaryId(Long documentCode);
     

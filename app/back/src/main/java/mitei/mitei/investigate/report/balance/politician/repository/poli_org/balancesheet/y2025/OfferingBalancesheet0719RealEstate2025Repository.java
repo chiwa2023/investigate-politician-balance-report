@@ -39,7 +39,7 @@ public interface OfferingBalancesheet0719RealEstate2025Repository  extends JpaRe
      * 文書同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheet0719RealEstate2025Entity> findByDocumentCodeOrderByOfferingBalancesheet0719RealEstateId(Long documentCode);
 

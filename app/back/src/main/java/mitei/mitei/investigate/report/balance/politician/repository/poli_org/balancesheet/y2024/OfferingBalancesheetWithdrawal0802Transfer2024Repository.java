@@ -39,7 +39,7 @@ public interface OfferingBalancesheetWithdrawal0802Transfer2024Repository  exten
      * 文書同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheetWithdrawal0802Transfer2024Entity> findByDocumentCodeOrderByOfferingBalancesheetWithdrawal0802TransferId(Long documentCode);
 

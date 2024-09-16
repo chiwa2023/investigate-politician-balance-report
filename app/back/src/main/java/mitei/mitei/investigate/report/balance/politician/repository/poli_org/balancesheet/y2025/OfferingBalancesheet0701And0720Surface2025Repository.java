@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,8 +41,18 @@ public interface OfferingBalancesheet0701And0720Surface2025Repository  extends J
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param partyUsage0801And0807ReportCode 使途報告書様式8その1と7同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheet0701And0720Surface2025Entity> findByOfferingBalancesheet0701And0720SurfaceCodeOrderByOfferingBalancesheet0701And0720SurfaceId(Long partyUsage0801And0807ReportCode);
     
+    /**
+     * 最新かつ政治団体Idと提出日が一致するデータを抽出する
+     *
+     * @param saishinKbn 最新区分
+     * @param politicalOrgCode 政治団体同一識別コード
+     * @param offeringDate 提出日
+     * @return データリスト
+     */
+    List<OfferingBalancesheet0701And0720Surface2025Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(Integer saishinKbn,Integer politicalOrgCode,LocalDate offeringDate);
+
 }

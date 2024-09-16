@@ -39,7 +39,7 @@ public interface OfferingBalancesheetDifficalt0800Recipt2025Repository  extends 
      * 文書同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
-     * @return データリスト()
+     * @return データリスト
      */
     List<OfferingBalancesheetDifficalt0800Recipt2025Entity> findByDocumentCodeOrderByOfferingBalancesheetDifficalt0800ReciptId(Long documentCode);
 
