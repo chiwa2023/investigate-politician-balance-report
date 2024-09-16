@@ -5,21 +5,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row070400BorrowedMoneyDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070400BorrowedMoneyDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetIncome2025Entity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * ConvertSheetDtoToEntity0704BorrowedLogic単体テスト
  */
+@SpringJUnitConfig
+@AutoConfigureMockMvc
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 class ConvertSheetDtoToEntity0704BorrowedY2025LogicTest {
     // CHECKSTYLE:OFF MagicNumber
+
+    /** テスト対象 */
+    @Autowired
+    private ConvertSheetDtoToEntity0704BorrowedY2025Logic convertSheetDtoToEntity0704BorrowedY2025Logic;
 
     @Test
     void testPractice() {
@@ -60,8 +75,6 @@ class ConvertSheetDtoToEntity0704BorrowedY2025LogicTest {
 
         sheet1.getList().add(row0);
 
-        ConvertSheetDtoToEntity0704BorrowedY2025Logic convertSheetDtoToEntity0704BorrowedY2025Logic = new ConvertSheetDtoToEntity0704BorrowedY2025Logic();
-
         List<OfferingBalancesheetIncome2025Entity> list = convertSheetDtoToEntity0704BorrowedY2025Logic
                 .practice(documentCode, documentPropertyDto, sheet1, CreateTestPrivilegeDtoUtil.pracitce());
 
@@ -71,7 +84,7 @@ class ConvertSheetDtoToEntity0704BorrowedY2025LogicTest {
         OfferingBalancesheetIncome2025Entity entity = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -85,8 +98,8 @@ class ConvertSheetDtoToEntity0704BorrowedY2025LogicTest {
                 .isEqualTo(documentPropertyDto.getRelationPersonCodeDelegate());
         assertThat(entity.getRelationPersonNameDelegate())
                 .isEqualTo(documentPropertyDto.getRelationPersonNameDelegate());
-        
-        //様式項目
+
+        // 様式項目
         assertThat(entity.getYoushikiKbn()).isEqualTo(IncomeYoushikiKbnConstants.YOUSHIKI_KBN_04);
         assertThat(entity.getYoushikiEdaKbn()).isEqualTo(0); // 様式枝区分項目はなし
 

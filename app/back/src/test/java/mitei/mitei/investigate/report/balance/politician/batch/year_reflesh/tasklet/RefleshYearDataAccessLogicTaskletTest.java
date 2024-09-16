@@ -44,9 +44,9 @@ class RefleshYearDataAccessLogicTaskletTest {
     private RefleshYearDataAccessLogicTasklet refleshYearDataAccessLogicTasklet;
 
     /** 複写元報告年 */
-    private static final int baseYear = 2025;
+    private static final int baseYear = 2022;
     /** 複写先報告年 */
-    private static final int copyYear = 2022;
+    private static final int copyYear = 2024;
 
     /** 収入(4)の部品ディレクトリ */
     private static final String subIncomeDir = "/income";

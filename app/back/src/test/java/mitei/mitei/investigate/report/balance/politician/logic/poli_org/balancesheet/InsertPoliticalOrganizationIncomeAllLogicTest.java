@@ -64,6 +64,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071201ConsiderationMediationPartyPersonalDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071202ConsiderationMediationPartyGroupDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071203ConsiderationMediationPartyPoliticOrgDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetIncome2024Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetIncome2025Entity;
@@ -71,7 +72,6 @@ import mitei.mitei.investigate.report.balance.politician.repository.poli_org.bal
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetIncome2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPoliticalOrganizationIncomeLogic単体テスト
@@ -715,7 +715,7 @@ class InsertPoliticalOrganizationIncomeAllLogicTest {
         OfferingBalancesheetIncome2025Entity entity0300 = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity0300.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity0300.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity0300.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity0300.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity0300.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -789,7 +789,7 @@ class InsertPoliticalOrganizationIncomeAllLogicTest {
         // TODO 関連者
 
         // 自由検索
-        assertThat(entity0500.getSearchWords()).isEqualTo("本部／支部からの交付金本部支部名称事務所住所");
+        assertThat(entity0500.getSearchWords()).isEqualTo("本部/支部からの交付金本部支部名称事務所住所");
 
         /* その6 */
         OfferingBalancesheetIncome2025Entity entity0600 = list.get(3);
@@ -1829,7 +1829,7 @@ class InsertPoliticalOrganizationIncomeAllLogicTest {
         OfferingBalancesheetIncome2024Entity entity0300 = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity0300.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity0300.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity0300.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity0300.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity0300.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -1903,7 +1903,7 @@ class InsertPoliticalOrganizationIncomeAllLogicTest {
         // TODO 関連者
 
         // 自由検索
-        assertThat(entity0500.getSearchWords()).isEqualTo("本部／支部からの交付金本部支部名称事務所住所");
+        assertThat(entity0500.getSearchWords()).isEqualTo("本部/支部からの交付金本部支部名称事務所住所");
 
         /* その6 */
         OfferingBalancesheetIncome2024Entity entity0600 = list.get(3);

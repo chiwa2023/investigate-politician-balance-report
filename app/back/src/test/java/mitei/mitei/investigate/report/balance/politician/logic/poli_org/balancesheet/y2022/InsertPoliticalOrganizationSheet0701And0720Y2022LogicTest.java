@@ -12,8 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookHeaderDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookUmuInputDataDto;
@@ -21,12 +21,12 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet0720OathDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070100CoverAndOrganizationDetailsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet072000OathDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPoliticalOrganizationSheet0701And0720Logic単体テスト
@@ -165,7 +165,7 @@ class InsertPoliticalOrganizationSheet0701And0720Y2022LogicTest {
         OfferingBalancesheet0701And0720Surface2022Entity entity = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());

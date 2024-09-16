@@ -38,6 +38,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.util.FormatNaturalSearchTextUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -53,6 +54,10 @@ public class InsertPoliticalOrganizationOutcomeAllY2025Logic {
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;
+
+    /** 自然検索用フォーマットUtility */
+    @Autowired
+    private FormatNaturalSearchTextUtil formatNaturalSearchTextUtil;
 
     /**
      * 登録作業を行う
@@ -226,7 +231,6 @@ public class InsertPoliticalOrganizationOutcomeAllY2025Logic {
         outcomeEntity.setPartnerName(rowDto.getName());
         outcomeEntity.setPartnerJusho(rowDto.getJusho());
 
-
         outcomeEntity.setAccrualDateValue(dateConvertUtil.practiceWarekiToLocalDate(outcomeEntity.getAccrualDate()));
 
         // TODO 関連者入力は使用が決定次第追加する
@@ -248,10 +252,10 @@ public class InsertPoliticalOrganizationOutcomeAllY2025Logic {
 
         // 自由検索 費目＋相手方氏名＋相手方住所
         StringBuilder builder = new StringBuilder();
-        builder.append(himoku).append(outcomeEntity.getMokuteki())
-        .append(outcomeEntity.getPartnerName()).append(outcomeEntity.getPartnerJusho());
-        outcomeEntity.setSearchWords(builder.toString().replaceAll(" ", ""));
-        
+        builder.append(himoku).append(outcomeEntity.getMokuteki()).append(outcomeEntity.getPartnerName())
+                .append(outcomeEntity.getPartnerJusho());
+        outcomeEntity.setSearchWords(formatNaturalSearchTextUtil.practice(builder.toString()));
+
         SetTableDataHistoryUtil.practice(checkPrivilegeDto, outcomeEntity, DataHistoryStatusConstants.INSERT);
 
         return outcomeEntity;

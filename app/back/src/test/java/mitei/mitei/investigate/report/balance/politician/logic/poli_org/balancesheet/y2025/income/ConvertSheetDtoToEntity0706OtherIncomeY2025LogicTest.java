@@ -5,6 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row070600OtherIncomeDto;
@@ -17,9 +24,18 @@ import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 /**
  * ConvertSheetDtoToEntity0706OtherIncomeLogic単体テスト
  */
+@SpringJUnitConfig
+@AutoConfigureMockMvc
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 class ConvertSheetDtoToEntity0706OtherIncomeY2025LogicTest {
     // CHECKSTYLE:OFF MagicNumber
 
+    /** テスト対象 */ 
+    @Autowired
+    private ConvertSheetDtoToEntity0706OtherIncomeY2025Logic convertSheetDtoToEntity0706OtherIncomeY2025Logic;
+
+    
     @Test
     void testPractice() {
 
@@ -57,7 +73,6 @@ class ConvertSheetDtoToEntity0706OtherIncomeY2025LogicTest {
         row0.setBikou("備考");
         sheet1.getList().add(row0);
 
-        ConvertSheetDtoToEntity0706OtherIncomeY2025Logic convertSheetDtoToEntity0706OtherIncomeY2025Logic = new ConvertSheetDtoToEntity0706OtherIncomeY2025Logic();
 
         List<OfferingBalancesheetIncome2025Entity> list = convertSheetDtoToEntity0706OtherIncomeY2025Logic
                 .practice(documentCode, documentPropertyDto, sheet1, CreateTestPrivilegeDtoUtil.pracitce());

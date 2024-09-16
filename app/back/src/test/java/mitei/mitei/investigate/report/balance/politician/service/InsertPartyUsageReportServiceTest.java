@@ -13,8 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.common.constants.party.usage.ConstantsKbn0804Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.BookHeadDto;
@@ -38,6 +38,7 @@ import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0801Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0803Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0807Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.SitoUmuFlgDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0801And0807Report2025Entity;
@@ -66,7 +67,6 @@ import mitei.mitei.investigate.report.balance.politician.service.only_test.usage
 import mitei.mitei.investigate.report.balance.politician.service.only_test.usage.CreateTestDataPartyUsageShito0902Logic;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPartyUsageReportService単体テスト
@@ -291,7 +291,7 @@ class InsertPartyUsageReportServiceTest {
         assertThat(entityRecord.getPartyUsage0801And0807ReportCode()).isEqualTo(documentCode);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entityRecord.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entityRecord.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entityRecord.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entityRecord.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entityRecord.getPoliticalOrganizationId())
@@ -351,7 +351,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0802And0803Report2025Entity entity08021 = listSummary.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity08021.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity08021.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity08021.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity08021.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity08021.getPoliticalOrganizationId())
@@ -528,7 +528,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0802Kbn02Report2025Entity entity080202 = list080202.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity080202.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity080202.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity080202.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity080202.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity080202.getPoliticalOrganizationId())
@@ -566,7 +566,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0804Report2025Entity entity01 = list0804.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity01.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity01.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity01.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity01.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity01.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -965,7 +965,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0805Report2025Entity entity0805 = list0805.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity0805.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity0805.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity0805.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity0805.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity0805.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -1003,7 +1003,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0806Report2025Entity entity080604 = list0806.get(3);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity080601.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity080601.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity080601.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity080601.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity080601.getPoliticalOrganizationId())
@@ -1108,7 +1108,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0901Report2025Entity entity090102 = list0901.get(1);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity090101.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity090101.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity090101.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity090101.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity090101.getPoliticalOrganizationId())
@@ -1152,7 +1152,7 @@ class InsertPartyUsageReportServiceTest {
         OfferingPartyUsage0902Report2025Entity entity090202 = listSearch.get(1);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity090201.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity090201.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity090201.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity090201.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity090201.getPoliticalOrganizationId())

@@ -16,11 +16,11 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row070900AnonymousInPoliticalPartyDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070900AnonymousInPoliticalPartyDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetIncome2025Entity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * ConvertSheetDtoToEntity0709AnonymousInPoliticalPartyLogic単体テスト
@@ -87,7 +87,7 @@ class ConvertSheetDtoToEntity0709AnonymousInPoliticalPartyLogicTest {
         OfferingBalancesheetIncome2025Entity entity = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());

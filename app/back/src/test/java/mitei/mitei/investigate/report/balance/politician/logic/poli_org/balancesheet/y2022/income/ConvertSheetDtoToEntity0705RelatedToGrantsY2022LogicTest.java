@@ -16,11 +16,11 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row070500IncomeRelatedToGrantsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070500IncomeRelatedToGrantsDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheetIncome2022Entity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * ConvertSheetDtoToEntity0705RelatedToGrantsLogic単体テスト
@@ -82,7 +82,7 @@ class ConvertSheetDtoToEntity0705RelatedToGrantsY2022LogicTest {
         OfferingBalancesheetIncome2022Entity entity = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -114,7 +114,7 @@ class ConvertSheetDtoToEntity0705RelatedToGrantsY2022LogicTest {
         // TODO 関連者
 
         // 自由検索
-        assertThat(entity.getSearchWords()).isEqualTo("本部／支部からの交付金本部支部名称事務所住所");
+        assertThat(entity.getSearchWords()).isEqualTo("本部/支部からの交付金本部支部名称事務所住所");
     }
 
 }

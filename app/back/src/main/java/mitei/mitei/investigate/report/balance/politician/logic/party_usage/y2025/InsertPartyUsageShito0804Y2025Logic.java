@@ -18,6 +18,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0804Report2025Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2025.OfferingPartyUsage0804Report2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.util.FormatNaturalSearchTextUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -83,6 +84,10 @@ public class InsertPartyUsageShito0804Y2025Logic {
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;
+
+    /** 自然検索用フォーマットUtility */
+    @Autowired
+    private FormatNaturalSearchTextUtil formatNaturalSearchTextUtil;
 
     /** 初期値(不要になったら削除) */
     private static final long INIT_LONG = 0L;
@@ -226,17 +231,6 @@ public class InsertPartyUsageShito0804Y2025Logic {
 
         BeanUtils.copyProperties(rowDto, entity);
 
-        // row.getRowNo(); // row_no
-        // row.getUsageItem();// usage_item
-        // row.getAmountAll(); // amount_all
-        // row.getAmountKoufukin(); // amount_koufukin
-        // row.getAmountMyFunds(); // amount_my_funds
-        // row.getAccrualDate(); //accrual_date
-        // row.getPayeeName(); // payee_name
-        // row.getAddress(); // address
-        // row.getBikou(); //bikou
-        // row.getFlgCollectRecipt(); flg_collect_recipt
-
         // 検索時日付情報で絞る可能性を考慮する
         entity.setAccrualDateValue(dateConvertUtil.practiceWarekiToLocalDate(entity.getAccrualDate()));
         // row.getAccrualDate();accrual_date_value
@@ -272,7 +266,7 @@ public class InsertPartyUsageShito0804Y2025Logic {
         // 自由検索の対象
         StringBuilder builder = new StringBuilder();
         builder.append(rowDto.getUsageItem()).append(rowDto.getPayeeName()).append(rowDto.getAddress());
-        entity.setSearchWords(builder.toString().replaceAll(" ", ""));
+        entity.setSearchWords(formatNaturalSearchTextUtil.practice(builder.toString()));
 
         return entity;
     }

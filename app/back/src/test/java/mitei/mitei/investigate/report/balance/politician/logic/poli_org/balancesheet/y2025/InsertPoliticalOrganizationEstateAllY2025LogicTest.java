@@ -44,6 +44,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071811FacilityUsageRightsAmongAssetsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071812BorrowingsAmongAssetsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071900RealEstateDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0718Estate2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0719RealEstate2025Entity;
@@ -51,7 +52,6 @@ import mitei.mitei.investigate.report.balance.politician.repository.poli_org.bal
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0719RealEstate2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPoliticalOrganizationEstateAllLogic単体テスト
@@ -415,7 +415,7 @@ class InsertPoliticalOrganizationEstateAllY2025LogicTest {
         OfferingBalancesheet0719RealEstate2025Entity entityRealEstate1 = listRealEstate.get(0);
         
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entityAsset01.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entityAsset01.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entityAsset01.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entityAsset01.getOfferingDate())
                 .isEqualTo(documentPropertyDto.getOfferingDate());
@@ -489,7 +489,7 @@ class InsertPoliticalOrganizationEstateAllY2025LogicTest {
         
         
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entityRealEstate1.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entityRealEstate1.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entityRealEstate1.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entityRealEstate1.getOfferingDate())
                 .isEqualTo(documentPropertyDto.getOfferingDate());

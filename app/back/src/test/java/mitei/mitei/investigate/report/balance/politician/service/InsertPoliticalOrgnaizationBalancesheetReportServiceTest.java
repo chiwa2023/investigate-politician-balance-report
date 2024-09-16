@@ -12,8 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
 import mitei.mitei.common.constants.blancesheet_report.OutcomeYoushikiKbnConstants;
 import mitei.mitei.common.constants.blancesheet_report.RealEstateKbnConstants;
@@ -82,7 +82,8 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet072000OathDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet080000DifficultCollectReceiptDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet080200WithdrawalItemsByTransferDto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportRresultDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0701And0720Surface2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Entity;
@@ -109,7 +110,6 @@ import mitei.mitei.investigate.report.balance.politician.service.only_test.balan
 import mitei.mitei.investigate.report.balance.politician.service.only_test.balancesheet.CreatetestDataPoliticalOrganizationOutcomeAllLogic;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPoliticalOrgnaizationBalancesheetReportService単体テスト
@@ -436,7 +436,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
          * 登録作業
          * 
          */
-        RegistPoliticalOrgBalancesheetReportRresultDto resultDto = insertPoliticalOrgnaizationBalancesheetReportService
+        RegistPoliticalOrgBalancesheetReportResultDto resultDto = insertPoliticalOrgnaizationBalancesheetReportService
                 .practice(documentPropertyDto, allBookDto, CreateTestPrivilegeDtoUtil.pracitce());
         Long documentCode = resultDto.getDocumentCode();
 
@@ -452,7 +452,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         OfferingBalancesheet0701And0720Surface2025Entity entity070120 = list070120.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity070120.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity070120.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity070120.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity070120.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity070120.getPoliticalOrganizationId())
@@ -655,7 +655,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         OfferingBalancesheetIncome2025Entity entity0300 = listIncome.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity0300.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity0300.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity0300.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity0300.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity0300.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -1153,7 +1153,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         OfferingBalancesheetOutcome2025Entity entity1401 = listOutcome.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity1401.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity1401.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity1401.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity1401.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity1401.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -1421,7 +1421,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         OfferingBalancesheet0719RealEstate2025Entity entityRealEstate1 = listRealEstate.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entityAsset01.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entityAsset01.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entityAsset01.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entityAsset01.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entityAsset01.getPoliticalOrganizationId())
@@ -1490,7 +1490,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         assertThat(entityAsset12.getKingaku()).isEqualTo(row1812.getKingaku());
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entityRealEstate1.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entityRealEstate1.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entityRealEstate1.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entityRealEstate1.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entityRealEstate1.getPoliticalOrganizationId())
@@ -1540,7 +1540,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         OfferingBalancesheetDifficalt0800Recipt2025Entity entity = list0800.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -1571,7 +1571,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         OfferingBalancesheetWithdrawal0802Transfer2025Entity entity0802a = list0802.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity0802a.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity0802a.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity0802a.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity0802a.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity0802a.getPoliticalOrganizationId())

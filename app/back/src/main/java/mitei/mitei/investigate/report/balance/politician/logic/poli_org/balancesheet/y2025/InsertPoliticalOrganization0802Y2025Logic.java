@@ -22,12 +22,6 @@ import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistor
  */
 @Component
 public class InsertPoliticalOrganization0802Y2025Logic {
-    
-    
-    
-    
-    
-    
 
     /** 様式08その2 支出項目別金額の内訳Repository */
     @Autowired

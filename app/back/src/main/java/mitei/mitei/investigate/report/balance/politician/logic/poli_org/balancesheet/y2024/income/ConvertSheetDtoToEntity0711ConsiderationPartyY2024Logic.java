@@ -21,6 +21,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHi
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetIncome2024Entity;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.util.FormatNaturalSearchTextUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -32,6 +33,11 @@ public class ConvertSheetDtoToEntity0711ConsiderationPartyY2024Logic {
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;
+    
+    /** 自然検索用フォーマットUtility */
+    @Autowired
+    private FormatNaturalSearchTextUtil formatNaturalSearchTextUtil;
+
 
     /**
      * 登録作業を行う
@@ -174,7 +180,7 @@ public class ConvertSheetDtoToEntity0711ConsiderationPartyY2024Logic {
         StringBuilder builder = new StringBuilder();
         builder.append(incomeEntity.getItemName()).append(incomeEntity.getPartnerName())
                 .append(incomeEntity.getPartnerJuusho());
-        incomeEntity.setSearchWords(builder.toString().replaceAll(" ", ""));
+        incomeEntity.setSearchWords(formatNaturalSearchTextUtil.practice(builder.toString()));
 
         SetTableDataHistoryUtil.practice(checkPrivilegeDto, incomeEntity, DataHistoryStatusConstants.INSERT);
 

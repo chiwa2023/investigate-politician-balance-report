@@ -22,11 +22,11 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row07071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071101ConsiderationPartyPerspnalDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071102ConsiderationPartyGroupDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071103ConsiderationPartyPoliticOrgDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheetIncome2022Entity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * ConvertSheetDtoToEntity0711ConsiderationPartyLogic単体テスト
@@ -187,7 +187,7 @@ class ConvertSheetDtoToEntity0711ConsiderationPartyLogicTest {
         OfferingBalancesheetIncome2022Entity entity1 = list.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity1.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity1.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity1.getHoukokuNen()).isEqualTo(documentPropertyDto.getHoukokuNen());
         assertThat(entity1.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity1.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());
@@ -230,7 +230,6 @@ class ConvertSheetDtoToEntity0711ConsiderationPartyLogicTest {
 
         // 自由検索
         assertThat(entity1.getSearchWords()).isEqualTo("政治資金パーティ(パーティ名称)寄付者名称個人住所個人");
-
         /* 枝区分項目2 */
         OfferingBalancesheetIncome2022Entity entity2 = list.get(1);
 

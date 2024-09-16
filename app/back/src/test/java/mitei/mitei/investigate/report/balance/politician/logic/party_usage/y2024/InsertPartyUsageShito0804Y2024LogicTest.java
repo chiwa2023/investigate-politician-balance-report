@@ -13,19 +13,19 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.common.constants.party.usage.ConstantsKbn0804Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.RowShitoCoreDto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Sheet0804Dto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2024.OfferingPartyUsage0804Report2024Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2024.OfferingPartyUsage0804Report2024Repository;
 import mitei.mitei.investigate.report.balance.politician.service.only_test.usage.CreateTestDataPartyUsageShito0804Logic;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * InsertPartyUsageShito0804Y2024Logic単体テスト
@@ -155,7 +155,7 @@ class InsertPartyUsageShito0804Y2024LogicTest {
         OfferingPartyUsage0804Report2024Entity entity01 = list0804.get(0);
 
         /* 全テーブル共通政治団体基礎情報 */
-        assertThat(entity01.getSaishinKbn()).isEqualTo(SetTableDataHistoryUtil.IS_SAISHIN);
+        assertThat(entity01.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity01.getNendo()).isEqualTo(documentPropertyDto.getNendo());
         assertThat(entity01.getOfferingDate()).isEqualTo(documentPropertyDto.getOfferingDate());
         assertThat(entity01.getPoliticalOrganizationId()).isEqualTo(documentPropertyDto.getPoliticalOrganizationId());

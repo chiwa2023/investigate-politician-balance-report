@@ -11,9 +11,6 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  * テーブルの更新履歴に必要なログインユーザ、更新時間情報をセットする
  */
 public final class SetTableDataHistoryUtil {
-
-    /** 最新区分のうち最新(TODO 定数に移す予定) */
-    public static final int IS_SAISHIN = 1;
     
     // インスタンス生成よけ
     private SetTableDataHistoryUtil() {
@@ -35,7 +32,7 @@ public final class SetTableDataHistoryUtil {
         // Insert(初回)データセット
         if (DataHistoryStatusConstants.INSERT.equals(status)) {
             
-            interfaceImple.setSaishinKbn(IS_SAISHIN);
+            interfaceImple.setSaishinKbn(DataHistoryStatusConstants.INSERT.value());
             interfaceImple.setInsertUserId(checkPrivilegeDto.getLoginUserId());
             interfaceImple.setInsertUserCode(checkPrivilegeDto.getLoginUserCode());
             interfaceImple.setInsertUserName(checkPrivilegeDto.getLoginUserName());
@@ -44,7 +41,8 @@ public final class SetTableDataHistoryUtil {
 
         // Update(更新)データセット
         if (DataHistoryStatusConstants.UPDATE.equals(status)) {
-            // TODO 更新時に最新区分0とするかは検討し修正する
+            // NOTE どうしても更新してもInsertを維持したい場合は別メソッドとする
+            interfaceImple.setSaishinKbn(DataHistoryStatusConstants.UPDATE.value());
             interfaceImple.setUpdateUserId(checkPrivilegeDto.getLoginUserId());
             interfaceImple.setUpdateUserCode(checkPrivilegeDto.getLoginUserCode());
             interfaceImple.setUpdateUserName(checkPrivilegeDto.getLoginUserName());

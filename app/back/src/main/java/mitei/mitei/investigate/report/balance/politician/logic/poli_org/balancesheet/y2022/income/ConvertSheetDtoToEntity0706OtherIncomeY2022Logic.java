@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
@@ -13,6 +14,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheetIncome2022Entity;
+import mitei.mitei.investigate.report.balance.politician.util.FormatNaturalSearchTextUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -20,6 +22,10 @@ import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistor
  */
 @Component
 public class ConvertSheetDtoToEntity0706OtherIncomeY2022Logic {
+
+    /** 自然検索用フォーマットUtility */
+    @Autowired
+    private FormatNaturalSearchTextUtil formatNaturalSearchTextUtil;
 
     /**
      * 登録作業を行う
@@ -73,7 +79,7 @@ public class ConvertSheetDtoToEntity0706OtherIncomeY2022Logic {
         StringBuilder builder = new StringBuilder();
         builder.append(incomeEntity.getItemName()).append(incomeEntity.getPartnerName())
                 .append(incomeEntity.getPartnerJuusho());
-        incomeEntity.setSearchWords(builder.toString().replaceAll(" ", ""));
+        incomeEntity.setSearchWords(formatNaturalSearchTextUtil.practice(builder.toString()));
 
         SetTableDataHistoryUtil.practice(checkPrivilegeDto, incomeEntity, DataHistoryStatusConstants.INSERT);
 

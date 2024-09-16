@@ -71,7 +71,7 @@ public class InsertPoliticalOrganizationIncomeAllY2024Logic {
 
     /** その12借入金変換Logic */
     @Autowired
-    private ConvertSheetDtoToEntity0712PartyMediationY2024Logic convertSheetDtoToEntity0712PartyMediationY2024Logic;
+    private ConvertSheetDtoToEntity0712PartyMediationY2024Logic convertSheetDtoToEntity0712PartyMediaY2024Logic;
 
     /**
      * 登録作業を行う
@@ -128,7 +128,7 @@ public class InsertPoliticalOrganizationIncomeAllY2024Logic {
                 allBookDto.getAllSheet0711ConsiderationPartyDto(), checkPrivilegeDto));
 
         /* その12 政治資金パーティあっせん */
-        list.addAll(convertSheetDtoToEntity0712PartyMediationY2024Logic.practice(documentCode, documentPropertyDto,
+        list.addAll(convertSheetDtoToEntity0712PartyMediaY2024Logic.practice(documentCode, documentPropertyDto,
                 allBookDto.getAllSheet0712PartyMediationDto(), checkPrivilegeDto));
 
         
