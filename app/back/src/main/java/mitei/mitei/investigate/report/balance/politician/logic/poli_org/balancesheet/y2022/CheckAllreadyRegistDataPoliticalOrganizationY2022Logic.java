@@ -15,7 +15,7 @@ import mitei.mitei.investigate.report.balance.politician.repository.poli_org.bal
  * すでに登録済の場合は表紙、誓約書の文書同一識別コードのリストを返す
  */
 @Component
-public class CheckAllreadyRegistDataY2022Logic {
+public class CheckAllreadyRegistDataPoliticalOrganizationY2022Logic {
 
     /** 登録年2022年Repository */
     @Autowired

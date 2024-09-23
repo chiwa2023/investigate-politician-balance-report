@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.service;
+package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookD
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.CheckAllreadyRegistDataLogic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.CheckAllreadyRegistDataPoliticalOrganizationLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganization08000Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganization0802Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganizationEstateAllLogic;
@@ -33,7 +33,7 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
 
     /** すでに同じデータがあるか確認するLogic */
     @Autowired
-    private CheckAllreadyRegistDataLogic checkAllreadyRegistDataLogic;
+    private CheckAllreadyRegistDataPoliticalOrganizationLogic checkAllreadyRegistDataPoliticalOrganizationLogic;
 
     /** 政治資金収支報告書様式8領収書を徴しがたかったもの登録Logic */
     @Autowired
@@ -105,7 +105,7 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
 
         boolean isAcceptUpdate = true;
 
-        List<Long> listOldCode = checkAllreadyRegistDataLogic.practice(documentPropertyDto);
+        List<Long> listOldCode = checkAllreadyRegistDataPoliticalOrganizationLogic.practice(documentPropertyDto);
 
         // すでに登録があり、かつ更新を許さない場合
         if (!isAcceptUpdate && !listOldCode.isEmpty()) {

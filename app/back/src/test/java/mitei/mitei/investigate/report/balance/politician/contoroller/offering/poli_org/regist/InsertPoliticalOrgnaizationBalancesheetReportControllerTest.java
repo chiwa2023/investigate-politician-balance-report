@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.contoroller;
+package mitei.mitei.investigate.report.balance.politician.contoroller.offering.poli_org.regist;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;

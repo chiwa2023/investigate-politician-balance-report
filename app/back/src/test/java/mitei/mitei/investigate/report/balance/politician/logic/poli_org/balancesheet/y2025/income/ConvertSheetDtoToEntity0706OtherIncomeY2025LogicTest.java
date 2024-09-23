@@ -31,11 +31,10 @@ import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 class ConvertSheetDtoToEntity0706OtherIncomeY2025LogicTest {
     // CHECKSTYLE:OFF MagicNumber
 
-    /** テスト対象 */ 
+    /** テスト対象 */
     @Autowired
     private ConvertSheetDtoToEntity0706OtherIncomeY2025Logic convertSheetDtoToEntity0706OtherIncomeY2025Logic;
 
-    
     @Test
     void testPractice() {
 
@@ -72,7 +71,6 @@ class ConvertSheetDtoToEntity0706OtherIncomeY2025LogicTest {
         // 備考
         row0.setBikou("備考");
         sheet1.getList().add(row0);
-
 
         List<OfferingBalancesheetIncome2025Entity> list = convertSheetDtoToEntity0706OtherIncomeY2025Logic
                 .practice(documentCode, documentPropertyDto, sheet1, CreateTestPrivilegeDtoUtil.pracitce());

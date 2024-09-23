@@ -74,7 +74,7 @@ class InsertPoliticalOrganizationSheet0701And0720Y2024LogicTest {
 
         // 一種類のみ
         Sheet070100CoverAndOrganizationDetailsDto sheet0 = new Sheet070100CoverAndOrganizationDetailsDto();
-        sheet0.setHoukokuNen(2022);
+        sheet0.setHoukokuNen(2024);
         sheet0.setDateKaisai("R4/12/1");
         sheet0.setDantaiName01("サンプル政治団体");
         sheet0.setDantaiNameKana("さんぷるせいじだんたい");

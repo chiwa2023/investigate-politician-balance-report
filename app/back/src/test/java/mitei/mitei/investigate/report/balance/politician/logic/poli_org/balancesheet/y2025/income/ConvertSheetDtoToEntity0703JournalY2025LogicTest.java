@@ -34,12 +34,12 @@ class ConvertSheetDtoToEntity0703JournalY2025LogicTest {
     /** テスト対象 */
     @Autowired
     private ConvertSheetDtoToEntity0703JournalY2025Logic convertSheetDtoToEntity0703JournalY2025Logic;
-
+    
     @Test
     void testPractice() {
-
+        
         DateConvertUtil dateConvertUtil = new DateConvertUtil();
-
+        
         // 文書同一識別コード
         Long documentCode = 3434L;
 
@@ -56,7 +56,7 @@ class ConvertSheetDtoToEntity0703JournalY2025LogicTest {
         documentPropertyDto.setRelationPersonIdDelegate(9898L);
         documentPropertyDto.setRelationPersonCodeDelegate(9867);
         documentPropertyDto.setRelationPersonNameDelegate("代表者　戸籍の名前");
-
+        
         // リスト存在
         Sheet070300JournalAndOtherDto sheet1 = new Sheet070300JournalAndOtherDto();
 
@@ -68,26 +68,29 @@ class ConvertSheetDtoToEntity0703JournalY2025LogicTest {
 
         sheet1.getList().add(row0);
 
+
         List<OfferingBalancesheetIncome2025Entity> list = convertSheetDtoToEntity0703JournalY2025Logic
-                .practice(documentCode, documentPropertyDto, sheet1, CreateTestPrivilegeDtoUtil.pracitce());
+                .practice(documentCode, documentPropertyDto,  sheet1, CreateTestPrivilegeDtoUtil.pracitce());
 
         assertThat(list.size()).isEqualTo(1); // 1件挿入
 
+        
         // 1件取得
         OfferingBalancesheetIncome2025Entity entity = list.get(0);
-
+        
         // 様式項目
         assertThat(entity.getYoushikiKbn()).isEqualTo(IncomeYoushikiKbnConstants.YOUSHIKI_KBN_03);
         assertThat(entity.getYoushikiEdaKbn()).isEqualTo(0); // 様式枝区分項目はなし
+
 
         assertThat(entity.getPageTotal()).isEqualTo(sheet1.getPageTotal());
         assertThat(entity.getIchirenNo()).isEqualTo(row0.getIchirenNo());
         assertThat(entity.getItemName()).isEqualTo(row0.getJigyoNoShurui());
         assertThat(entity.getKingaku()).isEqualTo(row0.getKingaku());
         assertThat(entity.getBikou()).isEqualTo(row0.getBikou());
-
+        
         // TODO 関連者
-
+        
         // 自由検索
         assertThat(entity.getSearchWords()).isEqualTo("機関誌発行");
 

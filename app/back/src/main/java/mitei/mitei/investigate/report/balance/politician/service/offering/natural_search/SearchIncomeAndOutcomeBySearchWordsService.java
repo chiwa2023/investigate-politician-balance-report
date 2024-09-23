@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.service;
+package mitei.mitei.investigate.report.balance.politician.service.offering.natural_search;
 
 import java.util.Map;
 
@@ -89,6 +89,10 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
 
         }
 
+        // ResultDto共通のパラメータセット
+        searchResultDto.setIsOk(true);
+        searchResultDto.setSuccessCount(searchResultDto.getCountIncome() + searchResultDto.getCountOutcome());
+        
         return searchResultDto;
     }
 

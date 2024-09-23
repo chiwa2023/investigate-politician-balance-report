@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.service; // NOPMD
+package mitei.mitei.investigate.report.balance.politician.service.offering.poli_party; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -26,12 +26,12 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class CheckAllreadyRegistDataLogicTest {
+class CheckAllreadyRegistDataPoliticalOrganizationLogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private CheckAllreadyRegistDataLogic checkAllreadyRegistDataLogic;
+    private CheckAllreadyRegistDataPoliticalOrganizationLogic checkAllreadyRegistDataPoliticalOrganizationLogic;
 
     @Test
     @Transactional
@@ -45,7 +45,7 @@ class CheckAllreadyRegistDataLogicTest {
         documentPropertyDto1.setPoliticalOrganizationId(437L);
         documentPropertyDto1.setPoliticalOrganizationCode(430);
 
-        List<Long> list1 = checkAllreadyRegistDataLogic.practice(documentPropertyDto1);
+        List<Long> list1 = checkAllreadyRegistDataPoliticalOrganizationLogic.practice(documentPropertyDto1);
 
         // 2022年のデータが抽出される
         assertTrue(list1.contains(320L), "コード320は更新対象に含まれる");
@@ -72,7 +72,7 @@ class CheckAllreadyRegistDataLogicTest {
         documentPropertyDto2.setPoliticalOrganizationId(437L);
         documentPropertyDto2.setPoliticalOrganizationCode(430);
 
-        List<Long> list2 = checkAllreadyRegistDataLogic.practice(documentPropertyDto2);
+        List<Long> list2 = checkAllreadyRegistDataPoliticalOrganizationLogic.practice(documentPropertyDto2);
 
         // 2025年のデータが抽出される
         assertTrue(list2.contains(1020L), "コード1020は更新対象に含まれる");

@@ -34,7 +34,6 @@ class ConvertSheetDtoToEntity0703JournalY2024LogicTest {
     /** テスト対象 */
     @Autowired
     private ConvertSheetDtoToEntity0703JournalY2024Logic convertSheetDtoToEntity0703JournalY2024Logic;
-
     
     @Test
     void testPractice() {

@@ -48,13 +48,18 @@ public class RefleshYearDataAccessLogicTestTasklet implements Tasklet, StepExecu
         final String subIncomeDir = "/income";
         final String pathFunctionUsage = "test/java/mitei/mitei/investigate/report/balance/politician/logic/party_usage/y";
         final String pathFunctionBalancesheet = "test/java/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
+        final String pathFunctionUsageSql = "test/resources/mitei/mitei/investigate/report/balance/politician/logic/party_usage/y";
+        final String pathFunctionBalancesheetSql = "test/resources/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
 
         // 使途報告書、収支報告書、収支報告書収入部分Logic
         this.worksByOneFunction(pathFunctionUsage + baseYear, pathFunctionUsage + copyYear);
         this.worksByOneFunction(pathFunctionBalancesheet + baseYear, pathFunctionBalancesheet + copyYear);
         this.worksByOneFunction(pathFunctionBalancesheet + baseYear + subIncomeDir,
                 pathFunctionBalancesheet + copyYear + subIncomeDir);
+        this.worksByOneFunction(pathFunctionUsageSql + baseYear, pathFunctionUsageSql + copyYear);
+        this.worksByOneFunction(pathFunctionBalancesheetSql + baseYear, pathFunctionBalancesheetSql + copyYear);
 
+        
         // 処理終了
         return RepeatStatus.FINISHED;
     }

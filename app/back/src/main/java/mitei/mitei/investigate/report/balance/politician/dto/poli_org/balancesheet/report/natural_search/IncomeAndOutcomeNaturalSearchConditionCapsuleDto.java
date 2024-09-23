@@ -3,10 +3,12 @@ package mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesh
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import mitei.mitei.investigate.report.balance.politician.dto.AbstractCapsuleDto;
+
 /**
  * 収支報告書自然検索条件格納Dto
  */
-public class IncomeAndOutcomeNaturalSearchConditionCapsuleDto implements Serializable { // NOPMD DataClass
+public class IncomeAndOutcomeNaturalSearchConditionCapsuleDto extends AbstractCapsuleDto implements Serializable { // NOPMD
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;

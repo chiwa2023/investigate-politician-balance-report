@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2024;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +14,10 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage
 /**
  * offering_party_usage_0801_and_0807_report_2024接続用Repository
  */
-public interface OfferingPartyUsage0801And0807Report2024Repository  extends JpaRepository<OfferingPartyUsage0801And0807Report2024Entity, Integer>{
+public interface OfferingPartyUsage0801And0807Report2024Repository
+        extends JpaRepository<OfferingPartyUsage0801And0807Report2024Entity, Integer> {
 
-
-    //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
+    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
      * 名称を検索対象として全文検索をする
      *
@@ -25,7 +26,7 @@ public interface OfferingPartyUsage0801And0807Report2024Repository  extends JpaR
      */
     @Query(value = "SELECT * FROM offering_party_usage_0801_and_0807_report_2024 WHERE saishin_kbn= 1 AND MATCH(offering_party_usage_0801_and_0807_report_2024_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
     List<OfferingPartyUsage0801And0807Report2024Entity> findFullText(String searchWords);
-    
+
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する
      *
@@ -33,12 +34,25 @@ public interface OfferingPartyUsage0801And0807Report2024Repository  extends JpaR
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<OfferingPartyUsage0801And0807Report2024Entity> findFirstByOrderByPartyUsage0801And0807ReportCodeDesc();
-    
+
     /**
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param partyUsage0801And0807ReportCode 使途報告書様式8その1と7同一識別コード
      * @return データリスト
      */
-    List<OfferingPartyUsage0801And0807Report2024Entity> findByPartyUsage0801And0807ReportCodeOrderByPartyUsage0801And0807ReportId(Long partyUsage0801And0807ReportCode);
+    List<OfferingPartyUsage0801And0807Report2024Entity> findByPartyUsage0801And0807ReportCodeOrderByPartyUsage0801And0807ReportId(
+            Long partyUsage0801And0807ReportCode);
+
+    /**
+     * 最新かつ政治団体Idと提出日が一致するデータを抽出する
+     *
+     * @param saishinKbn       最新区分
+     * @param politicalOrgCode 政治団体同一識別コード
+     * @param offeringDate     提出日
+     * @return データリスト
+     */
+    List<OfferingPartyUsage0801And0807Report2024Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(
+            Integer saishinKbn, Integer politicalOrgCode, LocalDate offeringDate);
+
 }

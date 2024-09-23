@@ -613,25 +613,26 @@ public class OfferingBalancesheetOutcome2022Entity  implements Serializable,AllT
     }
 
     /** 取引相手先住所 */
+    // TODO カラム名タイプミス修正する
     @Column(name = "partner_jusho")
-    private String partnerJusho = INIT_String;
+    private String partnerJuusho = INIT_String;
 
     /**
      * 取引相手先住所を取得する
      *
      * @return 取引相手先住所
      */
-    public String getPartnerJusho() {
-        return partnerJusho;
+    public String getPartnerJuusho() {
+        return partnerJuusho;
     }
 
     /**
      * 取引相手先住所を設定する
      *
-     * @param partnerJusho 取引相手先住所
+     * @param partnerJuusho 取引相手先住所
      */
-    public void setPartnerJusho(final String partnerJusho) {
-        this.partnerJusho = partnerJusho;
+    public void setPartnerJusho(final String partnerJuusho) {
+        this.partnerJuusho = partnerJuusho;
     }
 
     /** 摘要 */

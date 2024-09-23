@@ -253,7 +253,7 @@ public class InsertPoliticalOrganizationOutcomeAllY2025Logic {
         // 自由検索 費目＋相手方氏名＋相手方住所
         StringBuilder builder = new StringBuilder();
         builder.append(himoku).append(outcomeEntity.getMokuteki()).append(outcomeEntity.getPartnerName())
-                .append(outcomeEntity.getPartnerJusho());
+                .append(outcomeEntity.getPartnerJuusho());
         outcomeEntity.setSearchWords(formatNaturalSearchTextUtil.practice(builder.toString()));
 
         SetTableDataHistoryUtil.practice(checkPrivilegeDto, outcomeEntity, DataHistoryStatusConstants.INSERT);

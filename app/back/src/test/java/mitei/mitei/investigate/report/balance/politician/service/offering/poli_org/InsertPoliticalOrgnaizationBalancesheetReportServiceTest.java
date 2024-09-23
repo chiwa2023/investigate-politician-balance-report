@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.service; // NOPMD
+package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -1188,7 +1188,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         assertThat(entity1401.getKingaku()).isEqualTo(row141.getKingaku());
         assertThat(entity1401.getAccrualDate()).isEqualTo(row141.getAccrualDate());
         assertThat(entity1401.getPartnerName()).isEqualTo(row141.getName());
-        assertThat(entity1401.getPartnerJusho()).isEqualTo(row141.getJusho());
+        assertThat(entity1401.getPartnerJuusho()).isEqualTo(row141.getJusho());
         assertThat(entity1401.getBikou()).isEqualTo(row141.getBikou());
         assertThat(entity1401.getFlgRyoushuusho()).isEqualTo(row141.getFlgRyoushuusho());
         assertThat(entity1401.getFlgKouufukin()).isEqualTo(row141.getFlgKouufukin());

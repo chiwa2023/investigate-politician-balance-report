@@ -31,7 +31,7 @@ import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivileg
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class UpdatetPoliticalOrganizationSheet0701And0720Y2022LogicTest {
+class UpdatePoliticalOrganizationSheet0701And0720Y2022LogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */

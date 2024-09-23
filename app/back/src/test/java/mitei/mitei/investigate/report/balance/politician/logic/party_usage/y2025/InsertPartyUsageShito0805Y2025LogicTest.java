@@ -25,6 +25,7 @@ import mitei.mitei.investigate.report.balance.politician.repository.poli_party.u
 import mitei.mitei.investigate.report.balance.politician.service.only_test.usage.CreateTestDataPartyUsageShito0805Logic;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+
 /**
  * InsertPartyUsageShito0805Y2025Logic単体テスト
  */

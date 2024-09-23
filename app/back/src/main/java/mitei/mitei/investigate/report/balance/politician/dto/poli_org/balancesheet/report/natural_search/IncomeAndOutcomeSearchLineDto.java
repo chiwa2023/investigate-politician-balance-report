@@ -3,12 +3,10 @@ package mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesh
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import jakarta.persistence.Column;
-
 /**
  * 支出・収入の行データDto
  */
-public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD DataClass
+public class IncomeAndOutcomeSearchLineDto implements Serializable { // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -25,12 +23,9 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     /** 初期データ(LocalcDate) */
     private static final LocalDate INIT_LocalDate = LocalDate.of(1980, 1, 1);
 
-
     // TODO 最初は最小限ではじめ、順次増やしていく
-    
-    
+
     /** 項目名称 */
-    @Column(name = "item_name")
     private String itemName = INIT_String;
 
     /**
@@ -50,9 +45,8 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     public void setItemName(final String itemName) {
         this.itemName = itemName;
     }
-    
+
     /** 目的 */
-    @Column(name = "mokuteki")
     private String mokuteki = INIT_String;
 
     /**
@@ -72,10 +66,8 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     public void setMokuteki(final String mokuteki) {
         this.mokuteki = mokuteki;
     }
-    
-    
+
     /** 金額 */
-    @Column(name = "kingaku")
     private Long kingaku = INIT_Long;
 
     /**
@@ -97,7 +89,6 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     }
 
     /** 発生日 */
-    @Column(name = "accrual_date")
     private String accrualDate = INIT_String;
 
     /**
@@ -119,7 +110,6 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     }
 
     /** 発生日実値 */
-    @Column(name = "accrual_date_value")
     private LocalDate accrualDateValue = INIT_LocalDate;
 
     /**
@@ -140,8 +130,7 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
         this.accrualDateValue = accrualDateValue;
     }
 
-    /** 原文書政治団体代表者名　TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
-    @Column(name = "daihyou_name")
+    /** 原文書政治団体代表者名 TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
     private String daihyouName = INIT_String;
 
     /**
@@ -162,8 +151,7 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
         this.daihyouName = daihyouName;
     }
 
-    /** 原文書政治団体名称　TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
-    @Column(name = "dantai_name")
+    /** 原文書政治団体名称 TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
     private String dantaiName = INIT_String;
 
     /**
@@ -185,7 +173,6 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     }
 
     /** 様式区分 */
-    @Column(name = "youshiki_kbn")
     private Integer youshikiKbn = INIT_Integer;
 
     /**
@@ -207,7 +194,6 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
     }
 
     /** 様式枝区分項目 */
-    @Column(name = "youshiki_eda_kbn")
     private Integer youshikiEdaKbn = INIT_Integer;
 
     /**
@@ -228,8 +214,7 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
         this.youshikiEdaKbn = youshikiEdaKbn;
     }
 
-    /** 支出した相手先名　TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
-    @Column(name = "partner_name")
+    /** 支出した相手先名 TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
     private String partnerName = INIT_String;
 
     /**
@@ -250,8 +235,7 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
         this.partnerName = partnerName;
     }
 
-    /** 支出した相手先住所　TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
-    @Column(name = "partner_juusho")
+    /** 支出した相手先住所 TODO コードを標準化ができ次第、文書由来でなくシステム由来のデータに切り替える */
     private String partnerJuusho = INIT_String;
 
     /**
@@ -272,5 +256,67 @@ public class IncomeAndOutcomeSearchLineDto  implements Serializable{ // NOPMD Da
         this.partnerJuusho = partnerJuusho;
     }
 
+    /** 金額表示テキスト収入 */
+    private String kingakuIncomeText = INIT_String;
+
+    /** 金額表示テキスト支出 */
+    private String kingakuOutcomeText = INIT_String;
+
+    /** 集計用金額 */
+    private Long kingakuShuukei = INIT_Long;
+
+    /**
+     * 金額表示テキスト収入を取得する
+     *
+     * @return 金額表示テキスト収入
+     */
+    public String getKingakuIncomeText() {
+        return kingakuIncomeText;
+    }
+
+    /**
+     * 金額表示テキスト収入を設定する
+     *
+     * @param kingakuIncomeText 金額表示テキスト収入
+     */
+    public void setKingakuIncomeText(final String kingakuIncomeText) {
+        this.kingakuIncomeText = kingakuIncomeText;
+    }
+
+    /**
+     * 金額表示テキスト支出を取得する
+     *
+     * @return 金額表示テキスト支出
+     */
+    public String getKingakuOutcomeText() {
+        return kingakuOutcomeText;
+    }
+
+    /**
+     * 金額表示テキスト支出を設定する
+     *
+     * @param kingakuOutcomeText 金額表示テキスト支出
+     */
+    public void setKingakuOutcomeText(final String kingakuOutcomeText) {
+        this.kingakuOutcomeText = kingakuOutcomeText;
+    }
+
+    /**
+     * 金額集計用を取得する
+     *
+     * @return 金額集計用
+     */
+    public Long getKingakuShuukei() {
+        return kingakuShuukei;
+    }
+
+    /**
+     * 金額集計を用設定する
+     *
+     * @param kingakuShuukei 金額集計用
+     */
+    public void setKingakuShuukei(final Long kingakuShuukei) {
+        this.kingakuShuukei = kingakuShuukei;
+    }
 
 }

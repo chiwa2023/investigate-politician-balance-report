@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.contoroller;
+package mitei.mitei.investigate.report.balance.politician.contoroller.offering.poli_org.regist;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -21,7 +21,7 @@ import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentRes
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.service.InsertPoliticalOrgnaizationBalancesheetReportService;
+import mitei.mitei.investigate.report.balance.politician.service.offering.poli_org.InsertPoliticalOrgnaizationBalancesheetReportService;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 
 /**
@@ -75,11 +75,11 @@ public class InsertPoliticalOrgnaizationBalancesheetReportController {
         documentPropertyDto.setPoliticalOrganizationId(9898L);
         documentPropertyDto.setPoliticalOrganizationCode(9890);
         documentPropertyDto.setPoliticalOrganizationName("政治家女子４８党"); //　自ソフトウェア呼び出し
-        documentPropertyDto.setDantaiName("えぬえいちけいとう"); //　自ソフトウェア呼び出し
+        documentPropertyDto.setDantaiName("政治家女子４８党"); //　自ソフトウェア呼び出し
         documentPropertyDto.setDaihyouName("大津綾香"); //　自ソフトウェア呼び出し
         documentPropertyDto.setRelationKbn(224);//　自ソフトウェア呼び出し
-        documentPropertyDto.setRelationPersonIdDelegate(10255L);//　自ソフトウェア呼び出し
-        documentPropertyDto.setRelationPersonCodeDelegate(10250);//　自ソフトウェア呼び出し
+        documentPropertyDto.setRelationPersonIdDelegate(10_255L);//　自ソフトウェア呼び出し
+        documentPropertyDto.setRelationPersonCodeDelegate(10_250);//　自ソフトウェア呼び出し
         documentPropertyDto.setRelationPersonNameDelegate("大津綾香");//　自ソフトウェア呼び出し
 
         

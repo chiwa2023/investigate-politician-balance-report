@@ -22,7 +22,7 @@ import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentRes
  * 政治資金収支報告書、政党交付金使途報告書DDLを複写する
  */
 @Component
-public class RefleshYearDataAccessDdlasklet implements Tasklet, StepExecutionListener {
+public class RefleshYearDataAccessDdlTasklet implements Tasklet, StepExecutionListener {
 
     /** 複写元となる年数 */
     private String baseYear;

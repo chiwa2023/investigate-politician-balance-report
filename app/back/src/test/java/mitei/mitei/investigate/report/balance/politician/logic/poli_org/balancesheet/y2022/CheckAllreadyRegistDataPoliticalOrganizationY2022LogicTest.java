@@ -26,12 +26,12 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class CheckAllreadyRegistDataY2022LogicTest {
+class CheckAllreadyRegistDataPoliticalOrganizationY2022LogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private CheckAllreadyRegistDataY2022Logic checkAllreadyRegistDataY2022Logic;
+    private CheckAllreadyRegistDataPoliticalOrganizationY2022Logic checkAllreadyRegistDataPoliticalOrganizationY2022Logic;
 
     @Test
     @Transactional
@@ -45,7 +45,7 @@ class CheckAllreadyRegistDataY2022LogicTest {
         documentPropertyDto.setPoliticalOrganizationId(437L);
         documentPropertyDto.setPoliticalOrganizationCode(430);
 
-        List<Long> list = checkAllreadyRegistDataY2022Logic.practice(documentPropertyDto);
+        List<Long> list = checkAllreadyRegistDataPoliticalOrganizationY2022Logic.practice(documentPropertyDto);
 
         // テストデータで挿入される文書同一識別コードは320,479,881,645,217,836
         // 881は提出日違いで更新対象から除外される

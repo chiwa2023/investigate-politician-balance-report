@@ -41,7 +41,7 @@ class RefleshYearDataAccessDdlaskletTest {
 
     /** テスト対象 */
     @Autowired
-    private RefleshYearDataAccessDdlasklet refleshYearDataAccessDdlasklet;
+    private RefleshYearDataAccessDdlTasklet refleshYearDataAccessDdlTasklet;
 
     /** 複写元報告年 */
     private static final int baseYear = 2025;
@@ -55,10 +55,10 @@ class RefleshYearDataAccessDdlaskletTest {
     void testExecute() throws Exception { // NOPMD
 
         StepExecution execution = this.getStepExecution();
-        refleshYearDataAccessDdlasklet.beforeStep(execution);
+        refleshYearDataAccessDdlTasklet.beforeStep(execution);
 
         // 最後まで到達すればとりあえずOK(内容は各個別のTestを走らせるので)
-        assertThat(refleshYearDataAccessDdlasklet.execute(new StepContribution(execution), null))
+        assertThat(refleshYearDataAccessDdlTasklet.execute(new StepContribution(execution), null))
                 .isEqualTo(RepeatStatus.FINISHED);
 
         /* ファイルの存在だけ確認 */

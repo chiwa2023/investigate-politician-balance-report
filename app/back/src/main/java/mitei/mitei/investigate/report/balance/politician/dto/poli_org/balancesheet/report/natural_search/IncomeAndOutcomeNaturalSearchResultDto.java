@@ -4,17 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import mitei.mitei.investigate.report.balance.politician.dto.AbstractResultDto;
+
 /**
  * 収支報告書自然検索結果格納Dto
  */
-public class IncomeAndOutcomeNaturalSearchResultDto implements Serializable { // NOPMD DataClass
+public class IncomeAndOutcomeNaturalSearchResultDto extends AbstractResultDto implements Serializable { // NOPMD
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
-    
+
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
 
+    /** 初期データ(String) */
+    private static final String INIT_String = "";
 
     /** 支出検索結果リスト */
     private List<IncomeAndOutcomeSearchLineDto> listOutcome = new ArrayList<>();
@@ -100,6 +104,23 @@ public class IncomeAndOutcomeNaturalSearchResultDto implements Serializable { //
         this.countOutcome = countOutcome;
     }
 
-    
-    
+    /** 処理メッセージ */
+    private String message = INIT_String;
+
+    /**
+     * 処理メッセージを取得する
+     */
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * 処理メッセージを設定する
+     */
+    @Override
+    public void setMessage(final String message) {
+        this.message = message;
+    }
+
 }

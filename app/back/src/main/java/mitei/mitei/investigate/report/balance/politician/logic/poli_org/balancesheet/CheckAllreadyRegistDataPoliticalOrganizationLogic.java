@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.CheckAllreadyRegistDataY2022Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.CheckAllreadyRegistDataPoliticalOrganizationY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.CheckAllreadyRegistDataY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.CheckAllreadyRegistDataY2025Logic;
 
@@ -15,13 +15,13 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
  * すでに登録済の場合は表紙、誓約書の文書同一識別コードのリストを返す 政治団体コード、提出日が同じものが同じ文書
  */
 @Component
-public class CheckAllreadyRegistDataLogic {
+public class CheckAllreadyRegistDataPoliticalOrganizationLogic {
 
     /** 登録対応年(2022) */
     private static final int YEAR_2022 = 2022;
     /** 検証対応年(2022)Logic */
     @Autowired
-    private CheckAllreadyRegistDataY2022Logic checkAllreadyRegistDataY2022Logic;
+    private CheckAllreadyRegistDataPoliticalOrganizationY2022Logic checkAllreadyRegistDataPoliticalOrganizationY2022Logic;
 
     /** 登録対応年(2024) */
     private static final int YEAR_2024 = 2024;
@@ -48,7 +48,7 @@ public class CheckAllreadyRegistDataLogic {
         switch (documentPropertyDto.getHoukokuNen()) {
             // 2022年
             case YEAR_2022:
-                list.addAll(checkAllreadyRegistDataY2022Logic.practice(documentPropertyDto));
+                list.addAll(checkAllreadyRegistDataPoliticalOrganizationY2022Logic.practice(documentPropertyDto));
                 break;
 
             // 2024年

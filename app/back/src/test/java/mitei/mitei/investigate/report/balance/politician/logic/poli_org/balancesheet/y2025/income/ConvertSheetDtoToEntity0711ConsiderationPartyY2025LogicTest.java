@@ -230,7 +230,6 @@ class ConvertSheetDtoToEntity0711ConsiderationPartyLogicTest {
 
         // 自由検索
         assertThat(entity1.getSearchWords()).isEqualTo("政治資金パーティ(パーティ名称)寄付者名称個人住所個人");
-
         /* 枝区分項目2 */
         OfferingBalancesheetIncome2025Entity entity2 = list.get(1);
 
