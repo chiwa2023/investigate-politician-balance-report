@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2022;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -28,6 +29,12 @@ public class NaturalAllSentenceSearchY2022Logic {
     @Autowired
     private OfferingBalancesheetOutcome2022Repository offeringBalancesheetOutcome2022Repository;
 
+    /** 空白文字 */
+    private static final String BLANK = "";
+
+    /** カンマ区切りフォーマッタ */
+    private NumberFormat numberFormat;
+
     /**
      * 検索を行う
      *
@@ -35,6 +42,9 @@ public class NaturalAllSentenceSearchY2022Logic {
      */
     public IncomeAndOutcomeNaturalSearchResultDto practice(
             final IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto) {
+
+        // fieldでfinal staticインスタンス生成すると望ましくないといわれる
+        numberFormat = NumberFormat.getNumberInstance();
 
         String searchWords = searchConditionDto.getSearchWords();
 
@@ -61,7 +71,7 @@ public class NaturalAllSentenceSearchY2022Logic {
         }
 
         // 政治資金収支報告書支出
-        if (searchConditionDto.getIsSearchIncome()) {
+        if (searchConditionDto.getIsSearchOutcome()) {
             searchResultDto.setCountOutcome(offeringBalancesheetOutcome2022Repository.findFullTextCount(searchWords,
                     searchConditionDto.getStartDate(), searchConditionDto.getEndDate()));
 
@@ -87,7 +97,13 @@ public class NaturalAllSentenceSearchY2022Logic {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
         // front側でitemName使用で統一する
-        lineDto.setItemName(entity.getMokuteki());
+        lineDto.setItemName("(" + entity.getHimoku() + ")" + entity.getMokuteki());
+
+        // 金額関係編集
+        lineDto.setKingakuIncomeText(BLANK);
+        lineDto.setKingakuOutcomeText(numberFormat.format(lineDto.getKingaku()));
+        lineDto.setKingakuShuukei(-1 * lineDto.getKingaku());
+
         return lineDto;
     }
 
@@ -100,6 +116,11 @@ public class NaturalAllSentenceSearchY2022Logic {
     private IncomeAndOutcomeSearchLineDto creatDto(final OfferingBalancesheetIncome2022Entity entity) {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
+
+        // 金額関係編集
+        lineDto.setKingakuIncomeText(numberFormat.format(lineDto.getKingaku()));
+        lineDto.setKingakuOutcomeText(BLANK);
+        lineDto.setKingakuShuukei(lineDto.getKingaku());
 
         return lineDto;
     }

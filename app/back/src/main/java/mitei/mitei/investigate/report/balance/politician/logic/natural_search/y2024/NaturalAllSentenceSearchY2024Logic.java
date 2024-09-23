@@ -87,7 +87,7 @@ public class NaturalAllSentenceSearchY2024Logic {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
         // front側でitemName使用で統一する
-        lineDto.setItemName(entity.getMokuteki());
+        lineDto.setItemName("(" + entity.getHimoku() + ")" + entity.getMokuteki());
         return lineDto;
     }
 

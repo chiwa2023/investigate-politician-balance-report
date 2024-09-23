@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2025;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -13,6 +14,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetIncome2025Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Repository;
+
 /**
  * 政治資金収支報告書収入・支出検索(2025年)
  */
@@ -27,6 +29,12 @@ public class NaturalAllSentenceSearchY2025Logic {
     @Autowired
     private OfferingBalancesheetOutcome2025Repository offeringBalancesheetOutcome2025Repository;
 
+    /** 空白文字 */
+    private static final String BLANK = "";
+
+    /** カンマ区切りフォーマッタ */
+    private NumberFormat numberFormat;
+
     /**
      * 検索を行う
      *
@@ -34,6 +42,9 @@ public class NaturalAllSentenceSearchY2025Logic {
      */
     public IncomeAndOutcomeNaturalSearchResultDto practice(
             final IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto) {
+
+        // fieldでfinal staticインスタンス生成すると望ましくないといわれる
+        numberFormat = NumberFormat.getNumberInstance();
 
         String searchWords = searchConditionDto.getSearchWords();
 
@@ -60,7 +71,7 @@ public class NaturalAllSentenceSearchY2025Logic {
         }
 
         // 政治資金収支報告書支出
-        if (searchConditionDto.getIsSearchIncome()) {
+        if (searchConditionDto.getIsSearchOutcome()) {
             searchResultDto.setCountOutcome(offeringBalancesheetOutcome2025Repository.findFullTextCount(searchWords,
                     searchConditionDto.getStartDate(), searchConditionDto.getEndDate()));
 
@@ -86,7 +97,13 @@ public class NaturalAllSentenceSearchY2025Logic {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
         // front側でitemName使用で統一する
-        lineDto.setItemName(entity.getMokuteki());
+        lineDto.setItemName("(" + entity.getHimoku() + ")" + entity.getMokuteki());
+
+        // 金額関係編集
+        lineDto.setKingakuIncomeText(BLANK);
+        lineDto.setKingakuOutcomeText(numberFormat.format(lineDto.getKingaku()));
+        lineDto.setKingakuShuukei(-1 * lineDto.getKingaku());
+
         return lineDto;
     }
 
@@ -99,6 +116,11 @@ public class NaturalAllSentenceSearchY2025Logic {
     private IncomeAndOutcomeSearchLineDto creatDto(final OfferingBalancesheetIncome2025Entity entity) {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
+
+        // 金額関係編集
+        lineDto.setKingakuIncomeText(numberFormat.format(lineDto.getKingaku()));
+        lineDto.setKingakuOutcomeText(BLANK);
+        lineDto.setKingakuShuukei(lineDto.getKingaku());
 
         return lineDto;
     }
