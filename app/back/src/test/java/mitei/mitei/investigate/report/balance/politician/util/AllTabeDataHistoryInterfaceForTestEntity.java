@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.util;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHistoryInterface;
@@ -20,7 +19,7 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     private static final String INIT_STRING = "";
 
     /**　Timestamp初期値 */
-    private final Timestamp INIT_TIMESTAMP = Timestamp.valueOf(LocalDateTime.of(1980, 1, 1, 0, 0, 0));
+    private final LocalDateTime INIT_TIMESTAMP = LocalDateTime.of(1948, 7, 29, 0, 0, 0);
     
     /**　データ挿入ユーザId */
     private Long insertUserId = INIT_LONG;
@@ -29,7 +28,7 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     /**　データ挿入ユーザ名称 */
     private String insertUserName = INIT_STRING;
     /**　データ挿入時間 */
-    private Timestamp insertTimestamp = INIT_TIMESTAMP;
+    private LocalDateTime insertTimestamp = INIT_TIMESTAMP;
 
     /**　データ挿入ユーザId */
     private Long updateUserId = INIT_LONG;
@@ -38,7 +37,7 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     /**　データ挿入ユーザ名称 */
     private String updateUserName = INIT_STRING;
     /**　データ挿入時間 */
-    private Timestamp updateTimestamp = INIT_TIMESTAMP;
+    private LocalDateTime updateTimestamp = INIT_TIMESTAMP;
 
     
     /** 最新区分 */
@@ -105,13 +104,13 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     
     /** INSERT時ログインユーザNameを取得する */
     @Override
-    public Timestamp getInsertTimestamp() {
+    public LocalDateTime getInsertTimestamp() {
         return insertTimestamp;
     }
     
     /** INSERT時挿入時間を設定する */
     @Override
-    public void setInsertTimestamp(final Timestamp insertTimestamp) {
+    public void setInsertTimestamp(final LocalDateTime insertTimestamp) {
         this.insertTimestamp = insertTimestamp;
     }
 
@@ -153,13 +152,13 @@ public class AllTabeDataHistoryInterfaceForTestEntity implements AllTabeDataHist
     
     /** UPDATE時更新時間を取得する */
     @Override
-    public Timestamp getUpdateTimestamp() {
+    public LocalDateTime getUpdateTimestamp() {
         return updateTimestamp;
     }
     
     /** UPDATE時更新時間を設定する */
     @Override
-    public void setUpdateTimestamp(final Timestamp updateTimestamp) {
+    public void setUpdateTimestamp(final LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
    

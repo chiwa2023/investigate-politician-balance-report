@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.logic.common;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
@@ -25,7 +24,7 @@ public class SetTableDataHistoryLogic {
     public void practice(final CheckPrivilegeDto checkPrivilegeDto,
             final AllTabeDataHistoryInterface interfaceImple, final DataHistoryStatusConstants status) {
 
-        Timestamp timestampNow = Timestamp.valueOf(LocalDateTime.now());
+        LocalDateTime timestampNow = LocalDateTime.now();
 
         // Insert(初回)データセット
         if (DataHistoryStatusConstants.INSERT.equals(status)) {

@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.util;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
@@ -27,7 +26,7 @@ public final class SetTableDataHistoryUtil {
     public static void practice(final CheckPrivilegeDto checkPrivilegeDto,
             final AllTabeDataHistoryInterface interfaceImple, final DataHistoryStatusConstants status) {
 
-        Timestamp timestampNow = Timestamp.valueOf(LocalDateTime.now());
+        LocalDateTime timestampNow = LocalDateTime.now();
 
         // Insert(初回)データセット
         if (DataHistoryStatusConstants.INSERT.equals(status)) {

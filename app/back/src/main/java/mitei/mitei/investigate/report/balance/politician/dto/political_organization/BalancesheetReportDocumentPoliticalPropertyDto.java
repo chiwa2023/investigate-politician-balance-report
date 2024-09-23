@@ -21,7 +21,7 @@ public class BalancesheetReportDocumentPoliticalPropertyDto implements Serializa
     private static final Integer INIT_Integer = 0;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980, 1, 1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 政治団体Id */
     private Long politicalOrganizationId = INIT_Long;

@@ -29,7 +29,7 @@ public class DateConvertUtil {
     public LocalDate practiceWarekiToLocalDate(final String data) {
 
         if ("".equals(data)) { // NOPMD
-            return LocalDate.of(1980, 1, 1); // SUPPRESS CHECKSTYLE MagicNumber
+            return LocalDate.of(1948, 7, 29); // SUPPRESS CHECKSTYLE MagicNumber
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT_PATTERN_WAREKI, Locale.JAPAN)

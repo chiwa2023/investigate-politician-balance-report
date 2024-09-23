@@ -1,8 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,7 +17,8 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  */
 @Entity
 @Table(name = "offering_balancesheet_0702_and_0713_and_0717_summary_2025")
-public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+public class OfferingBalancesheet0702And0713And0717Summary2025Entity
+        implements Serializable, AllTabeDataHistoryInterface { // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -27,18 +28,19 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-    
+
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980,1,1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 初期データ(Timestamp) */
-    private static final Timestamp INIT_Timestamp = Timestamp.valueOf(INIT_LocalDate.atTime(0, 0, 0));
+    private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 収支報告書様式7その2と13と17Id */
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "offering_balancesheet_0702_and_0713_and_0717_summary_id")
     private Long offeringBalancesheet0702And0713And0717SummaryId = INIT_Long;
 
@@ -56,7 +58,8 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
      *
      * @param offeringBalancesheet0702And0713And0717SummaryId 収支報告書様式7その2と13と17Id
      */
-    public void setOfferingBalancesheet0702And0713And0717SummaryId(final Long offeringBalancesheet0702And0713And0717SummaryId) {
+    public void setOfferingBalancesheet0702And0713And0717SummaryId(
+            final Long offeringBalancesheet0702And0713And0717SummaryId) {
         this.offeringBalancesheet0702And0713And0717SummaryId = offeringBalancesheet0702And0713And0717SummaryId;
     }
 
@@ -78,7 +81,8 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
      *
      * @param offeringBalancesheet0702And0713And0717SummaryCode 収支報告書様式7その2と13と17同一識別コード
      */
-    public void setOfferingBalancesheet0702And0713And0717SummaryCode(final Long offeringBalancesheet0702And0713And0717SummaryCode) {
+    public void setOfferingBalancesheet0702And0713And0717SummaryCode(
+            final Long offeringBalancesheet0702And0713And0717SummaryCode) {
         this.offeringBalancesheet0702And0713And0717SummaryCode = offeringBalancesheet0702And0713And0717SummaryCode;
     }
 
@@ -2556,7 +2560,7 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
 
     /** 挿入タイムスタンプ */
     @Column(name = "insert_timestamp")
-    private Timestamp insertTimestamp = INIT_Timestamp;
+    private LocalDateTime insertTimestamp = INIT_Timestamp;
 
     /**
      * 挿入タイムスタンプを取得する
@@ -2564,7 +2568,7 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
      * @return 挿入タイムスタンプ
      */
     @Override
-    public Timestamp getInsertTimestamp() {
+    public LocalDateTime getInsertTimestamp() {
         return insertTimestamp;
     }
 
@@ -2574,7 +2578,7 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
      * @param insertTimestamp 挿入タイムスタンプ
      */
     @Override
-    public void setInsertTimestamp(final Timestamp insertTimestamp) {
+    public void setInsertTimestamp(final LocalDateTime insertTimestamp) {
         this.insertTimestamp = insertTimestamp;
     }
 
@@ -2651,7 +2655,7 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
 
     /** 更新タイムスタンプ */
     @Column(name = "update_timestamp")
-    private Timestamp updateTimestamp = INIT_Timestamp;
+    private LocalDateTime updateTimestamp = INIT_Timestamp;
 
     /**
      * 更新タイムスタンプを取得する
@@ -2659,7 +2663,7 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
      * @return 更新タイムスタンプ
      */
     @Override
-    public Timestamp getUpdateTimestamp() {
+    public LocalDateTime getUpdateTimestamp() {
         return updateTimestamp;
     }
 
@@ -2669,7 +2673,7 @@ public class OfferingBalancesheet0702And0713And0717Summary2025Entity  implements
      * @param updateTimestamp 更新タイムスタンプ
      */
     @Override
-    public void setUpdateTimestamp(final Timestamp updateTimestamp) {
+    public void setUpdateTimestamp(final LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
 

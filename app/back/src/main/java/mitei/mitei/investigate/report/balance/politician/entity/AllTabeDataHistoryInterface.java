@@ -1,6 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  * テーブル履歴を管理するためのInterface
@@ -32,10 +32,10 @@ public interface AllTabeDataHistoryInterface {
     void setInsertUserName(String insertUserName);
 
     /** INSERT時挿入時間を取得する */
-    Timestamp getInsertTimestamp();
+    LocalDateTime getInsertTimestamp();
 
     /** INSERT時挿入時間を設定する */
-    void setInsertTimestamp(Timestamp insertTimetamp);
+    void setInsertTimestamp(LocalDateTime insertTimetamp);
 
     /** UPDATEt時ログインユーザIdを取得する */
     Long getUpdateUserId();
@@ -56,9 +56,9 @@ public interface AllTabeDataHistoryInterface {
     void setUpdateUserName(String updateUserName);
 
     /** UPDATE時更新時間を取得する */
-    Timestamp getUpdateTimestamp();
+    LocalDateTime getUpdateTimestamp();
 
     /** UPDATE時更新時間を設定する */
-    void setUpdateTimestamp(Timestamp insertTimetamp);
+    void setUpdateTimestamp(LocalDateTime insertTimetamp);
 
 }

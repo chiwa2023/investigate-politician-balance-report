@@ -1,8 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,7 +17,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  */
 @Entity
 @Table(name = "offering_balancesheet_withdrawal_0802_transfer_2022")
-public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+public class OfferingBalancesheetWithdrawal0802Transfer2022Entity implements Serializable, AllTabeDataHistoryInterface { // NOPMD
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -27,18 +27,19 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-    
+
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980,1,1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 初期データ(Timestamp) */
-    private static final Timestamp INIT_Timestamp = Timestamp.valueOf(INIT_LocalDate.atTime(0, 0, 0));
+    private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 収支報告書様式8その2Id */
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "offering_balancesheet_withdrawal_0802_transfer_id")
     private Long offeringBalancesheetWithdrawal0802TransferId = INIT_Long;
 
@@ -56,7 +57,8 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
      *
      * @param offeringBalancesheetWithdrawal0802TransferId 収支報告書様式8その2Id
      */
-    public void setOfferingBalancesheetWithdrawal0802TransferId(final Long offeringBalancesheetWithdrawal0802TransferId) {
+    public void setOfferingBalancesheetWithdrawal0802TransferId(
+            final Long offeringBalancesheetWithdrawal0802TransferId) {
         this.offeringBalancesheetWithdrawal0802TransferId = offeringBalancesheetWithdrawal0802TransferId;
     }
 
@@ -78,7 +80,8 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
      *
      * @param offeringBalancesheetWithdrawal0802TransferCode 収支報告書様式8その2同一識別コード
      */
-    public void setOfferingBalancesheetWithdrawal0802TransferCode(final Long offeringBalancesheetWithdrawal0802TransferCode) {
+    public void setOfferingBalancesheetWithdrawal0802TransferCode(
+            final Long offeringBalancesheetWithdrawal0802TransferCode) {
         this.offeringBalancesheetWithdrawal0802TransferCode = offeringBalancesheetWithdrawal0802TransferCode;
     }
 
@@ -488,7 +491,7 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
 
     /** 挿入タイムスタンプ */
     @Column(name = "insert_timestamp")
-    private Timestamp insertTimestamp = INIT_Timestamp;
+    private LocalDateTime insertTimestamp = INIT_Timestamp;
 
     /**
      * 挿入タイムスタンプを取得する
@@ -496,7 +499,7 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
      * @return 挿入タイムスタンプ
      */
     @Override
-    public Timestamp getInsertTimestamp() {
+    public LocalDateTime getInsertTimestamp() {
         return insertTimestamp;
     }
 
@@ -506,7 +509,7 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
      * @param insertTimestamp 挿入タイムスタンプ
      */
     @Override
-    public void setInsertTimestamp(final Timestamp insertTimestamp) {
+    public void setInsertTimestamp(final LocalDateTime insertTimestamp) {
         this.insertTimestamp = insertTimestamp;
     }
 
@@ -584,7 +587,7 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
 
     /** 更新タイムスタンプ */
     @Column(name = "update_timestamp")
-    private Timestamp updateTimestamp = INIT_Timestamp;
+    private LocalDateTime updateTimestamp = INIT_Timestamp;
 
     /**
      * 更新タイムスタンプを取得する
@@ -592,7 +595,7 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
      * @return 更新タイムスタンプ
      */
     @Override
-    public Timestamp getUpdateTimestamp() {
+    public LocalDateTime getUpdateTimestamp() {
         return updateTimestamp;
     }
 
@@ -602,7 +605,7 @@ public class OfferingBalancesheetWithdrawal0802Transfer2022Entity  implements Se
      * @param updateTimestamp 更新タイムスタンプ
      */
     @Override
-    public void setUpdateTimestamp(final Timestamp updateTimestamp) {
+    public void setUpdateTimestamp(final LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
 

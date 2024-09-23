@@ -117,7 +117,7 @@ class InsertPartyUsageShito0804LogicTest {
     private static final String INIT_STRING ="";
     
     /** 初期値LocalDate */
-    private static final LocalDate INIT_LOCALDATE = LocalDate.of(1980, 1, 1);
+    private static final LocalDate INIT_LOCALDATE = LocalDate.of(1948, 7, 29);
     
     @Test
     @Transactional

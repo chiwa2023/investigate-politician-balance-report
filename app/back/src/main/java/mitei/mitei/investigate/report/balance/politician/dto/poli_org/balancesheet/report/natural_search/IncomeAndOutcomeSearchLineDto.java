@@ -21,7 +21,7 @@ public class IncomeAndOutcomeSearchLineDto implements Serializable { // NOPMD Da
     private static final Long INIT_Long = 0L;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980, 1, 1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     // TODO 最初は最小限ではじめ、順次増やしていく
 

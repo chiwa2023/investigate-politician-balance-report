@@ -92,7 +92,7 @@ class InsertPartyUsageReportServiceTest {
     private static final String INIT_STRING = "";
 
     /** 初期値LocalDate */
-    private static final LocalDate INIT_LOCALDATE = LocalDate.of(1980, 1, 1);
+    private static final LocalDate INIT_LOCALDATE = LocalDate.of(1948, 7, 29);
 
     /** 様式8その4区分01 */
     private static final int KBN01 = ConstantsKbn0804Dto.KBN01;
@@ -143,8 +143,7 @@ class InsertPartyUsageReportServiceTest {
     private static final String KBN11_NAME = ConstantsKbn0804Dto.KBN11_TEXT;
     /** 様式8その4区分12名称 */
     private static final String KBN12_NAME = ConstantsKbn0804Dto.KBN12_TEXT;
-   
-    
+
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;

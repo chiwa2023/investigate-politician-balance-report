@@ -1,8 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -35,10 +35,10 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
     private static final Long INIT_Long = 0L;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980, 1, 1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 初期データ(Timestamp) */
-    private static final Timestamp INIT_Timestamp = Timestamp.valueOf(INIT_LocalDate.atTime(0, 0, 0));
+    private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 収支報告書収入(その3から12)Id */
     @Id
@@ -1152,7 +1152,7 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
 
     /** 挿入タイムスタンプ */
     @Column(name = "insert_timestamp")
-    private Timestamp insertTimestamp = INIT_Timestamp;
+    private LocalDateTime insertTimestamp = INIT_Timestamp;
 
     /**
      * 挿入タイムスタンプを取得する
@@ -1160,7 +1160,7 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
      * @return 挿入タイムスタンプ
      */
     @Override
-    public Timestamp getInsertTimestamp() {
+    public LocalDateTime getInsertTimestamp() {
         return insertTimestamp;
     }
 
@@ -1170,7 +1170,7 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
      * @param insertTimestamp 挿入タイムスタンプ
      */
     @Override
-    public void setInsertTimestamp(final Timestamp insertTimestamp) {
+    public void setInsertTimestamp(final LocalDateTime insertTimestamp) {
         this.insertTimestamp = insertTimestamp;
     }
 
@@ -1248,7 +1248,7 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
 
     /** 更新タイムスタンプ */
     @Column(name = "update_timestamp")
-    private Timestamp updateTimestamp = INIT_Timestamp;
+    private LocalDateTime updateTimestamp = INIT_Timestamp;
 
     /**
      * 更新タイムスタンプを取得する
@@ -1256,7 +1256,7 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
      * @return 更新タイムスタンプ
      */
     @Override
-    public Timestamp getUpdateTimestamp() {
+    public LocalDateTime getUpdateTimestamp() {
         return updateTimestamp;
     }
 
@@ -1266,7 +1266,7 @@ public class OfferingBalancesheetIncome2025Entity implements Serializable, AllTa
      * @param updateTimestamp 更新タイムスタンプ
      */
     @Override
-    public void setUpdateTimestamp(final Timestamp updateTimestamp) {
+    public void setUpdateTimestamp(final LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
 

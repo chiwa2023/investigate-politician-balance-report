@@ -3,7 +3,6 @@ package mitei.mitei.investigate.report.balance.politician.logic.party_usage.y202
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -59,8 +58,10 @@ class UpdatePartyUsageShito0902Y2022LogicTest {
         assertThat(preEntity.getUpdateUserId()).isEqualTo(0L);
         assertThat(preEntity.getUpdateUserCode()).isEqualTo(0);
         assertThat(preEntity.getUpdateUserName()).isEqualTo("");
-        assertThat(preEntity.getUpdateTimestamp()).isEqualTo(Timestamp.valueOf(LocalDateTime.of(1980, 1, 1, 0, 0, 0)));
-
+        assertThat(preEntity.getUpdateTimestamp())
+                .isEqualTo(LocalDateTime.of(1948, 7, 29, 0, 0, 0));
+        
+        
         CheckPrivilegeDto checkPrivilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
         int size = updatePartyUsageShito0902Y2022Logic.practice(oldDcoumentCode, checkPrivilegeDto);
@@ -86,7 +87,7 @@ class UpdatePartyUsageShito0902Y2022LogicTest {
             assertThat(proEntity.getUpdateUserId()).isEqualTo(checkPrivilegeDto.getLoginUserId());
             assertThat(proEntity.getUpdateUserCode()).isEqualTo(checkPrivilegeDto.getLoginUserCode());
             assertThat(proEntity.getUpdateUserName()).isEqualTo(checkPrivilegeDto.getLoginUserName());
-            assertTrue(proEntity.getUpdateTimestamp().after(Timestamp.valueOf(LocalDateTime.now().minusMinutes(1L))),
+            assertTrue(proEntity.getUpdateTimestamp().isAfter(LocalDateTime.now().minusMinutes(1L)),
                     "1分前より後に生成");
         }
     }

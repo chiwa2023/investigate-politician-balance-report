@@ -23,7 +23,7 @@ public class IncomeAndOutcomeNaturalSearchConditionCapsuleDto extends AbstractCa
     private static final Boolean INIT_Boolean = false;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980, 1, 1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 検索語(ユーザ指定) */
     private String userKeyWords = INIT_String;

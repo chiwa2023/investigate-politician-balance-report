@@ -1,8 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,7 +17,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  */
 @Entity
 @Table(name = "offering_balancesheet_0701_and_0720_surface_2022")
-public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+public class OfferingBalancesheet0701And0720Surface2022Entity implements Serializable, AllTabeDataHistoryInterface { // NOPMD
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -27,18 +27,19 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-    
+
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1980,1,1);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 初期データ(Timestamp) */
-    private static final Timestamp INIT_Timestamp = Timestamp.valueOf(INIT_LocalDate.atTime(0, 0, 0));
+    private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 収支報告書様式7その1と20Id */
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "offering_balancesheet_0701_and_0720_surface_id")
     private Long offeringBalancesheet0701And0720SurfaceId = INIT_Long;
 
@@ -678,14 +679,14 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
         this.jimuTantousha1NameLast = jimuTantousha1NameLast;
     }
 
-    /** 事務担当者1の名  */
+    /** 事務担当者1の名 */
     @Column(name = "jimu_tantousha1_name_first")
     private String jimuTantousha1NameFirst = INIT_String;
 
     /**
      * 事務担当者1の名 を取得する
      *
-     * @return 事務担当者1の名 
+     * @return 事務担当者1の名
      */
     public String getJimuTantousha1NameFirst() {
         return jimuTantousha1NameFirst;
@@ -694,7 +695,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
     /**
      * 事務担当者1の名 を設定する
      *
-     * @param jimuTantousha1NameFirst 事務担当者1の名 
+     * @param jimuTantousha1NameFirst 事務担当者1の名
      */
     public void setJimuTantousha1NameFirst(final String jimuTantousha1NameFirst) {
         this.jimuTantousha1NameFirst = jimuTantousha1NameFirst;
@@ -1272,14 +1273,14 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
         this.kokkaiGiin2NameLast = kokkaiGiin2NameLast;
     }
 
-    /** 国家議員2の名  */
+    /** 国家議員2の名 */
     @Column(name = "kokkai_giin2_name_first")
     private String kokkaiGiin2NameFirst = INIT_String;
 
     /**
      * 国家議員2の名 を取得する
      *
-     * @return 国家議員2の名 
+     * @return 国家議員2の名
      */
     public String getKokkaiGiin2NameFirst() {
         return kokkaiGiin2NameFirst;
@@ -1288,7 +1289,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
     /**
      * 国家議員2の名 を設定する
      *
-     * @param kokkaiGiin2NameFirst 国家議員2の名 
+     * @param kokkaiGiin2NameFirst 国家議員2の名
      */
     public void setKokkaiGiin2NameFirst(final String kokkaiGiin2NameFirst) {
         this.kokkaiGiin2NameFirst = kokkaiGiin2NameFirst;
@@ -1632,7 +1633,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
 
     /** 挿入タイムスタンプ */
     @Column(name = "insert_timestamp")
-    private Timestamp insertTimestamp = INIT_Timestamp;
+    private LocalDateTime insertTimestamp = INIT_Timestamp;
 
     /**
      * 挿入タイムスタンプを取得する
@@ -1640,7 +1641,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
      * @return 挿入タイムスタンプ
      */
     @Override
-    public Timestamp getInsertTimestamp() {
+    public LocalDateTime getInsertTimestamp() {
         return insertTimestamp;
     }
 
@@ -1650,7 +1651,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
      * @param insertTimestamp 挿入タイムスタンプ
      */
     @Override
-    public void setInsertTimestamp(final Timestamp insertTimestamp) {
+    public void setInsertTimestamp(final LocalDateTime insertTimestamp) {
         this.insertTimestamp = insertTimestamp;
     }
 
@@ -1728,7 +1729,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
 
     /** 更新タイムスタンプ */
     @Column(name = "update_timestamp")
-    private Timestamp updateTimestamp = INIT_Timestamp;
+    private LocalDateTime updateTimestamp = INIT_Timestamp;
 
     /**
      * 更新タイムスタンプを取得する
@@ -1736,7 +1737,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
      * @return 更新タイムスタンプ
      */
     @Override
-    public Timestamp getUpdateTimestamp() {
+    public LocalDateTime getUpdateTimestamp() {
         return updateTimestamp;
     }
 
@@ -1746,7 +1747,7 @@ public class OfferingBalancesheet0701And0720Surface2022Entity  implements Serial
      * @param updateTimestamp 更新タイムスタンプ
      */
     @Override
-    public void setUpdateTimestamp(final Timestamp updateTimestamp) {
+    public void setUpdateTimestamp(final LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
 

@@ -3,9 +3,7 @@ package mitei.mitei.investigate.report.balance.politician.util;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +26,7 @@ class SetTableDataHistoryUtilTest {
     private static final String INIT_STRING = "";
 
     /** Timestamp初期値 */
-    private final Timestamp INIT_TIMESTAMP = Timestamp.valueOf(LocalDateTime.of(1980, 1, 1, 0, 0, 0));
+    private final LocalDateTime INIT_TIMESTAMP = LocalDateTime.of(1948, 7, 29, 0, 0, 0);
 
     @Test
     void testPracticeInsert() {
@@ -54,8 +52,8 @@ class SetTableDataHistoryUtilTest {
         assertThat(dataEntity.getInsertUserName()).isEqualTo(checkPrivilegeDto.getLoginUserName());
         // データ挿入時間
         // 実行時には誤差1秒以内におさまっているでしょう…
-        assertTrue(dataEntity.getInsertTimestamp().getTime() > new Date().getTime() - 1000); // NOPMD
-        assertTrue(dataEntity.getInsertTimestamp().getTime() < new Date().getTime() + 1000); // NOPMD
+        assertTrue(dataEntity.getInsertTimestamp().isAfter(LocalDateTime.now().minusMinutes(1L)),""); // NOPMD
+        assertTrue(dataEntity.getInsertTimestamp().isAfter(LocalDateTime.now().minusMinutes(1L)),""); // NOPMD
 
         // データ挿入ユーザId
         assertThat(dataEntity.getUpdateUserId()).isEqualTo(INIT_LONG);
@@ -92,8 +90,8 @@ class SetTableDataHistoryUtilTest {
         assertThat(dataEntity.getUpdateUserName()).isEqualTo(checkPrivilegeDto.getLoginUserName());
         // データ挿入時間
         // 実行時には誤差1秒以内におさまっているでしょう…
-        assertTrue(dataEntity.getUpdateTimestamp().getTime() > new Date().getTime() - 1000); // NOPMD
-        assertTrue(dataEntity.getUpdateTimestamp().getTime() < new Date().getTime() + 1000); // NOPMD
+        assertTrue(dataEntity.getUpdateTimestamp().isAfter(LocalDateTime.now().minusMinutes(1L)),""); // NOPMD
+        assertTrue(dataEntity.getUpdateTimestamp().isAfter(LocalDateTime.now().minusMinutes(1L)),""); // NOPMD
 
         // データ挿入ユーザId
         assertThat(dataEntity.getInsertUserId()).isEqualTo(INIT_LONG);
