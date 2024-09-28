@@ -5,7 +5,7 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: my_checkstyle
+    Checkstyle-Configuration: my_check
     Description: none
 -->
 <module name="Checker">
@@ -44,8 +44,8 @@
     <module name="NoFinalizer"/>
     <module name="Indentation">
       <property name="braceAdjustment" value="4"/>
-      <property name="throwsIndent" value="8"/>
       <property name="lineWrappingIndentation" value="8"/>
+      <property name="throwsIndent" value="8"/>
     </module>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>
@@ -66,24 +66,24 @@
     <module name="JavadocParagraph"/>
     <module name="RequireEmptyLineBeforeBlockTagGroup"/>
     <module name="AtclauseOrder">
-      <property name="target" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
       <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
+      <property name="target" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
     </module>
     <module name="JavadocMethod">
-      <property name="allowedAnnotations" value="Override, Test"/>
       <property name="accessModifiers" value="public"/>
       <property name="allowMissingParamTags" value="true"/>
       <property name="allowMissingReturnTag" value="true"/>
+      <property name="allowedAnnotations" value="Override, Test"/>
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
     </module>
     <module name="MissingJavadocMethod">
-      <property name="minLineCount" value="2"/>
       <property name="allowedAnnotations" value="Override, Test"/>
+      <property name="minLineCount" value="2"/>
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF,                                    COMPACT_CTOR_DEF"/>
     </module>
     <module name="MissingJavadocType">
-      <property name="scope" value="protected"/>
       <property name="excludeScope" value="nothing"/>
+      <property name="scope" value="protected"/>
       <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,                       RECORD_DEF, ANNOTATION_DEF"/>
     </module>
     <module name="SingleLineJavadoc"/>
@@ -114,7 +114,10 @@
       <property name="severity" value="ignore"/>
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
-    <module name="DeclarationOrder"/>
+    <module name="DeclarationOrder">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="DefaultComesLast"/>
     <module name="EmptyStatement"/>
     <module name="EqualsAvoidNull"/>
