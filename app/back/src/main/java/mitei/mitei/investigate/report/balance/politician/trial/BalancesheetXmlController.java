@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mitei.mitei.create.report.balance.politician.dto.publish.AllBookDto;
+import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookDto;
 
 /**
  * (仮)政治資金収支報告書Dtoを返却するController
