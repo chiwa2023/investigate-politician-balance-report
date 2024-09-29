@@ -2,7 +2,6 @@ package mitei.mitei.investigate.report.balance.politician.trial;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +23,17 @@ import org.springframework.test.web.servlet.MockMvc;
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 class BalancesheetXmlControllerTest {
 
-    /** MockMvc */
+    /** MockMvc. */
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void test()throws Exception {
-        //String responsContent = this.mockMvc.perform(get("/convert-balancesheet-xml")).andExpect(status().isOk()).andReturn() // NOPMD
-        //        .getResponse().getContentAsString(StandardCharsets.UTF_8);
-        //System.out.println(responsContent);
-        
-        assertThat(this.mockMvc.perform(get("/convert-balancesheet-xml")).andExpect(status().isOk()).andReturn() // NOPMD
-                .getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-        
+
+    void test() throws Exception {
+
+        assertThat(this.mockMvc.perform(get("/convert-balancesheet-xml")).andReturn().getResponse().getStatus()) // NOPMD
+                .isEqualTo(HttpStatus.OK.value());
+
     }
 
 }

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class BackApplication { // NOPMD
-
+    
     /**
      * 全体起動
      *
