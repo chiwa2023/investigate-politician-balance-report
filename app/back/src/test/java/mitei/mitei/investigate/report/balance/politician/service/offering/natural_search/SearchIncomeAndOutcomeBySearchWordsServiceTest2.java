@@ -38,7 +38,7 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest2 {
     void testPractice() {
         
         IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
-        searchConditionDto.setUserKeyWords("利息");
+        searchConditionDto.setUserKeyWords(">利息 >東京");
         searchConditionDto.setIsSearchIncome(true);
         searchConditionDto.setIsSearchOutcome(true);
         searchConditionDto.setOffsetIncome(0);
@@ -49,7 +49,7 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest2 {
         IncomeAndOutcomeNaturalSearchResultDto searchResultDto = searchIncomeAndOutcomeBySearchWordsService.practice(searchConditionDto);
         
         System.out.println("=======検索"); // NOPMD
-        System.out.println(searchConditionDto.getSearchWords()); // NOPMD
+        System.out.println(searchResultDto.getSearchWords()); // NOPMD
 
         System.out.println("=======収入"); // NOPMD
         System.out.println("------件数"+searchResultDto.getCountIncome()); // NOPMD

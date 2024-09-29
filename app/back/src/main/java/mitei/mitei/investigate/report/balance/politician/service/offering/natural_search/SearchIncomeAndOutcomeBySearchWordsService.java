@@ -62,7 +62,8 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
 
         IncomeAndOutcomeNaturalSearchResultDto dtoTemp;
         IncomeAndOutcomeNaturalSearchResultDto searchResultDto = new IncomeAndOutcomeNaturalSearchResultDto();
-
+        searchResultDto.setSearchWords(searchConditionDto.getSearchWords());
+        
         for (Integer houkokuNen : map.keySet()) {
             switch (houkokuNen) {
                 // 2022年

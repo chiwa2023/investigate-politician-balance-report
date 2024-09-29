@@ -34,7 +34,7 @@ public interface OfferingBalancesheetOutcome2025Repository  extends JpaRepositor
      * @param searchWords 検索語
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
+    @Query(value = "SELECT count(*) FROM offering_balancesheet_outcome_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?2 AND ?3  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
     Integer findFullTextCount(String searchWords, LocalDate startDate, LocalDate endDate);
 
     

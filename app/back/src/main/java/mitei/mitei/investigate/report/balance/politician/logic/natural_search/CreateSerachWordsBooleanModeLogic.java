@@ -38,7 +38,7 @@ public class CreateSerachWordsBooleanModeLogic {
         // 変換処理は下記公式ドキュメントを参考にする
         // https://dev.mysql.com/doc/refman/8.0/ja/fulltext-boolean.html
 
-        // わざわざ例外出すほどではないですが、検査結果は出しません
+        // わざわざ例外出すほどではないですが、検索結果は出しません
         if (Objects.isNull(keyWords) | BLANK.equals(keyWords)) {
             return BLANK;
         }

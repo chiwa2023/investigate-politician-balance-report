@@ -50,7 +50,7 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
                 .practice(searchConditionDto);
 
         // 検索語が独自規則でフォーマットされていること
-        assertThat(searchConditionDto.getSearchWords()).isEqualTo("+七日市");
+        assertThat(searchResultDto.getSearchWords()).isEqualTo("+七日市");
 
         // 件数など
         assertThat(searchResultDto.getCountIncome()).isEqualTo(1);
@@ -77,11 +77,6 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
         assertThat(dtoIncome1.getKingakuOutcomeText()).isEqualTo("");
         assertThat(dtoIncome1.getKingakuShuukei()).isEqualTo(1_200_000L);
 
-        
-        
-        
-        
-
         // 支出
         List<IncomeAndOutcomeSearchLineDto> listOutcome = searchResultDto.getListOutcome();
         // 一行目
@@ -100,8 +95,7 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
         assertThat(dtoOutcome1.getKingakuIncomeText()).isEqualTo("");
         assertThat(dtoOutcome1.getKingakuOutcomeText()).isEqualTo("300,000");
         assertThat(dtoOutcome1.getKingakuShuukei()).isEqualTo(-300_000L);
-        
-        
+
         // サンプルデータの特性として日付と金額が変わるだけ
         IncomeAndOutcomeSearchLineDto dtoOutcome2 = listOutcome.get(1);
         assertThat(dtoOutcome2.getAccrualDate()).isEqualTo("R4/7/20");

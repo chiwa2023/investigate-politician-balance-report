@@ -25,6 +25,27 @@ public class IncomeAndOutcomeSearchLineDto implements Serializable { // NOPMD Da
 
     // TODO 最初は最小限ではじめ、順次増やしていく
 
+    /** 項目Id */
+    private String itemId = INIT_String;
+
+    /**
+     * 項目Idを取得する
+     *
+     * @return 項目Id
+     */
+    public String getItemId() {
+        return itemId;
+    }
+
+    /**
+     * 項目Id設定する
+     *
+     * @param itemId 項目Id
+     */
+    public void setItemId(final String itemId) {
+        this.itemId = itemId;
+    }
+
     /** 項目名称 */
     private String itemName = INIT_String;
 

@@ -123,4 +123,25 @@ public class IncomeAndOutcomeNaturalSearchResultDto extends AbstractResultDto im
         this.message = message;
     }
 
+    /** 実際にRepositoryに与える検索語 */
+    private String searchWords = INIT_String;
+
+    /**
+     * 検索語(実検索用)を取得する
+     *
+     * @return 検索語(実検索用)
+     */
+    public String getSearchWords() {
+        return searchWords;
+    }
+
+    /**
+     * 検索語(実検索用)を設定する
+     *
+     * @param searchWords 検索語(実検索用)
+     */
+    public void setSearchWords(final String searchWords) {
+        this.searchWords = searchWords;
+    }
+
 }

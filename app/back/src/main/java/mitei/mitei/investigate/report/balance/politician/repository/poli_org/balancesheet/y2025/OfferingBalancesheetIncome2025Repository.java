@@ -24,7 +24,7 @@ public interface OfferingBalancesheetIncome2025Repository
      * @param searchWords 検索語
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_income_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEN MODE) LIMIT 100 OFFSET ?2", nativeQuery = true)
+    @Query(value = "SELECT * FROM offering_balancesheet_income_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE) LIMIT 100 OFFSET ?2", nativeQuery = true)
     List<OfferingBalancesheetIncome2025Entity> findFullText(String searchWords, int offset, LocalDate startDate, LocalDate endDate);
 
     /**
@@ -33,7 +33,7 @@ public interface OfferingBalancesheetIncome2025Repository
      * @param searchWords 検索語
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_income_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEN MODE)", nativeQuery = true)
+    @Query(value = "SELECT count(*) FROM offering_balancesheet_income_2025 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?2 AND ?3  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
     Integer findFullTextCount(String searchWords, LocalDate startDate, LocalDate endDate);
 
     /**

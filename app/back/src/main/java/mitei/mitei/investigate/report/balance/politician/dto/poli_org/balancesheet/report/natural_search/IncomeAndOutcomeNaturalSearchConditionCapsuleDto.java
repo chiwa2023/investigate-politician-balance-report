@@ -28,9 +28,6 @@ public class IncomeAndOutcomeNaturalSearchConditionCapsuleDto extends AbstractCa
     /** 検索語(ユーザ指定) */
     private String userKeyWords = INIT_String;
 
-    /** 実際にRepositoryに与える検索語 */
-    private String searchWords = INIT_String;
-
     /** 収支報告書収入検索フラグ */
     private Boolean isSearchIncome = INIT_Boolean;
 
@@ -175,6 +172,9 @@ public class IncomeAndOutcomeNaturalSearchConditionCapsuleDto extends AbstractCa
         this.endDate = endDate;
     }
 
+    /** 実際にRepositoryに与える検索語 */
+    private String searchWords = INIT_String;
+
     /**
      * 検索語(実検索用)を取得する
      *
@@ -192,5 +192,4 @@ public class IncomeAndOutcomeNaturalSearchConditionCapsuleDto extends AbstractCa
     public void setSearchWords(final String searchWords) {
         this.searchWords = searchWords;
     }
-
 }

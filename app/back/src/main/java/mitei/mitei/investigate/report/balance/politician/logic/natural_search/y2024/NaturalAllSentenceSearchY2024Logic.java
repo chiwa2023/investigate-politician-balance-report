@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2024;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -28,6 +29,15 @@ public class NaturalAllSentenceSearchY2024Logic {
     @Autowired
     private OfferingBalancesheetOutcome2024Repository offeringBalancesheetOutcome2024Repository;
 
+    /** 空白文字 */
+    private static final String BLANK = "";
+
+    /** id区切り文字 */
+    private static final String ID_SPLITTER = "-";
+
+    /** カンマ区切りフォーマッタ */
+    private NumberFormat numberFormat;
+
     /**
      * 検索を行う
      *
@@ -36,9 +46,13 @@ public class NaturalAllSentenceSearchY2024Logic {
     public IncomeAndOutcomeNaturalSearchResultDto practice(
             final IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto) {
 
+        // fieldでfinal staticインスタンス生成すると望ましくないといわれる
+        numberFormat = NumberFormat.getNumberInstance();
+
         String searchWords = searchConditionDto.getSearchWords();
 
         IncomeAndOutcomeNaturalSearchResultDto searchResultDto = new IncomeAndOutcomeNaturalSearchResultDto();
+        searchResultDto.setSearchWords(searchWords);
 
         List<IncomeAndOutcomeSearchLineDto> listIncome = searchResultDto.getListIncome();
         List<IncomeAndOutcomeSearchLineDto> listOutcome = searchResultDto.getListOutcome();
@@ -88,6 +102,19 @@ public class NaturalAllSentenceSearchY2024Logic {
         BeanUtils.copyProperties(entity, lineDto);
         // front側でitemName使用で統一する
         lineDto.setItemName("(" + entity.getHimoku() + ")" + entity.getMokuteki());
+
+        // id
+        StringBuilder builderId = new StringBuilder();
+        builderId.append(entity.getHoukokuNen()).append(ID_SPLITTER).append(entity.getDocumentCode())
+                .append(ID_SPLITTER).append(entity.getYoushikiKbn()).append(ID_SPLITTER)
+                .append(entity.getYoushikiEdaKbn()).append(ID_SPLITTER).append(entity.getIchirenNo());
+        lineDto.setItemId(builderId.toString());
+
+        // 金額関係編集
+        lineDto.setKingakuIncomeText(BLANK);
+        lineDto.setKingakuOutcomeText(numberFormat.format(lineDto.getKingaku()));
+        lineDto.setKingakuShuukei(-1 * lineDto.getKingaku());
+
         return lineDto;
     }
 
@@ -100,6 +127,18 @@ public class NaturalAllSentenceSearchY2024Logic {
     private IncomeAndOutcomeSearchLineDto creatDto(final OfferingBalancesheetIncome2024Entity entity) {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
+        
+        // id
+        StringBuilder builderId = new StringBuilder();
+        builderId.append(entity.getHoukokuNen()).append(ID_SPLITTER).append(entity.getDocumentCode())
+                .append(ID_SPLITTER).append(entity.getYoushikiKbn()).append(ID_SPLITTER)
+                .append(entity.getYoushikiEdaKbn()).append(ID_SPLITTER).append(entity.getIchirenNo());
+        lineDto.setItemId(builderId.toString());
+
+        // 金額関係編集
+        lineDto.setKingakuOutcomeText(BLANK);
+        lineDto.setKingakuIncomeText(numberFormat.format(lineDto.getKingaku()));
+        lineDto.setKingakuShuukei(lineDto.getKingaku());
 
         return lineDto;
     }

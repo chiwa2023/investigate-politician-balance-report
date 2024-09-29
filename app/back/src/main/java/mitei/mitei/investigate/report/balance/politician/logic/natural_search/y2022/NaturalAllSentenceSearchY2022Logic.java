@@ -32,6 +32,9 @@ public class NaturalAllSentenceSearchY2022Logic {
     /** 空白文字 */
     private static final String BLANK = "";
 
+    /** id区切り文字 */
+    private static final String ID_SPLITTER = "-";
+
     /** カンマ区切りフォーマッタ */
     private NumberFormat numberFormat;
 
@@ -49,6 +52,7 @@ public class NaturalAllSentenceSearchY2022Logic {
         String searchWords = searchConditionDto.getSearchWords();
 
         IncomeAndOutcomeNaturalSearchResultDto searchResultDto = new IncomeAndOutcomeNaturalSearchResultDto();
+        searchResultDto.setSearchWords(searchWords);
 
         List<IncomeAndOutcomeSearchLineDto> listIncome = searchResultDto.getListIncome();
         List<IncomeAndOutcomeSearchLineDto> listOutcome = searchResultDto.getListOutcome();
@@ -99,6 +103,13 @@ public class NaturalAllSentenceSearchY2022Logic {
         // front側でitemName使用で統一する
         lineDto.setItemName("(" + entity.getHimoku() + ")" + entity.getMokuteki());
 
+        // id
+        StringBuilder builderId = new StringBuilder();
+        builderId.append(entity.getHoukokuNen()).append(ID_SPLITTER).append(entity.getDocumentCode())
+                .append(ID_SPLITTER).append(entity.getYoushikiKbn()).append(ID_SPLITTER)
+                .append(entity.getYoushikiEdaKbn()).append(ID_SPLITTER).append(entity.getIchirenNo());
+        lineDto.setItemId(builderId.toString());
+
         // 金額関係編集
         lineDto.setKingakuIncomeText(BLANK);
         lineDto.setKingakuOutcomeText(numberFormat.format(lineDto.getKingaku()));
@@ -116,6 +127,13 @@ public class NaturalAllSentenceSearchY2022Logic {
     private IncomeAndOutcomeSearchLineDto creatDto(final OfferingBalancesheetIncome2022Entity entity) {
         IncomeAndOutcomeSearchLineDto lineDto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, lineDto);
+
+        // id
+        StringBuilder builderId = new StringBuilder();
+        builderId.append(entity.getHoukokuNen()).append(ID_SPLITTER).append(entity.getDocumentCode())
+                .append(ID_SPLITTER).append(entity.getYoushikiKbn()).append(ID_SPLITTER)
+                .append(entity.getYoushikiEdaKbn()).append(ID_SPLITTER).append(entity.getIchirenNo());
+        lineDto.setItemId(builderId.toString());
 
         // 金額関係編集
         lineDto.setKingakuIncomeText(numberFormat.format(lineDto.getKingaku()));
