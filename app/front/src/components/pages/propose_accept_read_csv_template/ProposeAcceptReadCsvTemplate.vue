@@ -7,9 +7,7 @@ import CsvCellInterface from "../../../dto/read_csv/csvCell";
 import { ReadCsvEntityCapsuleDto } from "../../../dto/read_csv/readCsvEntityCapsuleDto";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
-import axios from "axios";
 import SendCsvAndStragedShoshouDto from "../../../dto/read_csv/sendCsvAndStragedShoshouDto";
-import showErrorMessage from "../../../dto/common_check/showErrorMessage";
 import InputRejectReason from "./InputRejectReason.vue";
 import SearchProposeReadCsvTemplate from "../../common/search_propose_read_csv_template/SearchProposeReadCsvTemplate.vue";
 import TemplateFrameworkResultDto from "../../../dto/template/templateFrameworkResultDto";
@@ -73,22 +71,29 @@ async function recievePoliticalOrganizationLeastInterface(sendEntity: PropseCsvR
 
     //実接続
     const urlLoad = "http://localhost:8080/read-csv-by-entity/practice";
-    await axios.post(urlLoad, readCsvFileCapsuleDto)
-        .then((response) => {
-            const sendCsvAndStragedShoshouDto: SendCsvAndStragedShoshouDto = response.data
+    const method = "POST";
+    const body = JSON.stringify(readCsvFileCapsuleDto);
+    const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
+        fetch(urlLoad, { method, headers,body })
+            .then(async (response) => {
+            const sendCsvAndStragedShoshouDto: SendCsvAndStragedShoshouDto = await response.json();
 
             viewCsvReadData.value = sendCsvAndStragedShoshouDto.listAllCsv;
         })
-        .catch((error) => showErrorMessage(error.status));
+        .catch((error) => { alert(error); });
 
 
     //類似データがあるかを確認する
     const urlSimilar = "http://localhost:8080/propose-csv-read/search-similar";
-    await axios.post(urlSimilar, readCsvFileCapsuleDto)
-        .then((response) => {
-            listSimilar.value = response.data
+    fetch(urlSimilar, { method, headers,body })
+            .then(async (response) => {
+            listSimilar.value = await response.json();
         })
-        .catch((error) => showErrorMessage(error.status));
+        .catch((error) => { alert(error); });
 
     //類似リストが0の時は領域ごと表示しない
     if(listSimilar.value.length >0){
@@ -135,12 +140,19 @@ async function recieveReasonText(reasonText: string) {
 
     //却下実接続
     const url = "http://localhost:8080/propose-csv-read-reject/regist";
-    await axios.post(url, readCsvFileCapsuleDto)
-        .then((response) => {
-            const resultDto: TemplateFrameworkResultDto = response.data
+    const method = "POST";
+        const body = JSON.stringify(readCsvFileCapsuleDto);
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
+    fetch(url, { method, headers,body })
+            .then(async (response) => {
+            const resultDto: TemplateFrameworkResultDto = await response.json();
             alert(resultDto.message);
         })
-        .catch((error) => showErrorMessage(error.status));
+        .catch((error) => { alert(error); });
 
     //却下理由入力コンポーネントを非表示にする
     isVisivleInputRejectReason.value = false;
@@ -160,12 +172,19 @@ async function onAccept() {
 
     //許可実接続
     const url = "http://localhost:8080/propose-csv-read-accept/regist";
-    await axios.post(url, readCsvFileCapsuleDto)
-        .then((response) => {
-            const resultDto: TemplateFrameworkResultDto = response.data
+    const method = "POST";
+        const body = JSON.stringify(readCsvFileCapsuleDto);
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
+        fetch(url, { method, headers,body })
+            .then(async (response) => {
+            const resultDto: TemplateFrameworkResultDto = await response.json();
             alert(resultDto.message);
         })
-        .catch((error) => showErrorMessage(error.status));
+        .catch((error) => { alert(error); });
 
 }
 

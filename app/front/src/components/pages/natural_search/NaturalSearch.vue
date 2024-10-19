@@ -3,15 +3,12 @@ import { computed, Ref, ref } from "vue";
 import IncomeAndOutcomeNaturalSearchConditionCapsuleDto from "../../../dto/natural_search/incomeAndOutcomeNaturalSearchConditionCapsuleDto";
 import IncomeAndOutcomeNaturalSearchResultInterface from "../../../dto/natural_search/incomeAndOutcomeNaturalSearchResultDto";
 import IncomeAndOutcomeNaturalSearchResultDto from "../../../dto/natural_search/incomeAndOutcomeNaturalSearchResultDto";
-
 import IncomeAndOutcomeSearchLineDto from "../../../dto/natural_search/incomeAndOutcomeSearchLineDto";
 import IncomeAndOutcomeSearchLineInterface from "../../../dto/natural_search/incomeAndOutcomeSearchLineDto";
 import SelectOptionDto from "../../../dto/selectOptionDto";
 import createPagingSelectBoxOption from "../../../dto/natural_search/createPagingSelectBoxOption";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
-import axios from "axios";
-import showErrorMessage from "../../../dto/common_check/showErrorMessage";
 
 // 検索条件
 const conditionDto: Ref<IncomeAndOutcomeNaturalSearchConditionCapsuleDto> = ref(new IncomeAndOutcomeNaturalSearchConditionCapsuleDto());
@@ -47,31 +44,31 @@ const listFlowIncome: Ref<IncomeAndOutcomeSearchLineInterface[]> = ref([]);
 const listFlowOutcome: Ref<IncomeAndOutcomeSearchLineInterface[]> = ref([]);
 
 // レポートの集計(政治団体・取引相手視点)
-const sumDantai = computed(() =>{
-  let  sum:number = 0
-  for(const dto of  listReport.value){
-    sum = sum + dto.kingakuShuukei;
-  }  
-  return sum.toLocaleString();
-} );
+const sumDantai = computed(() => {
+    let sum: number = 0
+    for (const dto of listReport.value) {
+        sum = sum + dto.kingakuShuukei;
+    }
+    return sum.toLocaleString();
+});
 
 // レポートの集計(フロー視点)
-const sumIncome = computed(() =>{
-  let  sum:number = 0
-  for(const dto of  listFlowIncome.value){
-    sum = sum + dto.kingakuShuukei;
-  }  
-  return sum.toLocaleString();
-} );
+const sumIncome = computed(() => {
+    let sum: number = 0
+    for (const dto of listFlowIncome.value) {
+        sum = sum + dto.kingakuShuukei;
+    }
+    return sum.toLocaleString();
+});
 
 // レポートの集計(フロー視点)
-const sumOutcome = computed(() =>{
-  let  sum:number = 0
-  for(const dto of  listFlowOutcome.value){
-    sum = sum + dto.kingakuShuukei;
-  }  
-  return sum.toLocaleString();
-} );
+const sumOutcome = computed(() => {
+    let sum: number = 0
+    for (const dto of listFlowOutcome.value) {
+        sum = sum + dto.kingakuShuukei;
+    }
+    return sum.toLocaleString();
+});
 
 
 // 検索表示件数
@@ -83,10 +80,10 @@ async function onSearch() {
     conditionDto.value.startDate = convertInputDateText(conditionDto.value.startDateText);
     conditionDto.value.endDate = convertInputDateText(conditionDto.value.endDateText);
 
-    if(conditionDto.value.offsetIncome === -1){
+    if (conditionDto.value.offsetIncome === -1) {
         conditionDto.value.offsetIncome = 0;
     }
-    if(conditionDto.value.offsetOutcome === -1){
+    if (conditionDto.value.offsetOutcome === -1) {
         conditionDto.value.offsetOutcome = 0;
     }
 
@@ -98,12 +95,18 @@ async function onSearch() {
 
     // 全文検索を行う
     const url = "http://localhost:9080/offering-data/search-income-outocome";
+    const method = "POST";
+    const body = JSON.stringify(conditionDto.value);
+    const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
 
-    await axios.post(url, conditionDto.value)
-        .then((response) => {
-            resultDto.value = response.data;
+    fetch(url, { method, headers, body })
+        .then(async (response) => {
+            resultDto.value = await response.json();
         })
-        .catch((error) => showErrorMessage(error));
+        .catch((error) => { alert(error); });
 
     listPagingIncome.value = createPagingSelectBoxOption(resultDto.value.countIncome, viewCount);
     listPagingOutcome.value = createPagingSelectBoxOption(resultDto.value.countOutcome, viewCount);
@@ -120,7 +123,7 @@ async function onSearch() {
 /* 検索 */
 function convertInputDateText(inputDate: string): Date {
     const cell: string[] = inputDate.split("-");
-    return new Date(parseInt(cell[0]), parseInt(cell[1])-1, parseInt(cell[2]));
+    return new Date(parseInt(cell[0]), parseInt(cell[1]) - 1, parseInt(cell[2]));
 }
 
 /* レポート追加(収入) */
@@ -138,7 +141,7 @@ function onAddOutcome(lineDto: IncomeAndOutcomeSearchLineDto) {
 }
 
 function onMoveOffset() {
-    
+
     // 両方のリストが空の場合はoffsetの変更による再検索を許さない
     if (resultDto.value.listIncome.length > 0 || resultDto.value.listOutcome.length > 0) {
         onSearch();

@@ -3,9 +3,7 @@ import { Ref, ref, onBeforeMount } from "vue";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
 import ProposeCsvReadTemplateEntity from "../../../entity/proposeCsvReadTemplateEntity";
-import axios from "axios";
 import TemplateFrameworkCapsuleDto from "../../../dto/template/templateFrameworkCapsuleDto";
-import showErrorMessage from "../../../dto/common_check/showErrorMessage";
 import { getFinancialKbnName } from "../../../dto/financial/financialOrgConstants";
 
 //props,emit
@@ -99,13 +97,20 @@ async function onSearch() {
 
     //申請中の読み取りCSV仕様を一覧する
     const url = "http://localhost:8080/propose-read-csv-template/search-all";
+    const method = "POST";
+    const body = JSON.stringify(templateFrameworkCapsuleDto);
+    const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
 
-    await axios.post(url, templateFrameworkCapsuleDto)
-        .then((response) => {
-            list.value = response.data;
+    fetch(url, { method, headers, body })
+        .then(async (response) => {
+
+            list.value = await response.json();
+
         })
-        .catch((error) => showErrorMessage(error.status));
-
+        .catch((error) => { alert(error); });
 }
 
 /**
