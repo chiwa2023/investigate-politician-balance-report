@@ -1,32 +1,38 @@
 <script setup lang="ts">
-import axios from "axios";
 
-async function onExecute(){
+async function onExecute() {
 
   alert("実行");
 
   const url = "http://localhost:8080/trial-api-rest";
-    await axios.get(url)
-        .then((response) => {
-            //データを取得
-            if (200 === response.status) {
-              alert("正常");
-            }
-            //正常にデータが取得できなかった
-            if (204 === response.status) {
-                alert("異常かも");
-            }
+  const method = "GET";
+  //const body = JSON.stringify(conditonDto.value);
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  };
 
-        })
-        .catch((error) => alert(error));
+  fetch(url, { method, headers })
+    .then(async (response) => {
 
+      //データを取得
+      if (200 === response.status) {
+        alert("正常");
+      }
+      //正常にデータが取得できなかった
+      if (204 === response.status) {
+        alert("異常かも");
+      }
+
+    })
+    .catch((error) => { alert(error); });
 }
 </script>
 
 <template>
 
-<button @click="onExecute">テストBack起動</button>
-<!--
+  <button @click="onExecute">テストBack起動</button>
+  <!--
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -47,9 +53,11 @@ async function onExecute(){
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
