@@ -1,12 +1,8 @@
 ﻿import  AllBookDto  from "../../../../dto/balancesheet/allBookDto";
 import  AllSheet0701CoverAndOrganizationDetailsDto  from "../../../../dto/balancesheet/sheet01/allSheet0701CoverAndOrganizationDetailsDto";
 import  Sheet070100CoverAndOrganizationDetailsDto  from "../../../../dto/balancesheet/sheet01/sheet070100CoverAndOrganizationDetailsDto";
-//import axios from 'axios';
 
 export default async function getMockAllBookDto():Promise<AllBookDto>{
-    //const allBookDto:AllBookDto = await axios.get('http://localhost:8080/convert-balancesheet-xml')
-    //.then((response) => {return response.data})
-    //.catch((error) => {alert(error)});;
 
     const allBookDto:AllBookDto = new AllBookDto();
     const sheetDto:Sheet070100CoverAndOrganizationDetailsDto = new Sheet070100CoverAndOrganizationDetailsDto();
