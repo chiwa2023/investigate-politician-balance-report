@@ -56,6 +56,15 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
         // 先にシステム用検索語を設定
         searchConditionDto
                 .setSearchWords(createSerachWordsBooleanModeLogic.practice(searchConditionDto.getUserKeyWords()));
+        
+        // pagingさせないためにoffsetを-1にしていた場合は検索できるよう初期値0に
+        final int noOffset = -1;
+        if(noOffset == searchConditionDto.getOffsetIncome()) {
+            searchConditionDto.setOffsetIncome(0);
+        }
+        if(noOffset == searchConditionDto.getOffsetOutcome()) {
+            searchConditionDto.setOffsetOutcome(0);
+        }
 
         Map<Integer, IncomeAndOutcomeNaturalSearchConditionCapsuleDto> map = createSearchCondeitionPeriodMapLogic
                 .practice(searchConditionDto);

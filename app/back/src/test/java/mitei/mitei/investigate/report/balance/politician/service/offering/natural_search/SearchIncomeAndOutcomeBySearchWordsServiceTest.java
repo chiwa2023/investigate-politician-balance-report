@@ -1,6 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.service.offering.natural_search;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchConditionCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeSearchLineDto;
@@ -34,7 +36,9 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
     private SearchIncomeAndOutcomeBySearchWordsService searchIncomeAndOutcomeBySearchWordsService;
 
     @Test
-    // @Sql({"truncate_income_outcome_2022.sql","offering_balancesheet_income_horie_2022.sql","offering_balancesheet_outcome_horie_2022.sql","offering_balancesheet_income_joshi_2022.sql","offering_balancesheet_outcome_joshi_2022.sql"})
+    @Transactional
+    //@Sql({"offering_balancesheet_income_horie_2022.sql","offering_balancesheet_outcome_horie_2022.sql","offering_balancesheet_income_joshi_2022.sql","offering_balancesheet_outcome_joshi_2022.sql"})
+    //@Sql({"truncate_income_outcome_2022.sql"})
     void testPractice() { // NOPMD
 
         IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
@@ -121,6 +125,25 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
         assertThat(dtoOutcome4.getKingakuOutcomeText()).isEqualTo("300,000");
         assertThat(dtoOutcome4.getKingakuShuukei()).isEqualTo(-300_000L);
 
+        
+        IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto01 = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
+        searchConditionDto01.setUserKeyWords("あああああああ");
+        searchConditionDto01.setIsSearchIncome(true);
+        searchConditionDto01.setIsSearchOutcome(true);
+        searchConditionDto01.setOffsetIncome(0);
+        searchConditionDto01.setOffsetOutcome(0);
+        searchConditionDto01.setStartDate(LocalDate.of(2022, 01, 01));
+        searchConditionDto01.setEndDate(LocalDate.of(2022, 12, 31));
+
+        IncomeAndOutcomeNaturalSearchResultDto searchResultDto01 = searchIncomeAndOutcomeBySearchWordsService
+                .practice(searchConditionDto01);
+
+        // 検索0件
+        assertTrue(searchResultDto01.getIsOk(),"0件でも検索は正常");
+        assertThat(searchResultDto01.getCountIncome()).isEqualTo(0);
+        assertThat(searchResultDto01.getCountOutcome()).isEqualTo(0);
+        assertThat(searchResultDto01.getSuccessCount()).isEqualTo(0);
+        
     }
 
 }

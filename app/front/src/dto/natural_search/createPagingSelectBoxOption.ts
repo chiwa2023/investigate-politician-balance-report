@@ -4,14 +4,12 @@ import SelectOptionDto from "../selectOptionDto";
 export default function createPagingSelectBoxOption(countAll: number, limit: number): SelectOptionInterface[] {
     const list: SelectOptionInterface[] = [];
 
-    // 初期値
-    const page0: SelectOptionInterface = new SelectOptionDto();
-    page0.value = "-1";
-    page0.text = "未検索";
-    list.push(page0);
-
     // 一件も取得できない場合は未取得のみで処理終了
     if(countAll === 0){
+        const page1: SelectOptionInterface = new SelectOptionDto();
+        page1.value = "-1";
+        page1.text = "未検索またはヒットなし";
+        list.push(page1);
         return list;
     }
 
