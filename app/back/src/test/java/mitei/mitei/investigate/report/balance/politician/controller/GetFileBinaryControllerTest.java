@@ -46,7 +46,7 @@ class GetFileBinaryControllerTest {
         // 現時点ではここでの指定と関係ない特定のファイルしか呼ばない
         SaveStorageResultDto saveStorageResultDto = new SaveStorageResultDto();
         Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "/file/src.md");
-        saveStorageResultDto.setShoshouId(path.toString());
+        saveStorageResultDto.setFullPath(path.toString());
 
         assertThat(this.mockMvc // NOPMD
                 .perform(post("/get-file-binary").content(objectMapper.writeValueAsString(saveStorageResultDto)) // リクエストボディを指定

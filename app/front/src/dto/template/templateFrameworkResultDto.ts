@@ -1,4 +1,20 @@
-﻿export default class TemplateFrameworkResultDto {
+﻿export default interface TemplateFrameworkResultInterface {
+
+    /** 全処理終了フラグ */
+    isOk: boolean;
+
+    /** 実施成功件数 */
+    successCount: number;
+
+    /** 実施失敗件数 */
+    failureCount: number;
+
+    /** 表示メッセージ */
+    message: string;
+
+}
+
+export default class TemplateFrameworkResultDto implements TemplateFrameworkResultInterface {
 
     /** 全処理終了フラグ */
     isOk: boolean;

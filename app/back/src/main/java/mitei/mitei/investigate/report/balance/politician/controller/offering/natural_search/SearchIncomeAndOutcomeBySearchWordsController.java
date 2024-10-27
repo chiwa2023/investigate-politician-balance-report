@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.contoroller.offering.natural_search;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.natural_search;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.PessimisticLockingFailureException;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.apache.tomcat.websocket.AuthenticationException;
 
-import mitei.mitei.investigate.report.balance.politician.contoroller.AbstractTemplateCheckController;
+import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchConditionCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchResultDto;
 import mitei.mitei.investigate.report.balance.politician.service.offering.natural_search.SearchIncomeAndOutcomeBySearchWordsService;

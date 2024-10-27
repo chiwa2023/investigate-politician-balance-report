@@ -12,7 +12,7 @@ export default interface Sheet070100CoverAndOrganizationDetailsInterface {
     dateKaisai: string;
 
     /** 政治団体名称 */
-    dantaiName: string;
+    dantaiName01: string;
 
     /** 政治団体名称かな */
     dantaiNameKana: string;
@@ -158,7 +158,7 @@ export default class Sheet070100CoverAndOrganizationDetailsDto implements Sheet0
     dateKaisai: string;
 
     /** 政治団体名称 */
-    dantaiName: string;
+    dantaiName01: string;
 
     /** 政治団体名称かな */
     dantaiNameKana: string;
@@ -306,10 +306,10 @@ export default class Sheet070100CoverAndOrganizationDetailsDto implements Sheet0
             this.dateKaisai = "";
         }
         /* 政治団体名称 */
-        if (sheet070100CoverAndOrganizationDetailsInterface?.dantaiName !== undefined) {
-            this.dantaiName = sheet070100CoverAndOrganizationDetailsInterface?.dantaiName;
+        if (sheet070100CoverAndOrganizationDetailsInterface?.dantaiName01 !== undefined) {
+            this.dantaiName01 = sheet070100CoverAndOrganizationDetailsInterface?.dantaiName01;
         } else {
-            this.dantaiName = "";
+            this.dantaiName01 = "";
         }
         /* 政治団体名称かな */
         if (sheet070100CoverAndOrganizationDetailsInterface?.dantaiNameKana !== undefined) {

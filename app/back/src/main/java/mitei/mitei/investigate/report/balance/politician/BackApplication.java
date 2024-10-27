@@ -14,7 +14,8 @@ public class BackApplication { // NOPMD
      *
      * @param args 引数
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args)throws Exception {
+        
         SpringApplication.run(BackApplication.class, args);
     }
 

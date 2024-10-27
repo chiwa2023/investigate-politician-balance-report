@@ -103,10 +103,16 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
             final BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto, final AllBookDto allBookDto,
             final CheckPrivilegeDto checkPrivilegeDto) {
 
-        boolean isAcceptUpdate = true;
-
+        
+        System.out.println("---------- servuce");
+        
         List<Long> listOldCode = checkAllreadyRegistDataPoliticalOrganizationLogic.practice(documentPropertyDto);
 
+        System.out.println("旧コード"+listOldCode);
+
+        //　TODO 上書き設定を有効にするかどうかは修正する
+        
+        boolean isAcceptUpdate = true;
         // すでに登録があり、かつ更新を許さない場合
         if (!isAcceptUpdate && !listOldCode.isEmpty()) {
             RegistPoliticalOrgBalancesheetReportResultDto resultDto = new RegistPoliticalOrgBalancesheetReportResultDto();
@@ -116,10 +122,14 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
         }
 
         /* ここから登録 */
+        System.out.println("読みとりデータ(アプリ名)"+allBookDto.getAllBookHeaderDto().getAppName());
+        System.out.println("報告年"+allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto().getSheet070100CoverAndOrganizationDetailsDto().getHoukokuNen());
 
         // 政治資金収支報告書表紙と宣誓書(その1と20)
         Long documentCode = insertPoliticalOrganizationSheet0701And0720Logic.practice(documentPropertyDto, allBookDto,
                 checkPrivilegeDto);
+
+        System.out.println("文書コード"+documentCode);
 
         // 政治資金収支報告集計表
         int sizeSummary = insertPoliticalOrganizationSummaryLogic.practice(documentCode, documentPropertyDto,

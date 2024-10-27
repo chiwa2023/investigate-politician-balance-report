@@ -1,10 +1,13 @@
-package mitei.mitei.investigate.report.balance.politician.contoroller.offering.natural_search;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org.regist;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.time.LocalDate;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,58 +15,54 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.http.MediaType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchConditionCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
 /**
- * SearchIncomeAndOutcomeBySearchWordsController単体テスト
+ * ReadXmlBalancesheetByFileController単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchIncomeAndOutcomeBySearchWordsControllerTest {
-    // CHECKSTYLE:OFF
+class ReadXmlBalancesheetByFileControllerTest {
 
-    /** MockMvc */
+    /** mockMvc */
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void testSearchWords() throws Exception {
+    void testPractice() throws Exception {
 
-        IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
+        ReadXmlByFileCapsuleDto readXmlByFileCapsuleDto = new ReadXmlByFileCapsuleDto();
 
-        searchConditionDto.setUserKeyWords("あきる野市草花");
-        searchConditionDto.setIsSearchIncome(true);
-        searchConditionDto.setIsSearchOutcome(true);
-        searchConditionDto.setOffsetIncome(0);
-        searchConditionDto.setOffsetOutcome(0);
-        searchConditionDto.setStartDate(LocalDate.of(2022, 01, 01));
-        searchConditionDto.setEndDate(LocalDate.of(2022, 12, 31));
+        CreateCommonCheckDtoTestOnlyUtil.practice(readXmlByFileCapsuleDto);
 
-        // 共通チェックセット完了
-        CreateCommonCheckDtoTestOnlyUtil.practice(searchConditionDto);
+        Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(),
+                "sample/balancesheet/2022_ホリエモン新党_SYUUSI.xml");
 
-        String path = "http://localhost:9080/offering-data/search-income-outocome";
+        String fileContent = Files.readString(path, Charset.forName("cp932"));
+
+        readXmlByFileCapsuleDto.setFileName(path.getFileName().toString());
+        readXmlByFileCapsuleDto.setFileContent(fileContent);
 
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
 
-        // サーバステータスがOK(200)
         assertThat(mockMvc // NOPMD LawOfDemeter
-                .perform(post(path).content(objectMapper.writeValueAsString(searchConditionDto)) // リクエストボディを指定
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)) // Content Typeを指定
+                .perform(
+                        post("/xml-balancesheet/read").content(objectMapper.writeValueAsString(readXmlByFileCapsuleDto)) // リクエストボディを指定
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)) // Content Typeを指定
                 .andExpect(status().isOk()).andReturn().getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-
     }
 
 }

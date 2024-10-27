@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,6 +16,7 @@ class DateConvertUtilTest {
     // CHECKSTYLE:OFF MagicNumber
     
     @Test
+    @Tag("TableTruncate")
     void testPracticeWarekiToLocalDate()throws Exception {
         
         DateConvertUtil dateConvertUtil = new DateConvertUtil();

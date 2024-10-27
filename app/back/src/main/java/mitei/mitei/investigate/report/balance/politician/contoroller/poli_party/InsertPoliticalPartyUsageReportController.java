@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -40,7 +40,7 @@ public class InsertPoliticalPartyUsageReportController {
     private DateConvertUtil dateConvertUtil;
     
     @Transactional
-    @GetMapping("/insert-political-party-usage-report") // SUPPRESS CHECKSTYLE
+    @PostMapping("/insert-political-party-usage-report") // SUPPRESS CHECKSTYLE
     public ResponseEntity<String> practice()throws Exception {
         // TODO 後でPostMappingに直す(気づくと思うけど)
 
@@ -83,8 +83,6 @@ public class InsertPoliticalPartyUsageReportController {
         documentPropertyDto.setRelationPersonIdDelegate(10_255L);//　自ソフトウェア呼び出し
         documentPropertyDto.setRelationPersonCodeDelegate(10_250);//　自ソフトウェア呼び出し
         documentPropertyDto.setRelationPersonNameDelegate("大津綾香");//　自ソフトウェア呼び出し
-
-
         
         // 登録作業
         RegistPoliticalPartyUsageReportResultDto resultDto = insertPartyUsageReportService
