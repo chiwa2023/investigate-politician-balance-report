@@ -77,6 +77,7 @@ const searchWords: Ref<string> = ref("");
  * 検索条件に基づき検索を行う
  */
 async function onSearch() {
+    alert("検索");
     //セッションストレージ取得
     const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
     searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
@@ -86,9 +87,26 @@ async function onSearch() {
 
     //独自変数設定
     searchPoliticalOrganizationLeastCapsuleDto.searchWords = searchWords.value;
+    // 履歴も含めて検索する TODO 呼び出し元に応じるように変更する
+    searchPoliticalOrganizationLeastCapsuleDto.isHisory = true;
 
-    //Mockリストの取得
-    list.value = mockGetPoliticalOrgLeast();
+    //　政治団体最小限情報の検索をする
+    const url = "http://localhost:9080/search-political-orgnaization";
+    const method = "POST";
+    const body = JSON.stringify(searchPoliticalOrganizationLeastCapsuleDto);
+    const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+
+    fetch(url, { method, headers, body })
+        .then(async (response) => {
+
+            //alert(JSON.stringify(await response.json()));
+
+            list.value = await response.json();
+        })
+        .catch((error) => { alert(error); });
 }
 </script>
 <template>

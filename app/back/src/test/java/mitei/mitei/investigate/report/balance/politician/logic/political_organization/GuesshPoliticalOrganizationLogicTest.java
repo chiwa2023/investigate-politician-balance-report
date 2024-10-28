@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.logic.political_organi
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -31,6 +32,7 @@ class GuesshPoliticalOrganizationLogicTest {
     private GuesshPoliticalOrganizationLogic guesshPoliticalOrganizationLogic;
 
     @Test
+    @Tag("TableTruncate")
     @Sql("political_organization.sql")
     void testPractice() { //NOPMD
 
@@ -40,7 +42,7 @@ class GuesshPoliticalOrganizationLogicTest {
         coverDto00.setDantaiName01("ちゃらんぽらん政治団体1");
         // 代表者名
         coverDto00.setDaihyoushaNameFirst("太郎"); // NOPMD
-        coverDto00.setDaihyoushaNameLast("代表者");
+        coverDto00.setDaihyoushaNameLast("代表者"); // NOPMD
         // 報告年
         coverDto00.setHoukokuNen(2022);
         // 団体区分
@@ -144,7 +146,7 @@ class GuesshPoliticalOrganizationLogicTest {
         // ※2022年の報告書を出そうとしたとき、2023年3月提出の報告書で、1月に団体名(代表者名)を変更した場合、
         // 新しい団体名で報告書を出す場合、本当は推測を出してはいけない
         // 現状2022年末の基準日に旧団体名であったので、旧団体名で出しているはずだ、という推定の元、実装を行っている。したがって
-        // TODO 運用に対応して変更する可能性がある
+        // TODO 運用に対応して実装を変更する可能性がある
 
     }
 

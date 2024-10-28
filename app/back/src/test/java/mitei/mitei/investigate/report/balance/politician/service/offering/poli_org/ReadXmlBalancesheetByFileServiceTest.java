@@ -64,8 +64,8 @@ class ReadXmlBalancesheetByFileServiceTest {
         assertThat(sheet0701.getDaihyoushaNameFirst()).isEqualTo("孝志");
         assertThat(sheet0701.getDaihyoushaNameLast()).isEqualTo("立花");
 
-        assertThat(resultDto.getDocumentPropertyDto().getHoukokuNen()).isEqualTo(2022);
-        assertThat(resultDto.getDocumentPropertyDto().getDantaiName()).isEqualTo("ホリエモン新党");
+        assertThat(resultDto.getDocumentPropertyDto().getHoukokuNen()).isEqualTo(2022); // NOPMD
+        assertThat(resultDto.getDocumentPropertyDto().getDantaiName()).isEqualTo("ホリエモン新党"); // NOPMD
 
     }
 

@@ -1,6 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -82,9 +83,11 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet072000OathDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet080000DifficultCollectReceiptDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet080200WithdrawalItemsByTransferDto;
+import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
+import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0701And0720Surface2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0718Estate2025Entity;
@@ -93,6 +96,8 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetIncome2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetWithdrawal0802Transfer2025Entity;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ReadAllBookByXmlFileLogic;
+import mitei.mitei.investigate.report.balance.politician.repository.PoliticalOrganizationRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0701And0720Surface2025Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0718Estate2025Repository;
@@ -161,6 +166,14 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
     @Autowired
     private OfferingBalancesheetWithdrawal0802Transfer2025Repository offeringBalancesheetWithdrawal0802Transfer2025Repository;
 
+    /** 政治資金収支報告書XML読み取りLogic */
+    @Autowired
+    private ReadAllBookByXmlFileLogic readAllBookByXmlFileLogic;
+
+    /** 政治団体Repository */
+    @Autowired
+    private PoliticalOrganizationRepository politicalOrganizationRepository;
+
     @Test
     @Transactional
     void testPractice() { // NOPMD
@@ -186,11 +199,11 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
 
         // 政治資金収支報告書
         AllBookDto allBookDto = new AllBookDto();
-        
+
         /* 表紙と宣誓書 */
         CreateTestDataPoliticalOrganizationSheet0701And0720Logic createTestDataPoliticalOrganizationSheet0701And0720Logic = new CreateTestDataPoliticalOrganizationSheet0701And0720Logic();
-        createTestDataPoliticalOrganizationSheet0701And0720Logic.practice(houkokuNen,allBookDto);
-        
+        createTestDataPoliticalOrganizationSheet0701And0720Logic.practice(houkokuNen, allBookDto);
+
         // ヘッダ
         AllBookHeaderDto allBookHeaderDto = allBookDto.getAllBookHeaderDto();
 
@@ -198,198 +211,237 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         AllBookUmuInputDataDto allBookUmuInputDataDto = allBookDto.getAllBookUmuInputDataDto();
 
         // 様式7その1
-        Sheet070100CoverAndOrganizationDetailsDto sheet0 = allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto().getSheet070100CoverAndOrganizationDetailsDto();
+        Sheet070100CoverAndOrganizationDetailsDto sheet0 = allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto()
+                .getSheet070100CoverAndOrganizationDetailsDto();
 
         // 様式7その20
         Sheet072000OathDto sheet20 = allBookDto.getAllSheet0720OathDto().getSheet072000OathDto();
-        
-        
+
         /* 集計表 */
         CreateTestDataPoliticalOrganizationSummaryLogic createTestDataPoliticalOrganizationSummaryLogic = new CreateTestDataPoliticalOrganizationSummaryLogic();
         createTestDataPoliticalOrganizationSummaryLogic.practice(allBookDto);
 
         // 一種類のみ
-        Sheet070200SummaryTableIncomeExpenditureDto sheet02 = allBookDto.getAllSheet0702SummaryTableIncomeDto().getSheet070200SummaryTableIncomeExpenditureDto();
+        Sheet070200SummaryTableIncomeExpenditureDto sheet02 = allBookDto.getAllSheet0702SummaryTableIncomeDto()
+                .getSheet070200SummaryTableIncomeExpenditureDto();
         // 一種類のみ
-        Sheet071300ListOfExpenditureItemsDto sheet13 = allBookDto.getAllSheet0713ListOfExpenditureItemsDto().getSheet071300ListOfExpenditureItemsDto();
+        Sheet071300ListOfExpenditureItemsDto sheet13 = allBookDto.getAllSheet0713ListOfExpenditureItemsDto()
+                .getSheet071300ListOfExpenditureItemsDto();
         // 一種類のみ
-        Sheet071700SummaryTableOfAssetsDto sheet17 = allBookDto.getAllSheet0717SummaryTableOfAssetsDto().getSheet071700SummaryTableOfAssetsDto();
+        Sheet071700SummaryTableOfAssetsDto sheet17 = allBookDto.getAllSheet0717SummaryTableOfAssetsDto()
+                .getSheet071700SummaryTableOfAssetsDto();
 
-        
         /* 収入 */
-        CreateTestDataPoliticalOrganizationIncomeAllLogic createTestDataPoliticalOrganizationIncomeAllLogic =new CreateTestDataPoliticalOrganizationIncomeAllLogic();
+        CreateTestDataPoliticalOrganizationIncomeAllLogic createTestDataPoliticalOrganizationIncomeAllLogic = new CreateTestDataPoliticalOrganizationIncomeAllLogic();
         createTestDataPoliticalOrganizationIncomeAllLogic.practice(allBookDto);
-        
 
         /* その3 */
-        Sheet070300JournalAndOtherDto sheet03 = allBookDto.getAllSheet0703JournalAndOtherDto().getSheet070300JournalAndOtherDto();
+        Sheet070300JournalAndOtherDto sheet03 = allBookDto.getAllSheet0703JournalAndOtherDto()
+                .getSheet070300JournalAndOtherDto();
         Row070300JournalAndOtherDto row03 = sheet03.getList().get(0);
 
         /* その4 */
-        Sheet070400BorrowedMoneyDto sheet04 = allBookDto.getAllSheet0704BorrowedMoneyDto().getSheet070400BorrowedMoneyDto();
+        Sheet070400BorrowedMoneyDto sheet04 = allBookDto.getAllSheet0704BorrowedMoneyDto()
+                .getSheet070400BorrowedMoneyDto();
         Row070400BorrowedMoneyDto row04 = sheet04.getList().get(0);
 
         /* その5 */
-        Sheet070500IncomeRelatedToGrantsDto sheet05 = allBookDto.getAllSheet0705IncomeRelatedToGrantsDto().getSheet070500IncomeRelatedToGrantsDto();
+        Sheet070500IncomeRelatedToGrantsDto sheet05 = allBookDto.getAllSheet0705IncomeRelatedToGrantsDto()
+                .getSheet070500IncomeRelatedToGrantsDto();
         Row070500IncomeRelatedToGrantsDto row05 = sheet05.getList().get(0);
 
         /* その6 */
         Sheet070600OtherIncomeDto sheet06 = allBookDto.getAllSheet0706OtherIncomeDto().getSheet070600OtherIncomeDto();
         Row070600OtherIncomeDto row06 = sheet06.getList().get(0);
-        
+
         /* その7 */
-        Sheet070701DonatePersonDto sheet071 = allBookDto.getAllSheet0707DonateDto().getAllSheetKbn070701Dto().getSheet070701DonatePersonDto();
+        Sheet070701DonatePersonDto sheet071 = allBookDto.getAllSheet0707DonateDto().getAllSheetKbn070701Dto()
+                .getSheet070701DonatePersonDto();
         Row070711DonateDto row071 = sheet071.getList().get(0);
         // その2
-        Sheet070702DonateGroupDto sheet072 = allBookDto.getAllSheet0707DonateDto().getAllSheetKbn070702Dto().getSheet070702DonateGroupDto();
+        Sheet070702DonateGroupDto sheet072 = allBookDto.getAllSheet0707DonateDto().getAllSheetKbn070702Dto()
+                .getSheet070702DonateGroupDto();
         Row070711DonateDto row072 = sheet072.getList().get(0);
         // その3
-        Sheet070703DonatePoliticOrgDto sheet073 = allBookDto.getAllSheet0707DonateDto().getAllSheetKbn070703Dto().getSheet070703DonatePoliticOrgDto();
+        Sheet070703DonatePoliticOrgDto sheet073 = allBookDto.getAllSheet0707DonateDto().getAllSheetKbn070703Dto()
+                .getSheet070703DonatePoliticOrgDto();
         Row070711DonateDto row073 = sheet073.getList().get(0);
 
         /* その8 */
-        Sheet070801MediationPersonDto sheet081 = allBookDto.getAllSheet0708MediationDto().getAllSheetKbn070801Dto().getSheet070801MediationPersonDto();
+        Sheet070801MediationPersonDto sheet081 = allBookDto.getAllSheet0708MediationDto().getAllSheetKbn070801Dto()
+                .getSheet070801MediationPersonDto();
         Row070812MediationDto row081 = sheet081.getList().get(0);
         // その2
-        Sheet070802MediationGroupDto sheet082 = allBookDto.getAllSheet0708MediationDto().getAllSheetKbn070802Dto().getSheet070802MediationGroupDto();
+        Sheet070802MediationGroupDto sheet082 = allBookDto.getAllSheet0708MediationDto().getAllSheetKbn070802Dto()
+                .getSheet070802MediationGroupDto();
         Row070812MediationDto row082 = sheet082.getList().get(0);
         // その3
-        Sheet070803MediationPoliticOrgDto sheet083 = allBookDto.getAllSheet0708MediationDto().getAllSheetKbn070803Dto().getSheet070803MediationPoliticOrgDto();
+        Sheet070803MediationPoliticOrgDto sheet083 = allBookDto.getAllSheet0708MediationDto().getAllSheetKbn070803Dto()
+                .getSheet070803MediationPoliticOrgDto();
         Row070812MediationDto row083 = sheet083.getList().get(0);
 
         /* その9 */
-        Sheet070900AnonymousInPoliticalPartyDto sheet09 = allBookDto.getAllSheet0709AnonymousInPoliticalPartyDto().getSheet070900AnonymousInPoliticalPartyDto();
+        Sheet070900AnonymousInPoliticalPartyDto sheet09 = allBookDto.getAllSheet0709AnonymousInPoliticalPartyDto()
+                .getSheet070900AnonymousInPoliticalPartyDto();
         Row070900AnonymousInPoliticalPartyDto row09 = sheet09.getList().get(0);
-        
+
         /* その10 */
-        Sheet071000SpecificPartyDto sheet10 = allBookDto.getAllSheet0710SpecificPartyDto().getSheet071000SpecificPartyDto();
+        Sheet071000SpecificPartyDto sheet10 = allBookDto.getAllSheet0710SpecificPartyDto()
+                .getSheet071000SpecificPartyDto();
         Row071000SpecificPartyDto row10 = sheet10.getList().get(0);
 
         /* その11 */
-        Sheet071101ConsiderationPartyPerspnalDto sheet111 = allBookDto.getAllSheet0711ConsiderationPartyDto().getAllSheetKbn071101Dto().getList().get(0);
+        Sheet071101ConsiderationPartyPerspnalDto sheet111 = allBookDto.getAllSheet0711ConsiderationPartyDto()
+                .getAllSheetKbn071101Dto().getList().get(0);
         Row070711DonateDto row111 = sheet111.getList().get(0);
         // その2
-        Sheet071102ConsiderationPartyGroupDto sheet112 = allBookDto.getAllSheet0711ConsiderationPartyDto().getAllSheetKbn071102Dto().getList().get(0);
+        Sheet071102ConsiderationPartyGroupDto sheet112 = allBookDto.getAllSheet0711ConsiderationPartyDto()
+                .getAllSheetKbn071102Dto().getList().get(0);
         Row070711DonateDto row112 = sheet112.getList().get(0);
         // その3
-        Sheet071103ConsiderationPartyPoliticOrgDto sheet113 = allBookDto.getAllSheet0711ConsiderationPartyDto().getAllSheetKbn071103Dto().getList().get(0);
+        Sheet071103ConsiderationPartyPoliticOrgDto sheet113 = allBookDto.getAllSheet0711ConsiderationPartyDto()
+                .getAllSheetKbn071103Dto().getList().get(0);
         Row070711DonateDto row113 = sheet113.getList().get(0);
 
         /* その12 */
         // その1
-        Sheet071201ConsiderationMediationPartyPersonalDto sheet121 = allBookDto.getAllSheet0712PartyMediationDto().getAllSheetKbn071201Dto().getList().get(0);
+        Sheet071201ConsiderationMediationPartyPersonalDto sheet121 = allBookDto.getAllSheet0712PartyMediationDto()
+                .getAllSheetKbn071201Dto().getList().get(0);
         Row070812MediationDto row121 = sheet121.getList().get(0);
         // その2
-        Sheet071202ConsiderationMediationPartyGroupDto sheet122 = allBookDto.getAllSheet0712PartyMediationDto().getAllSheetKbn071202Dto().getList().get(0);
+        Sheet071202ConsiderationMediationPartyGroupDto sheet122 = allBookDto.getAllSheet0712PartyMediationDto()
+                .getAllSheetKbn071202Dto().getList().get(0);
         Row070812MediationDto row122 = sheet122.getList().get(0);
         // その3
-        Sheet071203ConsiderationMediationPartyPoliticOrgDto sheet123 = allBookDto.getAllSheet0712PartyMediationDto().getAllSheetKbn071203Dto().getList().get(0);
+        Sheet071203ConsiderationMediationPartyPoliticOrgDto sheet123 = allBookDto.getAllSheet0712PartyMediationDto()
+                .getAllSheetKbn071203Dto().getList().get(0);
         Row070812MediationDto row123 = sheet123.getList().get(0);
-        
-        
+
         /* 支出 */
         CreatetestDataPoliticalOrganizationOutcomeAllLogic createtestDataPoliticalOrganizationOutcomeAllLogic = new CreatetestDataPoliticalOrganizationOutcomeAllLogic();
         createtestDataPoliticalOrganizationOutcomeAllLogic.practice(allBookDto);
 
         // その1
-        Sheet071401UtilityCostsDto sheet141 = allBookDto.getAllSheet0714ConstsDto().getAllSheetKbn071401Dto().getSheet071401UtilityCostsDto();
+        Sheet071401UtilityCostsDto sheet141 = allBookDto.getAllSheet0714ConstsDto().getAllSheetKbn071401Dto()
+                .getSheet071401UtilityCostsDto();
         Row071415OrdinaryExpensesDto row141 = sheet141.getList().get(0);
 
         // その２
-        Sheet071402EquipmentCostsDto sheet142 = allBookDto.getAllSheet0714ConstsDto().getAllSheetKbn071402Dto().getSheet071402EquipmentCostsDto();
+        Sheet071402EquipmentCostsDto sheet142 = allBookDto.getAllSheet0714ConstsDto().getAllSheetKbn071402Dto()
+                .getSheet071402EquipmentCostsDto();
         Row071415OrdinaryExpensesDto row142 = sheet142.getList().get(0);
 
-        Sheet071403OfficeExpensesDto sheet143 = allBookDto.getAllSheet0714ConstsDto().getAllSheetKbn071403Dto().getSheet071403OfficeExpensesDto();
+        Sheet071403OfficeExpensesDto sheet143 = allBookDto.getAllSheet0714ConstsDto().getAllSheetKbn071403Dto()
+                .getSheet071403OfficeExpensesDto();
         Row071415OrdinaryExpensesDto row143 = sheet143.getList().get(0);
 
-        /* その1         */
-        Sheet071501OrganizationalActivityExpensesDto sheet151 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071501Dto().getList().get(0);
+        /* その1 */
+        Sheet071501OrganizationalActivityExpensesDto sheet151 = allBookDto.getAllSheet0715ExpenseDto()
+                .getAllSheetKbn071501Dto().getList().get(0);
         Row071415OrdinaryExpensesDto row151 = sheet151.getList().get(0);
 
-        /* その2         */
-        Sheet071502ElectionRelatedExpensesDto sheet152 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071502Dto().getList().get(0);
+        /* その2 */
+        Sheet071502ElectionRelatedExpensesDto sheet152 = allBookDto.getAllSheet0715ExpenseDto()
+                .getAllSheetKbn071502Dto().getList().get(0);
         Row071415OrdinaryExpensesDto row152 = sheet152.getList().get(0);
 
-        /* その3         */
-        Sheet071503MagazinePublicationExpensesDto sheet153 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071503Dto().getList().get(0);
+        /* その3 */
+        Sheet071503MagazinePublicationExpensesDto sheet153 = allBookDto.getAllSheet0715ExpenseDto()
+                .getAllSheetKbn071503Dto().getList().get(0);
         Row071415OrdinaryExpensesDto row153 = sheet153.getList().get(0);
 
-        /* その4         */
-        Sheet071504AdvertisingExpensesDto sheet154 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071504Dto().getList().get(0);
+        /* その4 */
+        Sheet071504AdvertisingExpensesDto sheet154 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071504Dto()
+                .getList().get(0);
         Row071415OrdinaryExpensesDto row154 = sheet154.getList().get(0);
 
-        /* その5         */
-        Sheet071505PartyHostingFeeDto sheet155 =allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071505Dto().getList().get(0);
+        /* その5 */
+        Sheet071505PartyHostingFeeDto sheet155 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071505Dto()
+                .getList().get(0);
         Row071415OrdinaryExpensesDto row155 = sheet155.getList().get(0);
 
-        /* その6         */
-        Sheet071506OtherBusinessExpensesDto sheet156 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071506Dto().getList().get(0);
+        /* その6 */
+        Sheet071506OtherBusinessExpensesDto sheet156 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071506Dto()
+                .getList().get(0);
         Row071415OrdinaryExpensesDto row156 = sheet156.getList().get(0);
-        /* その7         */
-        Sheet071507ResearchExpensesDto sheet157 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071507Dto().getList().get(0);
+        /* その7 */
+        Sheet071507ResearchExpensesDto sheet157 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071507Dto()
+                .getList().get(0);
         Row071415OrdinaryExpensesDto row157 = sheet157.getList().get(0);
 
-        /* その8         */
-        Sheet071508DonationsGrantsDto sheet158 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071508Dto().getList().get(0);
+        /* その8 */
+        Sheet071508DonationsGrantsDto sheet158 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071508Dto()
+                .getList().get(0);
         Row071415OrdinaryExpensesDto row158 = sheet158.getList().get(0);
 
-        /* その9         */
-        Sheet071509OtherExpensesDto sheet159 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071509Dto().getList().get(0);
+        /* その9 */
+        Sheet071509OtherExpensesDto sheet159 = allBookDto.getAllSheet0715ExpenseDto().getAllSheetKbn071509Dto()
+                .getList().get(0);
         Row071415OrdinaryExpensesDto row159 = sheet159.getList().get(0);
 
-        
         /* 資産の詳細様式7その18 */
         CreateTestDataPoliticalOrganizationEstateAllLogic createTestDataPoliticalOrganizationEstateAllLogic = new CreateTestDataPoliticalOrganizationEstateAllLogic();
         createTestDataPoliticalOrganizationEstateAllLogic.practice(allBookDto);
-        
-        /* その1         */
-        Sheet071801LandAmongAssetsDto sheet181 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071801Dto().getSheet071801LandAmongAssetsDto();
+
+        /* その1 */
+        Sheet071801LandAmongAssetsDto sheet181 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071801Dto()
+                .getSheet071801LandAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row181 = sheet181.getList().get(0);
 
-        /* その2         */
-        Sheet071802BuildingsAmongAssetsDto sheet182 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071802Dto().getSheet071802BuildingsAmongAssetsDto();
+        /* その2 */
+        Sheet071802BuildingsAmongAssetsDto sheet182 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071802Dto()
+                .getSheet071802BuildingsAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row182 = sheet182.getList().get(0);
 
-        /* その3         */
-        Sheet071803SurfaceRightsAmongAssetsDto sheet183 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071803Dto().getSheet071803SurfaceRightsAmongAssetsDto();
+        /* その3 */
+        Sheet071803SurfaceRightsAmongAssetsDto sheet183 = allBookDto.getAllSheet0718AssetsDto()
+                .getAllSheetKbn071803Dto().getSheet071803SurfaceRightsAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row183 = sheet183.getList().get(0);
 
-        /* その4         */
-        Sheet071804MovablesAmongAssetsDto sheet184 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071804Dto().getSheet071804MovablesAmongAssetsDto();
+        /* その4 */
+        Sheet071804MovablesAmongAssetsDto sheet184 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071804Dto()
+                .getSheet071804MovablesAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row184 = sheet184.getList().get(0);
 
-        /* その5         */
-        Sheet071805SavingsAmmongAssetsDto sheet185 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071805Dto().getSheet071805SavingsAmmongAssetsDto();
+        /* その5 */
+        Sheet071805SavingsAmmongAssetsDto sheet185 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071805Dto()
+                .getSheet071805SavingsAmmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row185 = sheet185.getList().get(0);
 
-        /* その6         */
-        Sheet071806TrustAmongAssetsDto sheet186 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071806Dto().getSheet071806TrustAmongAssetsDto();
+        /* その6 */
+        Sheet071806TrustAmongAssetsDto sheet186 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071806Dto()
+                .getSheet071806TrustAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row186 = sheet186.getList().get(0);
 
-        /* その7         */
-        Sheet071807SecuritiesAmongAssetsDto sheet187 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071807Dto().getSheet071807SecuritiesAmongAssetsDto();
+        /* その7 */
+        Sheet071807SecuritiesAmongAssetsDto sheet187 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071807Dto()
+                .getSheet071807SecuritiesAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row187 = sheet187.getList().get(0);
 
-        /* その8         */
-        Sheet071808InvestmentAmongAssetsDto sheet188 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071808Dto().getSheet071808InvestmentAmongAssetsDto();
+        /* その8 */
+        Sheet071808InvestmentAmongAssetsDto sheet188 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071808Dto()
+                .getSheet071808InvestmentAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row188 = sheet188.getList().get(0);
 
-        /* その9         */
-        Sheet071809LoanAmongAssetsDto sheet189 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071809Dto().getSheet071809LoanAmongAssetsDto();
+        /* その9 */
+        Sheet071809LoanAmongAssetsDto sheet189 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071809Dto()
+                .getSheet071809LoanAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row189 = sheet189.getList().get(0);
 
-        /* その10         */
-        Sheet071810DepositAmongAssetsDto sheet1810 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071810Dto().getSheet071810DepositAmongAssetsDto();
+        /* その10 */
+        Sheet071810DepositAmongAssetsDto sheet1810 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071810Dto()
+                .getSheet071810DepositAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row1810 = sheet1810.getList().get(0);
 
-        /* その11         */
-        Sheet071811FacilityUsageRightsAmongAssetsDto sheet1811 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071811Dto().getSheet071811FacilityUsageRightsAmongAssetsDto();
+        /* その11 */
+        Sheet071811FacilityUsageRightsAmongAssetsDto sheet1811 = allBookDto.getAllSheet0718AssetsDto()
+                .getAllSheetKbn071811Dto().getSheet071811FacilityUsageRightsAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row1811 = sheet1811.getList().get(0);
 
-        /* その12         */
-        Sheet071812BorrowingsAmongAssetsDto sheet1812 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071812Dto().getSheet071812BorrowingsAmongAssetsDto();
+        /* その12 */
+        Sheet071812BorrowingsAmongAssetsDto sheet1812 = allBookDto.getAllSheet0718AssetsDto().getAllSheetKbn071812Dto()
+                .getSheet071812BorrowingsAmongAssetsDto();
         Row071800ClassificationOfAssetsByItemDto row1812 = sheet1812.getList().get(0);
-
 
         /* 不動産の詳細様式7その19 */
 
@@ -407,30 +459,21 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         sheet1815.setKbnRealEstitate(3);
         Row071900CurrentStatusOfRealEstateUseDto row1815 = sheet1815.getList().get(0);
 
-        
-        
-        
         /* 様式8 */
         CreateTestDataPoliticalOrganization08000Logic createTestDataPoliticalOrganization08000Logic = new CreateTestDataPoliticalOrganization08000Logic();
         createTestDataPoliticalOrganization08000Logic.practice(allBookDto);
 
-        Sheet080000DifficultCollectReceiptDto sheet08001 = allBookDto.getAllSheet0800DifficultCollectReceiptDto().getSheet080000DifficultCollectReceiptDto();
+        Sheet080000DifficultCollectReceiptDto sheet08001 = allBookDto.getAllSheet0800DifficultCollectReceiptDto()
+                .getSheet080000DifficultCollectReceiptDto();
         Row080000DifficultCollectReceiptDto row08001 = sheet08001.getList().get(0);
-        
 
         /* 様式8その2 */
         CreateTestDataPoliticalOrganization0802Logic createTestDataPoliticalOrganization0802Logic = new CreateTestDataPoliticalOrganization0802Logic();
         createTestDataPoliticalOrganization0802Logic.practice(allBookDto);
-        
-        Sheet080200WithdrawalItemsByTransferDto sheet08021 = allBookDto.getAllSheet0802WithdrawalItemsByTransferDto().getListSheet0802().get(0);
 
-        
-        
-        
-        
-        
-        
-        
+        Sheet080200WithdrawalItemsByTransferDto sheet08021 = allBookDto.getAllSheet0802WithdrawalItemsByTransferDto()
+                .getListSheet0802().get(0);
+
         /*
          * 
          * 登録作業
@@ -1596,4 +1639,36 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
 
     }
 
+    @Test
+    @Transactional
+    void testPracticeRegistOrganization() throws Exception { // NOPMD
+
+        // 政治団体基礎情報
+        BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto = new BalancesheetReportDocumentPoliticalPropertyDto();
+        documentPropertyDto.setPoliticalOrganizationId(0L); // 政治団体未定
+        documentPropertyDto.setIsAddOrganization(true); // 政治団体を読みとりデータで新規登録
+
+        String path = GetCurrentResourcePath.getBackTestResourcePath() + "/sample/balancesheet/2022_ホリエモン新党_SYUUSI.xml";
+
+        AllBookDto allBookDto = readAllBookByXmlFileLogic.practice(path, "Windows-31J");
+
+        documentPropertyDto.setHoukokuNen(allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto()
+                .getSheet070100CoverAndOrganizationDetailsDto().getHoukokuNen()); // 報告年は読みとりデータより
+        /*
+         * 
+         * 登録作業
+         * 
+         */
+        RegistPoliticalOrgBalancesheetReportResultDto resultDto = insertPoliticalOrgnaizationBalancesheetReportService
+                .practice(documentPropertyDto, allBookDto, CreateTestPrivilegeDtoUtil.pracitce());
+        assertTrue(resultDto.getIsOk() ,"登録完了");
+        
+        // 登録時に新たに政治団体が追加されていること
+        List<PoliticalOrganizationEntity> list = politicalOrganizationRepository.findAll();
+        
+        PoliticalOrganizationEntity entityNew = list.stream()
+                .filter(entity -> "ホリエモン新党".equals(entity.getPoliticalOrganizationName())).toList().get(0);
+        assertThat(entityNew.getDaihyoshaName()).isEqualTo("立花　孝志");
+
+    }
 }

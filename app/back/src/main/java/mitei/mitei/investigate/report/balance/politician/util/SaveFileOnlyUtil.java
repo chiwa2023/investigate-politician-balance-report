@@ -51,7 +51,7 @@ public class SaveFileOnlyUtil {
      * @return 生成した子パス
      * @throws IOException ディレクトリ・ファイル書き込みができなかった例外
      */
-    public String practice(final String unixTime, final CheckPrivilegeDto privilegeDto,
+    public String practice(final String unixTime, final CheckPrivilegeDto privilegeDto, // NOPMD
             final String fileName, final String fileContent, final String charset) throws IOException {
 
         // 冗長だが毎回ディレクトリの有無を確認する

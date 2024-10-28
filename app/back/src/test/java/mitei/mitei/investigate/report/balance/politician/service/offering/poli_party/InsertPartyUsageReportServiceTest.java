@@ -1,10 +1,12 @@
 package mitei.mitei.investigate.report.balance.politician.service.offering.poli_party; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -38,9 +40,11 @@ import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0801Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0803Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0807Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.SitoUmuFlgDto;
+import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
+import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0801And0807Report2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0802And0803Report2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0802Kbn02Report2025Entity;
@@ -49,6 +53,8 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0806Report2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0901Report2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0902Report2025Entity;
+import mitei.mitei.investigate.report.balance.politician.logic.party_usage.ReadAllShitoBookByXmlFileLogic;
+import mitei.mitei.investigate.report.balance.politician.repository.PoliticalOrganizationRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2025.OfferingPartyUsage0801And0807Report2025Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2025.OfferingPartyUsage0802And0803Report2025Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2025.OfferingPartyUsage0802Kbn02Report2025Repository;
@@ -81,6 +87,14 @@ class InsertPartyUsageReportServiceTest {
     /** テスト対象 */
     @Autowired
     private InsertPartyUsageReportService insertPartyUsageReportService;
+
+    /** 政党交付金使途報告書XML読み取りLogic */
+    @Autowired
+    private ReadAllShitoBookByXmlFileLogic readAllShitoBookByXmlFileLogic;
+
+    /** 政治団体Repository */
+    @Autowired
+    private PoliticalOrganizationRepository politicalOrganizationRepository;
 
     /** 初期値Long */
     private static final long INIT_LONG = 0L;
@@ -181,6 +195,7 @@ class InsertPartyUsageReportServiceTest {
     private OfferingPartyUsage0902Report2025Repository offeringPartyUsage0902Report2025Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void test() throws Exception { // NOPMD
 
@@ -1175,6 +1190,40 @@ class InsertPartyUsageReportServiceTest {
 
         assertThat(entity090202.getItemName()).isEqualTo(sheet090202.getItemName());
         assertThat(entity090202.getDigest()).isEqualTo(sheet090202.getDigest());
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    @Transactional
+    void testPracticeRegistOrganization() throws Exception { // NOPMD
+
+        // 政治団体基礎情報
+        PartyUsageDocumentPoliticalPropertyDto documentPropertyDto = new PartyUsageDocumentPoliticalPropertyDto();
+        documentPropertyDto.setPoliticalOrganizationId(0L); // 政治団体未定
+        documentPropertyDto.setIsAddOrganization(true); // 政治団体を読みとりデータで新規登録
+
+        String path = GetCurrentResourcePath.getBackTestResourcePath() + "/sample/usage/2022_政治家女子48党_SITO.xml";
+
+        AllShitoBook allBookDto = readAllShitoBookByXmlFileLogic.practice(path, "Windows-31J");
+        documentPropertyDto.setNendo(allBookDto.getShito0801Dto().getSheet0801Dto().getNendo()); // 報告年は読みとりデータより
+        
+        /*
+         * 
+         * 登録作業
+         * 
+         */
+        RegistPoliticalPartyUsageReportResultDto resultDto = insertPartyUsageReportService
+                .practice(documentPropertyDto, CreateTestPrivilegeDtoUtil.pracitce(), allBookDto, false);
+
+        assertTrue(resultDto.getIsOk(), "登録完了");
+
+        // 登録時に新たに政治団体が追加されていること
+        List<PoliticalOrganizationEntity> list = politicalOrganizationRepository.findAll();
+
+        PoliticalOrganizationEntity entityNew = list.stream()
+                .filter(entity -> "政治家女子４８党".equals(entity.getPoliticalOrganizationName())).toList().get(0);
+        assertThat(entityNew.getDaihyoshaName()).isEqualTo("大津　綾香");
+
     }
 
 }

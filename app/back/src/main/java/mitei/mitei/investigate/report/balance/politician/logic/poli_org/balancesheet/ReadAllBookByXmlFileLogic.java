@@ -67,7 +67,7 @@ public class ReadAllBookByXmlFileLogic {
 
         String readText = Files.readString(path, Charset.forName(charset));
 
-        return xmlMapper.readValue(readText, new TypeReference<AllBookDto>() {
+        return xmlMapper.readValue(readText, new TypeReference<>() {
         });
 
     }

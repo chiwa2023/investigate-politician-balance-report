@@ -61,7 +61,7 @@ public class UpdatetPartyUsageShito0902Logic {
                 break;
 
             default:
-                break;
+                throw new IllegalArgumentException("Unexpected value: " + houkokuNen);
         }
 
         return result;

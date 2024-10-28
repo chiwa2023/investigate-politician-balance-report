@@ -94,7 +94,7 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
                     break;
 
                 default:
-                    break;
+                    throw new IllegalArgumentException("Unexpected value: " + houkokuNen);
             }
 
         }

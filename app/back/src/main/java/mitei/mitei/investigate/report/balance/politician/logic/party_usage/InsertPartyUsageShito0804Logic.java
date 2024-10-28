@@ -72,7 +72,7 @@ public class InsertPartyUsageShito0804Logic {
             // NOTE:Logic実行追加位置
 
             default:
-                break;
+                throw new IllegalArgumentException("Unexpected value: " + documentPropertyDto.getNendo());
         }
 
         return size;

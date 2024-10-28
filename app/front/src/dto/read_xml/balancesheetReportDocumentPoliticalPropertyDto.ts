@@ -37,6 +37,8 @@ export default class BalancesheetReportDocumentPoliticalPropertyDto implements B
     /** 提出日 */
     offeringDate: Date;
 
+    /** 政治団体追加該否 */
+    isAddOrganization: boolean;
 
     constructor() {
 
@@ -54,6 +56,6 @@ export default class BalancesheetReportDocumentPoliticalPropertyDto implements B
         this.relationPersonNameDelegate = INIT_STRING
         this.houkokuNen = INIT_NUMBER;
         this.offeringDate = new Date();
-
+        this.isAddOrganization = false;
     }
 }

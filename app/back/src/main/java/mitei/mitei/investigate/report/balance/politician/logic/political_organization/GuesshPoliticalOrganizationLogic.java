@@ -49,7 +49,6 @@ public class GuesshPoliticalOrganizationLogic {
     public BalancesheetReportDocumentPoliticalPropertyDto practice( // SUPPRESS CHECKSTYLE ReturnCountCheck
             final Sheet070100CoverAndOrganizationDetailsDto cover0701Dto, final Sheet072000OathDto oath0720dto) {
 
-
         // 完全一致していないデータがない場合は処理を抜ける
         BalancesheetReportDocumentPoliticalPropertyDto dto = new BalancesheetReportDocumentPoliticalPropertyDto();
         // 団体目名と代表者名はデータからの読みとりそのままも残す(報告年は読みとりデータを参照)

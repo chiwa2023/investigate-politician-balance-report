@@ -64,7 +64,6 @@ const readXmlResultDto: Ref<ReadXmlBalancesheetResultInterface> = ref(new ReadXm
  */
 function recieveReadXmlBalancesheetResultInterface(resultDto: ReadXmlBalancesheetResultInterface) {
     readXmlResultDto.value = resultDto;
-    alert(JSON.stringify(readXmlResultDto.value.documentPropertyDto));
 }
 
 /** キャンセル */
@@ -74,7 +73,15 @@ function onCancel() {
 
 /** 保存 */
 function onSave() {
-    alert("保存");
+
+    // 政治団体を必ず選択する必要があります(一括登録に備えて個別Dtoに設定を持っている)
+    if (readXmlResultDto.value.documentPropertyDto.politicalOrganizationId === 0) {
+        if (!readXmlResultDto.value.documentPropertyDto.isAddOrganization) {
+            alert("政治団体を新規登録するか、登録済の政治団体を選択してください");
+            return;
+        }
+    }
+
     const registCapsuleDto: RegistPoliticalOrgBalancesheetReportCapsuleDto = new RegistPoliticalOrgBalancesheetReportCapsuleDto();
     registCapsuleDto.checkPrivilegeDto = privilegeDto.value;
     registCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
@@ -98,8 +105,6 @@ function onSave() {
             alert(registResuldDto.value.message);
         })
         .catch((error) => { alert(error); });
-
-
 }
 
 </script>
@@ -130,7 +135,8 @@ function onSave() {
                 }}</td>
             <td>{{ readXmlResultDto.documentPropertyDto.politicalOrganizationName }}</td>
             <td><button class="left-space" @click="onSearchPoliticalOrgnaization">政治団体検索</button></td>
-            <td><input type="checkbox" :disabled="isNewPoliticalOrg">読み取り内容で新規登録する</td>
+            <td><input type="checkbox" v-model="readXmlResultDto.documentPropertyDto.isAddOrganization"
+                    :disabled="isNewPoliticalOrg">読み取り内容で新規登録する</td>
         </tr>
     </table>
 

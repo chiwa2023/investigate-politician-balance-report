@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org.regist;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org.regist; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,6 +37,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
+import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
@@ -59,9 +61,12 @@ class InsertPoliticalOrgnaizationBalancesheetReportControllerTest {
     private DateConvertUtil dateConvertUtil;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void testPractice() throws Exception {
 
+        RegistPoliticalOrgBalancesheetReportCapsuleDto capsuleDto = new RegistPoliticalOrgBalancesheetReportCapsuleDto();
+        CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
         // 権限Dto
         CheckPrivilegeDto checkPrivilegeDto = new CheckPrivilegeDto();
         final long ID = 123321L; // NOPMD
@@ -70,6 +75,9 @@ class InsertPoliticalOrgnaizationBalancesheetReportControllerTest {
         checkPrivilegeDto.setLoginUserId(ID);
         checkPrivilegeDto.setLoginUserCode(CODE);
         checkPrivilegeDto.setLoginUserName(NAME);
+        checkPrivilegeDto.setIsRaiseExcception(false);
+        checkPrivilegeDto.setIsResult(true);
+        capsuleDto.setCheckPrivilegeDto(checkPrivilegeDto);
 
         // 公式XML読み取り
         XmlMapper xmlMapper = new XmlMapper();
@@ -78,9 +86,9 @@ class InsertPoliticalOrgnaizationBalancesheetReportControllerTest {
 
         Path pathAnswer = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(),
                 "sample/balancesheet/2022_政治家女子48党_SYUUSI.xml");
-        String readText = Files.readString(pathAnswer, Charset.forName("windows-31j"));
+        String readText = Files.readString(pathAnswer, Charset.forName("Windows-31j"));
 
-        AllBookDto allBookDto = xmlMapper.readValue(readText, new TypeReference<AllBookDto>() {
+        AllBookDto allBookDto = xmlMapper.readValue(readText, new TypeReference<>() {
         });
 
         // 政治団体基礎情報
@@ -106,8 +114,6 @@ class InsertPoliticalOrgnaizationBalancesheetReportControllerTest {
         saveStorageResultDto.setFullPath(fullPath); // 実際はストレージフォルダ内の子パスだが、絶対パスを渡してもよい
         saveStorageResultDto.setCharset(charset);
 
-        RegistPoliticalOrgBalancesheetReportCapsuleDto capsuleDto = new RegistPoliticalOrgBalancesheetReportCapsuleDto();
-        capsuleDto.setCheckPrivilegeDto(checkPrivilegeDto);
         capsuleDto.setDocumentPropertyDto(documentPropertyDto);
         capsuleDto.setSaveStorageResultDto(saveStorageResultDto);
         

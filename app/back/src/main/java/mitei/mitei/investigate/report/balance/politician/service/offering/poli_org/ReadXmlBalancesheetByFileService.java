@@ -59,7 +59,7 @@ public class ReadXmlBalancesheetByFileService {
         resultDto.setSaveStorageResultDto(saveStorageFileLogic.practiceText(readXmlByFileCapsuleDto.getFileName(),
                 readXmlByFileCapsuleDto.getFileContent(), readXmlByFileCapsuleDto.getCharset(),
                 readXmlByFileCapsuleDto.getCheckPrivilegeDto(), datetimeShori));
-        resultDto.getSaveStorageResultDto().setCharset(readXmlByFileCapsuleDto.getCharset());
+        resultDto.getSaveStorageResultDto().setCharset(readXmlByFileCapsuleDto.getCharset()); // NOPMD
 
         Sheet070100CoverAndOrganizationDetailsDto cover0701Dto = allBookDto
                 .getAllSheet0701CoverAndOrganizationDetailsDto().getSheet070100CoverAndOrganizationDetailsDto();

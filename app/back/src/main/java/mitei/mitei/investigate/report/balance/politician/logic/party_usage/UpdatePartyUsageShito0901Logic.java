@@ -62,7 +62,7 @@ public class UpdatePartyUsageShito0901Logic {
                 break;
 
             default:
-                break;
+                throw new IllegalArgumentException("Unexpected value: " + nendo);
         }
 
         return result;

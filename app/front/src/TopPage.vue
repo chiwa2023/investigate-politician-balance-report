@@ -43,6 +43,7 @@ SessionStorageCommonCheck.setPrivilege(checkPrivilegeDto);
     <h1>(仮)Top Page</h1>
     <RouterLink to="/natural-search">登録済文書支出／収入項目検索(自然検索)</RouterLink><br>
     <RouterLink to="/insert-balancesheet-single">政治資金収支報告書1件登録</RouterLink><br>
+    <RouterLink to="/insert-usage-report-single">政党交付金使途報告書1件登録</RouterLink><br>
     <hr>
     <RouterLink to="/audit-option-income">監査意見収入</RouterLink><br>
     <RouterLink to="/detect-balancesheet-defect">政治資金収支報告書欠損検出(版管理)</RouterLink><br>

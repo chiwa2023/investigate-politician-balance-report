@@ -1,6 +1,5 @@
 ﻿<script setup lang="ts">
 import { ref, Ref } from "vue";
-import AllBookDto from "../../../dto/balancesheet/allBookDto";
 import ReadXmlCapsuleInterface from "../../../dto/read_xml/readXmlCapsuleDto";
 import ReadXmlCapsuleDto from "../../../dto/read_xml/readXmlCapsuleDto";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";

@@ -9,7 +9,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorage
 /**
  * 政治資金収支報告書登録Dto
  */
-public class RegistPoliticalOrgBalancesheetReportCapsuleDto extends AbstractCapsuleDto implements Serializable {
+public class RegistPoliticalOrgBalancesheetReportCapsuleDto extends AbstractCapsuleDto implements Serializable { // NOPMD
 
     /** SerialId */
     private static final long serialVersionUID = 1L;

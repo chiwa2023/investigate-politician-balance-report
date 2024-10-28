@@ -55,7 +55,7 @@ public class UpdatePoliticalOrganizationEstateAllLogic {
                 result = updatePoliticalOrganizationEstateAllY2025Logic.practice(oldCode, checkPrivilegeDto);
                 break;
             default:
-                break;
+                throw new IllegalArgumentException("Unexpected value: " + houkokuNen);
         }
 
         return result;

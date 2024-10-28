@@ -62,10 +62,7 @@ class ReadAllBookByXmlFileLogicTest {
         String charset = "Windows-31J";
         String fullPath00 = GetCurrentResourcePath.getBackTestResourcePath()
                 + "/sample/balancesheet/2022_政治家女子48党_SYUUSI.xml";
-        
-        
-        System.out.println(fullPath00);
-        
+
         AllBookDto allBookDto01 = readAllBookByXmlFileLogic.practice(fullPath00, charset);
         // 詳細な内容のテストは別プロジェクトで詳細に行っているので、ファイルとの関係だけをチェックする
         assertThat(allBookDto01.getAllSheet0701CoverAndOrganizationDetailsDto()
@@ -76,7 +73,7 @@ class ReadAllBookByXmlFileLogicTest {
                 + "/sample/balancesheet/2022_ホリエモン新党_SYUUSI.xml";
         String fullPath01 = "/2022_ホリエモン新党_SYUUSI.xml";
         String copyPath = storageFolder + fullPath01;
-        Files.copy(Paths.get(srcPath), Paths.get(copyPath),StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(Paths.get(srcPath), Paths.get(copyPath), StandardCopyOption.REPLACE_EXISTING);
 
         AllBookDto allBookDto02 = readAllBookByXmlFileLogic.practice(fullPath01, charset);
         // 詳細な内容のテストは別プロジェクトで詳細に行っているので、ファイルとの関係だけをチェックする
@@ -84,9 +81,9 @@ class ReadAllBookByXmlFileLogicTest {
                 .getSheet070100CoverAndOrganizationDetailsDto().getDantaiName01()).isEqualTo("ホリエモン新党");
 
         // 存在しないファイルはInvalidPathException
-        String fullPath03 = fullPath00+"q"; // 存在しないファイル
-        assertThrows(InvalidPathException.class,() -> readAllBookByXmlFileLogic.practice(fullPath03, charset));
-        
+        String fullPath03 = fullPath00 + "q"; // 存在しないファイル
+        assertThrows(InvalidPathException.class, () -> readAllBookByXmlFileLogic.practice(fullPath03, charset));
+
     }
 
 }

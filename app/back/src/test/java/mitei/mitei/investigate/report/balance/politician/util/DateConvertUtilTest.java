@@ -32,6 +32,7 @@ class DateConvertUtilTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     void testPracticeLocalDateToWareki()throws Exception {
         
         DateConvertUtil dateConvertUtil = new DateConvertUtil();

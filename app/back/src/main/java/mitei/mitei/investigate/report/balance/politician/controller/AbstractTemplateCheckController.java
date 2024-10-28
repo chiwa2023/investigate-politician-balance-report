@@ -63,7 +63,7 @@ public class AbstractTemplateCheckController {
             final CheckPrivilegeDto checkPrivilegeDto,
             final CheckTransactionDto checkTransactionDto)
             throws SecurityException, PessimisticLockingFailureException, AuthenticationException { // NOPMD
-
+        
         // セキュリティチェック
         if (!checkSecurityService.practice(checkSecurityDto)) {
             // セキュリティ事故
