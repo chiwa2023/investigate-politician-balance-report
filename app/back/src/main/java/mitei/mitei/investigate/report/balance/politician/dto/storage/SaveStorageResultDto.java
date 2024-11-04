@@ -13,8 +13,6 @@ public class SaveStorageResultDto implements Serializable { // NOPMD DataClass
     /** 初期データ(String) */
     private static final String INIT_String = "";
 
-    
-    
     /** 書証Id */
     private Long shoshouId;
 
@@ -99,8 +97,6 @@ public class SaveStorageResultDto implements Serializable { // NOPMD DataClass
         this.fullPath = fullPath;
     }
 
-    
-    
     /** 保存子フォルダ */
     private String childDir = INIT_String;
 

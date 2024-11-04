@@ -1,11 +1,11 @@
 ﻿<script setup lang="ts">
-import BalancesheetXmlUpload from "./common/balancesheet-xml-upload/BalancesheetXmlUpload.vue";
+import ZipUpload from "./common/zip_upload/ZipUpload.vue";
 
 </script>
 <template>
     <h1>コンポーネントをページと関係なく作成するための台紙</h1>
 
-    <BalancesheetXmlUpload></BalancesheetXmlUpload>
+    <ZipUpload></ZipUpload>
 
 </template>
 <style scoped></style>

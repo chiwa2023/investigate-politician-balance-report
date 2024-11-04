@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "mitei.mitei.investigate.report.balance.politician.storage_folder",
-  "type": "java.lang.String",
-  "description": "A description for 'mitei.mitei.investigate.report.balance.politician.storage_folder'"
-}]}
+{"properties": [
+  {
+    "name": "mitei.mitei.investigate.report.balance.politician.storage_folder",
+    "type": "java.lang.String",
+    "description": "A description for 'mitei.mitei.investigate.report.balance.politician.storage_folder'"
+  },
+  {
+    "name": "mitei.mitei.investigate.report.balance.politician.uncompress",
+    "type": "java.lang.String",
+    "description": "A description for 'mitei.mitei.investigate.report.balance.politician.uncompress'"
+  }
+]}

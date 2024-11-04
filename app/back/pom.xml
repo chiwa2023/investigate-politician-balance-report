@@ -96,7 +96,7 @@
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>mitei.mitei</groupId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -144,8 +144,8 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<groups>TableTruncate</groups>
-					<groups>NaturalTextSearch</groups>
+					<groups>TypeB</groups>
+					<groups>TypeA</groups>
 				</configuration>
 			</plugin>
 		</plugins>

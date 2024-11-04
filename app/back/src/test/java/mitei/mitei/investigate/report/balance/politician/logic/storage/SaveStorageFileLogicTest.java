@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ class SaveStorageFileLogicTest {
         String fullPath = resultDto.getFullPath();
         Path allPath = Paths.get(storageFolder, fullPath);
         assertTrue(Files.exists(allPath), "保存ファイルは存在する");
-        assertThat(Files.readString(allPath,Charset.forName(charset))).isEqualTo(fileContent);
+        assertThat(Files.readString(allPath, Charset.forName(charset))).isEqualTo(fileContent);
         assertThat(resultDto.getChildDir())
                 .isEqualTo(fullPath.substring(0, fullPath.length() - (fileName.length() + 1)));
         assertThat(resultDto.getFileName()).isEqualTo(fileName);
@@ -112,24 +113,24 @@ class SaveStorageFileLogicTest {
         assertThat(entity.getInsertUserName()).isEqualTo(privilegeDto.getLoginUserName()); // 書証の保持者：重要
     }
 
-    // @Test しばらくおやすみ TODO 実装したら再有効にする
-    void testPracticeWithDecode() throws Exception {
+    @Test
+    @Transactional
+    void testPracticeWithDecode2024() throws Exception {
 
         // ファイルコンテンツはバイナリのURLEncodeされたデータである必要がある
-        String fileName = "2022_ホリエモン新党_SYUUSI.xml";
-        Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/balancesheet", fileName);
+        String fileName = "2022_SITO.zip";
+        Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/zip", fileName);
 
-        String charset = "cp932";
-        // TODO ここがバイナリ読み取り→文字列→UrlEncode
-        String fileContent = Files.readString(path, Charset.forName(charset));
+        String fileContent = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
 
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
         // 処理日時は2024年なのでDBは2024年分に保存
         LocalDateTime shori = LocalDateTime.of(2024, 5, 28, 13, 24, 36);
 
-        SaveStorageResultDto resultDto = saveStorageFileLogic.practiceText(path.getFileName().toString(), fileContent,
-                charset, privilegeDto, shori);
+        // ヘッダがついていても除去される
+        SaveStorageResultDto resultDto = saveStorageFileLogic.practiceWithDecode(path.getFileName().toString(),
+                "data:application/x-zip-compressed;base64,"+fileContent, privilegeDto, shori);
 
         // 保存ディレクトリが確保されていること
         Path pathFolder = Paths.get(storageFolder);
@@ -147,8 +148,7 @@ class SaveStorageFileLogicTest {
         String unixTime = formatter.format(shori);
         assertThat(resultDto.getRegistTimeText()).isEqualTo(unixTime);
 
-        // TODO ファイルのバイナリ比較
-        assertThat(Files.readString(allPath)).isEqualTo(fileContent);
+        assertThat(Base64.getEncoder().encodeToString(Files.readAllBytes(allPath))).isEqualTo(fileContent);
 
         // DBに必要な属性が格納されていること
         SaveFileStorage2024Entity entity = saveFileStorage2024Repository.findById(resultDto.getShoshouId()).get();

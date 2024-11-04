@@ -60,7 +60,7 @@ class SaveFileOnlyUtilTest {
     }
 
     @Test
-    void testPractice() throws Exception {
+    void testPracticetext() throws Exception {
 
         LocalDateTime shori = LocalDateTime.of(2024, 5, 28, 13, 24, 36);
         String fileName = "2022_ホリエモン新党_SYUUSI.xml";
@@ -79,6 +79,34 @@ class SaveFileOnlyUtilTest {
         assertTrue(Files.exists(pathAll), "指定したフォルダにファイルが生成されている(ランダム・タイムスタンプがフォルダになっているので上書きされる可能性はない)");
 
         // 渡した内容と同じ内容が書き込まれている
-        assertThat(Files.readString(pathAll,Charset.forName(charset))).isEqualTo(fileContent);
+        assertThat(Files.readString(pathAll, Charset.forName(charset))).isEqualTo(fileContent);
+    }
+
+    @Test
+    void testPracticeBinary() throws Exception {
+
+        LocalDateTime shori = LocalDateTime.of(2024, 5, 28, 13, 24, 36);
+        String fileName = "2022_SITO.zip";
+        Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/zip", fileName);
+
+        byte[] srcBinary = Files.readAllBytes(path);
+
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String unixTime = formatter.format(shori);
+
+        String pathChild = saveFileOnlyUtil.practice(unixTime, privilegeDto, fileName, Files.readAllBytes(path));
+
+        Path pathAll = Paths.get(storageFolder, pathChild, fileName);
+        byte[] copyBinary = Files.readAllBytes(pathAll);
+
+        assertTrue(Files.exists(pathAll), "指定したフォルダにファイルが生成されている(ランダム・タイムスタンプがフォルダになっているので上書きされる可能性はない)");
+        assertThat(copyBinary.length).isEqualTo(srcBinary.length);
+
+        for (int index = 0; index < srcBinary.length; index++) {
+            assertThat(copyBinary[index]).isEqualTo(srcBinary[index]);
+        }
+
     }
 }

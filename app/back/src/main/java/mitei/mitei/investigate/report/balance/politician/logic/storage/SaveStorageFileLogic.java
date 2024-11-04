@@ -3,6 +3,7 @@ package mitei.mitei.investigate.report.balance.politician.logic.storage;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class SaveStorageFileLogic {
     @Autowired
     private SaveFileOnlyUtil saveFileOnlyUtil;
 
+    /** Base64ヘッダ */
+    private static final String BASE64_HEADER = ";base64,";
+
     /** 処理年(2024) */
     private static final int YEAR_2024 = 2024;
     /** ファイル保存Repository(2024年) */
@@ -50,33 +54,8 @@ public class SaveStorageFileLogic {
         String unixTime = formatter.format(datetimeShori);
 
         String childDir = saveFileOnlyUtil.practice(unixTime, privilegeDto, fileName, fileContent, charset);
-        Long entityId = 0L;
-        Long entityCode = 0L;
 
-        switch (datetimeShori.getYear()) {
-            // 2024年
-            case YEAR_2024:
-                SaveFileStorage2024Entity entity2024 = new SaveFileStorage2024Entity();
-                BeanUtils.copyProperties(this.getStorageDto(privilegeDto, fileName, childDir), entity2024);
-                SaveFileStorage2024Entity entityNew2024 = saveFileStorage2024Repository.save(entity2024);
-                entityId = entityNew2024.getSaveFileStorageId();
-                entityCode = entityNew2024.getSaveFileStorageCode();
-                break;
-            default:
-                throw new IllegalArgumentException("Unexpected value: " + datetimeShori.getYear());
-        }
-
-        SaveStorageResultDto resultDto = new SaveStorageResultDto();
-
-        resultDto.setShoshouId(entityId);
-        resultDto.setShoshouCode(entityCode);
-        resultDto.setShoshouKbn(0); // 仮値 TODO 決定次第修正を行う
-        resultDto.setFullPath(childDir + "/" + fileName);
-        resultDto.setChildDir(childDir);
-        resultDto.setFileName(fileName);
-        resultDto.setRegistTimeText(unixTime);
-
-        return resultDto;
+        return this.saveTable(privilegeDto, unixTime, childDir, fileName);
     }
 
     /**
@@ -90,12 +69,22 @@ public class SaveStorageFileLogic {
      * @throws IOException ファイルが保存できなかった場合の例外
      */
     public SaveStorageResultDto practiceWithDecode(final String fileName, final String fileContent,
-            final String charset, final CheckPrivilegeDto privilegeDto, final LocalDateTime datetimeShori)
-            throws IOException {
+            final CheckPrivilegeDto privilegeDto, final LocalDateTime datetimeShori) throws IOException {
 
-        // TODO UrlDecode(バイナリを文字列にしたもの)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String unixTime = formatter.format(datetimeShori);
 
-        return this.practiceText(fileName, fileContent, charset, privilegeDto, datetimeShori);
+        String content = fileContent;
+        // Webから取得したデータの場合はMymeTypeのヘッダがついているので発見したら除去
+        int pos = fileContent.indexOf(BASE64_HEADER);
+        if (-1 != pos) {
+            content = fileContent.substring(pos + BASE64_HEADER.length(), fileContent.length());
+        }
+
+        String childDir = saveFileOnlyUtil.practice(unixTime, privilegeDto, fileName,
+                Base64.getDecoder().decode(content));
+
+        return this.saveTable(privilegeDto, unixTime, childDir, fileName);
     }
 
     /**
@@ -118,4 +107,41 @@ public class SaveStorageFileLogic {
 
         return dto;
     }
+
+    private SaveStorageResultDto saveTable(final CheckPrivilegeDto privilegeDto, final String unixTime,
+            final String childDir, final String fileName) {
+
+        // 年4桁を取り出し
+        int year = Integer.parseInt(unixTime.substring(0, 4)); // SUPPRESS CHECKSTYLE MagicNumber
+
+        Long entityId = 0L;
+        Long entityCode = 0L;
+
+        switch (year) {
+            // 2024年
+            case YEAR_2024:
+                SaveFileStorage2024Entity entity2024 = new SaveFileStorage2024Entity();
+                BeanUtils.copyProperties(this.getStorageDto(privilegeDto, fileName, childDir), entity2024);
+                SaveFileStorage2024Entity entityNew2024 = saveFileStorage2024Repository.save(entity2024);
+                entityId = entityNew2024.getSaveFileStorageId();
+                entityCode = entityNew2024.getSaveFileStorageCode();
+                break;
+            default:
+                throw new IllegalArgumentException("Unexpected value: " + year);
+        }
+
+        SaveStorageResultDto resultDto = new SaveStorageResultDto();
+
+        resultDto.setShoshouId(entityId);
+        resultDto.setShoshouCode(entityCode);
+        resultDto.setShoshouKbn(0); // 仮値 TODO 決定次第修正を行う
+        resultDto.setFullPath(childDir + "/" + fileName);
+        resultDto.setChildDir(childDir);
+        resultDto.setFileName(fileName);
+        resultDto.setRegistTimeText(unixTime);
+
+        return resultDto;
+
+    }
+
 }

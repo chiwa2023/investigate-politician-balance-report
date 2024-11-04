@@ -1,5 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report;
 
+import java.io.Serializable;
+
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070100CoverAndOrganizationDetailsDto;
 import mitei.mitei.investigate.report.balance.politician.dto.AbstractResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
@@ -8,7 +10,13 @@ import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorage
 /**
  * 
  */
-public class ReadXmlBalancesheetResultDto extends AbstractResultDto { // NOPMD DataClass
+public class ReadXmlBalancesheetResultDto extends AbstractResultDto implements Serializable { // NOPMD DataClass
+
+    /** Serialize id */
+    private static final long serialVersionUID = 1L;
+
+    /** 初期データ(Long) */
+    private static final Long INIT_Long = 0L;
 
     /** 表示メッセージ */
     private String message = "";
@@ -94,6 +102,48 @@ public class ReadXmlBalancesheetResultDto extends AbstractResultDto { // NOPMD D
      */
     public void setSaveStorageResultDto(final SaveStorageResultDto saveStorageResultDto) {
         this.saveStorageResultDto = saveStorageResultDto;
+    }
+
+    /** 政治資金収支報告書準備登録タスクId */
+    private Long taskPlanBalancesheetDetailId = INIT_Long;
+
+    /**
+     * 政治資金収支報告書準備登録タスクIdを取得する
+     *
+     * @return 政治資金収支報告書準備登録タスクId
+     */
+    public Long getTaskPlanBalancesheetDetailId() {
+        return taskPlanBalancesheetDetailId;
+    }
+
+    /**
+     * 政治資金収支報告書準備登録タスクIdを設定する
+     *
+     * @param taskPlanBalancesheetDetailId 政治資金収支報告書準備登録タスクId
+     */
+    public void setTaskPlanBalancesheetDetailId(final Long taskPlanBalancesheetDetailId) {
+        this.taskPlanBalancesheetDetailId = taskPlanBalancesheetDetailId;
+    }
+
+    /** 政治資金収支報告書準備登録タスク定同一識別コード */
+    private Long taskPlanBalancesheetDetailCode = INIT_Long;
+
+    /**
+     * 政治資金収支報告書準備登録タスク定同一識別コードを取得する
+     *
+     * @return 政治資金収支報告書準備登録タスク定同一識別コード
+     */
+    public Long getTaskPlanBalancesheetDetailCode() {
+        return taskPlanBalancesheetDetailCode;
+    }
+
+    /**
+     * 政治資金収支報告書準備登録タスク定同一識別コードを設定する
+     *
+     * @param taskPlanBalancesheetDetailCode 政治資金収支報告書準備登録タスク定同一識別コード
+     */
+    public void setTaskPlanBalancesheetDetailCode(final Long taskPlanBalancesheetDetailCode) {
+        this.taskPlanBalancesheetDetailCode = taskPlanBalancesheetDetailCode;
     }
 
 }

@@ -44,10 +44,10 @@ public class SaveFileOnlyUtil {
     /**
      * 書き込み処理を行う(ファイル内容文字列)
      *
-     * @param unixTime 処理日時(UnixTime形式)
-     * @param privilegeDto  権限確認Dto
-     * @param fileName      ファイル名
-     * @param fileContent   ファイル内容
+     * @param unixTime     処理日時(UnixTime形式)
+     * @param privilegeDto 権限確認Dto
+     * @param fileName     ファイル名
+     * @param fileContent  ファイル内容
      * @return 生成した子パス
      * @throws IOException ディレクトリ・ファイル書き込みができなかった例外
      */
@@ -60,6 +60,38 @@ public class SaveFileOnlyUtil {
             Files.createDirectories(parentPath);
         }
 
+        // 子ディレクトリも作成
+        Path childPath = Paths.get(String.valueOf(privilegeDto.getLoginUserCode()), unixTime,
+                UUID.randomUUID().toString());
+        String childDir = childPath.toString().replaceAll(File.pathSeparator, "/");
+        Files.createDirectories(Paths.get(storageFolder, childDir));
+
+        // 実際のファイル書き込み
+        Path allPath = Paths.get(parentPath.toString(), childPath.toString(), fileName);
+        Files.writeString(allPath, fileContent, Charset.forName(charset));
+
+        return childDir;
+    }
+
+
+    /**
+     * 書き込み処理を行う(ファイル内容バイナリzipなど)
+     *
+     * @param unixTime 処理時間
+     * @param privilegeDto 権限確認Dto
+     * @param fileName ファイル名
+     * @param fileContent ファイル内容(バイナリ)
+     * @return 新たに割り当てた子パス
+     * @throws IOException 書き込み不可などの例外
+     */
+    public String practice(final String unixTime, final CheckPrivilegeDto privilegeDto,
+            final String fileName, final byte[] fileContent) throws IOException {
+
+        // 冗長だが毎回ディレクトリの有無を確認する
+        Path parentPath = Paths.get(storageFolder);
+        if (!Files.exists(parentPath) || !Files.isDirectory(parentPath)) {
+            Files.createDirectories(parentPath);
+        }
 
         // 子ディレクトリも作成
         Path childPath = Paths.get(String.valueOf(privilegeDto.getLoginUserCode()), unixTime,
@@ -69,8 +101,9 @@ public class SaveFileOnlyUtil {
 
         // 実際のファイル書き込み
         Path allPath = Paths.get(parentPath.toString(), childPath.toString(), fileName);
-        Files.writeString(allPath, fileContent,Charset.forName(charset));
+        Files.write(allPath, fileContent);
 
         return childDir;
     }
+
 }

@@ -45,11 +45,18 @@ public class RefleshYearDataAccessRepositoryTasklet implements Tasklet, StepExec
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 機能ごとのBaseフォルダ(ここではRepository)
+ 
+        /* 提出文書 */
         final String pathFunctionUsage = "main/java/mitei/mitei/investigate/report/balance/politician/repository/poli_party/usage/y";
         final String pathFunctionBalancesheet = "main/java/mitei/mitei/investigate/report/balance/politician/repository/poli_org/balancesheet/y";
-
         this.worksByOneFunction(pathFunctionUsage);
         this.worksByOneFunction(pathFunctionBalancesheet);
+
+        /* タスク通知 */
+        final String pathFunctionMailRepository = "main/java/mitei/mitei/create/report/balance/politician/repository/mail/";
+        final String pathFunctionTaskRepository = "main/java/mitei/mitei/create/report/balance/politician/repository/task_plan/";
+        this.worksByOneFunction(pathFunctionMailRepository);
+        this.worksByOneFunction(pathFunctionTaskRepository);
 
         // 処理終了
         return RepeatStatus.FINISHED;

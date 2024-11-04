@@ -45,11 +45,19 @@ public class RefleshYearDataAccessEntityTasklet implements Tasklet, StepExecutio
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 機能ごとのBaseフォルダ(ここではEntity)
+
+        /* 提出文書部門 */
         final String pathFunctionUsage = "main/java/mitei/mitei/investigate/report/balance/politician/entity/poli_party/usage/y";
         final String pathFunctionBalancesheet = "main/java/mitei/mitei/investigate/report/balance/politician/entity/poli_org/balancesheet/y";
-
         this.worksByOneFunction(pathFunctionUsage);
         this.worksByOneFunction(pathFunctionBalancesheet);
+
+        /* タスク通知部門 */
+        final String pathFunctionMailEntity = "main/java/mitei/mitei/create/report/balance/politician/entity/mail/";
+        final String pathFunctionTaskEntity = "main/java/mitei/mitei/create/report/balance/politician/entity/task_plan/";
+
+        this.worksByOneFunction(pathFunctionMailEntity);
+        this.worksByOneFunction(pathFunctionTaskEntity);
 
         // 処理終了
         return RepeatStatus.FINISHED;
