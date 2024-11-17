@@ -10,9 +10,7 @@ import org.springframework.stereotype.Component;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.entity.TaskInfoEntity;
-import mitei.mitei.investigate.report.balance.politician.entity.UserWebAccessEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.task_plan.TaskPlan2024Entity;
-import mitei.mitei.investigate.report.balance.politician.logic.user_web_access.CreateTaskLevelListLogic;
 import mitei.mitei.investigate.report.balance.politician.repository.task_plan.TaskPlan2024Repository;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
@@ -26,10 +24,6 @@ public class InsertTaskPlanY2024Logic {
     @Autowired
     private TaskPlan2024Repository taskPlan2024Repository;
 
-    /** タスク水準からユーザリスト生成Logic */
-    @Autowired
-    private CreateTaskLevelListLogic createTaskLevelListLogic;
-
     /**
      * 挿入作業を行う
      *
@@ -39,11 +33,22 @@ public class InsertTaskPlanY2024Logic {
      */
     public int practice(final CheckPrivilegeDto privilegeDto, final List<TaskInfoEntity> listTask) {
 
-        List<TaskPlan2024Entity> list = new ArrayList<>();
-        for (TaskInfoEntity taskEntity : listTask) {
+        final String INIT_STRING = "";
 
-            list.add(this.createEntity(privilegeDto, taskEntity,
-                    createTaskLevelListLogic.practice(taskEntity.getTaskLevelList())));
+        List<TaskPlan2024Entity> list = new ArrayList<>();
+        boolean isAdd;
+        for (TaskInfoEntity taskEntity : listTask) {
+            isAdd = true;
+            // ページへの接続クエリがない場合、全ユーザ統一ページである
+            // その場合、すでにタスク予定が存在している場合は、2重にタスクを追加する必要がない
+            if (INIT_STRING.equals(taskEntity.getParamQuery())) {
+                isAdd = taskPlan2024Repository.findBySaishinKbnAndTaskPlanName(
+                        DataHistoryStatusConstants.INSERT.value(), taskEntity.getTaskInfoName()).isEmpty();
+            }
+
+            if (isAdd) {
+                list.add(this.createEntity(privilegeDto, taskEntity));
+            }
         }
 
         // 同一識別コードの設定
@@ -60,8 +65,7 @@ public class InsertTaskPlanY2024Logic {
         return taskPlan2024Repository.saveAll(list).size();
     }
 
-    private TaskPlan2024Entity createEntity(final CheckPrivilegeDto privilegeDto, final TaskInfoEntity taskInfoEntity,
-            final List<UserWebAccessEntity> listUser) {
+    private TaskPlan2024Entity createEntity(final CheckPrivilegeDto privilegeDto, final TaskInfoEntity taskInfoEntity) {
 
         TaskPlan2024Entity entity = new TaskPlan2024Entity();
 

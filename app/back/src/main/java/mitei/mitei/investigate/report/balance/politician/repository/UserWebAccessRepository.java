@@ -1,6 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -32,5 +33,13 @@ public interface UserWebAccessRepository extends JpaRepository<UserWebAccessEnti
      */
     List<UserWebAccessEntity> findBySaishinKbnAndTaskLevelIn(Integer saishinKbn,List<Integer> listTaskLevel);
     
+    /**
+     * タスクの種類ごとに該当ユーザを抽出する
+     *
+     * @param saishinKbn 最新区分
+     * @param userCode ユーザ同一識別コードコード
+     * @return 該当ユーザのアクセス情報
+     */
+    Optional<UserWebAccessEntity> findBySaishinKbnAndUserCode(Integer saishinKbn,Integer userCode);
     
 }

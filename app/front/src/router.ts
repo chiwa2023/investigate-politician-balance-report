@@ -8,6 +8,11 @@ const routes = [
     { path: "/insert-balancesheet-single", name: "InsertBalancesheetSingle", component: () => import("./components/pages/insert_balancesheet_single/InsertBalancesheetSingle.vue") },
     { path: "/insert-usage-report-single", name: "InsertUsageReportSingle", component: () => import("./components/pages/insert_usage_report_single/InsertUsageReportSingle.vue") },
 
+    { path: "/zip-upload-document", name: "ZipUploadDocument", component: () => import("./components/pages/zip_upload_document/ZipUploadDocument.vue") },
+    { path: "/listup-balancesheet-plan", name: "ListupBalancesheetPlan", component: () => import("./components/pages/listup_balancesheet_plan/ListupBalancesheetPlan.vue") },
+    { path: "/listup-balancesheet-plan-err", name: "ListupBalancesheetPlanErr", component: () => import("./components/pages/listup_balancesheet_plan_err/ListupBalancesheetPlanErr.vue") },
+
+
     { path: "/audit-option-income", name: "AuditOptionIncome", component: () => import("./components/pages/audit_opinion_income/AuditOpinionIncome.vue") },
     { path: "/detect-balancesheet-defect", name: "DetectBalancesheetDefect", component: () => import("./components/pages/detect_balancesheet_defect/DetectBalancesheetDefect.vue")},
     { path: "/make-link-balancesheet", name: "MakeLinkBalancesheet", component: () => import("./components/pages/make_link_balancesheet/MakeLinkBalancesheet.vue")},

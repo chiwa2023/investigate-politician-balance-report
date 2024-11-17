@@ -10,6 +10,15 @@ public class CheckPrivilegeDto implements Serializable { // NOPMD DataClass
     /** SerializableId */
     private static final long serialVersionUID = 1L;
 
+    /** 初期データ(String) */
+    private static final String INIT_String = "";
+
+    /** 初期データ(Integer) */
+    private static final Integer INIT_Integer = 0;
+
+    /** 初期データ(Long) */
+    private static final Long INIT_Long = 0L;
+
     /** 他機能確認用Mock強制例外発生フラグ */
     private Boolean isRaiseExcception;
 
@@ -17,22 +26,22 @@ public class CheckPrivilegeDto implements Serializable { // NOPMD DataClass
     private Boolean isResult;
 
     /** ログインユーザId */
-    private Long loginUserId;
+    private Long loginUserId = INIT_Long;
 
     /** ログインユーザー同一識別コード */
-    private Integer loginUserCode;
+    private Integer loginUserCode = INIT_Integer;
 
     /** ログインユーザー氏名 */
-    private String loginUserName;
+    private String loginUserName = INIT_String;
 
     /** 政治資金団体Id */
-    private Long politicalOrganizationId;
+    private Long politicalOrganizationId = INIT_Long;
 
     /** 政治資金団体同一識別コード */
-    private Integer politicalOrganizationCode;
+    private Integer politicalOrganizationCode = INIT_Integer;
 
     /** 政治資金団体名称 */
-    private String politicalOrganizationName;
+    private String politicalOrganizationName = INIT_String;
 
     /**
      * ログインユーザIdを取得する

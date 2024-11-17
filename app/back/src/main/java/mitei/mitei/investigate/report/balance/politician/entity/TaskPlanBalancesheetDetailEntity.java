@@ -285,6 +285,28 @@ public class TaskPlanBalancesheetDetailEntity implements Serializable, AllTabeDa
         this.shoshouKbn = shoshouKbn;
     }
 
+    /** 文書認識Key */
+    @Column(name = "document_key")
+    private String documentKey = INIT_String;
+
+    /**
+     * 文書認識Keyを取得する
+     *
+     * @return 文書認識Key
+     */
+    public String getDocumentKey() {
+        return documentKey;
+    }
+
+    /**
+     * 文書認識Keyを設定する
+     *
+     * @param documentKey 文書認識Key
+     */
+    public void setDocumentKey(final String documentKey) {
+        this.documentKey = documentKey;
+    }
+
     /** 挿入ユーザId */
     @Column(name = "insert_user_id")
     private Long insertUserId = INIT_Long;

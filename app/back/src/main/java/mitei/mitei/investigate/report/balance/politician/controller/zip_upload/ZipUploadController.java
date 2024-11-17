@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
-import mitei.mitei.investigate.report.balance.politician.service.zip_upload.ZipUploadService;
+import mitei.mitei.investigate.report.balance.politician.service.zip_upload.ZipUploadDocumentService;
 
 /**
  * zipファイルを書証保存する
+ * 使用Serviceに収支報告書／使途報告書文書専用ロジックが入っているので作り直し
  */
 @Controller
 @RequestMapping("/zip-upload")
+@Deprecated
 public class ZipUploadController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
@@ -36,7 +38,7 @@ public class ZipUploadController extends AbstractTemplateCheckController {
 
     /** zipアプロードService */
     @Autowired
-    private ZipUploadService zipUploadService;
+    private ZipUploadDocumentService zipUploadDocumentService;
 
     /**
      * 検索処理を行う
@@ -78,7 +80,7 @@ public class ZipUploadController extends AbstractTemplateCheckController {
             // システム日付を保存フォルダに混ぜる
             LocalDateTime datetimeShori = LocalDateTime.now();
 
-            return ResponseEntity.ok(zipUploadService.practcie(datetimeShori, capsuleDto));
+            return ResponseEntity.ok(zipUploadDocumentService.practcie(datetimeShori, capsuleDto));
 
             /* ここまで */
 

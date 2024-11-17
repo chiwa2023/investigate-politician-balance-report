@@ -10,6 +10,7 @@ CREATE TABLE `task_plan_balancesheet_detail` (
   `shoshou_id` bigint DEFAULT NULL COMMENT '書証保存Id',
   `Shoshou_code` bigint DEFAULT NULL COMMENT '書証保存同一識別コード',
   `Shoshou_kbn` int DEFAULT NULL COMMENT '書証区分',
+  `document_key` varchar(150) COLLATE utf8mb4_bin DEFAULT NULL,
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
   `insert_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '挿入ユーザ姓名',
@@ -19,4 +20,4 @@ CREATE TABLE `task_plan_balancesheet_detail` (
   `update_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`task_plan_balancesheet_detail_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=802 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1248 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;

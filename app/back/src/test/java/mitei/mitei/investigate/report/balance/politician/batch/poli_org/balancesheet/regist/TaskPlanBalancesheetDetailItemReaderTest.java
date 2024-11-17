@@ -34,6 +34,9 @@ class TaskPlanBalancesheetDetailItemReaderTest {
     @Sql("task_plan_balancesheet_detail.sql")
     void test() throws Exception {
 
+        // Step組み立ての際にChnkとして与えられるので外部設定
+        taskPlanBalancesheetDetailItemReader.setPageSize(2);
+        
         // 8件登録中条件にあう5件を抽出
         // SQLログをオンにしてページサイズ2の時は3回+1回SQLが発行されているのを確認するとベター
         TaskPlanBalancesheetDetailEntity entity01 = taskPlanBalancesheetDetailItemReader.read();

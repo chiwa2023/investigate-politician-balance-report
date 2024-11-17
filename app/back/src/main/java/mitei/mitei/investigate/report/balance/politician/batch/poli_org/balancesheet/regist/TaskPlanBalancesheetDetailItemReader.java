@@ -21,9 +21,6 @@ import mitei.mitei.investigate.report.balance.politician.repository.TaskPlanBala
 @Component
 public class TaskPlanBalancesheetDetailItemReader extends RepositoryItemReader<TaskPlanBalancesheetDetailEntity> {
 
-    /** ページサイズ */
-    private static final int PAGE_SIZE = 2;
-
     /**
      * コンストラクタ
      *
@@ -33,10 +30,9 @@ public class TaskPlanBalancesheetDetailItemReader extends RepositoryItemReader<T
             final @Autowired TaskPlanBalancesheetDetailRepository taskPlanBalancesheetDetailRepository) {
 
         super();
-        super.setPageSize(PAGE_SIZE);
         super.setRepository(taskPlanBalancesheetDetailRepository);
         super.setSort(new HashMap<String, Direction>()); // NOPMD
-        super.setMethodName("findBySaishinKbnAndIsFinished");
+        super.setMethodName("findBySaishinKbnAndIsFinishedAndCharsetIsNotNull");
         List<Object> listArgs = new ArrayList<>();
         listArgs.add(DataHistoryStatusConstants.INSERT.value()); // saishinKbn = 1:最新
         listArgs.add(false); // isFinished:false

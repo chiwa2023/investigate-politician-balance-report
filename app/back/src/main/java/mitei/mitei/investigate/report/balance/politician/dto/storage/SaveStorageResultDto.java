@@ -2,16 +2,40 @@ package mitei.mitei.investigate.report.balance.politician.dto.storage;
 
 import java.io.Serializable;
 
+import mitei.mitei.investigate.report.balance.politician.dto.AbstractResultDto;
+
 /**
  * 1件の保存済書証Dto
  */
-public class SaveStorageResultDto implements Serializable { // NOPMD DataClass
+public class SaveStorageResultDto extends AbstractResultDto implements Serializable { // NOPMD DataClass
 
     /** Serial Id */
     private static final long serialVersionUID = 1L;
 
     /** 初期データ(String) */
     private static final String INIT_String = "";
+
+    /** 初期データ(Integer) */
+    private static final Integer INIT_Integer = 0;
+
+    /** メッセージ */
+    private String message = INIT_String;
+
+    /**
+     * メッセージを取得する
+     */
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * メッセージを設定する
+     */
+    @Override
+    public void setMessage(final String message) {
+        this.message = message;
+    }
 
     /** 書証Id */
     private Long shoshouId;
@@ -180,4 +204,26 @@ public class SaveStorageResultDto implements Serializable { // NOPMD DataClass
     public void setCharset(final String charset) {
         this.charset = charset;
     }
+
+    /** (圧縮ファイルの場合)配下ファイル数 */
+    private Integer compressCount = INIT_Integer;
+
+    /**
+     * 配下ファイル数取得する
+     *
+     * @return 配下ファイル数
+     */
+    public Integer getCompressCount() {
+        return compressCount;
+    }
+
+    /**
+     * 配下ファイル数設定する
+     *
+     * @param compressCount 配下ファイル数
+     */
+    public void setCompressCount(final Integer compressCount) {
+        this.compressCount = compressCount;
+    }
+
 }

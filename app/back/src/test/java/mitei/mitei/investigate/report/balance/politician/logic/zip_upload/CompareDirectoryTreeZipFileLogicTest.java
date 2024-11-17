@@ -1,6 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.logic.zip_upload;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Files;
@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ import mitei.mitei.investigate.report.balance.politician.util.SaveFileOnlyUtil;
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 @ConfigurationProperties(prefix = "mitei.mitei.investigate.report.balance.politician")
 class CompareDirectoryTreeZipFileLogicTest {
+    // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
@@ -91,7 +93,6 @@ class CompareDirectoryTreeZipFileLogicTest {
 
     @Test
     void testPractice() throws Exception {
-        // CHECKSTYLE:OFF
 
         String fileName = "all.zip";
         Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/zip", fileName);
@@ -111,7 +112,25 @@ class CompareDirectoryTreeZipFileLogicTest {
 
         unCompressZipFileLogic.practice(saveStorageResultDto);
 
-        assertTrue(compareDirectoryTreeZipFileLogic.practice(saveStorageResultDto), "正常な処理がされていればtrue");
+        final String keyWord = "収支報告書作成ソフト";
+        List<SaveStorageResultDto> list = compareDirectoryTreeZipFileLogic.practice(saveStorageResultDto, keyWord);
+        list.sort((dto1, dto2) -> {
+            return dto1.getFileName().compareTo(dto2.getFileName());
+        });
+
+        assertThat(list.size()).isEqualTo(3); // zip内にファイル3件
+        
+        SaveStorageResultDto resultoDto00 = list.get(0);
+        assertThat(resultoDto00.getFileName()).isEqualTo("2022_ホリエモン新党_SYUUSI.xml");
+        assertThat(resultoDto00.getCharset()).isEqualTo("Shift_JIS");
+        
+        SaveStorageResultDto resultoDto01 = list.get(1);
+        assertThat(resultoDto01.getFileName()).isEqualTo("2022_政治家女子48党_SITO.xml");
+        assertThat(resultoDto01.getCharset()).isEqualTo(null); // 文字コード事態の確定はできるが政治資金収支報告書XMLではない
+        
+        SaveStorageResultDto resultoDto02 = list.get(2);
+        assertThat(resultoDto02.getFileName()).isEqualTo("2022_政治家女子48党_SYUUSI.xml");
+        assertThat(resultoDto02.getCharset()).isEqualTo("Shift_JIS");
     }
 
     @Test
@@ -139,7 +158,9 @@ class CompareDirectoryTreeZipFileLogicTest {
         Path zipPath = Paths.get(storageFolder, saveStorageResultDto.getChildDir(), uncompress, "abc.txt");
         Files.writeString(zipPath, "abc");
 
-        assertFalse(compareDirectoryTreeZipFileLogic.practice(saveStorageResultDto), "正常な処理がされていればtrue");
+        final String keyWord = "収支報告書作成ソフト";
+        List<SaveStorageResultDto> list = compareDirectoryTreeZipFileLogic.practice(saveStorageResultDto, keyWord);
 
+        assertTrue(list.isEmpty(), "不正処理の場合は空リスト");
     }
 }

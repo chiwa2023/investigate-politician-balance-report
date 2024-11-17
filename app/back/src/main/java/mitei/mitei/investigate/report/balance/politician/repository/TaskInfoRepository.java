@@ -22,4 +22,15 @@ public interface TaskInfoRepository  extends JpaRepository<TaskInfoEntity, Integ
      */
     @Query(value = "SELECT * FROM task_info WHERE saishin_kbn= 1 AND MATCH(task_info_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
     List<TaskInfoEntity> findFullText(String searchWords);
+    
+    
+    
+    /**
+     * 名称を健作対象として取得する
+     *
+     * @param listName タスク情報名称リスト
+     * @return 検索結果リスト
+     */
+    List<TaskInfoEntity> findByTaskInfoNameInAndSaishinKbn(List<String> listName,Integer saishinKbn);
+    
 }

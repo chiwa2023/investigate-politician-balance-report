@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.task_plan.RegistTaskPlanResultDto;
 import mitei.mitei.investigate.report.balance.politician.entity.TaskInfoEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.UserWebAccessEntity;
@@ -56,7 +57,9 @@ public class RegistTaskPlanService {
         }
 
         // 操作者自身のアクセス情報
-        UserWebAccessEntity userEntity = userWebAccessRepository.findById(privilegeDto.getLoginUserId()).get();
+        UserWebAccessEntity userEntity = userWebAccessRepository
+                .findBySaishinKbnAndUserCode(DataHistoryStatusConstants.INSERT.value(), privilegeDto.getLoginUserCode())
+                .get();
 
         // タスクを作成
         int sizeTask = insertTaskPlanFactoryLogic.practice(datetimeShori.getYear(), privilegeDto, listTask);

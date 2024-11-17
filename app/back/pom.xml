@@ -144,8 +144,9 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<groups>TypeB</groups>
-					<groups>TypeA</groups>
+					<groups>TableTruncate</groups>
+					<groups>NaturalTextSearch</groups>
+					<groups>LoadTest</groups>
 				</configuration>
 			</plugin>
 		</plugins>

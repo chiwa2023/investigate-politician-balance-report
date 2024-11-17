@@ -21,6 +21,9 @@ public class ReadXmlByFileCapsuleDto extends AbstractCapsuleDto implements Seria
     /** csvファイル内容 */
     private String fileContent = INIT_String;
 
+    /** 文書識別Key */
+    private String documentKey = INIT_String;
+
     /**
      * ファイル名を取得する
      *
@@ -78,4 +81,23 @@ public class ReadXmlByFileCapsuleDto extends AbstractCapsuleDto implements Seria
         this.charset = charset;
     }
 
+    /**
+     * 文書識別Keyを設定
+     *
+     * @return 文書識別Key
+     */
+    public String getDocumentKey() {
+        return documentKey;
+    }
+
+    /**
+     * 文書識別Keyを設定する
+     *
+     * @param documentKey 文書識別Key
+     */
+    public void setDocumentKey(final String documentKey) {
+        this.documentKey = documentKey;
+    }
+
+    
 }

@@ -40,8 +40,8 @@ public class CreateTaskLevelListLogic {
         for (String data : text.split(",")) {
             try {
                 list.add(Integer.parseInt(data));
-            }catch(NumberFormatException exception) {
-                // スルーする  TODO　処理が必要になったら修正する
+            } catch (NumberFormatException exception) {
+                // スルーする TODO 処理が必要になったら修正する
             }
         }
 

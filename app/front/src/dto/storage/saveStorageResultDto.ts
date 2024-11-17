@@ -1,7 +1,9 @@
-﻿/**
+﻿import TemplateFrameworkResultDto from "../template/templateFrameworkResultDto";
+
+/**
  * 1件の保存済書証Dto
  */
-export default class SaveStorageResultDto {
+export default class SaveStorageResultDto extends TemplateFrameworkResultDto{
 
     /** 書証Id */
     shoshouKbn: string;
@@ -24,10 +26,15 @@ export default class SaveStorageResultDto {
     /** 登録時間 */
     registTimeText: string;
 
-    /** 登録時間 */
+    /** 文字コード */
     charset: string;
 
+    /** (圧縮ファイルの場合)配下ファイル数 */
+    compressCount: number;
+
     constructor() {
+        super();
+        
         const INIT_STRING: string = "";
         const INIT_NUMBER: number = 0;
 
@@ -39,6 +46,6 @@ export default class SaveStorageResultDto {
         this.fileName = INIT_STRING;
         this.registTimeText = INIT_STRING;
         this.charset = INIT_STRING;
-
+        this.compressCount = INIT_NUMBER;
     }
 }

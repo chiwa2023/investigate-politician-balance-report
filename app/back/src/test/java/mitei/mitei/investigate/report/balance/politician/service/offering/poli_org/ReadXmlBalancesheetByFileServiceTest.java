@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070100CoverAndOrganizationDetailsDto;
 import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
@@ -37,6 +39,8 @@ class ReadXmlBalancesheetByFileServiceTest {
     private ReadXmlBalancesheetByFileService readXmlBalancesheetByFileService;
 
     @Test
+    @Tag("TableTruncate")
+    @Transactional
     void testPractice() throws Exception {
         // CHECKSTYLE:OFF
 

@@ -52,7 +52,6 @@ public class InsertMailInfo2024Logic {
         // タスクでループする
         for (TaskInfoEntity taskEntity : listTask) {
             // タスク水準リストを生成する
-
             list.add(this.createMailEntity(privilegeDto, userEntity, datetimeShori,
                     this.createBccList(createTaskLevelListLogic.practice(taskEntity.getTaskLevelList())), taskEntity));
         }

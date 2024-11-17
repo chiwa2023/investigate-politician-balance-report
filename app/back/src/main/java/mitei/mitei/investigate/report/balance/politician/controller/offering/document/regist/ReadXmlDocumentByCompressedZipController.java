@@ -1,6 +1,8 @@
-package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org.regist;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.document.regist;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlBalancesheetResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
-import mitei.mitei.investigate.report.balance.politician.dto.task_plan.RegistTaskPlanResultDto;
+import mitei.mitei.investigate.report.balance.politician.entity.TaskInfoEntity;
+import mitei.mitei.investigate.report.balance.politician.logic.task_info.CallTaskInfoLogic;
 import mitei.mitei.investigate.report.balance.politician.service.task_plan.RegistTaskPlanService;
-import mitei.mitei.investigate.report.balance.politician.service.zip_upload.ZipUploadService;
+import mitei.mitei.investigate.report.balance.politician.service.zip_upload.ZipUploadDocumentService;
 
 /**
  * ファイル内容(文字列)から政治資金収支報告書XMLクラスを生成する
  */
 @Controller
-@RequestMapping("/zip-balancesheet")
-public class ReadXmlBalancesheetByCompressedZipController extends AbstractTemplateCheckController {
+@RequestMapping("/zip-document")
+public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -39,11 +41,15 @@ public class ReadXmlBalancesheetByCompressedZipController extends AbstractTempla
 
     /** zipファイル保存展開Service */
     @Autowired
-    private ZipUploadService zipUploadService;
+    private ZipUploadDocumentService zipUploadDocumentService;
 
     /** タスク計画と通知予定登録Service */
     @Autowired
     private RegistTaskPlanService registTaskPlanService;
+
+    /** タスク情報呼び出しLogic */
+    @Autowired
+    private CallTaskInfoLogic callTaskInfoLogic;
 
     /**
      * XMLを解析して登録予定情報を提供する
@@ -56,7 +62,7 @@ public class ReadXmlBalancesheetByCompressedZipController extends AbstractTempla
      */
     @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
     @PostMapping("/expand-task")
-    public ResponseEntity<ReadXmlBalancesheetResultDto> practice(
+    public ResponseEntity<SaveStorageResultDto> practice(
             final @RequestBody ReadXmlByFileCapsuleDto readXmlByFileCapsuleDto)
             throws SecurityException, AuthenticationException, PessimisticLockingFailureException { // NOPMD
 
@@ -89,17 +95,23 @@ public class ReadXmlBalancesheetByCompressedZipController extends AbstractTempla
 
             // 処理日時はシステム日付に変更する
             LocalDateTime datetimeShori = LocalDateTime.now();
-
+            
             // ファイルを保存して展開する
-            SaveStorageResultDto saveStorageResultDto = zipUploadService.practcie(datetimeShori,
+            final SaveStorageResultDto saveStorageResultDto = zipUploadDocumentService.practcie(datetimeShori,
                     readXmlByFileCapsuleDto);
-
-            // TODO タスク呼び出しLogic 
+            
+            // 該当のタスク情報を呼び出す
+            List<String> listName = new ArrayList<>();
+            listName.add("政治資金収支報告書一括登録準備");
+            listName.add("政治資金収支報告書一括登録処理結果");
+            List<TaskInfoEntity> listTaskInfo = callTaskInfoLogic.practice(listName);
             
             // タスク登録(メール送信通知予定含む)する
-            RegistTaskPlanResultDto registTaskPlanResultDto = registTaskPlanService.practice(readXmlByFileCapsuleDto.getCheckPrivilegeDto(), datetimeShori, null);
+            // 計画登録、計画通知の記録が必要な場合はDtoを起こすが、
+            // ユーザさんが欲しいのは登録したファイルに対する処理結果なので、この結果は返却不要
+            registTaskPlanService.practice(readXmlByFileCapsuleDto.getCheckPrivilegeDto(), datetimeShori, listTaskInfo);
 
-            return ResponseEntity.ok(null);
+            return ResponseEntity.ok(saveStorageResultDto);
 
             /* ここまで */
 

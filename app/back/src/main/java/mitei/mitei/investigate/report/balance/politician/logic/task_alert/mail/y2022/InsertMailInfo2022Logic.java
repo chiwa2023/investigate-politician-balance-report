@@ -49,7 +49,7 @@ public class InsertMailInfo2022Logic {
 
         // タスクとユーザでループする
         for (TaskInfoEntity taskEntity : listTask) {
-            List<UserWebAccessEntity> listPickup =null;
+            List<UserWebAccessEntity> listPickup = null;
             
             for (UserWebAccessEntity sendEntity : listPickup) {
                 list.add(this.createMailEntity(privilegeDto, userEntity, datetimeShori, sendEntity, taskEntity));
