@@ -18,6 +18,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070100CoverAndOrganizationDetailsDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlBalancesheetResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
@@ -63,12 +64,21 @@ public class UnCompressedFileToReadXmlDtoProcessor
     @Override
     public ReadXmlBalancesheetResultDto process(final TaskPlanBalancesheetDetailEntity item) throws Exception {
 
+        // 書証Dto
         SaveStorageResultDto saveStorageResultDto = new SaveStorageResultDto();
         BeanUtils.copyProperties(item, saveStorageResultDto);
 
         ReadXmlBalancesheetResultDto resultDto = new ReadXmlBalancesheetResultDto();
         resultDto.setSaveStorageResultDto(saveStorageResultDto);
 
+        // 権限確認Dto
+        CheckPrivilegeDto privilegeDto = new CheckPrivilegeDto();
+        privilegeDto.setLoginUserId(item.getInsertUserId());
+        privilegeDto.setLoginUserCode(item.getInsertUserCode());
+        privilegeDto.setLoginUserName(item.getInsertUserName());
+        
+        resultDto.setCheckPrivilegeDto(privilegeDto);
+        
         // 公式XML読み取り
         XmlMapper xmlMapper = new XmlMapper();
         xmlMapper.setSerializationInclusion(Include.ALWAYS);

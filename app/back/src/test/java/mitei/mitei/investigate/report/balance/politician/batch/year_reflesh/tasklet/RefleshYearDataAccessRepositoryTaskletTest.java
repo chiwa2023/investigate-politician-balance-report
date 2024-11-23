@@ -44,7 +44,7 @@ class RefleshYearDataAccessRepositoryTaskletTest {
     private RefleshYearDataAccessRepositoryTasklet refleshYearDataAccessRepositoryTasklet;
 
     /** 複写元報告年 */
-    private static final int baseYear = 2025;
+    private static final int baseYear = 2024;
     /** 複写先報告年 */
     private static final int copyYear = 2022;
 

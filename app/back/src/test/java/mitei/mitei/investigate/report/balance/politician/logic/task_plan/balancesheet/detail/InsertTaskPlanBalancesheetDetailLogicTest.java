@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -42,6 +43,7 @@ class InsertTaskPlanBalancesheetDetailLogicTest {
     private TaskPlanBalancesheetDetailRepository taskPlanBalancesheetDetailRepository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("truncate_task_plan_balancesheet_detail.sql")
     void test() {

@@ -40,7 +40,7 @@ public class SearchTaskPlanByPoliticalOrgY2022Logic {
         for (TaskPlan2022Entity entity : listEntity) {
 
             // リストに含まれるユーザのタスクのみタスクリストに追加する
-            listCode = this.getListUserFilter(entity.getListUserCode());
+            listCode = this.getListUserFilter(entity.getTaskLevelList());
             if (listCode.contains(String.valueOf(userCode))) {
                 listDto.add(this.createDto(entity));
             }

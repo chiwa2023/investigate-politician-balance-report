@@ -33,17 +33,15 @@ public class WkTblPoliOrgBalancesheetReportItemWriter extends JpaItemWriter<WkTb
         super();
         super.setEntityManagerFactory(entityManagerFactory);
     }
-    
-    
+
     /** 政治資金収支報告書登録準備ワークテーブルレポジトリ */
     @Autowired
     private WkTblPoliOrgBalancesheetReportRepository wkTblPoliOrgBalancesheetReportRepository;
 
-    
     /** 政治資金収支報告書登録計画レポジトリ */
     @Autowired
     private TaskPlanBalancesheetDetailRepository taskPlanBalancesheetDetailRepository;
-    
+
     /**
      * 書き込み処理
      */
@@ -51,22 +49,23 @@ public class WkTblPoliOrgBalancesheetReportItemWriter extends JpaItemWriter<WkTb
     public void write(final Chunk<? extends WkTblPoliOrgBalancesheetReportEntity> items) {
 
         Integer code = 0;
-        Optional<WkTblPoliOrgBalancesheetReportEntity> optional = wkTblPoliOrgBalancesheetReportRepository.findFirstByOrderByWkTblPoliOrgBalancesheetReportCodeDesc();
-        if(!optional.isEmpty()) {
-            code = code+ optional.get().getWkTblPoliOrgBalancesheetReportCode();
+        Optional<WkTblPoliOrgBalancesheetReportEntity> optional = wkTblPoliOrgBalancesheetReportRepository
+                .findFirstByOrderByWkTblPoliOrgBalancesheetReportCodeDesc();
+        if (!optional.isEmpty()) {
+            code = code + optional.get().getWkTblPoliOrgBalancesheetReportCode();
         }
-        
+
         CheckPrivilegeDto privilegeDto = new CheckPrivilegeDto();
         privilegeDto.setLoginUserId(items.getItems().get(0).getInsertUserId());
         privilegeDto.setLoginUserCode(items.getItems().get(0).getInsertUserCode());
         privilegeDto.setLoginUserName(items.getItems().get(0).getInsertUserName());
-               
+
         List<TaskPlanBalancesheetDetailEntity> listTask = new ArrayList<>();
         TaskPlanBalancesheetDetailEntity taskEntity;
-        for(WkTblPoliOrgBalancesheetReportEntity entity   : items.getItems()) {
+        for (WkTblPoliOrgBalancesheetReportEntity entity : items.getItems()) {
             code++;
             entity.setWkTblPoliOrgBalancesheetReportCode(code);
-            taskEntity =  taskPlanBalancesheetDetailRepository.findById(entity.getTaskPlanBalancesheetDetailId()).get();
+            taskEntity = taskPlanBalancesheetDetailRepository.findById(entity.getTaskPlanBalancesheetDetailId()).get();
             SetTableDataHistoryUtil.practice(privilegeDto, taskEntity, DataHistoryStatusConstants.UPDATE);
             taskEntity.setIsFinished(true);
             listTask.add(taskEntity);
@@ -74,9 +73,9 @@ public class WkTblPoliOrgBalancesheetReportItemWriter extends JpaItemWriter<WkTb
         // 登録処理
         wkTblPoliOrgBalancesheetReportRepository.saveAll(items.getItems());
         wkTblPoliOrgBalancesheetReportRepository.flush();
-        
+
         // TODO 処理行った準備テーブル(task_plan_balancesheet_detail)を実施済にする
-        
+
         taskPlanBalancesheetDetailRepository.saveAll(listTask);
     }
 

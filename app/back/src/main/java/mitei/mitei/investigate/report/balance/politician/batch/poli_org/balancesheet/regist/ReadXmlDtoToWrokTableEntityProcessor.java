@@ -4,8 +4,10 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlBalancesheetResultDto;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgBalancesheetReportEntity;
+import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * ReadXmlDtoからワークテーブルEntityに変換するProcessor
@@ -22,6 +24,8 @@ public class ReadXmlDtoToWrokTableEntityProcessor
 
         WkTblPoliOrgBalancesheetReportEntity entity = new WkTblPoliOrgBalancesheetReportEntity();
 
+        SetTableDataHistoryUtil.practice(item.getCheckPrivilegeDto(), entity, DataHistoryStatusConstants.INSERT);
+        
         BeanUtils.copyProperties(item.getSaveStorageResultDto(), entity);
         BeanUtils.copyProperties(item.getCoverDto(), entity);
         BeanUtils.copyProperties(item.getDocumentPropertyDto(), entity);

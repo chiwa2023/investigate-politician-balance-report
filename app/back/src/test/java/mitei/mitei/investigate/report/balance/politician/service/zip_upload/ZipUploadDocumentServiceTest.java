@@ -162,6 +162,15 @@ class ZipUploadDocumentServiceTest { // NOPMD
 
     }
 
+    
+    
+    // TODO 政党交付金使途報告書一括解析予定
+    
+    
+    
+    
+    
+    
     @Test
     @Tag("LoadTest")
     @Transactional

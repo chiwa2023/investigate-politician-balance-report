@@ -33,12 +33,22 @@ public class InsertTaskPlanY2022Logic {
      */
     public int practice(final CheckPrivilegeDto privilegeDto, final List<TaskInfoEntity> listTask) {
 
+        final String INIT_STRING = "";
+
         List<TaskPlan2022Entity> list = new ArrayList<>();
+        boolean isAdd;
         for (TaskInfoEntity taskEntity : listTask) {
-            
-            
-            
-            list.add(this.createEntity(privilegeDto, taskEntity));
+            isAdd = true;
+            // ページへの接続クエリがない場合、全ユーザ統一ページである
+            // その場合、すでにタスク予定が存在している場合は、2重にタスクを追加する必要がない
+            if (INIT_STRING.equals(taskEntity.getParamQuery())) {
+                isAdd = taskPlan2022Repository.findBySaishinKbnAndTaskPlanName(
+                        DataHistoryStatusConstants.INSERT.value(), taskEntity.getTaskInfoName()).isEmpty();
+            }
+
+            if (isAdd) {
+                list.add(this.createEntity(privilegeDto, taskEntity));
+            }
         }
 
         // 同一識別コードの設定
@@ -65,7 +75,8 @@ public class InsertTaskPlanY2022Logic {
         entity.setIsFinished(false); // タスクが未処理指定なのでfalse固定
 
         entity.setTaskPlanName(taskInfoEntity.getTaskInfoName());
-        entity.setListUserCode(taskInfoEntity.getTaskLevelList());
+        entity.setTaskLevelList(taskInfoEntity.getTaskLevelList());
+
         // 遷移するURLと指定するqueryを連結して格納
         entity.setTransferPass(taskInfoEntity.getTransferPass() + taskInfoEntity.getParamQuery());
 

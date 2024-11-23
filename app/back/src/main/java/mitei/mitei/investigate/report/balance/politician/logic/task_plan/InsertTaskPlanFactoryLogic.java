@@ -54,12 +54,11 @@ public class InsertTaskPlanFactoryLogic {
 
             // 2022年
             case YEAR_2022:
-                //return insertTaskPlanY2022Logic.practice(privilegeDto, listTask, listUser);
-                return 0;
+                return insertTaskPlanY2022Logic.practice(privilegeDto, listTask);
+                
             // 2025年
             case YEAR_2025:
-                //return insertTaskPlanY2025Logic.practice(privilegeDto, listTask, listUser);
-                return 0;
+                return insertTaskPlanY2025Logic.practice(privilegeDto, listTask);
 
             // caseの追加位置
             default:

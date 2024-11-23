@@ -5,7 +5,7 @@ import java.io.Serializable;
 import mitei.mitei.investigate.report.balance.politician.dto.AbstractCapsuleDto;
 
 /**
- * 最低限のControllerチェックをとおるDto
+ * 最低限のControllerチェックを通すDto
  */
 public class TemplateFrameworkCapsuleDto extends AbstractCapsuleDto implements Serializable{
 

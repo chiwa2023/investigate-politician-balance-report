@@ -25,7 +25,6 @@ import mitei.mitei.investigate.report.balance.politician.service.offering.poli_o
 @RequestMapping("/listup-balancesheet-charset")
 public class SearchRegistBalancesheetPlanErrorController extends AbstractTemplateCheckController {
 
-
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
     /** 権限チェック不可定数 */

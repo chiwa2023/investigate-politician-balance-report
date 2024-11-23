@@ -13,6 +13,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balanceshe
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
 import mitei.mitei.investigate.report.balance.politician.logic.storage.SaveStorageFileLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.task_plan.balancesheet.detail.InsertTaskPlanBalancesheetDetailLogic;
+import mitei.mitei.investigate.report.balance.politician.logic.task_plan.party_usage.detail.InsertTaskPlanPartyUsageDetailLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.zip_upload.CompareDirectoryTreeZipFileLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.zip_upload.UnCompressZipFileLogic;
 
@@ -36,10 +37,17 @@ public class ZipUploadDocumentService {
 
     /** 政治資金収支報告書解析予定登録Logic */
     @Autowired
-    private InsertTaskPlanBalancesheetDetailLogic balancesheetDetailLogic;
+    private InsertTaskPlanBalancesheetDetailLogic insertTaskPlanBalancesheetDetailLogic;
 
-    /** 政治資金収支報告識別Key */
+    /** 政治資金収支報告書解析予定登録Logic */
+    @Autowired
+    private InsertTaskPlanPartyUsageDetailLogic insertTaskPlanPartyUsageDetailLogic;
+
+    /** 政治資金収支報告書識別Key */
     private static final String SOFT_BALANCESHEET = DocumentRecognizeKeyConstants.SOFT_BALANCESHEET;
+
+    /** 政党交付金使途報告書識別Key */
+    private static final String SOFT_PARTY_USAGE = DocumentRecognizeKeyConstants.SOFT_PARTY_USAGE;
 
     /**
      * ファイル保存と展開、その確認処理をする
@@ -71,7 +79,11 @@ public class ZipUploadDocumentService {
             switch (keyWord) {
                 // 政治資金収支報告書
                 case SOFT_BALANCESHEET:
-                    compressCount = balancesheetDetailLogic.practice(listFile, capsuleDto.getCheckPrivilegeDto());
+                    compressCount = insertTaskPlanBalancesheetDetailLogic.practice(listFile, capsuleDto.getCheckPrivilegeDto());
+                    break;
+
+                case SOFT_PARTY_USAGE:
+                    compressCount = insertTaskPlanPartyUsageDetailLogic.practice(listFile, capsuleDto.getCheckPrivilegeDto());
                     break;
 
                 default:

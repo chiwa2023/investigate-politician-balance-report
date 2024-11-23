@@ -41,7 +41,7 @@ class SearchRegistBalancesheetPlanControllerTest {
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("../../../service/offering/poli_org/task_plan_balancesheet_detail.sql")
+    @Sql("task_plan_balancesheet_detail.sql")
     void test() throws Exception {
 
         TemplateFrameworkCapsuleDto capsuleDto = new TemplateFrameworkCapsuleDto();

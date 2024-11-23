@@ -44,10 +44,9 @@ public class RegistPreaparePoliOrgBalancesheetBatchConfiguration {
     /** チャンクサイズ */
     private static final int CHUNK_SIZE = 3;
 
-    /** 回答済ファイルからAllBookに変換するプロセッサ */
+    /** 解凍済ファイルからAllBookに変換するプロセッサ */
     @Autowired
     private UnCompressedFileToReadXmlDtoProcessor unCompressedFileToReadXmlDtoProcessor;
-
 
     /** ReadXmlDtoからワークテーブルに変換するプロセッサ */
     @Autowired

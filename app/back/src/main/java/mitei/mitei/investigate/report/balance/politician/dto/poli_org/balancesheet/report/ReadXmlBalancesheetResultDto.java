@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070100CoverAndOrganizationDetailsDto;
 import mitei.mitei.investigate.report.balance.politician.dto.AbstractResultDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
 
 /**
- * 
+ * 政治資金収支報告書XML読み取り結果Dto
  */
 public class ReadXmlBalancesheetResultDto extends AbstractResultDto implements Serializable { // NOPMD DataClass
 
@@ -144,6 +145,27 @@ public class ReadXmlBalancesheetResultDto extends AbstractResultDto implements S
      */
     public void setTaskPlanBalancesheetDetailCode(final Long taskPlanBalancesheetDetailCode) {
         this.taskPlanBalancesheetDetailCode = taskPlanBalancesheetDetailCode;
+    }
+
+    /** 権限確認Dto */
+    private CheckPrivilegeDto checkPrivilegeDto = new CheckPrivilegeDto();
+
+    /**
+     * 権限確認Dtoを取得する
+     *
+     * @return 権限確認Dto
+     */
+    public CheckPrivilegeDto getCheckPrivilegeDto() {
+        return checkPrivilegeDto;
+    }
+
+    /**
+     * 権限確認Dtoを設定する
+     *
+     * @param checkPrivilegeDto 権限確認Dto
+     */
+    public void setCheckPrivilegeDto(final CheckPrivilegeDto checkPrivilegeDto) {
+        this.checkPrivilegeDto = checkPrivilegeDto;
     }
 
 }

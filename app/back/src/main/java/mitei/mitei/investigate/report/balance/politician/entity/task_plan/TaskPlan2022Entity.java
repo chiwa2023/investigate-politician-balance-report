@@ -12,14 +12,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHistoryInterface;
 
-
-
 /**
  * task_plan_2022接続用Entity
  */
 @Entity
 @Table(name = "task_plan_2022")
-public class TaskPlan2022Entity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+public class TaskPlan2022Entity implements Serializable, AllTabeDataHistoryInterface { // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -29,7 +27,7 @@ public class TaskPlan2022Entity  implements Serializable,AllTabeDataHistoryInter
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-    
+
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
@@ -37,13 +35,14 @@ public class TaskPlan2022Entity  implements Serializable,AllTabeDataHistoryInter
     private static final Boolean INIT_Boolean = false;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1948,7,29);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 初期データ(Timestamp) */
     private static final LocalDateTime INIT_LocalDateTime = INIT_LocalDate.atTime(0, 0, 0);
 
     /** タスク予定Id */
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_plan_id")
     private Long taskPlanId = INIT_Long;
 
@@ -221,48 +220,26 @@ public class TaskPlan2022Entity  implements Serializable,AllTabeDataHistoryInter
         this.isFinished = isFinished;
     }
 
-    /** タスク権限区分  */
-    @Column(name = "kengen_kbn")
-    private Integer kengenKbn = INIT_Integer;
+    /** タスク水準リスト文字列 */
+    @Column(name = "task_level_list")
+    private String taskLevelList = INIT_String;
 
     /**
-     * タスク権限区分を取得する
+     * タスク水準リスト文字列を設定する
      *
-     * @return タスク権限区分
+     * @return タスク水準リスト文字列
      */
-    public Integer getKengenKbn() {
-        return kengenKbn;
+    public String getTaskLevelList() {
+        return taskLevelList;
     }
 
     /**
-     * タスク権限区分を設定する
+     * タスク水準リスト文字列を取得する
      *
-     * @param kengenKbn タスク権限区分
+     * @param taskLevelList タスク水準リスト文字列
      */
-    public void setKengenKbn(final Integer kengenKbn) {
-        this.kengenKbn = kengenKbn;
-    }
-
-    /** 対象ユーザリスト文字列 */
-    @Column(name = "list_user_code")
-    private String listUserCode = INIT_String;
-
-    /**
-     * 対象ユーザリスト文字列を取得する
-     *
-     * @return 対象ユーザリスト文字列
-     */
-    public String getListUserCode() {
-        return listUserCode;
-    }
-
-    /**
-     * 対象ユーザリスト文字列を設定する
-     *
-     * @param listUserCode 対象ユーザリスト文字列
-     */
-    public void setListUserCode(final String listUserCode) {
-        this.listUserCode = listUserCode;
+    public void setTaskLevelList(final String taskLevelList) {
+        this.taskLevelList = taskLevelList;
     }
 
     /** 遷移パス */

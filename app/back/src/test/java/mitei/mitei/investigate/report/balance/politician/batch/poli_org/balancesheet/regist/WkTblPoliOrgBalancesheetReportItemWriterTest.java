@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.item.Chunk;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ class WkTblPoliOrgBalancesheetReportItemWriterTest {
     private TaskPlanBalancesheetDetailRepository taskPlanBalancesheetDetailRepository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql({ "wk_tbl_poli_org_balancesheet_report.sql", "task_plan_balancesheet_detail.sql" })
     void test() { // NOPMD

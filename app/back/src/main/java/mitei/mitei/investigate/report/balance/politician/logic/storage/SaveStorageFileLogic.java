@@ -5,18 +5,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
-import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageSimulateEntityDto;
-import mitei.mitei.investigate.report.balance.politician.entity.storage.SaveFileStorage2024Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.storage.SaveFileStorage2024Repository;
+import mitei.mitei.investigate.report.balance.politician.logic.storage.y2022.SaveStorageFileY2022Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.storage.y2024.SaveStorageFileY2024Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.storage.y2025.SaveStorageFileY2025Logic;
 import mitei.mitei.investigate.report.balance.politician.util.SaveFileOnlyUtil;
-import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
  * アップロードされたファイルをストレージに格納する
@@ -31,11 +28,23 @@ public class SaveStorageFileLogic {
     /** Base64ヘッダ */
     private static final String BASE64_HEADER = ";base64,";
 
+    /** 処理年(2022) */
+    private static final int YEAR_2022 = 2022;
+    /** ファイル保存Logic(2022年) */
+    @Autowired
+    private SaveStorageFileY2022Logic saveStorageFileY2022Logic;
+
     /** 処理年(2024) */
     private static final int YEAR_2024 = 2024;
-    /** ファイル保存Repository(2024年) */
+    /** ファイル保存Logic(2024年) */
     @Autowired
-    private SaveFileStorage2024Repository saveFileStorage2024Repository;
+    private SaveStorageFileY2024Logic saveStorageFileY2024Logic;
+
+    /** 処理年(2025) */
+    private static final int YEAR_2025 = 2025;
+    /** ファイル保存Logic(2025年) */
+    @Autowired
+    private SaveStorageFileY2025Logic saveStorageFileY2025Logic;
 
     /**
      * ファイル保存とDB保存記録処理を行う
@@ -87,60 +96,31 @@ public class SaveStorageFileLogic {
         return this.saveTable(privilegeDto, unixTime, childDir, fileName);
     }
 
-    /**
-     * save_storage共通で使用できるDtoに値をセットする
-     *
-     * @param privilegeDto 権限確認Dto
-     * @param fileName     ファイル名
-     * @param childDir     子ディレクト
-     * @return 共通利用用途Dto
-     */
-    private SaveStorageSimulateEntityDto getStorageDto(final CheckPrivilegeDto privilegeDto, final String fileName,
-            final String childDir) {
-        SaveStorageSimulateEntityDto dto = new SaveStorageSimulateEntityDto();
-
-        SetTableDataHistoryUtil.practice(privilegeDto, dto, DataHistoryStatusConstants.INSERT);
-        dto.setDirChild(childDir);
-        dto.setFileName(fileName);
-        dto.setSaveFileStorageId(0L); // auto increment 明記
-        dto.setSaveFileStorageCode(0L); // 基本的に変更は控えてほしい。どうしてもの場合は更新時に同一識別コードを持ってくる
-
-        return dto;
-    }
-
-    private SaveStorageResultDto saveTable(final CheckPrivilegeDto privilegeDto, final String unixTime,
-            final String childDir, final String fileName) {
+    // テーブルに保存して書証保存Dtoを返却する
+    private SaveStorageResultDto saveTable(// SUPPRESS CHECKSTYLE ReturnCountCheck
+            final CheckPrivilegeDto privilegeDto, final String unixTime, final String childDir, final String fileName)
+            throws IOException {
 
         // 年4桁を取り出し
         int year = Integer.parseInt(unixTime.substring(0, 4)); // SUPPRESS CHECKSTYLE MagicNumber
 
-        Long entityId = 0L;
-        Long entityCode = 0L;
-
         switch (year) {
+
+            // 2022年
+            case YEAR_2022:
+                return saveStorageFileY2022Logic.practice(privilegeDto, unixTime, childDir, fileName);
+
             // 2024年
             case YEAR_2024:
-                SaveFileStorage2024Entity entity2024 = new SaveFileStorage2024Entity();
-                BeanUtils.copyProperties(this.getStorageDto(privilegeDto, fileName, childDir), entity2024);
-                SaveFileStorage2024Entity entityNew2024 = saveFileStorage2024Repository.save(entity2024);
-                entityId = entityNew2024.getSaveFileStorageId();
-                entityCode = entityNew2024.getSaveFileStorageCode();
-                break;
+                return saveStorageFileY2024Logic.practice(privilegeDto, unixTime, childDir, fileName);
+
+            // 2025年
+            case YEAR_2025:
+                return saveStorageFileY2025Logic.practice(privilegeDto, unixTime, childDir, fileName);
+
             default:
                 throw new IllegalArgumentException("Unexpected value: " + year);
         }
-
-        SaveStorageResultDto resultDto = new SaveStorageResultDto();
-
-        resultDto.setShoshouId(entityId);
-        resultDto.setShoshouCode(entityCode);
-        resultDto.setShoshouKbn(0); // 仮値 TODO 決定次第修正を行う
-        resultDto.setFullPath(childDir + "/" + fileName);
-        resultDto.setChildDir(childDir);
-        resultDto.setFileName(fileName);
-        resultDto.setRegistTimeText(unixTime);
-
-        return resultDto;
 
     }
 

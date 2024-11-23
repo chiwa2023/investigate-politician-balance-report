@@ -53,10 +53,10 @@ public class RefleshYearDataAccessRepositoryTasklet implements Tasklet, StepExec
         this.worksByOneFunction(pathFunctionBalancesheet);
 
         /* タスク通知 */
-        final String pathFunctionMailRepository = "main/java/mitei/mitei/create/report/balance/politician/repository/mail/";
-        final String pathFunctionTaskRepository = "main/java/mitei/mitei/create/report/balance/politician/repository/task_plan/";
-        this.worksByOneFunction(pathFunctionMailRepository);
-        this.worksByOneFunction(pathFunctionTaskRepository);
+        //final String pathFunctionMailRepository = "main/java/mitei/mitei/create/report/balance/politician/repository/mail/";
+        //final String pathFunctionTaskRepository = "main/java/mitei/mitei/create/report/balance/politician/repository/task_plan/";
+        //this.worksByOneFunction(pathFunctionMailRepository);
+        ///this.worksByOneFunction(pathFunctionTaskRepository);
 
         // 処理終了
         return RepeatStatus.FINISHED;

@@ -109,25 +109,25 @@ public class SaveFileStorage2024Entity  implements Serializable,AllTabeDataHisto
     }
 
     /** 格納子ディレクトリ */
-    @Column(name = "dir_child")
-    private String dirChild = INIT_String;
-
+    @Column(name = "child_dir")
+    private String childDir = INIT_String;
+    
     /**
      * 格納子ディレクトリを取得する
      *
      * @return 格納子ディレクトリ
      */
-    public String getDirChild() {
-        return dirChild;
+    public String getChildDir() {
+        return childDir;
     }
 
     /**
      * 格納子ディレクトリを設定する
      *
-     * @param dirChild 格納子ディレクトリ
+     * @param childDir 格納子ディレクトリ
      */
-    public void setDirChild(final String dirChild) {
-        this.dirChild = dirChild;
+    public void setChildDir(final String childDir) {
+        this.childDir = childDir;
     }
 
     /** ファイル名 */
@@ -152,6 +152,35 @@ public class SaveFileStorage2024Entity  implements Serializable,AllTabeDataHisto
         this.fileName = fileName;
     }
 
+    
+    /** 登録時間 */
+    @Column(name = "regist_time_text")
+    private String registTimeText = INIT_String;
+
+    /**
+     * 登録時間取得する
+     *
+     * @return 登録時間
+     */
+    public String getRegistTimeText() {
+        return registTimeText;
+    }
+
+    /**
+     * 登録時間設定する
+     *
+     * @param registTimeText 登録時間
+     */
+    public void setRegistTimeText(final String registTimeText) {
+        this.registTimeText = registTimeText;
+    }
+
+    
+    
+    
+    
+    
+    
     /** 書証区分 */
     @Column(name = "shosho_kbn")
     private Integer shoshoKbn = INIT_Integer;

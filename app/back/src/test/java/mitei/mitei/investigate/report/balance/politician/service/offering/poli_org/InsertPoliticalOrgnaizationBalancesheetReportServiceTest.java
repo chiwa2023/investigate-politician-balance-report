@@ -772,7 +772,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
         // TODO 関連者
 
         // 自由検索
-        assertThat(entity0500.getSearchWords()).isEqualTo("本部／支部からの交付金本部支部名称事務所住所");
+        assertThat(entity0500.getSearchWords()).isEqualTo("本部/支部からの交付金本部支部名称事務所住所");
 
         /* その6 */
         OfferingBalancesheetIncome2025Entity entity0600 = listIncome.get(3);

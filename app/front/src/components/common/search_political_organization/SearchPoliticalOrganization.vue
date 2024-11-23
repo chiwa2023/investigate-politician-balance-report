@@ -77,7 +77,6 @@ const searchWords: Ref<string> = ref("");
  * 検索条件に基づき検索を行う
  */
 async function onSearch() {
-    alert("検索");
     //セッションストレージ取得
     const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
     searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
@@ -101,7 +100,6 @@ async function onSearch() {
 
     fetch(url, { method, headers, body })
         .then(async (response) => {
-
             //alert(JSON.stringify(await response.json()));
 
             list.value = await response.json();
@@ -115,7 +113,7 @@ async function onSearch() {
         検索条件の指定
     </div>
     <div class="left-area-component">
-        検索語
+        検索語(未入力だと結果0のためテスト中は"党"と入れると結果が出る TODO 運営時に削除する)
     </div>
     <div class="right-area-component">
         <input type="text" v-model="searchWords" style="margin-right:2%;"><button @click="onSearch">検索</button>

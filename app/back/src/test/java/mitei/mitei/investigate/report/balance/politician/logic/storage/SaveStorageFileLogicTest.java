@@ -2,7 +2,6 @@ package mitei.mitei.investigate.report.balance.politician.logic.storage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -106,7 +105,7 @@ class SaveStorageFileLogicTest {
         // DBに必要な属性が格納されていること
         SaveFileStorage2024Entity entity = saveFileStorage2024Repository.findById(resultDto.getShoshouId()).get();
         assertThat(entity.getSaveFileStorageCode()).isEqualTo(0L); // 新規挿入時は0固定
-        assertThat(entity.getDirChild()).isEqualTo(fullPath.substring(0, fullPath.length() - (fileName.length() + 1)));
+        assertThat(entity.getChildDir()).isEqualTo(fullPath.substring(0, fullPath.length() - (fileName.length() + 1)));
         assertThat(entity.getFileName()).isEqualTo(fileName);
         assertThat(entity.getInsertUserId()).isEqualTo(privilegeDto.getLoginUserId()); // 書証の保持者：重要
         assertThat(entity.getInsertUserCode()).isEqualTo(privilegeDto.getLoginUserCode()); // 書証の保持者：重要
@@ -153,13 +152,12 @@ class SaveStorageFileLogicTest {
         // DBに必要な属性が格納されていること
         SaveFileStorage2024Entity entity = saveFileStorage2024Repository.findById(resultDto.getShoshouId()).get();
         assertThat(entity.getSaveFileStorageCode()).isEqualTo(0L); // 新規挿入時は0固定
-        assertThat(entity.getDirChild()).isEqualTo(fullPath.substring(0, fullPath.length() - (fileName.length() + 1)));
+        assertThat(entity.getChildDir()).isEqualTo(fullPath.substring(0, fullPath.length() - (fileName.length() + 1)));
         assertThat(entity.getFileName()).isEqualTo(fileName);
         assertThat(entity.getInsertUserId()).isEqualTo(privilegeDto.getLoginUserId()); // 書証の保持者：重要
         assertThat(entity.getInsertUserCode()).isEqualTo(privilegeDto.getLoginUserCode()); // 書証の保持者：重要
         assertThat(entity.getInsertUserName()).isEqualTo(privilegeDto.getLoginUserName()); // 書証の保持者：重要
 
-        fail("Not yet implemented");
     }
 
 }

@@ -58,13 +58,11 @@ public class InsertMailInfoFactoryLogic {
 
             // 2022年
             case YEAR_2022:
-                //return insertMailInfo2022Logic.practice(privilegeDto, datetimeShori, userEntity, listSend, listTask);
-                return 0;
+                return insertMailInfo2022Logic.practice(privilegeDto, datetimeShori, userEntity,  listTask);
 
             // 2025年
             case YEAR_2025:
-                //return insertMailInfo2025Logic.practice(privilegeDto, datetimeShori, userEntity, listSend, listTask);
-                return 0;
+                return insertMailInfo2025Logic.practice(privilegeDto, datetimeShori, userEntity,  listTask);
 
             // caseの追加位置
 

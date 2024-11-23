@@ -42,4 +42,14 @@ public interface TaskPlan2025Repository extends JpaRepository<TaskPlan2025Entity
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<TaskPlan2025Entity> findFirstByOrderByTaskPlanCodeDesc();
+
+    /**
+     * 未処理タスクリストを検索する
+     *
+     * @param saishinKbn 最新区分
+     * @param taskName   タスク名称
+     * @return 検索結果
+     */
+    List<TaskPlan2025Entity> findBySaishinKbnAndTaskPlanName(Integer saishinKbn, String taskName);
+
 }

@@ -48,9 +48,8 @@ SessionStorageCommonCheck.setPrivilege(checkPrivilegeDto);
     <RouterLink to="/zip-upload-document">(収支報告書・使途報告書)文書一括登録</RouterLink><br>
     <RouterLink to="/listup-balancesheet-plan">政治資金収支報告書解析予定リスト</RouterLink><br>
     <RouterLink to="/listup-balancesheet-plan-err">政治資金収支報告書解析予定エラーリスト(最新かつ文字コード未定)</RouterLink><br>
-    
-    <a href="#">【タイムスケジュール処理作成まで暫定】強制：政治資金収支報告書準備解析処理バッチ</a><br>
-    <a href="#">【タイムスケジュール処理作成まで暫定】強制：政治資金収支報告書解析処理バッチ</a><br>
+    <RouterLink to="/schedule-force/poli-org-regist/prepared">【タイムスケジュール処理作成まで暫定】強制：政治資金収支報告書準備解析処理バッチ</RouterLink><br>
+    <RouterLink to="/schedule-force/poli-org-regist/regist">【タイムスケジュール処理作成まで暫定】強制：政治資金収支報告書解析処理バッチ</RouterLink><br>
     <hr>
     <RouterLink to="/audit-option-income">監査意見収入</RouterLink><br>
     <RouterLink to="/detect-balancesheet-defect">政治資金収支報告書欠損検出(版管理)</RouterLink><br>
