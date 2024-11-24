@@ -39,10 +39,13 @@ public class RegistPreaparePoliOrgBalancesheetBatchConfiguration {
     public static final String JOB_NAME = FUNCTION_NAME + JOB;
 
     /** Step名 */
-    public static final String STEP_NAME = FUNCTION_NAME + STEP;
+    public static final String STEP_INSERT_NAME = FUNCTION_NAME + "Insert" + STEP;
+
+    /** Step名 */
+    public static final String STEP_UPDATE_NAME = FUNCTION_NAME + "Update" + STEP;
 
     /** チャンクサイズ */
-    private static final int CHUNK_SIZE = 3;
+    private static final int CHUNK_SIZE = 10;
 
     /** 解凍済ファイルからAllBookに変換するプロセッサ */
     @Autowired
@@ -52,13 +55,21 @@ public class RegistPreaparePoliOrgBalancesheetBatchConfiguration {
     @Autowired
     private ReadXmlDtoToWrokTableEntityProcessor readXmlDtoToWrokTableEntityProcessor;
 
-    /** リーダ */
+    /** リーダInsert */
     @Autowired
     private TaskPlanBalancesheetDetailItemReader taskPlanBalancesheetDetailItemReader;
 
-    /** ライタ */
+    /** ライタInsert */
     @Autowired
     private WkTblPoliOrgBalancesheetReportItemWriter wkTblPoliOrgBalancesheetReportItemWriter;
+
+    /** リーダUpdate */
+    @Autowired
+    private SaishinWkTblBalancesheetItemReader saishinWkTblBalancesheetItemReader;
+
+    /** ライタUpdate */
+    @Autowired
+    private UpdateFinishedTaskPlanBalancesheetDetailItemWriter updateFinishedTaskPlanBalancesheetDetailItemWriter;
 
     /**
      * Jobを返却する
@@ -68,20 +79,23 @@ public class RegistPreaparePoliOrgBalancesheetBatchConfiguration {
      * @return ジョブ
      */
     @Bean(JOB_NAME)
-    protected Job getJob(final JobRepository jobRepository, @Qualifier(STEP_NAME) final Step step) {
+    protected Job getJob(final JobRepository jobRepository, @Qualifier(STEP_INSERT_NAME) final Step stepInsert,
+            @Qualifier(STEP_UPDATE_NAME) final Step stepUpdate) {
 
-        return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(step).end().build();
+        return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepInsert)
+                .next(stepUpdate).end().build();
     }
 
     /**
-     * Stepを返却する
+     * StepInsertを返却する
      *
      * @param jobRepository      ジョブレポジトリ
      * @param transactionManager トランザクションマネージャ
      * @return step
      */
-    @Bean(STEP_NAME)
-    protected Step getStep(final JobRepository jobRepository, final PlatformTransactionManager transactionManager) {
+    @Bean(STEP_INSERT_NAME)
+    protected Step getStepInsert(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
 
         // プロセッサをまとめる
         List<ItemProcessor<?, ?>> delegates = new ArrayList<>();
@@ -91,11 +105,29 @@ public class RegistPreaparePoliOrgBalancesheetBatchConfiguration {
         CompositeItemProcessor<TaskPlanBalancesheetDetailEntity, WkTblPoliOrgBalancesheetReportEntity> compositeItemProcessor = new CompositeItemProcessor<>();
         compositeItemProcessor.setDelegates(delegates);
 
-        return new StepBuilder(STEP_NAME, jobRepository)
+        return new StepBuilder(STEP_INSERT_NAME, jobRepository)
                 .<TaskPlanBalancesheetDetailEntity, WkTblPoliOrgBalancesheetReportEntity>chunk(CHUNK_SIZE,
                         transactionManager)
                 .reader(taskPlanBalancesheetDetailItemReader).processor(compositeItemProcessor)
                 .writer(wkTblPoliOrgBalancesheetReportItemWriter).build();
+    }
+
+    /**
+     * StepUpdateを返却する
+     *
+     * @param jobRepository      ジョブレポジトリ
+     * @param transactionManager トランザクションマネージャ
+     * @return step
+     */
+    @Bean(STEP_UPDATE_NAME)
+    protected Step getStepUpdate(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_UPDATE_NAME, jobRepository)
+                .<WkTblPoliOrgBalancesheetReportEntity, WkTblPoliOrgBalancesheetReportEntity>chunk(CHUNK_SIZE,
+                        transactionManager)
+                .reader(saishinWkTblBalancesheetItemReader).writer(updateFinishedTaskPlanBalancesheetDetailItemWriter)
+                .build();
     }
 
 }

@@ -90,12 +90,6 @@ class AllBookItemWriterTest {
         // 1ファイル登録の時のコードを丸コピしているので詳細の確認までは踏み込まない
         // 2022年のファイルを2件処理しているので代表データも2件
         assertThat(offeringBalancesheet0701And0720Surface2022Repository.count()).isEqualTo(2L);
-
-        // 処理後の結果正常終了しているのであれば最新区分が更新済に
-        List<WkTblPoliOrgBalancesheetReportEntity> listResult = wkTblPoliOrgBalancesheetReportRepository.findAll();
-        for (WkTblPoliOrgBalancesheetReportEntity entity : listResult) {
-            assertThat(entity.getSaishinKbn()).isEqualTo(0);// 更新終了
-        }
     }
 
     @Test
@@ -118,12 +112,9 @@ class AllBookItemWriterTest {
         Chunk<? extends WkTblPoliOrgBalancesheetReportEntity> items = new Chunk<>(listTask);
         allBookItemWriter.write(items);
 
-        // 処理後の結果正常終了しているのであれば最新区分が更新済に
-        List<WkTblPoliOrgBalancesheetReportEntity> listResult = wkTblPoliOrgBalancesheetReportRepository.findAll();
-        // 1件目は正常終了
-        assertThat(listResult.get(0).getSaishinKbn()).isEqualTo(0);
-        // 2件目は異常終了
-        assertThat(listResult.get(1).getSaishinKbn()).isEqualTo(1);
+        // 1ファイル登録の時のコードを丸コピしているので詳細の確認までは踏み込まない
+        // 2022年のファイルを1件処理しているので代表データも1件
+        assertThat(offeringBalancesheet0701And0720Surface2022Repository.count()).isEqualTo(1L);
     }
 
     @Test

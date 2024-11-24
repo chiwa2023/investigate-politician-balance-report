@@ -56,7 +56,6 @@ public interface WkTblPoliOrgBalancesheetReportRepository
      */
     List<WkTblPoliOrgBalancesheetReportEntity> findBySaishinKbnAndPoliticalOrganizationIdNot(Integer saishinKbn,
             Long poliOrgId);
-
     
     /**
      * 該当する政治団体を指定して検索する(政治団体指定済検出用)
@@ -67,5 +66,13 @@ public interface WkTblPoliOrgBalancesheetReportRepository
      */
     Page<WkTblPoliOrgBalancesheetReportEntity> findBySaishinKbnAndPoliticalOrganizationIdNot(Integer saishinKbn,
             Long poliOrgId,Pageable pageable);
+
+    /**
+     * 新規登録のみ抽出
+     *
+     * @param saishinKbn 最新区分
+     * @return ワークテーブルリスト検索結果
+     */
+    Page<WkTblPoliOrgBalancesheetReportEntity> findBySaishinKbn(Integer saishinKbn,Pageable pageable);
 
 }

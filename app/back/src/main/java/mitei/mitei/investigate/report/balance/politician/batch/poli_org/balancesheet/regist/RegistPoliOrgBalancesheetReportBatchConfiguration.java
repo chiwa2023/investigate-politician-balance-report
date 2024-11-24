@@ -33,18 +33,25 @@ public class RegistPoliOrgBalancesheetReportBatchConfiguration {
     public static final String JOB_NAME = FUNCTION_NAME + JOB;
 
     /** Step名 */
-    public static final String STEP_NAME = FUNCTION_NAME + STEP;
+    public static final String STEP_INSERT_NAME = FUNCTION_NAME + "Insert" + STEP;
+
+    /** Step名 */
+    public static final String STEP_UPDATE_NAME = FUNCTION_NAME + "Update" + STEP;
 
     /** チャンクサイズ */
-    private static final int CHUNK_SIZE = 3;
+    private static final int CHUNK_SIZE = 10;
 
-    /** リーダ */
+    /** リーダInsert */
     @Autowired
     private WkTblPoliOrgBalancesheetReportItemReader wkTblPoliOrgBalancesheetReportItemReader;
 
-    /** ライタ */
+    /** ライタInsert */
     @Autowired
     private AllBookItemWriter allBookItemWriter;
+
+    /** UpdateTasklet */
+    @Autowired
+    private UpdateFinishedWkTblBalancesheetTasklet updateFinishedWkTblBalancesheetTasklet;
 
     /**
      * Jobを返却する
@@ -54,25 +61,42 @@ public class RegistPoliOrgBalancesheetReportBatchConfiguration {
      * @return ジョブ
      */
     @Bean(JOB_NAME)
-    protected Job getJob(final JobRepository jobRepository, @Qualifier(STEP_NAME) final Step step) {
+    protected Job getJob(final JobRepository jobRepository, @Qualifier(STEP_INSERT_NAME) final Step stepInsert,
+            @Qualifier(STEP_UPDATE_NAME) final Step stepUpdate) {
 
-        return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(step).end().build();
+        return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepInsert)
+                .next(stepUpdate).end().build();
     }
 
     /**
-     * Stepを返却する
+     * StepInsertを返却する
      *
      * @param jobRepository      ジョブレポジトリ
      * @param transactionManager トランザクションマネージャ
      * @return step
      */
-    @Bean(STEP_NAME)
-    protected Step getStep(final JobRepository jobRepository, final PlatformTransactionManager transactionManager) {
+    @Bean(STEP_INSERT_NAME)
+    protected Step getStepInsert(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
 
-        return new StepBuilder(STEP_NAME, jobRepository)
+        return new StepBuilder(STEP_INSERT_NAME, jobRepository)
                 .<WkTblPoliOrgBalancesheetReportEntity, WkTblPoliOrgBalancesheetReportEntity>chunk(CHUNK_SIZE,
                         transactionManager)
                 .reader(wkTblPoliOrgBalancesheetReportItemReader).writer(allBookItemWriter).build();
+    }
+
+    /**
+     * StepUpdateを返却する
+     *
+     * @param jobRepository      ジョブレポジトリ
+     * @param transactionManager トランザクションマネージャ
+     * @return step
+     */
+    @Bean(STEP_UPDATE_NAME)
+    protected Step getStep(final JobRepository jobRepository, final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_UPDATE_NAME, jobRepository)
+                .tasklet(updateFinishedWkTblBalancesheetTasklet, transactionManager).build();
     }
 
 }

@@ -16,7 +16,6 @@ import mitei.mitei.investigate.report.balance.politician.repository.TaskPlanBala
 /**
  * 政治資金収支報告書タスク詳細テーブルItemReader
  * SQLを直書きしないでRepositoryのメソッドを使用する
- * cf. https://medium.com/@shashibheemanapally/using-a-crudrepository-to-read-records-in-spring-batch-repositoryitemreader-51eca4361e9b
  */
 @Component
 public class TaskPlanBalancesheetDetailItemReader extends RepositoryItemReader<TaskPlanBalancesheetDetailEntity> {

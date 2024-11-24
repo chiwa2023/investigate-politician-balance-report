@@ -24,7 +24,7 @@ function onExecute() {
 
     fetch(url, { method, headers, body })
         .then(async (response) => {
-            const resultDto: TemplateFrameworkResultInterface = await response.json();
+            const resultDto:TemplateFrameworkResultInterface = await response.json();
             alert(resultDto.message);
         })
         .catch((error) => { alert(error); });

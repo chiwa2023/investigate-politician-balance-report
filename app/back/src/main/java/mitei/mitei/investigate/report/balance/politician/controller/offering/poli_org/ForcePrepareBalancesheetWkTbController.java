@@ -1,14 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org;
 
-import java.time.LocalDateTime;
-
 import org.apache.tomcat.websocket.AuthenticationException;
-import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
-import org.springframework.batch.core.JobParametersBuilder;
-import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mitei.mitei.investigate.report.balance.politician.batch.poli_org.balancesheet.regist.RegistPreaparePoliOrgBalancesheetBatchConfiguration;
+import mitei.mitei.investigate.report.balance.politician.batch.poli_org.balancesheet.regist.RegistPreaparePoliOrgBalancesheetBatchAyncService;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkResultDto;
@@ -38,15 +31,10 @@ public class ForcePrepareBalancesheetWkTbController extends AbstractTemplateChec
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** 起動をつかさどるランチャー */
+    /** 収支報告書一括準備処理を非同期で実行WrapService */
     @Autowired
-    private JobLauncher jobLauncher;
-
-    /** 起動をするJob */
-    @Qualifier(RegistPreaparePoliOrgBalancesheetBatchConfiguration.JOB_NAME)
-    @Autowired
-    private Job registJob;
-
+    private RegistPreaparePoliOrgBalancesheetBatchAyncService registPreaparePoliOrgBalancesheetBatchAyncService;
+    
     /**
      * 計画テーブルから政治団体を推定してワークテーブルに移す処理
      *
@@ -88,12 +76,9 @@ public class ForcePrepareBalancesheetWkTbController extends AbstractTemplateChec
              * ここに固有のビジネス処理を記載する
              */
 
-            // 毎回書き込み側に日時をはさむので実行条件の重複は基本的にない
-            JobParameters  jobParameters = new JobParametersBuilder() // NOPMD
-                    .addLocalDateTime("execute_time", LocalDateTime.now()).toJobParameters();
+            // バッチ非同期実行
+            registPreaparePoliOrgBalancesheetBatchAyncService.practice();
             
-            jobLauncher.run(registJob, jobParameters);
-
             TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
             resultDto.setIsOk(true);
             resultDto.setMessage("一括処理を起動しました。処理完了までしばらくお待ちください");

@@ -25,6 +25,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookD
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
+import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanBalancesheetDocumentEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgBalancesheetReportEntity;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganization08000Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganization0802Logic;
@@ -33,7 +34,7 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganizationOutcomeAllLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganizationSheet0701And0720Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganizationSummaryLogic;
-import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgBalancesheetReportRepository;
+import mitei.mitei.investigate.report.balance.politician.repository.TaskPlanBalancesheetDocumentRepository;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -71,9 +72,9 @@ public class AllBookItemWriter extends JpaItemWriter<WkTblPoliOrgBalancesheetRep
     @Autowired
     private InsertPoliticalOrganizationSummaryLogic insertPoliticalOrganizationSummaryLogic;
 
-    /** 政治資金収支報告書表集計表登録Logic */
+    /** 登録済Idと文書同一識別コード一時保存Repository */
     @Autowired
-    private WkTblPoliOrgBalancesheetReportRepository wkTblPoliOrgBalancesheetReportRepository;
+    private TaskPlanBalancesheetDocumentRepository taskPlanBalancesheetDocumentRepository;
 
     /** Logger */
     private static final Logger log = LoggerFactory.getLogger(AllBookItemWriter.class);
@@ -171,9 +172,9 @@ public class AllBookItemWriter extends JpaItemWriter<WkTblPoliOrgBalancesheetRep
                 int all = 1 + sizeSummary + sizeIncome + sizeOutcome + sizeEstate + size0800 + size0802;
                 log.info(all + "行更新しました");
 
-                // 保存できたらワークテーブルデータを終了とする
-                SetTableDataHistoryUtil.practice(checkPrivilegeDto, entity, DataHistoryStatusConstants.UPDATE);
-                wkTblPoliOrgBalancesheetReportRepository.saveAndFlush(entity);
+                // 一時テーブルに処理実行情報を退避
+                taskPlanBalancesheetDocumentRepository.save(this.createDocumentEntity(checkPrivilegeDto,
+                        entity.getWkTblPoliOrgBalancesheetReportId(), documentCode));
             }
         }
 
@@ -200,4 +201,18 @@ public class AllBookItemWriter extends JpaItemWriter<WkTblPoliOrgBalancesheetRep
             return null;
         }
     }
+
+    /* タスク計画文書同一識別コード関連テーブルEntity生成 */
+    private TaskPlanBalancesheetDocumentEntity createDocumentEntity(final CheckPrivilegeDto privilegeDto,
+            final Long detaiId, final Long documentCode) {
+
+        TaskPlanBalancesheetDocumentEntity documentEntity = new TaskPlanBalancesheetDocumentEntity();
+        SetTableDataHistoryUtil.practice(privilegeDto, documentEntity, DataHistoryStatusConstants.INSERT);
+        documentEntity.setTaskPlanBalancesheetDocumentId(0L);
+        documentEntity.setTaskPlanBalancesheetDetailId(detaiId);
+        documentEntity.setDocumentCode(documentCode);
+
+        return documentEntity;
+    }
+
 }

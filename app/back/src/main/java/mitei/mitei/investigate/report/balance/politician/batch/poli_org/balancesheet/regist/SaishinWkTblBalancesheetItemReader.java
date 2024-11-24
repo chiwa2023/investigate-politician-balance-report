@@ -14,28 +14,27 @@ import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgBala
 import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgBalancesheetReportRepository;
 
 /**
- * 政治資金収支報告書ワークテーブル読み取りItemReader
+ * 政治資金収支報告書一括処理ワークテーブルから処理データのみを取得する
  */
 @Component
-public class WkTblPoliOrgBalancesheetReportItemReader
-        extends RepositoryItemReader<WkTblPoliOrgBalancesheetReportEntity> {
+public class SaishinWkTblBalancesheetItemReader extends RepositoryItemReader<WkTblPoliOrgBalancesheetReportEntity> {
 
     /**
      * コンストラクタ
      *
      * @param wkTblPoliOrgBalancesheetReportRepository 政治資金収支報告書ワークテーブルRepository
      */
-    public WkTblPoliOrgBalancesheetReportItemReader(
+    public SaishinWkTblBalancesheetItemReader(
             final @Autowired WkTblPoliOrgBalancesheetReportRepository wkTblPoliOrgBalancesheetReportRepository) {
 
         super();
         super.setRepository(wkTblPoliOrgBalancesheetReportRepository);
         super.setSort(new HashMap<String, Direction>()); // NOPMD
-        super.setMethodName("findBySaishinKbnAndPoliticalOrganizationIdNot");
+        super.setMethodName("findBySaishinKbn");
         List<Object> listArgs = new ArrayList<>();
         listArgs.add(DataHistoryStatusConstants.INSERT.value()); // saishinKbn = 1:最新
-        listArgs.add(0L); // politicalOrganizationId = 0 ;id=0は未指定で、未指定以外を抽出
         super.setArguments(listArgs);
 
     }
+
 }
