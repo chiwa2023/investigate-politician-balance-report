@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -70,6 +71,7 @@ class SaveStorageFileLogicTest {
     private SaveFileStorage2024Repository saveFileStorage2024Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void testPracticeText2024() throws Exception {
 

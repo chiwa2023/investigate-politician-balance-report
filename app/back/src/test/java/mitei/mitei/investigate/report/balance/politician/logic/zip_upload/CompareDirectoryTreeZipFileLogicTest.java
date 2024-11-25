@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -92,6 +93,7 @@ class CompareDirectoryTreeZipFileLogicTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     void testPractice() throws Exception {
 
         String fileName = "all.zip";

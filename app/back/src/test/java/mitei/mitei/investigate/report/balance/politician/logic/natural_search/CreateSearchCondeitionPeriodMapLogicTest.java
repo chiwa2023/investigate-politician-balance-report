@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.time.LocalDate;
 import java.util.Map;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchConditionCapsuleDto;
@@ -17,6 +18,7 @@ class CreateSearchCondeitionPeriodMapLogicTest {
     // CHECKSTYLE:OFF
 
     @Test
+    @Tag("NaturalTextSearch")
     void testPractice() { // NOPMD
 
         CreateSearchCondeitionPeriodMapLogic createSearchCondeitionPeriodMapLogic = new CreateSearchCondeitionPeriodMapLogic();

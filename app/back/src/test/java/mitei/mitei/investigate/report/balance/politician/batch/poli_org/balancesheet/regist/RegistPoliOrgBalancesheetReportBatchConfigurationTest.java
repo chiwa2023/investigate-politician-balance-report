@@ -79,6 +79,7 @@ class RegistPoliOrgBalancesheetReportBatchConfigurationTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     void testJob() {
         assertThat(registPoliOrgBalancesheetReport.getName())
                 .isEqualTo(RegistPoliOrgBalancesheetReportBatchConfiguration.JOB_NAME);

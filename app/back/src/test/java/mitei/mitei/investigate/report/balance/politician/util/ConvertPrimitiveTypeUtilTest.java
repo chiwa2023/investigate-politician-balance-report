@@ -3,6 +3,7 @@ package mitei.mitei.investigate.report.balance.politician.util;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,6 +14,7 @@ class ConvertPrimitiveTypeUtilTest extends ConvertPrimitiveTypeUtil {
     
 
     @Test
+    @Tag("TableTruncate")
     void testPracticeBooleanToInteger() {
         
         ConvertPrimitiveTypeUtil convertPrimitiveTypeUtil = new ConvertPrimitiveTypeUtil();
@@ -23,6 +25,7 @@ class ConvertPrimitiveTypeUtilTest extends ConvertPrimitiveTypeUtil {
     }
 
     @Test
+    @Tag("TableTruncate")
     void testPracticeIntegerToBoolean() {
 
         ConvertPrimitiveTypeUtil convertPrimitiveTypeUtil = new ConvertPrimitiveTypeUtil();

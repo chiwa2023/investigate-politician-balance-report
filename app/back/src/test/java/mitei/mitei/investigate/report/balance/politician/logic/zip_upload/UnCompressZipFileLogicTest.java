@@ -15,6 +15,7 @@ import java.util.function.Predicate;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -93,6 +94,7 @@ class UnCompressZipFileLogicTest { // NOPMD
     private SaveFileOnlyUtil saveFileOnlyUtil;
 
     @Test
+    @Tag("TableTruncate")
     void testPractice() throws Exception {
 
         String fileName = "all.zip";

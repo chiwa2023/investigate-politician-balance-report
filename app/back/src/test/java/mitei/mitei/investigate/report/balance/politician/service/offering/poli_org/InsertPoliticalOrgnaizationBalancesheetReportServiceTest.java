@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -176,6 +177,7 @@ class InsertPoliticalOrgnaizationBalancesheetReportServiceTest {
 
     @Test
     @Transactional
+    @Tag("TableTruncate")
     void testPractice() { // NOPMD
 
         Integer houkokuNen = 2025;

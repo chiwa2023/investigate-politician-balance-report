@@ -147,6 +147,7 @@
 					<groups>TableTruncate</groups>
 					<groups>NaturalTextSearch</groups>
 					<groups>LoadTest</groups>
+					<groups>SourceReflesh</groups>
 				</configuration>
 			</plugin>
 		</plugins>

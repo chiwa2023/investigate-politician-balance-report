@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
@@ -30,6 +31,7 @@ class SetTableDataHistoryLogicTest {
     private final LocalDateTime INIT_TIMESTAMP = LocalDateTime.of(1948, 7, 29, 0, 0, 0);
 
     @Test
+    @Tag("TableTruncate")
     void testPracticeInsert() {
 
         AllTabeDataHistoryInterfaceForTestEntity dataEntity = new AllTabeDataHistoryInterfaceForTestEntity();
@@ -69,6 +71,7 @@ class SetTableDataHistoryLogicTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     void testPracticeUpdate() {
 
         AllTabeDataHistoryInterfaceForTestEntity dataEntity = new AllTabeDataHistoryInterfaceForTestEntity();

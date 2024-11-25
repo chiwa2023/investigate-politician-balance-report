@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
@@ -14,6 +15,7 @@ class ConverCheckPrivilegeDtoUtilTest {
     // CHECKSTYLE:OFF
 
     @Test
+    @Tag("TableTruncate")
     void testPractice() {
 
         ConvertCheckPrivilegeDtoUtil converCheckPrivilegeDtoUtil = new ConvertCheckPrivilegeDtoUtil();

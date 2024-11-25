@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.logic.natural_search;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 class CreateSerachWordsBooleanModeLogicTest {
 
     @Test
+    @Tag("NaturalTextSearch")
     void testPractice() {
 
         CreateSerachWordsBooleanModeLogic createSerachWordsBooleanModeLogic = new CreateSerachWordsBooleanModeLogic();

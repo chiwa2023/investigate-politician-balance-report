@@ -8,6 +8,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -59,6 +60,7 @@ class ReadAllShitoBookByXmlFileLogicTest {
     
     
     @Test
+    @Tag("TableTruncate")
     void testPractice()throws Exception {
         
         // 完全パス(TestSource内)を渡しても正常に読みだし

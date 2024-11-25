@@ -51,6 +51,7 @@ class RegistPreaparePoliOrgBalancesheetBatchConfigurationTest {
     private Job registPreaparePoliOrgBalancesheet;
 
     @Test
+    @Tag("TableTruncate")
     void testJob() {
         assertThat(registPreaparePoliOrgBalancesheet.getName())
                 .isEqualTo(RegistPreaparePoliOrgBalancesheetBatchConfiguration.JOB_NAME);

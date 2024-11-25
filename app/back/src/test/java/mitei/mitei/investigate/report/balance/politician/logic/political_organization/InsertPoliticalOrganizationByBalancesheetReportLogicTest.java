@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.logic.political_organization;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Tag;
@@ -32,14 +31,14 @@ class InsertPoliticalOrganizationByBalancesheetReportLogicTest {
     /** テスト対象 */
     @Autowired
     private InsertPoliticalOrganizationByBalancesheetReportLogic insertPoliticalOrganizationByBalancesheetReportLogic;
-    
+
     @Test
     @Tag("TableTruncate")
     @Transactional
     void testPractice() {
-        
+
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
-        
+
         Sheet070100CoverAndOrganizationDetailsDto detailsDto = new Sheet070100CoverAndOrganizationDetailsDto();
         detailsDto.setDantaiName01("ちゃらんぽらん政治団体");
         detailsDto.setDantaiNameKana("ちゃらんぽらんせいじだんたい");
@@ -52,9 +51,10 @@ class InsertPoliticalOrganizationByBalancesheetReportLogicTest {
         detailsDto.setKaikeiSekinnshaNameFirst("次郎");
         detailsDto.setJimuTantousha1NameLast("事務担当者");
         detailsDto.setJimuTantousha1NameFirst("三郎");
-        
-        PoliticalOrganizationEntity entity = insertPoliticalOrganizationByBalancesheetReportLogic.practice(detailsDto,privilegeDto);
-        
+
+        PoliticalOrganizationEntity entity = insertPoliticalOrganizationByBalancesheetReportLogic.practice(detailsDto,
+                privilegeDto);
+
         assertThat(entity.getPoliticalOrganizationName()).isEqualTo(detailsDto.getDantaiName01());
         assertThat(entity.getPoliticalOrganizationNameKana()).isEqualTo(detailsDto.getDantaiNameKana());
         assertThat(entity.getDantaiKbn()).isEqualTo(detailsDto.getDantaiKbn());
@@ -78,12 +78,12 @@ class InsertPoliticalOrganizationByBalancesheetReportLogicTest {
         assertThat(entity.getKaikeiDaikoName()).isEqualTo("事務担当者　三郎");
 
         assertThat(entity.getSearchText()).isEqualTo("ちゃらんぽらん政治団体代表者花子東京都千代田区霞が関三角ビル903");
-        
+
         assertThat(entity.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
         assertThat(entity.getInsertUserId()).isEqualTo(privilegeDto.getLoginUserId());
         assertThat(entity.getInsertUserCode()).isEqualTo(privilegeDto.getLoginUserCode());
         assertThat(entity.getInsertUserName()).isEqualTo(privilegeDto.getLoginUserName());
-        
+
     }
 
 }

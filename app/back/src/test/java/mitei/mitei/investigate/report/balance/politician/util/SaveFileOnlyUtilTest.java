@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -60,6 +61,7 @@ class SaveFileOnlyUtilTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     void testPracticetext() throws Exception {
 
         LocalDateTime shori = LocalDateTime.of(2024, 5, 28, 13, 24, 36);

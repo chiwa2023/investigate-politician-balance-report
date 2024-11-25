@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
@@ -19,6 +20,7 @@ import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentRes
 class DecideXmlFileCharsetUtilTest {
 
     @Test
+    @Tag("TableTruncate")
     void testPractice() throws Exception {
 
         DecideXmlFileCharsetUtil decideXmlFileCharsetUtil = new DecideXmlFileCharsetUtil();

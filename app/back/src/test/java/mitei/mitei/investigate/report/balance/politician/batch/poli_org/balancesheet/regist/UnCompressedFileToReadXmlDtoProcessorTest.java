@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -59,6 +60,7 @@ class UnCompressedFileToReadXmlDtoProcessorTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     void test() throws Exception {
 
         // テンプレートファイルの呼び出し

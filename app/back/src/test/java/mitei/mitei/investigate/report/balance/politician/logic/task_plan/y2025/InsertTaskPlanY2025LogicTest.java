@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -42,6 +43,7 @@ class InsertTaskPlanY2025LogicTest {
     private TaskPlan2025Repository taskPlan2025Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("truncate_task_plan_2025.sql")
     void testPractice() {

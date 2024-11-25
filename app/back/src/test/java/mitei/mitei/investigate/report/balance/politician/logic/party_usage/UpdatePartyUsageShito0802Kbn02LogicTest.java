@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.logic.party_usage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -44,6 +45,7 @@ class UpdatePartyUsageShito0802Kbn02LogicTest {
     private OfferingPartyUsage0802Kbn02Report2025Repository offeringPartyUsage0802Kbn02Report2025Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("offering_party_usage_0802_kbn_02_report.sql")
     void testPractice() {

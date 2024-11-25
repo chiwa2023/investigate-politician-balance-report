@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,7 @@ class RegistPreaparePoliOrgBalancesheetBatchAyncServiceTest {
     }
 
     @Test
+    @Tag("TableTruncate")
     @Sql("configuration_test.sql")
     void testPractice() throws Exception {
 
