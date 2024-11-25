@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.4</version>
+		<version>3.4.0</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>mitei.mitei.investigate.report.balance.politician</groupId>
@@ -58,6 +58,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -136,8 +141,15 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<groups>TableTruncate</groups>
+					<groups>NaturalTextSearch</groups>
+					<groups>LoadTest</groups>
+					<groups>SourceReflesh</groups>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
