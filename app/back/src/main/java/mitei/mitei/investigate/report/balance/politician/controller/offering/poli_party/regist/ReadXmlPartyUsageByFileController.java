@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.controller.poli_party;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_party.regist;
 
 import java.time.LocalDateTime;
 

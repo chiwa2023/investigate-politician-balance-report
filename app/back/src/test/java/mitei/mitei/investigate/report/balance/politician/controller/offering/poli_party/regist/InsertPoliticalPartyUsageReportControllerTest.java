@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.controller.poli_party; // NOPMD
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_party.regist; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
