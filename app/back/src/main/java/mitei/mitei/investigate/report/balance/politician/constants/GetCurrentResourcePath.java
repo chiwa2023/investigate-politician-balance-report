@@ -36,4 +36,14 @@ public final class GetCurrentResourcePath {
         return FileSystems.getDefault().getPath("src/test/resources/").toAbsolutePath().toString();
     }
 
+    /**
+     * テストリソースを取得する
+     *
+     * @return テストリソースフォルダ
+     */
+    public static String getBackTestFilePath() {
+    
+        return FileSystems.getDefault().getPath("src/test/java/").toAbsolutePath().toString();
+    }
+
 }
