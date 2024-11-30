@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <BOOK>
 	<HEAD>
 		<VERSION>20191220</VERSION>
-		<APP>Žg“r“™•ñ‘ì¬ƒ\ƒtƒg</APP>
+		<APP>ä½¿é€”ç­‰å ±å‘Šæ›¸ä½œæˆã‚½ãƒ•ãƒˆ</APP>
 		<APP_FLG>0</APP_FLG>
 		<HONBU_FLG>1</HONBU_FLG>
 	</HEAD>
@@ -12,12 +12,12 @@
 	<SITO08_01>
 		<SHEET>
 			<NENDO>2022</NENDO>
-			<SEITOU_SK_NM>­Ž¡‰Æ—Žq‚S‚W“}</SEITOU_SK_NM>
-			<SEITOU_KANA>‚¹‚¢‚¶‚©‚¶‚å‚µ‚Ó‚§‚¨‚Ä‚¡‚¦‚¢‚Æ‚Æ‚¤</SEITOU_KANA>
-			<JIMU_ADR>ç—tŒ§‘D‹´Žs–{’¬</JIMU_ADR>
-			<DAI_NM>‘å’Ã@ˆ»</DAI_NM>
-			<KAI_NM>—§‰Ô@FŽu</KAI_NM>
-			<TANTOU1_NM>ˆ¾”ÑŒ´@”ü‰À</TANTOU1_NM>
+			<SEITOU_SK_NM>æ”¿æ²»å®¶å¥³å­ï¼”ï¼˜å…š</SEITOU_SK_NM>
+			<SEITOU_KANA>ã›ã„ã˜ã‹ã˜ã‚‡ã—ãµã‰ãŠã¦ãƒãˆã„ã¨ã¨ã†</SEITOU_KANA>
+			<JIMU_ADR>åƒè‘‰çœŒèˆ¹æ©‹å¸‚æœ¬ç”º</JIMU_ADR>
+			<DAI_NM>å¤§æ´¥ã€€ç¶¾é¦™</DAI_NM>
+			<KAI_NM>ç«‹èŠ±ã€€å­å¿—</KAI_NM>
+			<TANTOU1_NM>ç²Ÿé£¯åŽŸã€€ç¾Žä½³</TANTOU1_NM>
 			<TANTOU1_TEL>03-3591-2300</TANTOU1_TEL>
 			<TANTOU2_NM></TANTOU2_NM>
 			<TANTOU2_TEL></TANTOU2_TEL>
@@ -33,61 +33,61 @@
 			<KUBUN1>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<KOUMOKU_NM>­“}Œð•t‹àiŽx•”­“}Œð•t‹àj‚Ì‘Šz@--------------------------------------------‡@</KOUMOKU_NM>
+					<KOUMOKU_NM>æ”¿å…šäº¤ä»˜é‡‘ï¼ˆæ”¯éƒ¨æ”¿å…šäº¤ä»˜é‡‘ï¼‰ã®ç·é¡ã€€--------------------------------------------â‘ </KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>262530000</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<KOUMOKU_NM>‘O”N––­“}Šî‹àiŽx•”Šî‹àjŽc‚@------------------------------------------------‡A</KOUMOKU_NM>
+					<KOUMOKU_NM>å‰å¹´æœ«æ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰æ®‹é«˜ã€€------------------------------------------------â‘¡</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>2877220</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<KOUMOKU_NM>­“}Œð•t‹àiŽx•”­“}Œð•t‹àj‚É‚æ‚éŽxo‘Šzi‡C{‡Dj@--------------------------‡B</KOUMOKU_NM>
+					<KOUMOKU_NM>æ”¿å…šäº¤ä»˜é‡‘ï¼ˆæ”¯éƒ¨æ”¿å…šäº¤ä»˜é‡‘ï¼‰ã«ã‚ˆã‚‹æ”¯å‡ºç·é¡ï¼ˆâ‘£ï¼‹â‘¤ï¼‰ã€€--------------------------â‘¢</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>250902225</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<KOUMOKU_NM>@­“}Œð•t‹àiŽx•”­“}Œð•t‹àjŽxo[“–Šz‘Šz@----------------------------------‡C</KOUMOKU_NM>
+					<KOUMOKU_NM>ã€€æ”¿å…šäº¤ä»˜é‡‘ï¼ˆæ”¯éƒ¨æ”¿å…šäº¤ä»˜é‡‘ï¼‰æ”¯å‡ºå……å½“é¡ç·é¡ã€€----------------------------------â‘£</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>250902225</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<KOUMOKU_NM>@­“}Šî‹àiŽx•”Šî‹àjŽxo[“–Šz‘Šz@------------------------------------------‡D</KOUMOKU_NM>
+					<KOUMOKU_NM>ã€€æ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰æ”¯å‡ºå……å½“é¡ç·é¡ã€€------------------------------------------â‘¤</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>0</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<KOUMOKU_NM>­“}Šî‹àiŽx•”Šî‹àj‚ÌÏ—§‚É[‚Ä‚é‚½‚ß‚ÉŽæ‚è•ö‚µ‚½­“}Šî‹àiŽx•”Šî‹àj‚ÌŠz@----‡E</KOUMOKU_NM>
+					<KOUMOKU_NM>æ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰ã®ç©ç«‹ã«å……ã¦ã‚‹ãŸã‚ã«å–ã‚Šå´©ã—ãŸæ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰ã®é¡ã€€----â‘¥</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>0</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<KOUMOKU_NM>­“}Šî‹àiŽx•”Šî‹àjÏ—§‘Šzi‰ÊŽÀ‚ðŠÜ‚ÞBj@----------------------------------‡F</KOUMOKU_NM>
+					<KOUMOKU_NM>æ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰ç©ç«‹ç·é¡ï¼ˆæžœå®Ÿã‚’å«ã‚€ã€‚ï¼‰ã€€----------------------------------â‘¦</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>11627775</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>8</ICHIREN_NO>
-					<KOUMOKU_NM>@­“}Šî‹àiŽx•”Šî‹àj‚Ì‰^—p‚É‚æ‚èŽûŽó‚µ‚½‰ÊŽÀ‚Ì‘Šz@</KOUMOKU_NM>
+					<KOUMOKU_NM>ã€€æ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰ã®é‹ç”¨ã«ã‚ˆã‚ŠåŽå—ã—ãŸæžœå®Ÿã®ç·é¡ã€€</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>0</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>9</ICHIREN_NO>
-					<KOUMOKU_NM>–{”N––“™­“}Šî‹àiŽx•”Šî‹àjŽc‚i‡A|‡D|‡E{‡Fj@----------------------------‡G</KOUMOKU_NM>
+					<KOUMOKU_NM>æœ¬å¹´æœ«ç­‰æ”¿å…šåŸºé‡‘ï¼ˆæ”¯éƒ¨åŸºé‡‘ï¼‰æ®‹é«˜ï¼ˆâ‘¡ï¼â‘¤ï¼â‘¥ï¼‹â‘¦ï¼‰ã€€----------------------------â‘§</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>14504995</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>10</ICHIREN_NO>
-					<KOUMOKU_NM>@@i”õ@@@@@lj@@@@@@@@@@@@@@@@@@@@@@@‡@|‡B{‡A|‡G</KOUMOKU_NM>
+					<KOUMOKU_NM>ã€€ã€€ï¼ˆå‚™ã€€ã€€ã€€ã€€ã€€è€ƒï¼‰ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€â‘ ï¼â‘¢ï¼‹â‘¡ï¼â‘§</KOUMOKU_NM>
 					<DT></DT>
 					<KINGAKU>0</KINGAKU>
 				</ROW>
@@ -96,25 +96,25 @@
 				<KINGAKU_GK>262530000</KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<KOUMOKU_NM>‘</KOUMOKU_NM>
+					<KOUMOKU_NM>å›½</KOUMOKU_NM>
 					<DT>R4/4/20</DT>
 					<KINGAKU>52818250</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<KOUMOKU_NM>‘</KOUMOKU_NM>
+					<KOUMOKU_NM>å›½</KOUMOKU_NM>
 					<DT>R4/7/20</DT>
 					<KINGAKU>52818250</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<KOUMOKU_NM>‘</KOUMOKU_NM>
+					<KOUMOKU_NM>å›½</KOUMOKU_NM>
 					<DT>R4/10/20</DT>
 					<KINGAKU>78446750</KINGAKU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<KOUMOKU_NM>‘</KOUMOKU_NM>
+					<KOUMOKU_NM>å›½</KOUMOKU_NM>
 					<DT>R4/12/20</DT>
 					<KINGAKU>78446750</KINGAKU>
 				</ROW>
@@ -200,7 +200,7 @@
 	<SITO08_04>
 		<KUBUN01>
 			<SHEET>
-				<HIMOKU>Žx•”­“}Œð•t‹à</HIMOKU>
+				<HIMOKU>æ”¯éƒ¨æ”¿å…šäº¤ä»˜é‡‘</HIMOKU>
 				<KINGAKU_SONOTA_GK></KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK></KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK></KIKIN_SONOTA_GK>
@@ -222,7 +222,7 @@
 		</KUBUN02>
 		<KUBUN03>
 			<SHEET>
-				<HIMOKU>‰Æ’À</HIMOKU>
+				<HIMOKU>å®¶è³ƒ</HIMOKU>
 				<KINGAKU_SONOTA_GK>21780</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>21780</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -231,13 +231,13 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>‰Æ’À</MOKUTEKI>
+					<MOKUTEKI>å®¶è³ƒ</MOKUTEKI>
 					<KINGAKU>923250</KINGAKU>
 					<KOUFU_JYUUTOU_GK>923250</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>ƒŠƒuƒ}ƒbƒNƒX</NM>
-					<ADR>“Œ‹ž“s`‹æÔâ</ADR>
+					<NM>ãƒªãƒ–ãƒžãƒƒã‚¯ã‚¹</NM>
+					<ADR>æ±äº¬éƒ½æ¸¯åŒºèµ¤å‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
@@ -245,7 +245,7 @@
 		</KUBUN03>
 		<KUBUN04>
 			<SHEET>
-				<HIMOKU>L•ñŠˆ“®”ï</HIMOKU>
+				<HIMOKU>åºƒå ±æ´»å‹•è²»</HIMOKU>
 				<KINGAKU_SONOTA_GK>0</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>0</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -254,31 +254,31 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>ƒjƒRƒjƒR’´‰ï‹co‰‰—¿</MOKUTEKI>
+					<MOKUTEKI>ãƒ‹ã‚³ãƒ‹ã‚³è¶…ä¼šè­°å‡ºæ¼”æ–™</MOKUTEKI>
 					<KINGAKU>100000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>100000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>ŽÐ‰ï‰Èê‰È</NM>
-					<ADR>“Œ‹ž“sVh‹æŽl’J</ADR>
+					<NM>ç¤¾ä¼šç§‘å°‚ç§‘</NM>
+					<ADR>æ±äº¬éƒ½æ–°å®¿åŒºå››è°·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>ƒAƒvƒŠŠJ”­”ï</MOKUTEKI>
+					<MOKUTEKI>ã‚¢ãƒ—ãƒªé–‹ç™ºè²»</MOKUTEKI>
 					<KINGAKU>1100000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1100000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
 					<NM>Hattyu</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ“Œã–ì</ADR>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºæ±ä¸Šé‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 			</SHEET>
 			<SHEET>
-				<HIMOKU>•ñV</HIMOKU>
+				<HIMOKU>å ±é…¬</HIMOKU>
 				<KINGAKU_SONOTA_GK>248000</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>248000</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -287,331 +287,331 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/31</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/31</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>76573</KINGAKU>
 					<KOUFU_JYUUTOU_GK>76573</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/2/28</DT>
-					<NM>ƒAƒTƒiƒMƒRƒ“ƒTƒ‹ƒeƒBƒ“ƒO</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>ã‚¢ã‚µãƒŠã‚®ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/2/28</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/2/28</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>8</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>77280</KINGAKU>
 					<KOUFU_JYUUTOU_GK>77280</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>ƒAƒTƒiƒMƒRƒ“ƒTƒ‹ƒeƒBƒ“ƒO</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>ã‚¢ã‚µãƒŠã‚®ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>9</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>10</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>880000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>880000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>11</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>12</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>13</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/30</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>14</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/30</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>15</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>55000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>55000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/22</DT>
-					<NM>’†‰›ŽÐ‰ï•ÛŒ¯˜J–±Žm–@l</NM>
-					<ADR>“Œ‹ž“s–L“‡‹æ“Œ’r‘Ü</ADR>
+					<NM>ä¸­å¤®ç¤¾ä¼šä¿é™ºåŠ´å‹™å£«æ³•äºº</NM>
+					<ADR>æ±äº¬éƒ½è±Šå³¶åŒºæ±æ± è¢‹</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>16</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>998921</KINGAKU>
 					<KOUFU_JYUUTOU_GK>998921</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/31</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>17</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/31</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>18</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>55000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>55000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/22</DT>
-					<NM>’†‰›ŽÐ‰ï•ÛŒ¯˜J–±Žm–@l</NM>
-					<ADR>“Œ‹ž“s–L“‡‹æ“Œ’r‘Ü</ADR>
+					<NM>ä¸­å¤®ç¤¾ä¼šä¿é™ºåŠ´å‹™å£«æ³•äºº</NM>
+					<ADR>æ±äº¬éƒ½è±Šå³¶åŒºæ±æ± è¢‹</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>19</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>20</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>110000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>110000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>ƒAƒTƒiƒMƒRƒ“ƒTƒ‹ƒeƒBƒ“ƒO</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>ã‚¢ã‚µãƒŠã‚®ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>21</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>1996821</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1996821</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>22</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>1996821</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1996821</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/9/30</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>23</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/9/30</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>24</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>25</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>1996821</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1996821</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>26</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>1996821</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1996821</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/11/30</DT>
-					<NM>‰i“c’¬Ži–@‘ŽmŽ––±Š‚©‚æ‚¤‚Ü‚è‚Ì</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ°¸ç”°ç”ºå¸æ³•æ›¸å£«äº‹å‹™æ‰€ã‹ã‚ˆã†ã¾ã‚Šã®</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>27</ICHIREN_NO>
-					<MOKUTEKI>ŒÚ–â—¿</MOKUTEKI>
+					<MOKUTEKI>é¡§å•æ–™</MOKUTEKI>
 					<KINGAKU>220000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>220000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/11/30</DT>
-					<NM>“Œ‹žƒtƒBƒiƒ“ƒVƒƒƒ‹‰ïŒvŽ––±Š</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ‰i“c’¬</ADR>
+					<NM>æ±äº¬ãƒ•ã‚£ãƒŠãƒ³ã‚·ãƒ£ãƒ«ä¼šè¨ˆäº‹å‹™æ‰€</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæ°¸ç”°ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 			</SHEET>
 			<SHEET>
-				<HIMOKU>•ÙŒìŽm•ñV</HIMOKU>
+				<HIMOKU>å¼è­·å£«å ±é…¬</HIMOKU>
 				<KINGAKU_SONOTA_GK>563825</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>563825</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -620,235 +620,235 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>383707</KINGAKU>
 					<KOUFU_JYUUTOU_GK>383707</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/31</DT>
-					<NM>ŽR–{–ƒ”’</NM>
-					<ADR>“Œ‹ž“srì‹æ“Œ”ö‹v</ADR>
+					<NM>å±±æœ¬éº»ç™½</NM>
+					<ADR>æ±äº¬éƒ½è’å·åŒºæ±å°¾ä¹…</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/2/28</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>997900</KINGAKU>
 					<KOUFU_JYUUTOU_GK>997900</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>“‚àV‹M—m</NM>
-					<ADR>“Œ‹ž“s`‹æŽO“c</ADR>
+					<NM>å”æ¾¤è²´æ´‹</NM>
+					<ADR>æ±äº¬éƒ½æ¸¯åŒºä¸‰ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>149685</KINGAKU>
 					<KOUFU_JYUUTOU_GK>149685</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>’|“c^—</NM>
-					<ADR>‘åã•{‘åãŽs–k‹æ¼“V–ž</ADR>
+					<NM>ç«¹ç”°çœŸç†</NM>
+					<ADR>å¤§é˜ªåºœå¤§é˜ªå¸‚åŒ—åŒºè¥¿å¤©æº€</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>8</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>296307</KINGAKU>
 					<KOUFU_JYUUTOU_GK>296307</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>“‚àV‹M—m</NM>
-					<ADR>“Œ‹ž“s`‹æŽO“c</ADR>
+					<NM>å”æ¾¤è²´æ´‹</NM>
+					<ADR>æ±äº¬éƒ½æ¸¯åŒºä¸‰ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>9</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/30</DT>
-					<NM>“‚àV‹M—m</NM>
-					<ADR>“Œ‹ž“s`‹æŽO“c</ADR>
+					<NM>å”æ¾¤è²´æ´‹</NM>
+					<ADR>æ±äº¬éƒ½æ¸¯åŒºä¸‰ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>10</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>3158171</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3158171</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/29</DT>
-					<NM>ƒAƒgƒ€Žsì‘D‹´–@—¥Ž––±Š•ÙŒìŽm–@l</NM>
-					<ADR>ç—tŒ§ŽsìŽsŽsì“ì</ADR>
+					<NM>ã‚¢ãƒˆãƒ å¸‚å·èˆ¹æ©‹æ³•å¾‹äº‹å‹™æ‰€å¼è­·å£«æ³•äºº</NM>
+					<ADR>åƒè‘‰çœŒå¸‚å·å¸‚å¸‚å·å—</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>11</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>92299</KINGAKU>
 					<KOUFU_JYUUTOU_GK>92299</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/29</DT>
-					<NM>’|“c^—</NM>
-					<ADR>‘åã•{‘åãŽs–k‹æ¼“V–ž</ADR>
+					<NM>ç«¹ç”°çœŸç†</NM>
+					<ADR>å¤§é˜ªåºœå¤§é˜ªå¸‚åŒ—åŒºè¥¿å¤©æº€</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>12</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/29</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>13</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>14</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/9/30</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>15</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>125770</KINGAKU>
 					<KOUFU_JYUUTOU_GK>125770</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>²“¡‰pŽ¡</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>ä½è—¤è‹±æ²»</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>16</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>143290</KINGAKU>
 					<KOUFU_JYUUTOU_GK>143290</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>²“¡‰pŽ¡</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>ä½è—¤è‹±æ²»</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>17</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>131290</KINGAKU>
 					<KOUFU_JYUUTOU_GK>131290</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>²“¡‰pŽ¡</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>ä½è—¤è‹±æ²»</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>18</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>19</ICHIREN_NO>
-					<MOKUTEKI>•ÙŒìŽm•ñV</MOKUTEKI>
+					<MOKUTEKI>å¼è­·å£«å ±é…¬</MOKUTEKI>
 					<KINGAKU>169643</KINGAKU>
 					<KOUFU_JYUUTOU_GK>169643</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/11/30</DT>
-					<NM>‘O“c‘×Žu</NM>
-					<ADR>“Œ‹ž“sç‘ã“c‹æ—LŠy’¬</ADR>
+					<NM>å‰ç”°æ³°å¿—</NM>
+					<ADR>æ±äº¬éƒ½åƒä»£ç”°åŒºæœ‰æ¥½ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 			</SHEET>
 			<SHEET>
-				<HIMOKU>HPŠÇ—Eƒlƒbƒgƒ[ƒN\’z</HIMOKU>
+				<HIMOKU>HPç®¡ç†ãƒ»ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰</HIMOKU>
 				<KINGAKU_SONOTA_GK>0</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>0</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -857,157 +857,157 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>99000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>99000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/31</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>99000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>99000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/2/28</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>ƒlƒbƒgƒ[ƒN\’z”ï—p</MOKUTEKI>
+					<MOKUTEKI>ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰è²»ç”¨</MOKUTEKI>
 					<KINGAKU>550000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>550000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>ƒAƒCƒVƒXƒeƒ€ƒRƒ“ƒTƒ‹ƒeƒBƒ“ƒO</NM>
-					<ADR>‰ªŽRŒ§‘q•~Žs‹Ê“‡</ADR>
+					<NM>ã‚¢ã‚¤ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°</NM>
+					<ADR>å²¡å±±çœŒå€‰æ•·å¸‚çŽ‰å³¶</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>99000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>99000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>110000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>110000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>99000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>99000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>99000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>99000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/30</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>8</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>176693</KINGAKU>
 					<KOUFU_JYUUTOU_GK>176693</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/31</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>9</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>121000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>121000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>10</ICHIREN_NO>
-					<MOKUTEKI>ƒlƒbƒgƒ[ƒN\’z”ï—p</MOKUTEKI>
+					<MOKUTEKI>ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯æ§‹ç¯‰è²»ç”¨</MOKUTEKI>
 					<KINGAKU>110000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>110000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>ƒAƒCƒVƒXƒeƒ€ƒRƒ“ƒTƒ‹ƒeƒBƒ“ƒO</NM>
-					<ADR>‰ªŽRŒ§‘q•~Žs‹Ê“‡</ADR>
+					<NM>ã‚¢ã‚¤ã‚·ã‚¹ãƒ†ãƒ ã‚³ãƒ³ã‚µãƒ«ãƒ†ã‚£ãƒ³ã‚°</NM>
+					<ADR>å²¡å±±çœŒå€‰æ•·å¸‚çŽ‰å³¶</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>11</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>110000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>110000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/9/30</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>12</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>139480</KINGAKU>
 					<KOUFU_JYUUTOU_GK>139480</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>13</ICHIREN_NO>
-					<MOKUTEKI>HP‘ã</MOKUTEKI>
+					<MOKUTEKI>HPä»£</MOKUTEKI>
 					<KINGAKU>220000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>220000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/11/30</DT>
-					<NM>‹{é‘sˆê</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à</ADR>
+					<NM>å®®åŸŽå£®ä¸€</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
@@ -1015,7 +1015,7 @@
 		</KUBUN04>
 		<KUBUN05>
 			<SHEET>
-				<HIMOKU>‘I‹“ŠÖŒW”ï</HIMOKU>
+				<HIMOKU>é¸æŒ™é–¢ä¿‚è²»</HIMOKU>
 				<KINGAKU_SONOTA_GK>0</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>0</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -1024,79 +1024,79 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>ŽÔ—¼®”õ‘ã</MOKUTEKI>
+					<MOKUTEKI>è»Šä¸¡æ•´å‚™ä»£</MOKUTEKI>
 					<KINGAKU>1198945</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1198945</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
 					<NM>Seibii</NM>
-					<ADR>“Œ‹ž“s`‹æ˜Z–{–Ø</ADR>
+					<ADR>æ±äº¬éƒ½æ¸¯åŒºå…­æœ¬æœ¨</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>ƒOƒbƒYEƒ|ƒXƒ^[‘ã</MOKUTEKI>
+					<MOKUTEKI>ã‚°ãƒƒã‚ºãƒ»ãƒã‚¹ã‚¿ãƒ¼ä»£</MOKUTEKI>
 					<KINGAKU>520520</KINGAKU>
 					<KOUFU_JYUUTOU_GK>520520</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>ƒlƒbƒg‘I‹“</NM>
-					<ADR>“Œ‹ž“sŠ‹ü‹æ¼V¬Šâ</ADR>
+					<NM>ãƒãƒƒãƒˆé¸æŒ™</NM>
+					<ADR>æ±äº¬éƒ½è‘›é£¾åŒºè¥¿æ–°å°å²©</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>ŠXéŽÔƒŒƒ“ƒ^ƒ‹‘ã</MOKUTEKI>
+					<MOKUTEKI>è¡—å®£è»Šãƒ¬ãƒ³ã‚¿ãƒ«ä»£</MOKUTEKI>
 					<KINGAKU>990000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>990000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/20</DT>
-					<NM>¬“‡ˆŸŠóŽq</NM>
-					<ADR>ç—tŒ§”ŽsŽáŽÄ</ADR>
+					<NM>å°å³¶äºœå¸Œå­</NM>
+					<ADR>åƒè‘‰çœŒæŸå¸‚è‹¥æŸ´</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>‘I‹“ƒ|ƒXƒ^[‘ã</MOKUTEKI>
+					<MOKUTEKI>é¸æŒ™ãƒã‚¹ã‚¿ãƒ¼ä»£</MOKUTEKI>
 					<KINGAKU>11324500</KINGAKU>
 					<KOUFU_JYUUTOU_GK>11324500</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/29</DT>
-					<NM>“ú¤ˆóü</NM>
-					<ADR>“Œ‹ž“s`‹æ•l¼’¬</ADR>
+					<NM>æ—¥å•†å°åˆ·</NM>
+					<ADR>æ±äº¬éƒ½æ¸¯åŒºæµœæ¾ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>ŽQ‹c‰@‘I‹“ƒ|ƒXƒ^[Eƒrƒ‰EŠÖ˜A”ï—p</MOKUTEKI>
+					<MOKUTEKI>å‚è­°é™¢é¸æŒ™ãƒã‚¹ã‚¿ãƒ¼ãƒ»ãƒ“ãƒ©ãƒ»é–¢é€£è²»ç”¨</MOKUTEKI>
 					<KINGAKU>33574816</KINGAKU>
 					<KOUFU_JYUUTOU_GK>33574816</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/29</DT>
-					<NM>ƒlƒbƒg‘I‹“</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©</ADR>
+					<NM>ãƒãƒƒãƒˆé¸æŒ™</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>ŽQ‹c‰@‘I‹“ƒ|ƒXƒ^[ˆóü‘ã</MOKUTEKI>
+					<MOKUTEKI>å‚è­°é™¢é¸æŒ™ãƒã‚¹ã‚¿ãƒ¼å°åˆ·ä»£</MOKUTEKI>
 					<KINGAKU>15915625</KINGAKU>
 					<KOUFU_JYUUTOU_GK>15915625</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/29</DT>
-					<NM>ƒqƒ‰ƒ}ŽÊ^»”Å</NM>
-					<ADR>ˆïéŒ§“y‰YŽs÷ƒP‹u’¬</ADR>
+					<NM>ãƒ’ãƒ©ãƒžå†™çœŸè£½ç‰ˆ</NM>
+					<ADR>èŒ¨åŸŽçœŒåœŸæµ¦å¸‚æ¡œã‚±ä¸˜ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 			</SHEET>
 			<SHEET>
-				<HIMOKU>‹Ÿ‘õ‹à</HIMOKU>
+				<HIMOKU>ä¾›è¨—é‡‘</HIMOKU>
 				<KINGAKU_SONOTA_GK>0</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>0</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -1105,85 +1105,85 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>Îˆä—ÇŒb</NM>
-					<ADR>“Œ‹ž“s—û”n‹æÎ_ˆä’¬</ADR>
+					<NM>çŸ³äº•è‰¯æµ</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºçŸ³ç¥žäº•ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>à_“c’q</NM>
-					<ADR>‘åã•{“Œ‘åãŽsŽá]–{’¬</ADR>
+					<NM>æ¿±ç”°æ™º</NM>
+					<ADR>å¤§é˜ªåºœæ±å¤§é˜ªå¸‚è‹¥æ±Ÿæœ¬ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æÔ’Ë</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºèµ¤å¡š</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>²X–ØW</NM>
-					<ADR>ˆïéŒ§í—¤‘¾“cŽs“V_—Ñ’¬</ADR>
+					<NM>ä½ã€…æœ¨æ™ƒ</NM>
+					<ADR>èŒ¨åŸŽçœŒå¸¸é™¸å¤ªç”°å¸‚å¤©ç¥žæž—ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>¼“c—²Žk</NM>
-					<ADR>–kŠC“¹ŽD–yŽs’†‰›‹æ“ì˜Zð¼</ADR>
+					<NM>æ¾ç”°éš†å—£</NM>
+					<ADR>åŒ—æµ·é“æœ­å¹Œå¸‚ä¸­å¤®åŒºå—å…­æ¡è¥¿</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>’†]—FÆ</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æÔ’Ë</ADR>
+					<NM>ä¸­æ±Ÿå‹å“‰</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºèµ¤å¡š</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<MOKUTEKI>‹Ÿ‘õ‹à</MOKUTEKI>
+					<MOKUTEKI>ä¾›è¨—é‡‘</MOKUTEKI>
 					<KINGAKU>3000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>3000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/1</DT>
-					<NM>–{“cK‹v</NM>
-					<ADR>é‹ÊŒ§ì‰zŽs‘åŽš–ì“c</ADR>
+					<NM>æœ¬ç”°å¹¸ä¹…</NM>
+					<ADR>åŸ¼çŽ‰çœŒå·è¶Šå¸‚å¤§å­—é‡Žç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
@@ -1235,7 +1235,7 @@
 		</KUBUN09>
 		<KUBUN10>
 			<SHEET>
-				<HIMOKU>’²¸Œ¤‹†”ï</HIMOKU>
+				<HIMOKU>èª¿æŸ»ç ”ç©¶è²»</HIMOKU>
 				<KINGAKU_SONOTA_GK>83700</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>83700</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -1244,133 +1244,133 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/31</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/2/28</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/3/31</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/28</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/5/31</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/6/30</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/31</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>8</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>327900</KINGAKU>
 					<KOUFU_JYUUTOU_GK>327900</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/31</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>9</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>360948</KINGAKU>
 					<KOUFU_JYUUTOU_GK>360948</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/9/30</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>10</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>397036</KINGAKU>
 					<KOUFU_JYUUTOU_GK>397036</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/31</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>11</ICHIREN_NO>
-					<MOKUTEKI>’²¸Œ¤‹†”ï</MOKUTEKI>
+					<MOKUTEKI>èª¿æŸ»ç ”ç©¶è²»</MOKUTEKI>
 					<KINGAKU>378586</KINGAKU>
 					<KOUFU_JYUUTOU_GK>378586</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/11/30</DT>
-					<NM>Ö“¡’‰s</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>æ–Žè—¤å¿ è¡Œ</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
@@ -1378,7 +1378,7 @@
 		</KUBUN10>
 		<KUBUN11>
 			<SHEET>
-				<HIMOKU>Šñ•t‹à</HIMOKU>
+				<HIMOKU>å¯„ä»˜é‡‘</HIMOKU>
 				<KINGAKU_SONOTA_GK>0</KINGAKU_SONOTA_GK>
 				<KOUFU_SONOTA_GK>0</KOUFU_SONOTA_GK>
 				<KIKIN_SONOTA_GK>0</KIKIN_SONOTA_GK>
@@ -1387,1321 +1387,1321 @@
 				<KIKIN_KINGAKU_GK>0</KIKIN_KINGAKU_GK>
 				<ROW>
 					<ICHIREN_NO>1</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>2000000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>2000000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/12</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§t“ú•”Žs</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒæ˜¥æ—¥éƒ¨å¸‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>2</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>2800000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>2800000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/12</DT>
-					<NM>‘ä“ŒN“}</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ</ADR>
+					<NM>å°æ±Nå…š</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒº</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>3</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/1/13</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”Žs</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæŸå¸‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>4</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“È–ØŒ§‰F“s‹{ŽsãŒËÕ’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ ƒæœ¨çœŒå®‡éƒ½å®®å¸‚ä¸Šæˆ¸ç¥­ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>5</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à–{‹½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾æœ¬éƒ·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>6</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s¢“c’J‹æ¢“c’J</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ä¸–ç”°è°·åŒºä¸–ç”°è°·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>7</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§t“ú•”Žs’†‰›</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒæ˜¥æ—¥éƒ¨å¸‚ä¸­å¤®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>8</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”Žs”</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæŸå¸‚æŸ</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>9</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§‘D‹´Žs“ñ‹{</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒèˆ¹æ©‹å¸‚äºŒå®®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>10</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>VŠƒŒ§‹›ÀŽsŽµ“úŽs</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ–°æ½ŸçœŒé­šæ²¼å¸‚ä¸ƒæ—¥å¸‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>11</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>ŽŸ¢‘ã‚ ‚ç‚©‚í</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ’J’†</ADR>
+					<NM>æ¬¡ä¸–ä»£ã‚ã‚‰ã‹ã‚</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºè°·ä¸­</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>12</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”ªç‘ãŽsŠž“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå…«åƒä»£å¸‚è±ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>13</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§ŽsìŽs‘åF</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå¸‚å·å¸‚å¤§æ´²</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>14</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>–kŠC“¹“Ï¬–qŽs–Lì’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŒ—æµ·é“è‹«å°ç‰§å¸‚è±Šå·ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>15</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§ìŒûŽs‘åŽš“Œ“à–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒå·å£å¸‚å¤§å­—æ±å†…é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>16</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>‘ä“ŒN“}</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ—‹–å</ADR>
+					<NM>å°æ±Nå…š</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºé›·é–€</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>17</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>18</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s–Ú•‹æÂ—t‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç›®é»’åŒºé’è‘‰å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>19</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}@’†–ì</NM>
-					<ADR>“Œ‹ž“s’†–ì‹æ“Œ’†–ì‹æ</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…šã€€ä¸­é‡Ž</NM>
+					<ADR>æ±äº¬éƒ½ä¸­é‡ŽåŒºæ±ä¸­é‡ŽåŒº</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>20</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§ì¼ŽsV“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒå·è¥¿å¸‚æ–°ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>21</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>22</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs‚{’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚é«˜é ˆç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>23</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>24</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>25</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§—¬ŽRŽs“ì—¬ŽR</ADR>
+					<NM>å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæµå±±å¸‚å—æµå±±</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>26</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—§ìŽsŽÄè’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç«‹å·å¸‚æŸ´å´Žç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>27</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>750000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>750000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§VÀŽs–k–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒæ–°åº§å¸‚åŒ—é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>28</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>Žs–¯¶Šˆ‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs¡’Ã…”g</ADR>
+					<NM>å¸‚æ°‘ç”Ÿæ´»ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚ä»Šæ´¥æ°´æ³¢</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>29</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>750000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>750000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>_“ÞìŒ§ŠC˜V–¼Žs‘•ªŽ›‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>ç¥žå¥ˆå·çœŒæµ·è€åå¸‚å›½åˆ†å¯ºå°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>30</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s™•À‹æ¬“c¼</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ‰ä¸¦åŒºæˆç”°è¥¿</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>31</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/4/21</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”ªç‘ãŽsŠž“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå…«åƒä»£å¸‚è±ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>32</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“È–ØŒ§‰F“s‹{ŽsãŒËÕ’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ ƒæœ¨çœŒå®‡éƒ½å®®å¸‚ä¸Šæˆ¸ç¥­ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>33</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à–{‹½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾æœ¬éƒ·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>34</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s¢“c’J‹æ¢“c’J</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ä¸–ç”°è°·åŒºä¸–ç”°è°·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>35</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§t“ú•”Žs’†‰›</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒæ˜¥æ—¥éƒ¨å¸‚ä¸­å¤®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>36</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§‘D‹´Žs“ñ‹{</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒèˆ¹æ©‹å¸‚äºŒå®®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>37</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>VŠƒŒ§‹›ÀŽsŽµ“úŽs</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ–°æ½ŸçœŒé­šæ²¼å¸‚ä¸ƒæ—¥å¸‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>38</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>ŽŸ¢‘ã‚ ‚ç‚©‚í</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ’J’†</ADR>
+					<NM>æ¬¡ä¸–ä»£ã‚ã‚‰ã‹ã‚</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºè°·ä¸­</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>39</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”ªç‘ãŽsŠž“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå…«åƒä»£å¸‚è±ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>40</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§ŽsìŽs‘åF</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå¸‚å·å¸‚å¤§æ´²</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>41</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>–kŠC“¹“Ï¬–qŽs–Lì’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŒ—æµ·é“è‹«å°ç‰§å¸‚è±Šå·ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>42</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§ìŒûŽs‘åŽš“Œ“à–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒå·å£å¸‚å¤§å­—æ±å†…é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>43</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>‘ä“ŒN‘</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ—‹–å</ADR>
+					<NM>å°æ±Nå›½</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºé›·é–€</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>44</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>45</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s–Ú•‹æÂ—t‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç›®é»’åŒºé’è‘‰å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>46</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}@’†–ì</NM>
-					<ADR>“Œ‹ž“s’†–ì‹æ“Œ’†–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…šã€€ä¸­é‡Ž</NM>
+					<ADR>æ±äº¬éƒ½ä¸­é‡ŽåŒºæ±ä¸­é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>47</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§ì¼ŽsV“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒå·è¥¿å¸‚æ–°ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>48</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>49</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs‚{’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚é«˜é ˆç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>50</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>51</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>52</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§—¬ŽRŽs“ì—¬ŽR</ADR>
+					<NM>å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæµå±±å¸‚å—æµå±±</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>53</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—§ìŽsŽÄè’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç«‹å·å¸‚æŸ´å´Žç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>54</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>Žs–¯¶Šˆ‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs¡’Ã…”g</ADR>
+					<NM>å¸‚æ°‘ç”Ÿæ´»ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚ä»Šæ´¥æ°´æ³¢</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>55</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>750000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>750000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>_“ÞìŒ§ŠC˜V–¼Žs‘•ªŽ›‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>ç¥žå¥ˆå·çœŒæµ·è€åå¸‚å›½åˆ†å¯ºå°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>56</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s™•À‹æ¬“c¼</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ‰ä¸¦åŒºæˆç”°è¥¿</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>57</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1180000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1180000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/7/20</DT>
-					<NM>ƒoƒŒƒG‘åD‚«“}</NM>
-					<ADR>“Œ‹ž“sa’J‹æ‘ãX–Ø</ADR>
+					<NM>ãƒãƒ¬ã‚¨å¤§å¥½ãå…š</NM>
+					<ADR>æ±äº¬éƒ½æ¸‹è°·åŒºä»£ã€…æœ¨</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>58</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/8/25</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“È–ØŒ§‰F“s‹{ŽsãŒËÕ’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ ƒæœ¨çœŒå®‡éƒ½å®®å¸‚ä¸Šæˆ¸ç¥­ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>59</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“È–ØŒ§‰F“s‹{ŽsãŒËÕ’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ ƒæœ¨çœŒå®‡éƒ½å®®å¸‚ä¸Šæˆ¸ç¥­ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>60</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à–{‹½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾æœ¬éƒ·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>61</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s¢“c’J‹æ¢“c’J</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ä¸–ç”°è°·åŒºä¸–ç”°è°·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>62</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§t“ú•”Žs’†‰›</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒæ˜¥æ—¥éƒ¨å¸‚ä¸­å¤®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>63</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§‘D‹´Žs“ñ‹{</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒèˆ¹æ©‹å¸‚äºŒå®®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>64</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>VŠƒŒ§‹›ÀŽsŽµ“úŽs</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ–°æ½ŸçœŒé­šæ²¼å¸‚ä¸ƒæ—¥å¸‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>65</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>ŽŸ¢‘ã‚ ‚ç‚©‚í</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ’J’†</ADR>
+					<NM>æ¬¡ä¸–ä»£ã‚ã‚‰ã‹ã‚</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºè°·ä¸­</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>66</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”ªç‘ãŽsŠž“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå…«åƒä»£å¸‚è±ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>67</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§ŽsìŽs‘åF</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå¸‚å·å¸‚å¤§æ´²</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>68</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>–kŠC“¹“Ï¬–qŽs–Lì’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŒ—æµ·é“è‹«å°ç‰§å¸‚è±Šå·ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>69</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§ìŒûŽs‘åŽš“Œ“à–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒå·å£å¸‚å¤§å­—æ±å†…é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>70</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>‘ä“ŒN“}</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ—‹–å</ADR>
+					<NM>å°æ±Nå…š</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºé›·é–€</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>71</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>72</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1800000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1800000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s–Ú•‹æÂ—t‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç›®é»’åŒºé’è‘‰å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>73</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s’†–ì‹æ“Œ’†–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ä¸­é‡ŽåŒºæ±ä¸­é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>74</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§ì¼ŽsV“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒå·è¥¿å¸‚æ–°ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>75</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>76</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs‚{’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚é«˜é ˆç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>77</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>78</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>79</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§—¬ŽRŽs“ì—¬ŽR</ADR>
+					<NM>å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæµå±±å¸‚å—æµå±±</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>80</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—§ìŽsŽÄè’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç«‹å·å¸‚æŸ´å´Žç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>81</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>250000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>250000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>Žs–¯¶Šˆ‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs¡’Ã…”g</ADR>
+					<NM>å¸‚æ°‘ç”Ÿæ´»ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚ä»Šæ´¥æ°´æ³¢</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>82</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>4750000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>4750000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>_“ÞìŒ§ŠC˜V–¼Žs‘•ªŽ›‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>ç¥žå¥ˆå·çœŒæµ·è€åå¸‚å›½åˆ†å¯ºå°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>83</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s™•À‹æ¬“c¼</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ‰ä¸¦åŒºæˆç”°è¥¿</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>84</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1180000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1180000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>ƒoƒŒƒG‘åD‚«“}</NM>
-					<ADR>“Œ‹ž“sa’J‹æ‘ãX–Ø</ADR>
+					<NM>ãƒãƒ¬ã‚¨å¤§å¥½ãå…š</NM>
+					<ADR>æ±äº¬éƒ½æ¸‹è°·åŒºä»£ã€…æœ¨</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>85</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/26</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à–{‹½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾æœ¬éƒ·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>86</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“È–ØŒ§‰F“s‹{ŽsãŒËÕ’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ ƒæœ¨çœŒå®‡éƒ½å®®å¸‚ä¸Šæˆ¸ç¥­ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>87</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§KŽu–ìŽsŽÀ–à–{‹½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒç¿’å¿—é‡Žå¸‚å®Ÿç±¾æœ¬éƒ·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>88</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s¢“c’J‹æ¢“c’J</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ä¸–ç”°è°·åŒºä¸–ç”°è°·</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>89</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§t“ú•”Žs’†‰›</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒæ˜¥æ—¥éƒ¨å¸‚ä¸­å¤®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>90</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§‘D‹´Žs“ñ‹{</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒèˆ¹æ©‹å¸‚äºŒå®®</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>91</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/10/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>VŠƒŒ§‹›ÀŽsŽµ“úŽs</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ–°æ½ŸçœŒé­šæ²¼å¸‚ä¸ƒæ—¥å¸‚</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>92</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>ŽŸ¢‘ã‚ ‚ç‚©‚í</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ’J’†</ADR>
+					<NM>æ¬¡ä¸–ä»£ã‚ã‚‰ã‹ã‚</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºè°·ä¸­</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>93</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§”ªç‘ãŽsŠž“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå…«åƒä»£å¸‚è±ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>94</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§ŽsìŽs‘åF</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒå¸‚å·å¸‚å¤§æ´²</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>95</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>–kŠC“¹“Ï¬–qŽs–Lì’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŒ—æµ·é“è‹«å°ç‰§å¸‚è±Šå·ç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>96</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>é‹ÊŒ§ìŒûŽs‘åŽš“Œ“à–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åŸ¼çŽ‰çœŒå·å£å¸‚å¤§å­—æ±å†…é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>97</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>‘ä“ŒN‘</NM>
-					<ADR>“Œ‹ž“s‘ä“Œ‹æ—‹–å</ADR>
+					<NM>å°æ±Nå›½</NM>
+					<ADR>æ±äº¬éƒ½å°æ±åŒºé›·é–€</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>98</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s”Â‹´‹æ‚“‡•½</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ¿æ©‹åŒºé«˜å³¶å¹³</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>99</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1800000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1800000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s–Ú•‹æÂ—t‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç›®é»’åŒºé’è‘‰å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>100</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}@’†–ì</NM>
-					<ADR>“Œ‹ž“s’†–ì‹æ“Œ’†–ì</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…šã€€ä¸­é‡Ž</NM>
+					<ADR>æ±äº¬éƒ½ä¸­é‡ŽåŒºæ±ä¸­é‡Ž</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>101</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§ì¼ŽsV“c</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒå·è¥¿å¸‚æ–°ç”°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>102</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§¼ŒËŽs¼ŒË</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæ¾æˆ¸å¸‚æ¾æˆ¸</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>103</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>•ºŒÉŒ§¼‹{Žs‚{’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>å…µåº«çœŒè¥¿å®®å¸‚é«˜é ˆç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>104</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>105</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1500000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1500000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—û”n‹æ•xŽmŒ©‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç·´é¦¬åŒºå¯Œå£«è¦‹å°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>106</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>‘–¯‚ðŽç‚é“}</NM>
-					<ADR>ç—tŒ§—¬ŽRŽs“ì—¬ŽR</ADR>
+					<NM>å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>åƒè‘‰çœŒæµå±±å¸‚å—æµå±±</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>107</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>300000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>300000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s—§ìŽsŽÄè’¬</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½ç«‹å·å¸‚æŸ´å´Žç”º</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>108</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>750000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>750000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>_“ÞìŒ§ŠC˜V–¼Žs‘•ªŽ›‘ä</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>ç¥žå¥ˆå·çœŒæµ·è€åå¸‚å›½åˆ†å¯ºå°</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>109</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1200000</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1200000</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>NHK‚©‚ç‘–¯‚ðŽç‚é“}</NM>
-					<ADR>“Œ‹ž“s™•À‹æ¬“c¼</ADR>
+					<NM>NHKã‹ã‚‰å›½æ°‘ã‚’å®ˆã‚‹å…š</NM>
+					<ADR>æ±äº¬éƒ½æ‰ä¸¦åŒºæˆç”°è¥¿</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
 				<ROW>
 					<ICHIREN_NO>110</ICHIREN_NO>
-					<MOKUTEKI>Šñ•t‹à</MOKUTEKI>
+					<MOKUTEKI>å¯„ä»˜é‡‘</MOKUTEKI>
 					<KINGAKU>1172450</KINGAKU>
 					<KOUFU_JYUUTOU_GK>1172450</KOUFU_JYUUTOU_GK>
 					<KIKIN_JYUUTOU_GK>0</KIKIN_JYUUTOU_GK>
 					<DT>R4/12/20</DT>
-					<NM>ƒoƒŒƒG‘åD‚«“}</NM>
-					<ADR>“Œ‹ž“sa’J‹æ‘ãX–Ø</ADR>
+					<NM>ãƒãƒ¬ã‚¨å¤§å¥½ãå…š</NM>
+					<ADR>æ±äº¬éƒ½æ¸‹è°·åŒºä»£ã€…æœ¨</ADR>
 					<BIKOU></BIKOU>
 					<RYOUSYU>0</RYOUSYU>
 				</ROW>
@@ -2726,9 +2726,9 @@
 	</SITO08_05>
 	<SITO08_06>
 		<SHEET>
-			<KIKIN_NM>‚m‚g‚j“}@“}¨Šg‘åŠî‹à</KIKIN_NM>
+			<KIKIN_NM>ï¼®ï¼¨ï¼«å…šã€€å…šå‹¢æ‹¡å¤§åŸºé‡‘</KIKIN_NM>
 			<ZENNEN_ZAN_GK>2877220</ZENNEN_ZAN_GK>
-			<MOKUTEKI>–{“}‚Ì¨—ÍŠg‘å‚ð–Ú“I‚Æ‚·‚é</MOKUTEKI>
+			<MOKUTEKI>æœ¬å…šã®å‹¢åŠ›æ‹¡å¤§ã‚’ç›®çš„ã¨ã™ã‚‹</MOKUTEKI>
 			<GOUKEI_GK>11627775</GOUKEI_GK>
 			<GOUKEI_BIKOU></GOUKEI_BIKOU>
 			<HONNEN_ZAN_GK>14504995</HONNEN_ZAN_GK>
@@ -2742,7 +2742,7 @@
 					<ICHIREN_NO>1</ICHIREN_NO>
 					<DT>R4/12/28</DT>
 					<KINGAKU>11627775</KINGAKU>
-					<BIKOU>—‚”NŒJ‚è‰z‚µ</BIKOU>
+					<BIKOU>ç¿Œå¹´ç¹°ã‚Šè¶Šã—</BIKOU>
 				</ROW>
 			</KUBUN1>
 			<KUBUN2>

@@ -1,8 +1,6 @@
-package mitei.mitei.investigate.report.balance.politician.contoroller.poli_party; // NOPMD
+package mitei.mitei.investigate.report.balance.politician.controller.poli_party;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -14,55 +12,58 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.investigate.report.balance.politician.BackApplication;
 import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2022.OfferingPartyUsage0801And0807Report2022Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
-import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
 /**
- * InsertPoliticalPartyUsageReportController単体テスト
+ * InsertPoliticalPartyUsageReportControllerWorksBand単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 @ContextConfiguration(classes = BackApplication.class) // 全体起動
-class InsertPoliticalPartyUsageReportControllerTest {
+class InsertPoliticalPartyUsageReportControllerWorksBandTest {
     // CHECKSTYLE:OFF
 
-    /** MockMvc */
+    /** テスト対象 */
     @Autowired
-    private MockMvc mockMvc;
+    private InsertPoliticalPartyUsageReportControllerWorksBand insertPoliticalPartyUsageReportControllerWorksBand;
+    
 
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;
+    
+    /** 政党交付金使途報告書Repository */
+    @Autowired
+    private OfferingPartyUsage0801And0807Report2022Repository offeringPartyUsage0801And0807Report2022Repository;
 
     @Test
     @Tag("TableTruncate")
-    @Transactional
-    void testPractice() throws Exception {
-
+    @Sql("truncate_usgae_2024.sql")
+   void test()throws Exception {
+        
+        assertEquals(0, offeringPartyUsage0801And0807Report2022Repository.count(),"truncateしたので0件");
+        
         RegistPoliticalPartyUsageReportCapsuleDto capsuleDto = new RegistPoliticalPartyUsageReportCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
 
@@ -73,8 +74,7 @@ class InsertPoliticalPartyUsageReportControllerTest {
         xmlMapper.setSerializationInclusion(Include.ALWAYS);
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        String fullPath = GetCurrentResourcePath.getBackTestResourcePath()
-                + "/sample/usage/2022_政治家女子48党_SITO.xml";
+        String fullPath = GetCurrentResourcePath.getBackTestResourcePath() + "/sample/usage/2022_政治家女子48党_SITO.xml";
         String readText = Files.readString(Paths.get(fullPath), Charset.forName(charset));
 
         AllShitoBook allBookDto = xmlMapper.readValue(readText, new TypeReference<>() {
@@ -101,15 +101,20 @@ class InsertPoliticalPartyUsageReportControllerTest {
         saveStorageResultDto.setCharset(charset);
         capsuleDto.setDocumentPropertyDto(documentPropertyDto);
         capsuleDto.setSaveStorageResultDto(saveStorageResultDto);
+        // 破綻要因
+        capsuleDto.getCheckPrivilegeDto().setLoginUserName(
+                "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
+
+        try {
+
+            insertPoliticalPartyUsageReportControllerWorksBand.wakeBusiness(capsuleDto);
+            
+        }catch (Exception exception) { // NOPMD
+            exception.printStackTrace(); // NOPMD
+        }
         
-        ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
-
-        assertThat(mockMvc // NOPMD LawOfDemeter
-                .perform(post("/insert-political-party-usage-report")
-                        .content(objectMapper.writeValueAsString(capsuleDto)) // リクエストボディを指定
-                        .contentType(MediaType.APPLICATION_JSON_VALUE)) // Content Typeを指定
-                .andExpect(status().isOk()).andReturn().getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-
+        assertEquals(0, offeringPartyUsage0801And0807Report2022Repository.count(),"ロールバックしたので0件");
+        
     }
 
 }

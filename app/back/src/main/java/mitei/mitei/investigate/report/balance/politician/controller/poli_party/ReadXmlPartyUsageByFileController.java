@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.ReadXmlPartyUsageResultDto;
-import mitei.mitei.investigate.report.balance.politician.service.offering.poli_party.ReadXmlPartyUsageByFileService;
 
 /**
  * ファイル内容(文字列)から政治資金収支報告書XMLクラスを生成する
@@ -34,10 +32,10 @@ public class ReadXmlPartyUsageByFileController extends AbstractTemplateCheckCont
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** アップロードXML保存解析Service */
+    /** ビジネスロジック起動WorksBandController */
     @Autowired
-    private ReadXmlPartyUsageByFileService readXmlPartyUsageByFileService;
-    
+    private ReadXmlPartyUsageByFileControllerWorksBand worksBandController;
+
     /**
      * XMLを解析して登録予定情報を提供する
      *
@@ -47,8 +45,7 @@ public class ReadXmlPartyUsageByFileController extends AbstractTemplateCheckCont
      * @throws AuthenticationException            権限例外
      * @throws PessimisticLockingFailureException トランザクション例外
      */
-    @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
-    @PostMapping("/read")
+    @PostMapping("/read") // SUPPRESS CHECKSTYLE ReturnCountCheck
     public ResponseEntity<ReadXmlPartyUsageResultDto> practice(
             final @RequestBody ReadXmlByFileCapsuleDto readXmlByFileCapsuleDto)
             throws SecurityException, AuthenticationException, PessimisticLockingFailureException { // NOPMD
@@ -79,11 +76,11 @@ public class ReadXmlPartyUsageByFileController extends AbstractTemplateCheckCont
             /*
              * ここに固有のビジネス処理を記載する
              */
-            
-            // 処理日時はシステム日付に変更する
+
+            // 処理日時はシステム日付
             LocalDateTime shori = LocalDateTime.now();
 
-            return ResponseEntity.ok(readXmlPartyUsageByFileService.practice(readXmlByFileCapsuleDto,shori));
+            return ResponseEntity.ok(worksBandController.wakeBusiness(readXmlByFileCapsuleDto, shori));
 
             /* ここまで */
 

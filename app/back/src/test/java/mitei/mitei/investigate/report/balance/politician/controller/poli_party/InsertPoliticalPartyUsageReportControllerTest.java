@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.contoroller.poli_party; // NOPMD
+package mitei.mitei.investigate.report.balance.politician.controller.poli_party; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -50,7 +50,7 @@ import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWit
 class InsertPoliticalPartyUsageReportControllerTest {
     // CHECKSTYLE:OFF
 
-    /** MockMvc */
+    /** mockMvc */
     @Autowired
     private MockMvc mockMvc;
 
@@ -73,8 +73,7 @@ class InsertPoliticalPartyUsageReportControllerTest {
         xmlMapper.setSerializationInclusion(Include.ALWAYS);
         xmlMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        String fullPath = GetCurrentResourcePath.getBackTestResourcePath()
-                + "/sample/usage/2022_政治家女子48党_SITO.xml";
+        String fullPath = GetCurrentResourcePath.getBackTestResourcePath() + "/sample/usage/2022_政治家女子48党_SITO.xml";
         String readText = Files.readString(Paths.get(fullPath), Charset.forName(charset));
 
         AllShitoBook allBookDto = xmlMapper.readValue(readText, new TypeReference<>() {
@@ -101,7 +100,7 @@ class InsertPoliticalPartyUsageReportControllerTest {
         saveStorageResultDto.setCharset(charset);
         capsuleDto.setDocumentPropertyDto(documentPropertyDto);
         capsuleDto.setSaveStorageResultDto(saveStorageResultDto);
-        
+
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
 
         assertThat(mockMvc // NOPMD LawOfDemeter

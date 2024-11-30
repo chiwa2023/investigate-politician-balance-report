@@ -10,12 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportResultDto;
-import mitei.mitei.investigate.report.balance.politician.logic.party_usage.ReadAllShitoBookByXmlFileLogic;
-import mitei.mitei.investigate.report.balance.politician.service.offering.poli_party.InsertPartyUsageReportService;
 
 /**
  * 政党交付金使途報告書の公式XMLを登録する
@@ -32,13 +29,9 @@ public class InsertPoliticalPartyUsageReportController extends AbstractTemplateC
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** 政治資金収支報告書の公式XMLを登録Service */
+    /** ビジネスロジック起動WorksBandController */
     @Autowired
-    private InsertPartyUsageReportService insertPartyUsageReportService;
-
-    /** 政党交付金使途報告書読み取りLogic */
-    @Autowired
-    private ReadAllShitoBookByXmlFileLogic readAllShitoBookByXmlFileLogic;
+    private InsertPoliticalPartyUsageReportControllerWorksBand worksBandController;
 
     /**
      * 登録処理を行う
@@ -77,17 +70,8 @@ public class InsertPoliticalPartyUsageReportController extends AbstractTemplateC
             /*
              * ここに固有のビジネス処理を記載する
              */
-
-            // 保存したXMLからの全データ
-            AllShitoBook allBookDto = readAllShitoBookByXmlFileLogic.practice(
-                    capsuleDto.getSaveStorageResultDto().getFullPath(),
-                    capsuleDto.getSaveStorageResultDto().getCharset());
-
-            // 登録作業
-            RegistPoliticalPartyUsageReportResultDto resultDto = insertPartyUsageReportService.practice(
-                    capsuleDto.getDocumentPropertyDto(), capsuleDto.getCheckPrivilegeDto(), allBookDto, false);
-
-            return ResponseEntity.ok(resultDto);
+            
+            return ResponseEntity.ok(worksBandController.wakeBusiness(capsuleDto));
 
             /* ここまで */
 

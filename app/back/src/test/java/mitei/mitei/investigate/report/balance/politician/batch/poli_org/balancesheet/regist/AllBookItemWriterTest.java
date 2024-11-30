@@ -138,8 +138,8 @@ class AllBookItemWriterTest {
         try {
             // TODO SQLで問題が起きた場合の処理を決定後修正する
             allBookItemWriter.write(items);
-        } catch (Exception e) {
-            // TODO: handle exception
+        } catch (Exception exception) { // NOPMD
+            exception.printStackTrace(); // NOPMD
         }
 
         fail("Not yet implemented");
