@@ -54,7 +54,6 @@ class InsertPartyUsageShito0804Y2025LogicTest {
     @Autowired
     private InsertPartyUsageShito0804Y2025Logic insertPartyUsageShito0804Y2025Logic;
 
-    
     /** 様式8その4区分01 */
     private static final int KBN01 = ConstantsKbn0804Dto.KBN01;
     /** 様式8その4区分02 */
@@ -104,7 +103,6 @@ class InsertPartyUsageShito0804Y2025LogicTest {
     private static final String KBN11_NAME = ConstantsKbn0804Dto.KBN11_TEXT;
     /** 様式8その4区分12名称 */
     private static final String KBN12_NAME = ConstantsKbn0804Dto.KBN12_TEXT;
-   
 
     /** 日付変換Utility */
     @Autowired

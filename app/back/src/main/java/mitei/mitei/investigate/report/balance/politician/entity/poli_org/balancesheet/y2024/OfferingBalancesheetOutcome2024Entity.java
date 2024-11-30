@@ -17,7 +17,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  */
 @Entity
 @Table(name = "offering_balancesheet_outcome_2024")
-public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllTabeDataHistoryInterface { // NOPMD
+public class OfferingBalancesheetOutcome2024Entity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllT
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-
+    
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
@@ -38,8 +38,7 @@ public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllT
     private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 収支報告書支出(その14と15)Id */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "offering_balancesheet_outcome_id")
     private Long offeringBalancesheetOutcomeId = INIT_Long;
 
@@ -632,7 +631,7 @@ public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllT
      *
      * @param partnerJuusho 取引相手先住所
      */
-    public void setPartnerJuusho(final String partnerJuusho) {
+    public void setPartnerJusho(final String partnerJuusho) {
         this.partnerJuusho = partnerJuusho;
     }
 

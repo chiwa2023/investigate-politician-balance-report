@@ -48,8 +48,8 @@ class InsertPartyUsageShito0902Y2025LogicTest {
     private OfferingPartyUsage0902Report2025Repository offeringPartyUsage0902Report2025Repository;
 
     @Test
-    @Tag("TableTruncate")
     @Transactional
+    @Tag("TableTruncate")
     void testPractice() {
 
         int houkokuNen = 2025;

@@ -53,10 +53,10 @@ public class NaturalAllSentenceSearchY2025Logic {
 
         IncomeAndOutcomeNaturalSearchResultDto searchResultDto = new IncomeAndOutcomeNaturalSearchResultDto();
         searchResultDto.setSearchWords(searchWords);
-
+        
         List<IncomeAndOutcomeSearchLineDto> listIncome = searchResultDto.getListIncome();
         List<IncomeAndOutcomeSearchLineDto> listOutcome = searchResultDto.getListOutcome();
-
+        
         // 政治資金収支報告書収入
         if (searchConditionDto.getIsSearchIncome()) {
             // 件数
@@ -78,7 +78,7 @@ public class NaturalAllSentenceSearchY2025Logic {
         if (searchConditionDto.getIsSearchOutcome()) {
             searchResultDto.setCountOutcome(offeringBalancesheetOutcome2025Repository.findFullTextCount(searchWords,
                     searchConditionDto.getStartDate(), searchConditionDto.getEndDate()));
-
+            
             // 取得する実データ
             List<OfferingBalancesheetOutcome2025Entity> listTemp = offeringBalancesheetOutcome2025Repository
                     .findFullText(searchWords, searchConditionDto.getOffsetOutcome(), searchConditionDto.getStartDate(),
