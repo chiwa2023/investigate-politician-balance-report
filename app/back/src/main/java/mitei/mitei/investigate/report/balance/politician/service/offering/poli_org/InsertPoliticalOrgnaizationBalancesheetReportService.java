@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org;
+package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org; // NOPMD
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookD
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.RegistPoliticalOrgBalancesheetReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
+import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationEntity;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.CheckAllreadyRegistDataPoliticalOrganizationLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganization08000Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.InsertPoliticalOrganization0802Logic;
@@ -24,6 +25,7 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.UpdatePoliticalOrganizationOutcomeAllLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.UpdatePoliticalOrganizationSheet0701And0720Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.UpdatePoliticalOrganizationSummaryLogic;
+import mitei.mitei.investigate.report.balance.politician.logic.political_organization.InsertPoliticalOrganizationByBalancesheetReportLogic;
 
 /**
  * 政治資金収支報告書提出分登録サービス
@@ -91,6 +93,10 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
     @Autowired
     private UpdatePoliticalOrganizationSummaryLogic updatePoliticalOrganizationSummaryLogic;
 
+    /** 政治団体を資金報告書から登録Logic */
+    @Autowired
+    private InsertPoliticalOrganizationByBalancesheetReportLogic insertPoliticalOrganizationByBalancesheetReportLogic;
+
     /**
      * 政治資金収支報告書を独自形式で保存する
      *
@@ -103,10 +109,20 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
             final BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto, final AllBookDto allBookDto,
             final CheckPrivilegeDto checkPrivilegeDto) {
 
-        boolean isAcceptUpdate = true;
+        // 政治団体新規登録が選択された場合は、登録してIdなどを更新する
+        if (documentPropertyDto.getPoliticalOrganizationId().equals(0L) && documentPropertyDto.getIsAddOrganization()) {
+            PoliticalOrganizationEntity organizationEntity = insertPoliticalOrganizationByBalancesheetReportLogic
+                    .practice(allBookDto.getAllSheet0701CoverAndOrganizationDetailsDto()
+                            .getSheet070100CoverAndOrganizationDetailsDto(), checkPrivilegeDto);
+            documentPropertyDto.setPoliticalOrganizationId(organizationEntity.getPoliticalOrganizationId());
+            documentPropertyDto.setPoliticalOrganizationCode(organizationEntity.getPoliticalOrganizationCode());
+            documentPropertyDto.setPoliticalOrganizationName(organizationEntity.getPoliticalOrganizationName());
+        }
 
         List<Long> listOldCode = checkAllreadyRegistDataPoliticalOrganizationLogic.practice(documentPropertyDto);
 
+        // TODO 上書き設定を有効にするかどうかは修正する
+        boolean isAcceptUpdate = true;
         // すでに登録があり、かつ更新を許さない場合
         if (!isAcceptUpdate && !listOldCode.isEmpty()) {
             RegistPoliticalOrgBalancesheetReportResultDto resultDto = new RegistPoliticalOrgBalancesheetReportResultDto();
@@ -179,9 +195,10 @@ public class InsertPoliticalOrgnaizationBalancesheetReportService {
         RegistPoliticalOrgBalancesheetReportResultDto resultDto = new RegistPoliticalOrgBalancesheetReportResultDto();
 
         resultDto.setDocumentCode(documentCode);
-        resultDto.setSuccessCount(1 + sizeSummary + sizeIncome + sizeOutcome + sizeEstate + size0800 + size0802);
+        resultDto.setMessage(
+                "1件登" + (sizeSummary + sizeIncome + sizeOutcome + sizeEstate + size0800 + size0802) + "行登録しました");
+        resultDto.setSuccessCount(1);
         resultDto.setIsOk(true);
-        resultDto.setMessage(resultDto.getSuccessCount() + "件登録しました");
 
         return resultDto;
     }

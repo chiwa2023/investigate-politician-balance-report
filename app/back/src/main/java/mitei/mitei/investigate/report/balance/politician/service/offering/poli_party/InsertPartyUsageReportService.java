@@ -9,6 +9,7 @@ import mitei.mitei.common.publish.party.usage.report.dto.v5.AllShitoBook;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.RegistPoliticalPartyUsageReportResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
+import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationEntity;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.CheckAllreadyRegistDataPartyUsageLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.InsertPartyUsageShito0801And0807Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.InsertPartyUsageShito0802And0803Logic;
@@ -26,6 +27,7 @@ import mitei.mitei.investigate.report.balance.politician.logic.party_usage.Updat
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.UpdatePartyUsageShito0806Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.UpdatePartyUsageShito0901Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.UpdatetPartyUsageShito0902Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.political_organization.InsertPoliticalOrganizationByPartyUsageLogic;
 
 /**
  * 使途報告書Dtoを独自形式で保存する
@@ -101,6 +103,10 @@ public class InsertPartyUsageReportService {
     @Autowired
     private UpdatetPartyUsageShito0902Logic updatePartyUsageShito0902Logic;
 
+    /** 政治団体を使途報告書から登録Logic */
+    @Autowired
+    private InsertPoliticalOrganizationByPartyUsageLogic insertPoliticalOrganizationByPartyUsageLogic;
+
     /**
      * 使途報告書XMLを独自形式で保存する
      *
@@ -111,6 +117,15 @@ public class InsertPartyUsageReportService {
             final AllShitoBook allShitoBook, final boolean isSearchRelation) {
 
         boolean isAcceptUpdate = true;
+
+        // 政治団体新規登録が選択された場合は、登録してIdなどを更新する
+        if (documentPropertyDto.getPoliticalOrganizationId().equals(0L) && documentPropertyDto.getIsAddOrganization()) {
+            PoliticalOrganizationEntity organizationEntity = insertPoliticalOrganizationByPartyUsageLogic
+                    .practice(allShitoBook.getShito0801Dto().getSheet0801Dto(), checkPrivilegeDto);
+            documentPropertyDto.setPoliticalOrganizationId(organizationEntity.getPoliticalOrganizationId());
+            documentPropertyDto.setPoliticalOrganizationCode(organizationEntity.getPoliticalOrganizationCode());
+            documentPropertyDto.setPoliticalOrganizationName(organizationEntity.getPoliticalOrganizationName());
+        }
 
         List<Long> listOldCode = checkAllreadyRegistDataPartyUsageLogic.practice(documentPropertyDto);
 
@@ -182,16 +197,16 @@ public class InsertPartyUsageReportService {
 
             // 様式9その2
             updatePartyUsageShito0902Logic.practice(nendo, oldCode, checkPrivilegeDto);
-
         }
 
         // 登録失敗はTransactionをロールバックしないといけないのですべて例外
         RegistPoliticalPartyUsageReportResultDto resultDto = new RegistPoliticalPartyUsageReportResultDto();
 
         resultDto.setDocumentCode(documentCode);
-        resultDto.setSuccessCount(1 + sizeSummary + size2 + size4 + size5 + size6 + size9 + size92);
+        resultDto.setMessage(
+                "1件登" + (sizeSummary + sizeSummary + size2 + size4 + size5 + size6 + size9 + size92) + "行登録しました");
+        resultDto.setSuccessCount(1);
         resultDto.setIsOk(true);
-        resultDto.setMessage(resultDto.getSuccessCount() + "行登録しました");
 
         return resultDto;
     }
