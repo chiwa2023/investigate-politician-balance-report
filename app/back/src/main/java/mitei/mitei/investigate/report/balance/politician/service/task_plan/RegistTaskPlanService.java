@@ -53,9 +53,9 @@ public class RegistTaskPlanService {
         }
 
         if (Objects.isNull(listTask)) {
-            throw new IllegalArgumentException("引数List<TaskInfoEntity>oがnullです");
+            throw new IllegalArgumentException("引数List<TaskInfoEntity>がnullです");
         }
-
+        
         // 操作者自身のアクセス情報
         UserWebAccessEntity userEntity = userWebAccessRepository
                 .findBySaishinKbnAndUserCode(DataHistoryStatusConstants.INSERT.value(), privilegeDto.getLoginUserCode())

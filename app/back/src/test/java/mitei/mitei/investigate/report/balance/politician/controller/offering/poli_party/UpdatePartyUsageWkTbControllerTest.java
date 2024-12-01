@@ -1,6 +1,6 @@
-package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_party;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -18,47 +18,44 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.UpdateBalancesheetWkTblCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgBalancesheetReportEntity;
-import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgBalancesheetReportRepository;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.UpdatePartyUsageWkTblCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgPartyUsageReportRepository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
 /**
- * UpdateBalancesheetWkTbController単体テスト
+ * UpdatePartyUsageWkTbController単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 @ConfigurationProperties(prefix = "mitei.mitei.investigate.report.balance.politician")
-class UpdateBalancesheetWkTbControllerTest {
+class UpdatePartyUsageWkTbControllerTest {
     // CHECKSTYLE:OFF
 
     /** MockMvc */
     @Autowired
     private MockMvc mockMvc;
 
-    /** 政治資金収支報告書一括処理ワークテーブルRepository */
+    /** 政党交付金使途報告書一括処理ワークテーブルRepository */
     @Autowired
-    private WkTblPoliOrgBalancesheetReportRepository wkTblPoliOrgBalancesheetReportRepository;
+    private WkTblPoliOrgPartyUsageReportRepository wkTblPoliOrgPartyUsageReportRepository;
 
     @Test
     @Tag("TableTruncate")
-    @Transactional
-    @Sql("../../../service/offering/poli_org/wk_tbl_poli_org_balancesheet_report.sql")
+    @Sql("../../../service/offering/poli_party/wk_tbl_poli_org_party_usage_report.sql")
     void testPractice() throws Exception {
 
-        UpdateBalancesheetWkTblCapsuleDto capsuleDto = new UpdateBalancesheetWkTblCapsuleDto();
+        UpdatePartyUsageWkTblCapsuleDto capsuleDto = new UpdatePartyUsageWkTblCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
 
-        Long callId = 101L;
-        WkTblPoliOrgBalancesheetReportEntity entitySrc = wkTblPoliOrgBalancesheetReportRepository.findById(callId)
-                .get();
+        Long callId = 2239L;
+        WkTblPoliOrgPartyUsageReportEntity entitySrc = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
 
         Long poliOrgId = 326L;
         Integer poliOrgCode = 320;
@@ -67,19 +64,17 @@ class UpdateBalancesheetWkTbControllerTest {
         entitySrc.setPoliticalOrganizationId(poliOrgId);
         entitySrc.setPoliticalOrganizationCode(poliOrgCode);
         entitySrc.setPoliticalOrganizationName(poliOrgName);
-        capsuleDto.setWkTblPoliOrgBalancesheetReportEntity(entitySrc);
 
-        // 共通チェックとドキュメント種類
+        capsuleDto.setWkTblPoliOrgPartyUsageReportEntity(entitySrc);
 
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
 
-        String path = "http://localhost:9080/update-balancesheet-prepare/worktable";
+        String path = "/update-party-usage-prepare/worktable";
 
-        // サーバステータスがOK(200)
-        assertThat(mockMvc // NOPMD LawOfDemeter
+        assertEquals(HttpStatus.OK.value(), mockMvc // NOPMD LawOfDemeter
                 .perform(post(path).content(objectMapper.writeValueAsString(capsuleDto)) // リクエストボディを指定
                         .contentType(MediaType.APPLICATION_JSON_VALUE)) // Content Typeを指定
-                .andExpect(status().isOk()).andReturn().getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
+                .andExpect(status().isOk()).andReturn().getResponse().getStatus(), "正常コード200");
 
     }
 

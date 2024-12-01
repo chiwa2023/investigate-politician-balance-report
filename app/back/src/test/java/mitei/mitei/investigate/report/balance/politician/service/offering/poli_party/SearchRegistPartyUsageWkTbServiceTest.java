@@ -1,6 +1,6 @@
-package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org;
+package mitei.mitei.investigate.report.balance.politician.service.offering.poli_party;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -16,38 +16,39 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanBalancesheetDetailEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
 
 /**
- * SearchRegistBalancesheetPlanService単体テスト
+ * SearchRegistPartyUsageWkTbService単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchRegistBalancesheetPlanServiceTest {
+class SearchRegistPartyUsageWkTbServiceTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private SearchRegistBalancesheetPlanService searchRegistBalancesheetPlanService;
+    private SearchRegistPartyUsageWkTbService searchRegistPartyUsageWkTbService;
 
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("task_plan_party_usage_detail.sql")
+    @Sql("wk_tbl_poli_org_party_usage_report.sql")
     void testPractice() {
 
-        List<TaskPlanBalancesheetDetailEntity> list = searchRegistBalancesheetPlanService.practice();
+        List<WkTblPoliOrgPartyUsageReportEntity> list = searchRegistPartyUsageWkTbService.practice();
+
         list.sort((e1, e2) -> e1.getInsertUserCode() - e2.getInsertUserCode());
 
-        assertThat(list.size()).isEqualTo(2); // 正常登録は2件
+        assertEquals(2, list.size(), "正常登録は2件");
 
-        TaskPlanBalancesheetDetailEntity entity00 = list.get(0);
-        assertThat(entity00.getTaskPlanBalancesheetDetailId()).isEqualTo(1245L);
+        WkTblPoliOrgPartyUsageReportEntity entity00 = list.get(0);
+        assertEquals(3653L, entity00.getWkTblPoliOrgPartyUsageReportId(), "取得Idが一致");
 
-        TaskPlanBalancesheetDetailEntity entity01 = list.get(1);
-        assertThat(entity01.getTaskPlanBalancesheetDetailId()).isEqualTo(1246L);
+        WkTblPoliOrgPartyUsageReportEntity entity01 = list.get(1);
+        assertEquals(3654L, entity01.getWkTblPoliOrgPartyUsageReportId(), "取得Idが一致");
 
     }
 

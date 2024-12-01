@@ -1,28 +1,26 @@
-package mitei.mitei.investigate.report.balance.politician.controller.offering.document.regist;
-
-import java.time.LocalDateTime;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_party;
 
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.transaction.Transactional;
+import mitei.mitei.investigate.report.balance.politician.batch.poli_org.balancesheet.regist.RegistPreaparePoliOrgBalancesheetBatchAyncService;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkResultDto;
 
 /**
- * ファイル内容(文字列)から政治資金収支報告書XMLクラスを生成する
+ * スケジュール処理と関係なく政党交付金使途報告書一括準備処理Controller
  */
-@Controller
-@RequestMapping("/zip-document")
-public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCheckController {
+@RestController
+@RequestMapping("/force-party-usage")
+public class ForcePreparePartyUsageWkTbController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -33,29 +31,28 @@ public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCh
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** ビジネスロジック起動WorksBandController */
+    /** 政党交付金使途報告書一括準備処理を非同期で実行WrapService */
     @Autowired
-    private ReadXmlDocumentByCompressedZipControllerWorksBand worksBandController;
-
+    private RegistPreaparePoliOrgBalancesheetBatchAyncService registPreaparePoliOrgBalancesheetBatchAyncService;
+    
     /**
-     * XMLを解析して登録予定情報を提供する
+     * 計画テーブルから政治団体を推定してワークテーブルに移す処理
      *
-     * @param readXmlByFileCapsuleDto XMl読み取り内容
+     * @param capsuleDto XMl読み取り内容
      * @return XML解析結果Dto
      * @throws SecurityException                  セキュリティ例外
      * @throws AuthenticationException            権限例外
      * @throws PessimisticLockingFailureException トランザクション例外
      */
-    @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
-    @PostMapping("/expand-task")
-    public ResponseEntity<SaveStorageResultDto> practice(
-            final @RequestBody ReadXmlByFileCapsuleDto readXmlByFileCapsuleDto)
+    @PostMapping("/prepare") // SUPPRESS CHECKSTYLE ReturnCountCheck
+    public ResponseEntity<TemplateFrameworkResultDto> practice(
+            final @RequestBody TemplateFrameworkCapsuleDto capsuleDto)
             throws SecurityException, AuthenticationException, PessimisticLockingFailureException { // NOPMD
 
         // NOTE:共通処理を行ったのちビジネス処理を行うフレームワークのため、ビジネス処理以外は丸コピすること
         try {
-            switch (super.allCheck(readXmlByFileCapsuleDto.getCheckSecurityDto(),
-                    readXmlByFileCapsuleDto.getCheckPrivilegeDto(), readXmlByFileCapsuleDto.getCheckTransactionDto())) {
+            switch (super.allCheck(capsuleDto.getCheckSecurityDto(), capsuleDto.getCheckPrivilegeDto(),
+                    capsuleDto.getCheckTransactionDto())) {
                 // セキュリティチェック不可
                 case SECURITY_CHECK_FALSE:
                     return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
@@ -79,10 +76,14 @@ public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCh
              * ここに固有のビジネス処理を記載する
              */
 
-            // 処理日時はシステム日付に変更する
-            LocalDateTime datetimeShori = LocalDateTime.now();
+            // バッチ非同期実行
+            registPreaparePoliOrgBalancesheetBatchAyncService.practice();
+            
+            TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
+            resultDto.setIsOk(true);
+            resultDto.setMessage("一括処理を起動しました。処理完了までしばらくお待ちください");
 
-            return ResponseEntity.ok(worksBandController.wakeBusiness(readXmlByFileCapsuleDto, datetimeShori));
+            return ResponseEntity.ok(resultDto);
 
             /* ここまで */
 
@@ -102,5 +103,4 @@ public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCh
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }

@@ -1,6 +1,6 @@
-package mitei.mitei.investigate.report.balance.politician.service.offering.poli_org;
+package mitei.mitei.investigate.report.balance.politician.service.offering.poli_party;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -16,21 +16,21 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanBalancesheetDetailEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanPartyUsageDetailEntity;
 
 /**
- * SearchRegistBalancesheetPlanService単体テスト
+ * SearchRegistPartyUsagePlanErrorService単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchRegistBalancesheetPlanServiceTest {
+class SearchRegistPartyUsagePlanErrorServiceTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private SearchRegistBalancesheetPlanService searchRegistBalancesheetPlanService;
+    private SearchRegistPartyUsagePlanErrorService searchRegistPartyUsagePlanErrorService;
 
     @Test
     @Tag("TableTruncate")
@@ -38,16 +38,16 @@ class SearchRegistBalancesheetPlanServiceTest {
     @Sql("task_plan_party_usage_detail.sql")
     void testPractice() {
 
-        List<TaskPlanBalancesheetDetailEntity> list = searchRegistBalancesheetPlanService.practice();
+        List<TaskPlanPartyUsageDetailEntity> list = searchRegistPartyUsagePlanErrorService.practice();
         list.sort((e1, e2) -> e1.getInsertUserCode() - e2.getInsertUserCode());
 
-        assertThat(list.size()).isEqualTo(2); // 正常登録は2件
+        assertEquals(2, list.size(), "異常登録は2件");
 
-        TaskPlanBalancesheetDetailEntity entity00 = list.get(0);
-        assertThat(entity00.getTaskPlanBalancesheetDetailId()).isEqualTo(1245L);
+        TaskPlanPartyUsageDetailEntity entity00 = list.get(0);
+        assertEquals(1434L, entity00.getTaskPlanPartyUsageDetailId(), "取得Idが一致");
 
-        TaskPlanBalancesheetDetailEntity entity01 = list.get(1);
-        assertThat(entity01.getTaskPlanBalancesheetDetailId()).isEqualTo(1246L);
+        TaskPlanPartyUsageDetailEntity entity01 = list.get(1);
+        assertEquals(1435L, entity01.getTaskPlanPartyUsageDetailId(), "取得Idが一致");
 
     }
 

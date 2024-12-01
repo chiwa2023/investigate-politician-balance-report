@@ -1,28 +1,29 @@
-package mitei.mitei.investigate.report.balance.politician.controller.offering.document.regist;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_party;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanPartyUsageDetailEntity;
+import mitei.mitei.investigate.report.balance.politician.service.offering.poli_party.SearchRegistPartyUsagePlanService;
 
 /**
- * ファイル内容(文字列)から政治資金収支報告書XMLクラスを生成する
+ * 政党交付金使途報告書解析予定一覧取得Controller
  */
-@Controller
-@RequestMapping("/zip-document")
-public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCheckController {
+@RestController
+@RequestMapping("/listup-party-usage-charset")
+public class SearchRegistPartyUsagePlanController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -33,29 +34,29 @@ public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCh
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** ビジネスロジック起動WorksBandController */
+    /** 政党交付金使途報告書解析予定一覧取得Service */
     @Autowired
-    private ReadXmlDocumentByCompressedZipControllerWorksBand worksBandController;
+    private SearchRegistPartyUsagePlanService searchRegistPartyUsagePlanService;
 
     /**
      * XMLを解析して登録予定情報を提供する
      *
-     * @param readXmlByFileCapsuleDto XMl読み取り内容
+     * @param capsuleDto XMl読み取り内容
      * @return XML解析結果Dto
      * @throws SecurityException                  セキュリティ例外
      * @throws AuthenticationException            権限例外
      * @throws PessimisticLockingFailureException トランザクション例外
      */
     @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
-    @PostMapping("/expand-task")
-    public ResponseEntity<SaveStorageResultDto> practice(
-            final @RequestBody ReadXmlByFileCapsuleDto readXmlByFileCapsuleDto)
+    @PostMapping("/normal")
+    public ResponseEntity<List<TaskPlanPartyUsageDetailEntity>> practice(
+            final @RequestBody TemplateFrameworkCapsuleDto capsuleDto)
             throws SecurityException, AuthenticationException, PessimisticLockingFailureException { // NOPMD
 
         // NOTE:共通処理を行ったのちビジネス処理を行うフレームワークのため、ビジネス処理以外は丸コピすること
         try {
-            switch (super.allCheck(readXmlByFileCapsuleDto.getCheckSecurityDto(),
-                    readXmlByFileCapsuleDto.getCheckPrivilegeDto(), readXmlByFileCapsuleDto.getCheckTransactionDto())) {
+            switch (super.allCheck(capsuleDto.getCheckSecurityDto(), capsuleDto.getCheckPrivilegeDto(),
+                    capsuleDto.getCheckTransactionDto())) {
                 // セキュリティチェック不可
                 case SECURITY_CHECK_FALSE:
                     return ResponseEntity.status(HttpStatus.BAD_GATEWAY).build();
@@ -79,10 +80,7 @@ public class ReadXmlDocumentByCompressedZipController extends AbstractTemplateCh
              * ここに固有のビジネス処理を記載する
              */
 
-            // 処理日時はシステム日付に変更する
-            LocalDateTime datetimeShori = LocalDateTime.now();
-
-            return ResponseEntity.ok(worksBandController.wakeBusiness(readXmlByFileCapsuleDto, datetimeShori));
+            return ResponseEntity.ok(searchRegistPartyUsagePlanService.practice());
 
             /* ここまで */
 

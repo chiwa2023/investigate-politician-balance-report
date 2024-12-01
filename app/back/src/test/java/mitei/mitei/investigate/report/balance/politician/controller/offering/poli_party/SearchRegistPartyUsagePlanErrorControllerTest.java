@@ -1,6 +1,6 @@
-package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_org;
+package mitei.mitei.investigate.report.balance.politician.controller.offering.poli_party;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,13 +26,13 @@ import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckD
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
 /**
- * SearchRegistBalancesheetWkTbErrorController単体テスト
+ * SearchRegistPartyUsagePlanErrorController単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchRegistBalancesheetWkTbErrorControllerTest {
+class SearchRegistPartyUsagePlanErrorControllerTest {
 
     /** MockMvc */
     @Autowired
@@ -41,23 +41,20 @@ class SearchRegistBalancesheetWkTbErrorControllerTest {
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("../../../service/offering/poli_org/wk_tbl_poli_org_balancesheet_report.sql")
+    @Sql("../../../service/offering/poli_party/task_plan_party_usage_detail.sql")
     void testPractice() throws Exception {
 
         TemplateFrameworkCapsuleDto capsuleDto = new TemplateFrameworkCapsuleDto();
-        // 共通チェックとドキュメント種類
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
 
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
-
-        String path = "/listup-balancesheet-poli-org/error";
+        String path = "/listup-party-usage-charset/error";
 
         // サーバステータスがOK(200)
-        assertThat(mockMvc // NOPMD LawOfDemeter
+        assertEquals(HttpStatus.OK.value(), mockMvc // NOPMD LawOfDemeter
                 .perform(post(path).content(objectMapper.writeValueAsString(capsuleDto)) // リクエストボディを指定
                         .contentType(MediaType.APPLICATION_JSON_VALUE)) // Content Typeを指定
-                .andExpect(status().isOk()).andReturn().getResponse().getStatus()).isEqualTo(HttpStatus.OK.value());
-
+                .andExpect(status().isOk()).andReturn().getResponse().getStatus());
     }
 
 }

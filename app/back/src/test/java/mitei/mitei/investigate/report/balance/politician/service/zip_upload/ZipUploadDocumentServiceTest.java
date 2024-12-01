@@ -1,6 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.service.zip_upload; // NOPMD
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.charset.StandardCharsets;
@@ -35,7 +35,9 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
 import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanBalancesheetDetailEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.TaskPlanPartyUsageDetailEntity;
 import mitei.mitei.investigate.report.balance.politician.repository.TaskPlanBalancesheetDetailRepository;
+import mitei.mitei.investigate.report.balance.politician.repository.TaskPlanPartyUsageDetailRepository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 
 /**
@@ -99,11 +101,16 @@ class ZipUploadDocumentServiceTest { // NOPMD
     @Autowired
     private TaskPlanBalancesheetDetailRepository taskPlanBalancesheetDetailRepository;
 
+    /** 政党交付金使途報告書解析予定Repository */
+    @Autowired
+    private TaskPlanPartyUsageDetailRepository taskPlanPartyUsageDetailRepository;
+
+    
     @Test
     @Tag("TableTruncate")
     @Transactional
     @Sql("truncate_task_plan_balancesheet_detail.sql")
-    void testPractcie() throws Exception {
+    void testPractcieBalancesheet() throws Exception {
 
         ReadXmlByFileCapsuleDto capsuleDto = new ReadXmlByFileCapsuleDto();
         String fileName = "all.zip";
@@ -152,7 +159,7 @@ class ZipUploadDocumentServiceTest { // NOPMD
 
         List<TaskPlanBalancesheetDetailEntity> list = taskPlanBalancesheetDetailRepository.findAll();
         // 対象ファイルの中に3件含まれているので予定登録も3件
-        assertThat(list.size()).isEqualTo(3);
+        assertEquals(3,list.size(),"3件");
 
         Path databasePath;
         for (TaskPlanBalancesheetDetailEntity entity : list) {
@@ -162,14 +169,67 @@ class ZipUploadDocumentServiceTest { // NOPMD
 
     }
 
-    
-    
-    // TODO 政党交付金使途報告書一括解析予定
-    
-    
-    
-    
-    
+    @Test
+    @Tag("TableTruncate")
+    @Transactional
+    @Sql("truncate_task_plan_party_usage_detail.sql")
+    void testPractciePartyUsage() throws Exception {
+
+        ReadXmlByFileCapsuleDto capsuleDto = new ReadXmlByFileCapsuleDto();
+        String fileName = "all.zip";
+        Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/zip", fileName);
+
+        String fileContent = Base64.getEncoder().encodeToString(Files.readAllBytes(path));
+
+        capsuleDto.setFileName(fileName);
+        capsuleDto.setFileContent(fileContent);
+
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+        capsuleDto.setCheckPrivilegeDto(privilegeDto);
+
+        LocalDateTime datetimeShori = LocalDateTime.of(2024, 6, 13, 1, 2, 3);
+
+        capsuleDto.setDocumentKey(DocumentRecognizeKeyConstants.SOFT_PARTY_USAGE);
+        SaveStorageResultDto saveStorageResultDto = zipUploadDocumentService.practcie(datetimeShori, capsuleDto);
+
+        // 実ファイルリスト
+        Path copyPath = Paths.get(storageFolder, saveStorageResultDto.getChildDir(), uncompress);
+
+        Predicate<? super Path> isRegularFile = p -> {
+            return Files.isRegularFile(p);
+        };
+        List<Path> copiedList = new ArrayList<>();
+        Files.walk(copyPath).filter(isRegularFile).forEach(p1 -> copiedList.add(p1));
+
+        // 解凍前に想定した解凍後のファイルパス
+        List<Path> compressList = new ArrayList<>();
+        Path compressPath;
+        try (ZipFile zipFile = new ZipFile(path.toFile(), StandardCharsets.UTF_8)) {
+            Iterator<? extends ZipEntry> ite = zipFile.entries().asIterator();
+            while (ite.hasNext()) {
+                ZipEntry zipEntry = ite.next();
+                if (!zipEntry.isDirectory()) {
+                    compressPath = Paths.get(storageFolder, saveStorageResultDto.getChildDir(), uncompress,
+                            zipEntry.getName());
+                    compressList.add(compressPath);
+                }
+            }
+        }
+
+        for (Path p : copiedList) {
+            assertTrue(compressList.contains(p), "解凍前の予想ファイルと実際に存在するファイルパスが一致");
+        }
+
+        List<TaskPlanPartyUsageDetailEntity> list = taskPlanPartyUsageDetailRepository.findAll();
+        // 対象ファイルの中に3件含まれているので予定登録も3件
+        assertEquals(3,list.size(),"予定登録も3件");
+
+        Path databasePath;
+        for (TaskPlanPartyUsageDetailEntity entity : list) {
+            databasePath = Paths.get(storageFolder, entity.getFullPath());
+            assertTrue(compressList.contains(databasePath), "解凍前の予想ファイルとデータベースに登録されたファイルパスが一致");
+        }
+    }
     
     @Test
     @Tag("LoadTest")
@@ -224,7 +284,7 @@ class ZipUploadDocumentServiceTest { // NOPMD
 
         List<TaskPlanBalancesheetDetailEntity> list = taskPlanBalancesheetDetailRepository.findAll();
         // 対象ファイルの中に3件含まれているので予定登録も202件
-        assertThat(list.size()).isEqualTo(202);
+        assertEquals(202,list.size(),"予定登録も202件");
 
         Path databasePath;
         for (TaskPlanBalancesheetDetailEntity entity : list) {
