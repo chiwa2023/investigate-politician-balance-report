@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balance
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -44,6 +45,7 @@ class UpdatePoliticalOrganizationSummaryLogicTest {
     private OfferingBalancesheet0702And0713And0717Summary2025Repository offeringBalancesheet0702And0713And0717Summary2025Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("offering_balancesheet_0702_and_0713_and_0717_summary.sql")
     void testPractice() {

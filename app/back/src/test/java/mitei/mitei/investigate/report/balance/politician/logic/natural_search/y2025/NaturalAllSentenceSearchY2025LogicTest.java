@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchConditionCapsuleDto;
@@ -34,7 +36,8 @@ class NaturalAllSentenceSearchY2025LogicTest {
 
     @Test
     // @Transactional
-    //@Sql("natural_search_test_2025.sql")
+    @Tag("NaturalTextSearch")
+    @Sql("natural_search_test_2025.sql")
     void testPractice() {
 
         IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
@@ -79,7 +82,7 @@ class NaturalAllSentenceSearchY2025LogicTest {
         List<IncomeAndOutcomeSearchLineDto> listOutcome = searchResultDto.getListOutcome();
 
         IncomeAndOutcomeSearchLineDto dtoOutcome1 = listOutcome.get(0);
-        
+
         assertThat(dtoOutcome1.getItemId()).isEqualTo("2025-883-15-8-11");
         assertThat(dtoOutcome1.getAccrualDate()).isEqualTo("R4/4/20");
         assertThat(dtoOutcome1.getAccrualDateValue()).isEqualTo(LocalDate.of(2025, 4, 20));

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -42,6 +43,7 @@ class UpdatePartyUsageShito0902Y2025LogicTest {
     private OfferingPartyUsage0902Report2025Repository offeringPartyUsage0902Report2025Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("offering_party_usage_0902_report_2025.sql")
     void testPractice() {
@@ -58,8 +60,10 @@ class UpdatePartyUsageShito0902Y2025LogicTest {
         assertThat(preEntity.getUpdateUserId()).isEqualTo(0L);
         assertThat(preEntity.getUpdateUserCode()).isEqualTo(0);
         assertThat(preEntity.getUpdateUserName()).isEqualTo("");
-        assertThat(preEntity.getUpdateTimestamp()).isEqualTo(LocalDateTime.of(1948, 7, 29, 0, 0, 0));
-
+        assertThat(preEntity.getUpdateTimestamp())
+                .isEqualTo(LocalDateTime.of(1948, 7, 29, 0, 0, 0));
+        
+        
         CheckPrivilegeDto checkPrivilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
         int size = updatePartyUsageShito0902Y2025Logic.practice(oldDcoumentCode, checkPrivilegeDto);

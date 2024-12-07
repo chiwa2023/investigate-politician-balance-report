@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -39,6 +40,7 @@ class GetFileBinaryControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @Tag("TableTruncate")
     void testPractice() throws Exception {
 
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
@@ -46,7 +48,7 @@ class GetFileBinaryControllerTest {
         // 現時点ではここでの指定と関係ない特定のファイルしか呼ばない
         SaveStorageResultDto saveStorageResultDto = new SaveStorageResultDto();
         Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "/file/src.md");
-        saveStorageResultDto.setShoshouId(path.toString());
+        saveStorageResultDto.setFullPath(path.toString());
 
         assertThat(this.mockMvc // NOPMD
                 .perform(post("/get-file-binary").content(objectMapper.writeValueAsString(saveStorageResultDto)) // リクエストボディを指定

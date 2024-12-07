@@ -1,0 +1,3 @@
+DELETE FROM `task_plan_balancesheet_detail`;
+DELETE FROM `wk_tbl_poli_org_balancesheet_report`;
+INSERT INTO `task_plan_balancesheet_detail` (`task_plan_balancesheet_detail_id`,`task_plan_balancesheet_detail_code`,`saishin_kbn`,`is_finished`,`charset`,`child_dir`,`file_name`,`full_path`,`shoshou_id`,`Shoshou_code`,`Shoshou_kbn`,`insert_user_id`,`insert_user_code`,`insert_user_name`,`insert_timestamp`,`update_user_id`,`update_user_code`,`update_user_name`,`update_timestamp`) VALUES (188,180,1,0,'Windows-31J','test_user/expand','2022_ホリエモン新党_SYUUSI.xml','test_user/expand/2022_ホリエモン新党_SYUUSI.xml',3,3,1,1,1,'ユーザ','2022-12-01 00:00:00',0,0,'ユーザ','1948-07-29 00:00:00');

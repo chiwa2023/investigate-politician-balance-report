@@ -20,6 +20,9 @@ public class PartyUsageDocumentPoliticalPropertyDto implements Serializable { //
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
 
+    /** Boolean型の初期値 */
+    private static final Boolean INIT_Boolean = false;
+
     /** 初期データ(LocalcDate) */
     private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
@@ -55,6 +58,10 @@ public class PartyUsageDocumentPoliticalPropertyDto implements Serializable { //
 
     /** 提出日 */
     private LocalDate offeringDate = INIT_LocalDate;
+
+    /** 政治団体追加該否 */
+    private Boolean isAddOrganization = INIT_Boolean;
+
 
     /**
      * 政治団体Idを取得する
@@ -252,6 +259,25 @@ public class PartyUsageDocumentPoliticalPropertyDto implements Serializable { //
      */
     public void setOfferingDate(final LocalDate offeringDate) {
         this.offeringDate = offeringDate;
+    }
+
+
+    /**
+     * 政治団体追加該否を取得する
+     *
+     * @return 政治団体追加該否
+     */
+    public Boolean getIsAddOrganization() {
+        return isAddOrganization;
+    }
+
+    /**
+     * 政治団体追加該否を設定する
+     *
+     * @param isAddOrganization 政治団体追加該否
+     */
+    public void setIsAddOrganization(final Boolean isAddOrganization) {
+        this.isAddOrganization = isAddOrganization;
     }
 
 }

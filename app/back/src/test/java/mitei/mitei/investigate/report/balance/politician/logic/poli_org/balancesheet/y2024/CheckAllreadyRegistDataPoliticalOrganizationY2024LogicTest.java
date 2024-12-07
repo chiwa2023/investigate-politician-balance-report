@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -34,6 +35,7 @@ class CheckAllreadyRegistDataPoliticalOrganizationY2024LogicTest {
     private CheckAllreadyRegistDataPoliticalOrganizationY2024Logic checkAllreadyRegistDataPoliticalOrganizationY2024Logic;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("check_allready_regist_data_2024.sql")
     void testPractice() {

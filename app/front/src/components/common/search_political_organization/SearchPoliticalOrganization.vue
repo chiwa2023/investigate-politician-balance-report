@@ -86,9 +86,25 @@ async function onSearch() {
 
     //独自変数設定
     searchPoliticalOrganizationLeastCapsuleDto.searchWords = searchWords.value;
+    // 履歴も含めて検索する TODO 呼び出し元に応じるように変更する
+    searchPoliticalOrganizationLeastCapsuleDto.isHisory = true;
 
-    //Mockリストの取得
-    list.value = mockGetPoliticalOrgLeast();
+    //　政治団体最小限情報の検索をする
+    const url = "http://localhost:9080/search-political-orgnaization";
+    const method = "POST";
+    const body = JSON.stringify(searchPoliticalOrganizationLeastCapsuleDto);
+    const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+
+    fetch(url, { method, headers, body })
+        .then(async (response) => {
+            //alert(JSON.stringify(await response.json()));
+
+            list.value = await response.json();
+        })
+        .catch((error) => { alert(error); });
 }
 </script>
 <template>
@@ -97,7 +113,7 @@ async function onSearch() {
         検索条件の指定
     </div>
     <div class="left-area-component">
-        検索語
+        検索語(未入力だと結果0のためテスト中は"党"と入れると結果が出る TODO 運営時に削除する)
     </div>
     <div class="right-area-component">
         <input type="text" v-model="searchWords" style="margin-right:2%;"><button @click="onSearch">検索</button>

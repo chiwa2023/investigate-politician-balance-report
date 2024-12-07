@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -46,6 +47,7 @@ class InsertPoliticalOrganization0802Y2025LogicTest {
     private DateConvertUtil dateConvertUtil;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void testPractice() {
 

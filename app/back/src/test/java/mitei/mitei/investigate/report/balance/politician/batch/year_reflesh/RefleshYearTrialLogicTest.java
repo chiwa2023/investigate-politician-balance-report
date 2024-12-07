@@ -3,6 +3,7 @@ package mitei.mitei.investigate.report.balance.politician.batch.year_reflesh;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -11,7 +12,8 @@ import org.junit.jupiter.api.Test;
 class RefleshYearTrialLogicTest {
 
     @Test
-    void testPractice()throws Exception {
+    @Tag("SourceReflesh")
+   void testPractice()throws Exception {
         
         RefleshYearTrialLogic refleshYearTrialLogic = new RefleshYearTrialLogic();
         

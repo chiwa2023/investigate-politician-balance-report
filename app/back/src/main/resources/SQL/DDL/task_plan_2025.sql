@@ -1,0 +1,22 @@
+CREATE TABLE `task_plan_2025` (
+  `task_plan_id` bigint NOT NULL AUTO_INCREMENT COMMENT 'タスク予定Id',
+  `task_plan_code` bigint DEFAULT NULL COMMENT 'タスク予定同一識別コード',
+  `task_plan_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'タスク予定名称',
+  `saishin_kbn` int DEFAULT NULL COMMENT '最新区分',
+  `political_organization_id` bigint DEFAULT NULL COMMENT '政治団体Id',
+  `political_organization_code` int DEFAULT NULL COMMENT '政治団体同一識別コード',
+  `political_organization_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '政治団体名称',
+  `is_finished` tinyint(1) DEFAULT NULL COMMENT '作業終了フラグ',
+  `kengen_kbn` int DEFAULT NULL COMMENT '権限区分',
+  `list_user_code` text COLLATE utf8mb4_bin COMMENT '対象ユーザリスト',
+  `transfer_pass` text COLLATE utf8mb4_bin COMMENT '遷移パス',
+  `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
+  `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
+  `insert_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '挿入ユーザ姓名',
+  `insert_timestamp` datetime DEFAULT NULL COMMENT '挿入タイムスタンプ',
+  `update_user_id` bigint DEFAULT NULL COMMENT '更新ユーザId',
+  `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
+  `update_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新ユーザ姓名',
+  `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
+  PRIMARY KEY (`task_plan_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;

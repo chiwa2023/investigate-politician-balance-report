@@ -73,7 +73,7 @@ public class InsertPoliticalOrganizationOutcomeAllLogic {
             // NOTE:Logic実行追加位置
 
             default:
-                break;
+                throw new IllegalArgumentException("Unexpected value: " + documentPropertyDto.getHoukokuNen());
         }
 
         return size;

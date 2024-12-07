@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -48,6 +49,7 @@ class InsertPartyUsageShito0802And0803Y2024LogicTest {
     private OfferingPartyUsage0802And0803Report2024Repository offeringPartyUsage0802And0803Report2024Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void testPractice() { // NOPMD
 

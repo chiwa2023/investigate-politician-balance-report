@@ -1,0 +1,23 @@
+CREATE TABLE `task_plan_balancesheet_detail` (
+  `task_plan_balancesheet_detail_id` bigint NOT NULL AUTO_INCREMENT COMMENT '政治資金収支報告書準備登録タスクId',
+  `task_plan_balancesheet_detail_code` bigint DEFAULT NULL COMMENT '政治資金収支報告書準備登録タスク定同一識別コード',
+  `saishin_kbn` int DEFAULT NULL COMMENT '最新区分',
+  `is_finished` tinyint(1) DEFAULT NULL COMMENT '作業終了フラグ',
+  `charset` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '読み取り文字コード',
+  `child_dir` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '子ディレクトリ',
+  `file_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT 'ファイル名',
+  `full_path` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT 'ファイルフルパス',
+  `shoshou_id` bigint DEFAULT NULL COMMENT '書証保存Id',
+  `Shoshou_code` bigint DEFAULT NULL COMMENT '書証保存同一識別コード',
+  `Shoshou_kbn` int DEFAULT NULL COMMENT '書証区分',
+  `document_key` varchar(150) COLLATE utf8mb4_bin DEFAULT NULL,
+  `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
+  `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
+  `insert_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '挿入ユーザ姓名',
+  `insert_timestamp` datetime DEFAULT NULL COMMENT '挿入タイムスタンプ',
+  `update_user_id` bigint DEFAULT NULL COMMENT '更新ユーザId',
+  `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
+  `update_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新ユーザ姓名',
+  `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
+  PRIMARY KEY (`task_plan_balancesheet_detail_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1248 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;

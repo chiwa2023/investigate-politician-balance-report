@@ -12,13 +12,18 @@ import createCheckTransactionDto from "../../../dto/common_check/createCheckTran
 
 // 検索条件
 const conditionDto: Ref<IncomeAndOutcomeNaturalSearchConditionCapsuleDto> = ref(new IncomeAndOutcomeNaturalSearchConditionCapsuleDto());
+conditionDto.value.offsetIncome = -1;
+conditionDto.value.offsetOutcome = -1;
 
 // 検索結果
 const resultDto: Ref<IncomeAndOutcomeNaturalSearchResultInterface> = ref(new IncomeAndOutcomeNaturalSearchResultDto());
 
+// 検索表示件数
+const viewCount: number = 100;
+
 // ページング(offset)
-const listPagingOutcome: Ref<SelectOptionDto[]> = ref([]);
-const listPagingIncome: Ref<SelectOptionDto[]> = ref([]);
+const listPagingOutcome: Ref<SelectOptionDto[]> = ref(createPagingSelectBoxOption(resultDto.value.countIncome, viewCount));
+const listPagingIncome: Ref<SelectOptionDto[]> = ref(createPagingSelectBoxOption(resultDto.value.countOutcome, viewCount));
 
 // すでにレポートに追加していることを表すキーワード
 const isAddText: string = "added";
@@ -71,21 +76,12 @@ const sumOutcome = computed(() => {
 });
 
 
-// 検索表示件数
-const viewCount: number = 100;
 
 /* 検索 */
 async function onSearch() {
     // 検索前には日付を整頓する
     conditionDto.value.startDate = convertInputDateText(conditionDto.value.startDateText);
     conditionDto.value.endDate = convertInputDateText(conditionDto.value.endDateText);
-
-    if (conditionDto.value.offsetIncome === -1) {
-        conditionDto.value.offsetIncome = 0;
-    }
-    if (conditionDto.value.offsetOutcome === -1) {
-        conditionDto.value.offsetOutcome = 0;
-    }
 
     //実接続
     //セッションストレージ取得
@@ -105,19 +101,28 @@ async function onSearch() {
     fetch(url, { method, headers, body })
         .then(async (response) => {
             resultDto.value = await response.json();
+            listPagingIncome.value = createPagingSelectBoxOption(resultDto.value.countIncome, viewCount);
+            listPagingOutcome.value = createPagingSelectBoxOption(resultDto.value.countOutcome, viewCount);
+
+            // 件数0の時は選択肢-1
+            if (resultDto.value.listIncome.length < 1) {
+                conditionDto.value.offsetIncome = -1;
+            }
+            if (resultDto.value.listOutcome.length < 1) {
+                conditionDto.value.offsetOutcome = -1;
+            }
+            // offsetが-1(初回検索またはヒットなし)でも、検索件数が0より大きい場合は先頭位置
+            if (resultDto.value.listIncome.length > 0 && conditionDto.value.offsetIncome === -1) {
+                conditionDto.value.offsetIncome = 0;
+            }
+            if (resultDto.value.listOutcome.length > 0 && conditionDto.value.offsetOutcome === -1) {
+                conditionDto.value.offsetOutcome = 0;
+            }
+            // それ以外は指定値そのまま保持
         })
         .catch((error) => { alert(error); });
 
-    listPagingIncome.value = createPagingSelectBoxOption(resultDto.value.countIncome, viewCount);
-    listPagingOutcome.value = createPagingSelectBoxOption(resultDto.value.countOutcome, viewCount);
 
-    // offsetが0…未検索かつ検索結果が返ったときはoffsetを1にする
-    if ((conditionDto.value.offsetIncome === -1) && resultDto.value.listIncome.length > 0) {
-        conditionDto.value.offsetIncome = 0;
-    }
-    if ((conditionDto.value.offsetOutcome === -1) && resultDto.value.listOutcome.length > 0) {
-        conditionDto.value.offsetOutcome = 0;
-    }
 }
 
 /* 検索 */

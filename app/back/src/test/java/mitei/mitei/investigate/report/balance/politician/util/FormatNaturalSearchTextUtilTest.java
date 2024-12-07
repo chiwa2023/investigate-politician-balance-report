@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 class FormatNaturalSearchTextUtilTest {
 
     @Test
+    @Tag("NaturalTextSearch")
     void testPractice() {
         
         FormatNaturalSearchTextUtil formatNaturalSearchTextUtil = new FormatNaturalSearchTextUtil();

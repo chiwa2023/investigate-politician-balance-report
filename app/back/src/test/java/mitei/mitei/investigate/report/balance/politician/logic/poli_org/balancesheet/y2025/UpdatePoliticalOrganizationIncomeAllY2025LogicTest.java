@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -42,6 +43,7 @@ class UpdatePoliticalOrganizationIncomeAllY2025LogicTest {
     private OfferingBalancesheetIncome2025Repository offeringBalancesheetIncome2025Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     @Sql("offering_balancesheet_income_2025.sql")
     void testPractice() {
