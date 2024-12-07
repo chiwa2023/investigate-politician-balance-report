@@ -77,7 +77,7 @@ public class UpdateBalancesheetPlanService {
     public long practice( // SUPPRESS CHECKSTYLE ReturnCountCheck
             final TaskPlanBalancesheetDetailEntity detailEntity, final CheckPrivilegeDto privilegeDto)
             throws EmptyResultDataAccessException, IOException { // NOPMD
-
+        
         // 呼び出し元データを更新にして参照できないようにする
         Optional<TaskPlanBalancesheetDetailEntity> optopnal = taskPlanBalancesheetDetailRepository
                 .findById(detailEntity.getTaskPlanBalancesheetDetailId());
@@ -93,7 +93,7 @@ public class UpdateBalancesheetPlanService {
         } else {
             key = DocumentRecognizeKeyConstants.SOFT_BALANCESHEET;
         }
-
+        
         // 仮読み取りをしてみて読み取りできなかったら処理中断(ユーザさん指定ミスなのでシステム例外でない)
         Path path = Paths.get(storageFolder, detailEntity.getFullPath());
 
@@ -106,12 +106,12 @@ public class UpdateBalancesheetPlanService {
         } else {
             charsetName = charset.toString();
         }
-
+        
+        // 政治資金収支報告書ワークテーブルにデータは残さない
         TaskPlanBalancesheetDetailEntity originalEntity = optopnal.get();
         SetTableDataHistoryUtil.practice(privilegeDto, originalEntity, DataHistoryStatusConstants.UPDATE);
         taskPlanBalancesheetDetailRepository.save(originalEntity);
 
-        // 政治資金収支報告書ワークテーブルにデータは残さない
         if (DocumentRecognizeKeyConstants.SOFT_PARTY_USAGE.equals(key)) {
 
             TaskPlanPartyUsageDetailEntity partyUsageEntity = new TaskPlanPartyUsageDetailEntity();

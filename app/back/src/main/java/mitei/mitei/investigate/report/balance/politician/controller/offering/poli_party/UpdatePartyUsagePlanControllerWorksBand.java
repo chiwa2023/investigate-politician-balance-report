@@ -31,7 +31,7 @@ public class UpdatePartyUsagePlanControllerWorksBand {
      */
     @Transactional
     public TemplateFrameworkResultDto wakeBusiness(final UpdatePartyUsageTaskPlanCapsuleDto capsuleDto)
-            throws EmptyResultDataAccessException, IOException {
+            throws  IOException {
 
         Long newId = updatePartyUsagePlanService.practice(capsuleDto.getTaskPlanPartyUsageDetailEntity(),
                 capsuleDto.getCheckPrivilegeDto());

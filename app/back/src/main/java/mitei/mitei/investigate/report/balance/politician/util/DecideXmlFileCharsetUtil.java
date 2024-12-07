@@ -31,7 +31,7 @@ public class DecideXmlFileCharsetUtil {
      * @throws IOException ファイル(主に不存在など)例外
      */
     public Charset practice(final Path path,final String keyWord) throws IOException { // SUPPRESS CHECKSTYLE ReturnCountCheck
-
+        
         // ファイル全文を読み取りを試みてMalformedInputExceptionが発生しなかったらその文字コードが仮に正解とする
 
         // まず公式ソフトウェアでWindows環境で吐き出すsjisを確かめる

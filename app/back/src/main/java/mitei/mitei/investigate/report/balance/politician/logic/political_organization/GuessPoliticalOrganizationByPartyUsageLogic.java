@@ -19,7 +19,7 @@ import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
  * コード標準化されていない読みとりデータからコード化された政治団体を推定する
  */
 @Component
-public class GuesshPoliticalOrganizationByPartyUsageLogic {
+public class GuessPoliticalOrganizationByPartyUsageLogic {
 
     /** 政治団体Repository */
     @Autowired

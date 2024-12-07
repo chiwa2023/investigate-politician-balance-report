@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
-import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgPartyUsageReportRepository;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliPartyUsageReportRepository;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -21,7 +21,7 @@ public class UpdatePartyUsageWkTbService {
 
     /** 政治資金収支報告書一括処理ワークテーブルRepository */
     @Autowired
-    private WkTblPoliOrgPartyUsageReportRepository wkTblPoliOrgPartyUsageReportRepository;
+    private WkTblPoliPartyUsageReportRepository wkTblPoliPartyUsageReportRepository;
 
     /**
      * 更新処理を行う
@@ -30,28 +30,28 @@ public class UpdatePartyUsageWkTbService {
      * @param privilegeDto 権限確認Dto
      * @return 更新後のId
      */
-    public long practice(final WkTblPoliOrgPartyUsageReportEntity reportEntity,
+    public long practice(final WkTblPoliPartyUsageReportEntity reportEntity,
             final CheckPrivilegeDto privilegeDto) {
 
         // 呼び出し元データを更新にして参照できないようにする
-        Optional<WkTblPoliOrgPartyUsageReportEntity> optopnal = wkTblPoliOrgPartyUsageReportRepository
-                .findById(reportEntity.getWkTblPoliOrgPartyUsageReportId());
+        Optional<WkTblPoliPartyUsageReportEntity> optopnal = wkTblPoliPartyUsageReportRepository
+                .findById(reportEntity.getWkTblPoliPartyUsageReportId());
 
         if (optopnal.isEmpty()) {
             throw new EmptyResultDataAccessException("編集しようとしたデータをIdで呼び出そうとしましたができません", 0);
         }
 
-        WkTblPoliOrgPartyUsageReportEntity originalEntity = optopnal.get();
+        WkTblPoliPartyUsageReportEntity originalEntity = optopnal.get();
 
         SetTableDataHistoryUtil.practice(privilegeDto, originalEntity, DataHistoryStatusConstants.UPDATE);
-        wkTblPoliOrgPartyUsageReportRepository.save(originalEntity);
+        wkTblPoliPartyUsageReportRepository.save(originalEntity);
 
-        WkTblPoliOrgPartyUsageReportEntity insertEntity = new WkTblPoliOrgPartyUsageReportEntity();
+        WkTblPoliPartyUsageReportEntity insertEntity = new WkTblPoliPartyUsageReportEntity();
         BeanUtils.copyProperties(reportEntity, insertEntity);
         SetTableDataHistoryUtil.practice(privilegeDto, insertEntity, DataHistoryStatusConstants.INSERT);
-        insertEntity.setWkTblPoliOrgPartyUsageReportId(0L);
+        insertEntity.setWkTblPoliPartyUsageReportId(0L);
 
-        return wkTblPoliOrgPartyUsageReportRepository.save(insertEntity).getWkTblPoliOrgPartyUsageReportId();
+        return wkTblPoliPartyUsageReportRepository.save(insertEntity).getWkTblPoliPartyUsageReportId();
     }
 
 }

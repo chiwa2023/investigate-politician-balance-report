@@ -18,7 +18,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlBalancesheetResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.ReadXmlByFileCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.logic.political_organization.GuesshPoliticalOrganizationLogic;
+import mitei.mitei.investigate.report.balance.politician.logic.political_organization.GuessPoliticalOrganizationLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.storage.SaveStorageFileLogic;
 
 /**
@@ -33,7 +33,7 @@ public class ReadXmlBalancesheetByFileService {
 
     /** 政治団体推測Logic */
     @Autowired
-    private GuesshPoliticalOrganizationLogic guesshPoliticalOrganizationLogic;
+    private GuessPoliticalOrganizationLogic guessPoliticalOrganizationLogic;
 
     /**
      * XML本体の解析とアップロードファイルの保存を行う
@@ -68,7 +68,7 @@ public class ReadXmlBalancesheetByFileService {
         resultDto.setCoverDto(cover0701Dto);
 
         // 登録済政治団体情報
-        BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto = guesshPoliticalOrganizationLogic
+        BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto = guessPoliticalOrganizationLogic
                 .practice(cover0701Dto, allBookDto.getAllSheet0720OathDto().getSheet072000OathDto());
 
         resultDto.setDocumentPropertyDto(documentPropertyDto);

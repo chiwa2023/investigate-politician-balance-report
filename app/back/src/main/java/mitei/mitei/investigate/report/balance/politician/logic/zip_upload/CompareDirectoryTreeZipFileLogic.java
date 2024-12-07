@@ -130,7 +130,7 @@ public class CompareDirectoryTreeZipFileLogic { // NOPMD
         SaveStorageResultDto storageDto = new SaveStorageResultDto();
 
         BeanUtils.copyProperties(srcDto, storageDto);
-
+        
         // 文字コード
         Charset charset = decideXmlFileCharsetUtil.practice(pathFile, keyword);
         if (Objects.isNull(charset)) {

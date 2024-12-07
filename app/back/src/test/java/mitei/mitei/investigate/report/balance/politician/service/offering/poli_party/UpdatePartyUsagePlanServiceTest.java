@@ -65,12 +65,12 @@ class UpdatePartyUsagePlanServiceTest {
         TaskPlanPartyUsageDetailEntity entityCopy = taskPlanPartyUsageDetailRepository.findById(newId).get();
 
         // 最新区分が変更されている
-        assertEquals(DataHistoryStatusConstants.UPDATE.value(), entitySrc.getSaishinKbn());
+        assertEquals(DataHistoryStatusConstants.UPDATE.value(), entitySrc.getSaishinKbn(),"");
 
-        assertEquals(DataHistoryStatusConstants.INSERT.value(), entityCopy.getSaishinKbn());
+        assertEquals(DataHistoryStatusConstants.INSERT.value(), entityCopy.getSaishinKbn(),"");
 
         // 文字コードが変更されている
-        assertEquals(charset, entityCopy.getCharset());
+        assertEquals(charset, entityCopy.getCharset(),"");
 
     }
 
@@ -98,15 +98,15 @@ class UpdatePartyUsagePlanServiceTest {
         TaskPlanBalancesheetDetailEntity entityCopy = taskPlanBalancesheetDetailRepository.findById(newId).get();
 
         // 最新区分が変更されている
-        assertEquals(DataHistoryStatusConstants.UPDATE.value(), entitySrc.getSaishinKbn());
-        assertEquals(DataHistoryStatusConstants.INSERT.value(), entityCopy.getSaishinKbn());
+        assertEquals(DataHistoryStatusConstants.UPDATE.value(), entitySrc.getSaishinKbn(),"");
+        assertEquals(DataHistoryStatusConstants.INSERT.value(), entityCopy.getSaishinKbn(),"");
 
         // 文字コードが変更されている
-        assertEquals(null, entitySrc.getCharset());
-        assertEquals(charset, entityCopy.getCharset());
+        assertEquals(null, entitySrc.getCharset(),"");
+        assertEquals(charset, entityCopy.getCharset(),"");
 
         // 政党交付金使途報告書テーブルのデータはサンプルデータから増えていない
-        assertEquals(8, taskPlanPartyUsageDetailRepository.count());
+        assertEquals(8, taskPlanPartyUsageDetailRepository.count(),"");
     }
 
     // TODO 負荷テスト

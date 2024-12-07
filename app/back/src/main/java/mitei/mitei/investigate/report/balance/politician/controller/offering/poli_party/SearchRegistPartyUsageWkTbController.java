@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
 import mitei.mitei.investigate.report.balance.politician.service.offering.poli_party.SearchRegistPartyUsageWkTbService;
 
 /**
@@ -49,7 +49,7 @@ public class SearchRegistPartyUsageWkTbController extends AbstractTemplateCheckC
      */
     @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
     @PostMapping("/normal")
-    public ResponseEntity<List<WkTblPoliOrgPartyUsageReportEntity>> practice(
+    public ResponseEntity<List<WkTblPoliPartyUsageReportEntity>> practice(
             final @RequestBody TemplateFrameworkCapsuleDto capsuleDto)
             throws SecurityException, AuthenticationException, PessimisticLockingFailureException { // NOPMD
 

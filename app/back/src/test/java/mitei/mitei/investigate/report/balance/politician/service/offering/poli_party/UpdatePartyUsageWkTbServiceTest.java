@@ -17,8 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
-import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgPartyUsageReportRepository;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliPartyUsageReportRepository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 
 /**
@@ -37,16 +37,16 @@ class UpdatePartyUsageWkTbServiceTest {
 
     /** 政党交付金使途報告書一括処理ワークテーブルRepository */
     @Autowired
-    private WkTblPoliOrgPartyUsageReportRepository wkTblPoliOrgPartyUsageReportRepository;
+    private WkTblPoliPartyUsageReportRepository wkTblPoliPartyUsageReportRepository;
 
     @Test
     @Tag("TableTruncate")
-    @Sql("wk_tbl_poli_org_party_usage_report.sql")
+    @Sql("wk_tbl_poli_party_usage_report.sql")
     void testPractice() {
 
         Long callId = 2239L;
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
-        WkTblPoliOrgPartyUsageReportEntity entitySrc = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
+        WkTblPoliPartyUsageReportEntity entitySrc = wkTblPoliPartyUsageReportRepository.findById(callId).get();
 
         Long poliOrgId = 326L;
         Integer poliOrgCode = 320;
@@ -60,10 +60,10 @@ class UpdatePartyUsageWkTbServiceTest {
         Long newId = updatePartyUsageWkTbService.practice(entitySrc, privilegeDto);
 
         // 元のデータを呼びなおし
-        WkTblPoliOrgPartyUsageReportEntity entitySrc2 = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
+        WkTblPoliPartyUsageReportEntity entitySrc2 = wkTblPoliPartyUsageReportRepository.findById(callId).get();
 
         // 編集後データを呼ぶ
-        WkTblPoliOrgPartyUsageReportEntity entityCopy = wkTblPoliOrgPartyUsageReportRepository.findById(newId).get();
+        WkTblPoliPartyUsageReportEntity entityCopy = wkTblPoliPartyUsageReportRepository.findById(newId).get();
 
         // 最新区分が変更されている
         assertEquals(DataHistoryStatusConstants.UPDATE.value(), entitySrc2.getSaishinKbn(), "");
@@ -76,8 +76,8 @@ class UpdatePartyUsageWkTbServiceTest {
         assertEquals(poliOrgName, entityCopy.getPoliticalOrganizationName(), "");
 
         // 事故で呼び出せないデータを編集対象にした場合は例外で処理中断
-        WkTblPoliOrgPartyUsageReportEntity entityNoInsert = new WkTblPoliOrgPartyUsageReportEntity();
-        entityNoInsert.setWkTblPoliOrgPartyUsageReportId(33L);
+        WkTblPoliPartyUsageReportEntity entityNoInsert = new WkTblPoliPartyUsageReportEntity();
+        entityNoInsert.setWkTblPoliPartyUsageReportId(33L);
 
         assertThrows(EmptyResultDataAccessException.class,
                 () -> updatePartyUsageWkTbService.practice(entityNoInsert, privilegeDto));

@@ -30,7 +30,7 @@ class GuesshPoliticalOrganizationByPartyUsageLogicTest {
 
     /** テスト対象 */
     @Autowired
-    private GuesshPoliticalOrganizationByPartyUsageLogic guesshPoliticalOrganizationByPartyUsageLogic;
+    private GuessPoliticalOrganizationByPartyUsageLogic guessPoliticalOrganizationByPartyUsageLogic;
 
     @Test
     @Tag("TableTruncate")
@@ -55,7 +55,7 @@ class GuesshPoliticalOrganizationByPartyUsageLogicTest {
         sheet0807Dto.setAccrualDate("R5/2/17");
 
         // Idと代表者名と報告年が想定と一致していること
-        PartyUsageDocumentPoliticalPropertyDto dto00 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto00 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto, sheet0807Dto);
         assertThat(dto00.getPoliticalOrganizationId()).isEqualTo(129L);
         assertThat(dto00.getPoliticalOrganizationName()).isEqualTo(sheet0801Dto.getPartyName());
@@ -63,28 +63,28 @@ class GuesshPoliticalOrganizationByPartyUsageLogicTest {
 
         // 団体名一致が存在していない
         sheet0801Dto.setPartyName("ちゃらんぽらん政党X");
-        PartyUsageDocumentPoliticalPropertyDto dto01 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto01 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto, sheet0807Dto);
         assertThat(dto01.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
         // 代表者名一致が存在していない
         sheet0801Dto.setDelegateName("代表者　太郎Ver2"); // NOPMD
         sheet0801Dto.setPartyName("ちゃらんぽらん政党1");
-        PartyUsageDocumentPoliticalPropertyDto dto02 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto02 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto, sheet0807Dto);
         assertThat(dto02.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
         // 住所一致が存在していない
         sheet0801Dto.setDelegateName("代表者　太郎"); // NOPMD
         sheet0801Dto.setOfficeAddress("東京都千代田区霞が関　三角ビル319"); // NOPMD
-        PartyUsageDocumentPoliticalPropertyDto dto04 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto04 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto, sheet0807Dto);
         assertThat(dto04.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
         // nullの場合、落ちずに空Dtoを返すだけ
         sheet0801Dto.setPartyName(null);
         sheet0801Dto.setDelegateName(null);
-        PartyUsageDocumentPoliticalPropertyDto dto05 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto05 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto, sheet0807Dto);
         assertThat(dto05.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -99,7 +99,7 @@ class GuesshPoliticalOrganizationByPartyUsageLogicTest {
         // 事務所住所
         sheet0801Dto01.setOfficeAddress("大阪府中央区　互角ビル309"); // NOPMD
 
-        PartyUsageDocumentPoliticalPropertyDto dto06 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto06 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto01, sheet0807Dto);
         assertThat(dto06.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -114,7 +114,7 @@ class GuesshPoliticalOrganizationByPartyUsageLogicTest {
         // 団体区分検索条件だがDtoに存在しないのでLogicで補う 政党の定数固定なので補っても問題ない TODO 定数化した時点で修正する
         // 事務所住所
         sheet0801Dto02.setOfficeAddress("東京都千代田区霞が関　三角ビル309"); // NOPMD
-        PartyUsageDocumentPoliticalPropertyDto dto11 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto11 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto02, sheet0807Dto);
         assertThat(dto11.getPoliticalOrganizationId()).isEqualTo(501L); // 最新データ
 
@@ -129,7 +129,7 @@ class GuesshPoliticalOrganizationByPartyUsageLogicTest {
         // 団体区分検索条件だがDtoに存在しないのでLogicで補う 政党の定数固定なので補っても問題ない TODO 定数化した時点で修正する
         // 事務所住所
         sheet0801Dto03.setOfficeAddress("東京都千代田区霞が関　三角ビル309"); // NOPMD
-        PartyUsageDocumentPoliticalPropertyDto dto12 = guesshPoliticalOrganizationByPartyUsageLogic
+        PartyUsageDocumentPoliticalPropertyDto dto12 = guessPoliticalOrganizationByPartyUsageLogic
                 .practice(sheet0801Dto03, sheet0807Dto);
         assertThat(dto12.getPoliticalOrganizationId()).isEqualTo(612L); // 報告年の末日基準で最新データ
 

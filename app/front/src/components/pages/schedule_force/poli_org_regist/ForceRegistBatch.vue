@@ -55,11 +55,7 @@ function onExecutePartyUsage() {
             alert(resultDto.message);
         })
         .catch((error) => { alert(error); });
-
 }
-
-
-
 </script>
 <template>
     <h1>報告書一括処理(スケジュール処理を強制)</h1>

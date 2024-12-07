@@ -1,19 +1,16 @@
 ﻿<script setup lang="ts">
 import { onBeforeMount, ref, Ref } from "vue";
-import TaskPlanBalancesheetDetailEntity from "../../../entity/taskPlanBalancesheetDetailEntity";
+import TaskPlanPartyUsageDetailInterface from "../../../entity/taskPlanPartyUsageDetailEntity";
 import TemplateFrameworkCapsuleDto from "../../../dto/template/templateFrameworkCapsuleDto";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
-import WkTblPoliOrgBalancesheetReportInterface from "../../../entity/wkTblPoliOrgBalancesheetReportEntity";
-
-// 公式ソフトウェアでは名前、住所の連結には全角スペース
-const BLANK: Ref<string> = ref("　");
+import WkTblPoliPartyUsageReportInterface from "../../../entity/wkTblPoliPartyUsageReportEntity";
 
 // 詳細リスト
-const listDetail: Ref<TaskPlanBalancesheetDetailEntity[]> = ref([]);
+const listDetail: Ref<TaskPlanPartyUsageDetailInterface[]> = ref([]);
 
 // 準備リスト
-const listPrepared: Ref<WkTblPoliOrgBalancesheetReportInterface[]> = ref([]);
+const listPrepared: Ref<WkTblPoliPartyUsageReportInterface[]> = ref([]);
 
 // 初期表示検索用Dto
 const capsuleDto: TemplateFrameworkCapsuleDto = new TemplateFrameworkCapsuleDto();
@@ -88,7 +85,7 @@ function convertFinishedText(data: boolean): string {
                 <th>文字コード</th>
                 <th>未処理</th>
             </tr>
-            <tr v-for="detailEntity in listDetail" :key="detailEntity.taskPlanBalancesheetDetailId">
+            <tr v-for="detailEntity in listDetail" :key="detailEntity.taskPlanPartyUsageDetailId">
                 <td>{{ detailEntity.insertTimestamp }}</td>
                 <td>{{ detailEntity.fileName }}</td>
                 <td>{{ detailEntity.charset }}</td>
@@ -109,12 +106,12 @@ function convertFinishedText(data: boolean): string {
                 <th>原文書代表者名</th>
                 <th>システム政治団体</th>
             </tr>
-            <tr v-for="xmlDto in listPrepared" :key="xmlDto.wkTblPoliOrgBalancesheetReportId">
+            <tr v-for="xmlDto in listPrepared" :key="xmlDto.wkTblPoliPartyUsageReportId">
                 <td>{{ xmlDto.insertTimestamp }}</td>
-                <td>{{ xmlDto.houkokuNen }}</td>
+                <td>{{ xmlDto.nendo }}</td>
                 <td>{{ xmlDto.fileName }}</td>
-                <td>{{ xmlDto.dantaiName01 }}</td>
-                <td>{{ xmlDto.daihyoushaNameLast + BLANK + xmlDto.daihyoushaNameFirst
+                <td>{{ xmlDto.dantaiName }}</td>
+                <td>{{ xmlDto.daihyouName
                     }}</td>
                 <td>{{ xmlDto.politicalOrganizationName }}</td>
             </tr>

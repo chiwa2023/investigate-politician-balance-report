@@ -16,8 +16,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.UpdatePartyUsageWkTblCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
-import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgPartyUsageReportRepository;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliPartyUsageReportRepository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 
 /**
@@ -37,21 +37,21 @@ class UpdatePartyUsageWkTbControllerWorksBandTest {
 
     /** 政党交付金使途報告書一括処理ワークテーブルRepository */
     @Autowired
-    private WkTblPoliOrgPartyUsageReportRepository wkTblPoliOrgPartyUsageReportRepository;
+    private WkTblPoliPartyUsageReportRepository wkTblPoliPartyUsageReportRepository;
 
     @Test
     @Tag("TableTruncate")
-    @Sql("../../../service/offering/poli_party/wk_tbl_poli_org_party_usage_report.sql")
+    @Sql("../../../service/offering/poli_party/wk_tbl_poli_party_usage_report.sql")
     void test()throws Exception {
         
         
-        Long count = wkTblPoliOrgPartyUsageReportRepository.count();
+        Long count = wkTblPoliPartyUsageReportRepository.count();
         
         UpdatePartyUsageWkTblCapsuleDto capsuleDto = new UpdatePartyUsageWkTblCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
 
         Long callId = 2239L;
-        WkTblPoliOrgPartyUsageReportEntity entitySrc = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
+        WkTblPoliPartyUsageReportEntity entitySrc = wkTblPoliPartyUsageReportRepository.findById(callId).get();
 
         Long poliOrgId = 326L;
         Integer poliOrgCode = 320;
@@ -60,22 +60,22 @@ class UpdatePartyUsageWkTbControllerWorksBandTest {
         entitySrc.setPoliticalOrganizationId(poliOrgId);
         entitySrc.setPoliticalOrganizationCode(poliOrgCode);
         entitySrc.setPoliticalOrganizationName(poliOrgName);
-        capsuleDto.setWkTblPoliOrgPartyUsageReportEntity(entitySrc);
+        capsuleDto.setWkTblPoliPartyUsageReportEntity(entitySrc);
         // 阻害要因
         capsuleDto.getCheckPrivilegeDto().setLoginUserName(RandomStringUtils.secure().nextAlphabetic(400));
         
         try {
             updatePartyUsageWkTbControllerWorksBand.wakeBusiness(capsuleDto);
-        }catch (Exception exception) {
-            exception.printStackTrace();
+        }catch (Exception exception) { // NOPMD
+            exception.printStackTrace(); // NOPMD
         }
         
-        WkTblPoliOrgPartyUsageReportEntity entitySrc2 = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
+        WkTblPoliPartyUsageReportEntity entitySrc2 = wkTblPoliPartyUsageReportRepository.findById(callId).get();
         
-        assertEquals(1, entitySrc2.getSaishinKbn(),"ロールアックされて変更なし");
+        assertEquals(1, entitySrc2.getSaishinKbn(),"ロールアックされて変更なし"); // NOPMD
         assertEquals(0L, entitySrc2.getPoliticalOrganizationId(),"ロールアックされて変更なし");
         assertEquals(0, entitySrc2.getPoliticalOrganizationCode(),"ロールアックされて変更なし");
-        assertEquals(count, wkTblPoliOrgPartyUsageReportRepository.count(),"ロールアックされて変更なし");
+        assertEquals(count, wkTblPoliPartyUsageReportRepository.count(),"ロールアックされて変更なし");
         
     }
 

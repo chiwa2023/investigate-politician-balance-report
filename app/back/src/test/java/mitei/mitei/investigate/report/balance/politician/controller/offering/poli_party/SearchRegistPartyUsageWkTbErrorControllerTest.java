@@ -41,7 +41,7 @@ class SearchRegistPartyUsageWkTbErrorControllerTest {
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("../../../service/offering/poli_party/wk_tbl_poli_org_party_usage_report.sql")
+    @Sql("../../../service/offering/poli_party/wk_tbl_poli_party_usage_report.sql")
     void testPractice() throws Exception {
 
         TemplateFrameworkCapsuleDto capsuleDto = new TemplateFrameworkCapsuleDto();

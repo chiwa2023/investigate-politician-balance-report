@@ -55,8 +55,8 @@ class UpdatePartyUsagePlanControllerWorksBandTest {
         
         try {
             updatePartyUsagePlanControllerWorksBand.wakeBusiness(capsuleDto);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Exception exception) { // NOPMD
+            exception.printStackTrace(); // NOPMD
         }
 
         TaskPlanPartyUsageDetailEntity entitySrc2 = taskPlanPartyUsageDetailRepository.findById(callId).get();

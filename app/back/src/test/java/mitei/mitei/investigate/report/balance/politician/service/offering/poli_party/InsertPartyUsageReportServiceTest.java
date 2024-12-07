@@ -1204,7 +1204,7 @@ class InsertPartyUsageReportServiceTest {
 
         String path = GetCurrentResourcePath.getBackTestResourcePath() + "/sample/usage/2022_政治家女子48党_SITO.xml";
 
-        AllShitoBook allBookDto = readAllShitoBookByXmlFileLogic.practice(path, "Windows-31J");
+        AllShitoBook allBookDto = readAllShitoBookByXmlFileLogic.practice(path, "UTF-8");
         documentPropertyDto.setNendo(allBookDto.getShito0801Dto().getSheet0801Dto().getNendo()); // 報告年は読みとりデータより
         
         /*

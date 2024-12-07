@@ -12,11 +12,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
 /**
- * wk_tbl_poli_org_party_usage_report接続用Entity
+ * wk_tbl_poli_party_usage_report接続用Entity
  */
 @Entity
-@Table(name = "wk_tbl_poli_org_party_usage_report")
-public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+@Table(name = "wk_tbl_poli_party_usage_report")
+public class WkTblPoliPartyUsageReportEntity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -38,47 +38,47 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
 
     /** 政党交付金使途報告書登録準備ワークテーブルId */
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wk_tbl_poli_org_party_usage_report_id")
-    private Long wkTblPoliOrgPartyUsageReportId = INIT_Long;
+    @Column(name = "wk_tbl_poli_party_usage_report_id")
+    private Long wkTblPoliPartyUsageReportId = INIT_Long;
 
     /**
      * 政党交付金使途報告書登録準備ワークテーブルIdを取得する
      *
      * @return 政党交付金使途報告書登録準備ワークテーブルId
      */
-    public Long getWkTblPoliOrgPartyUsageReportId() {
-        return wkTblPoliOrgPartyUsageReportId;
+    public Long getWkTblPoliPartyUsageReportId() {
+        return wkTblPoliPartyUsageReportId;
     }
 
     /**
      * 政党交付金使途報告書登録準備ワークテーブルIdを設定する
      *
-     * @param wkTblPoliOrgPartyUsageReportId 政党交付金使途報告書登録準備ワークテーブルId
+     * @param wkTblPoliPartyUsageReportId 政党交付金使途報告書登録準備ワークテーブルId
      */
-    public void setWkTblPoliOrgPartyUsageReportId(final Long wkTblPoliOrgPartyUsageReportId) {
-        this.wkTblPoliOrgPartyUsageReportId = wkTblPoliOrgPartyUsageReportId;
+    public void setWkTblPoliPartyUsageReportId(final Long wkTblPoliPartyUsageReportId) {
+        this.wkTblPoliPartyUsageReportId = wkTblPoliPartyUsageReportId;
     }
 
     /** 政党交付金使途報告書登録準備ワークテーブル同一識別コード */
-    @Column(name = "wk_tbl_poli_org_party_usage_report_code")
-    private Integer wkTblPoliOrgPartyUsageReportCode = INIT_Integer;
+    @Column(name = "wk_tbl_poli_party_usage_report_code")
+    private Integer wkTblPoliPartyUsageReportCode = INIT_Integer;
 
     /**
      * 政党交付金使途報告書登録準備ワークテーブル同一識別コードを取得する
      *
      * @return 政党交付金使途報告書登録準備ワークテーブル同一識別コード
      */
-    public Integer getWkTblPoliOrgPartyUsageReportCode() {
-        return wkTblPoliOrgPartyUsageReportCode;
+    public Integer getWkTblPoliPartyUsageReportCode() {
+        return wkTblPoliPartyUsageReportCode;
     }
 
     /**
      * 政党交付金使途報告書登録準備ワークテーブル同一識別コードを設定する
      *
-     * @param wkTblPoliOrgPartyUsageReportCode 政党交付金使途報告書登録準備ワークテーブル同一識別コード
+     * @param wkTblPoliPartyUsageReportCode 政党交付金使途報告書登録準備ワークテーブル同一識別コード
      */
-    public void setWkTblPoliOrgPartyUsageReportCode(final Integer wkTblPoliOrgPartyUsageReportCode) {
-        this.wkTblPoliOrgPartyUsageReportCode = wkTblPoliOrgPartyUsageReportCode;
+    public void setWkTblPoliPartyUsageReportCode(final Integer wkTblPoliPartyUsageReportCode) {
+        this.wkTblPoliPartyUsageReportCode = wkTblPoliPartyUsageReportCode;
     }
 
     /** 最新区分 */
@@ -90,6 +90,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 最新区分
      */
+    @Override
     public Integer getSaishinKbn() {
         return saishinKbn;
     }
@@ -99,6 +100,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param saishinKbn 最新区分
      */
+    @Override
     public void setSaishinKbn(final Integer saishinKbn) {
         this.saishinKbn = saishinKbn;
     }
@@ -1168,6 +1170,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 挿入ユーザId
      */
+    @Override
     public Long getInsertUserId() {
         return insertUserId;
     }
@@ -1177,6 +1180,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param insertUserId 挿入ユーザId
      */
+    @Override
     public void setInsertUserId(final Long insertUserId) {
         this.insertUserId = insertUserId;
     }
@@ -1190,6 +1194,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 挿入ユーザ同一識別コード
      */
+    @Override
     public Integer getInsertUserCode() {
         return insertUserCode;
     }
@@ -1199,6 +1204,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param insertUserCode 挿入ユーザ同一識別コード
      */
+    @Override
     public void setInsertUserCode(final Integer insertUserCode) {
         this.insertUserCode = insertUserCode;
     }
@@ -1212,6 +1218,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 挿入ユーザ姓名
      */
+    @Override
     public String getInsertUserName() {
         return insertUserName;
     }
@@ -1221,6 +1228,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param insertUserName 挿入ユーザ姓名
      */
+    @Override
     public void setInsertUserName(final String insertUserName) {
         this.insertUserName = insertUserName;
     }
@@ -1234,6 +1242,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 挿入タイムスタンプ
      */
+    @Override
     public LocalDateTime getInsertTimestamp() {
         return insertTimestamp;
     }
@@ -1243,6 +1252,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param insertTimestamp 挿入タイムスタンプ
      */
+    @Override
     public void setInsertTimestamp(final LocalDateTime insertTimestamp) {
         this.insertTimestamp = insertTimestamp;
     }
@@ -1256,6 +1266,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 更新ユーザId
      */
+    @Override
     public Long getUpdateUserId() {
         return updateUserId;
     }
@@ -1265,6 +1276,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param updateUserId 更新ユーザId
      */
+    @Override
     public void setUpdateUserId(final Long updateUserId) {
         this.updateUserId = updateUserId;
     }
@@ -1278,6 +1290,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 更新ユーザ同一識別コード
      */
+    @Override
     public Integer getUpdateUserCode() {
         return updateUserCode;
     }
@@ -1287,6 +1300,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param updateUserCode 更新ユーザ同一識別コード
      */
+    @Override
     public void setUpdateUserCode(final Integer updateUserCode) {
         this.updateUserCode = updateUserCode;
     }
@@ -1300,6 +1314,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 更新ユーザ姓名
      */
+    @Override
     public String getUpdateUserName() {
         return updateUserName;
     }
@@ -1309,6 +1324,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param updateUserName 更新ユーザ姓名
      */
+    @Override
     public void setUpdateUserName(final String updateUserName) {
         this.updateUserName = updateUserName;
     }
@@ -1322,6 +1338,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @return 更新タイムスタンプ
      */
+    @Override
     public LocalDateTime getUpdateTimestamp() {
         return updateTimestamp;
     }
@@ -1331,6 +1348,7 @@ public class WkTblPoliOrgPartyUsageReportEntity  implements Serializable,AllTabe
      *
      * @param updateTimestamp 更新タイムスタンプ
      */
+    @Override
     public void setUpdateTimestamp(final LocalDateTime updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }

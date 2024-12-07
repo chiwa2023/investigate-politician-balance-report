@@ -22,8 +22,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report.UpdatePartyUsageWkTblCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
-import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliOrgPartyUsageReportRepository;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliPartyUsageReportRepository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
@@ -44,18 +44,18 @@ class UpdatePartyUsageWkTbControllerTest {
 
     /** 政党交付金使途報告書一括処理ワークテーブルRepository */
     @Autowired
-    private WkTblPoliOrgPartyUsageReportRepository wkTblPoliOrgPartyUsageReportRepository;
+    private WkTblPoliPartyUsageReportRepository wkTblPoliOrgPartyUsageReportRepository;
 
     @Test
     @Tag("TableTruncate")
-    @Sql("../../../service/offering/poli_party/wk_tbl_poli_org_party_usage_report.sql")
+    @Sql("../../../service/offering/poli_party/wk_tbl_poli_party_usage_report.sql")
     void testPractice() throws Exception {
 
         UpdatePartyUsageWkTblCapsuleDto capsuleDto = new UpdatePartyUsageWkTblCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
 
         Long callId = 2239L;
-        WkTblPoliOrgPartyUsageReportEntity entitySrc = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
+        WkTblPoliPartyUsageReportEntity entitySrc = wkTblPoliOrgPartyUsageReportRepository.findById(callId).get();
 
         Long poliOrgId = 326L;
         Integer poliOrgCode = 320;
@@ -65,7 +65,7 @@ class UpdatePartyUsageWkTbControllerTest {
         entitySrc.setPoliticalOrganizationCode(poliOrgCode);
         entitySrc.setPoliticalOrganizationName(poliOrgName);
 
-        capsuleDto.setWkTblPoliOrgPartyUsageReportEntity(entitySrc);
+        capsuleDto.setWkTblPoliPartyUsageReportEntity(entitySrc);
 
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
 

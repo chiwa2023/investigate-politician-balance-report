@@ -28,7 +28,7 @@ public class UpdatePartyUsageWkTbControllerWorksBand {
     @Transactional
     public TemplateFrameworkResultDto wakeBusiness(final UpdatePartyUsageWkTblCapsuleDto capsuleDto) {
         
-        Long newId = updatePartyUsageWkTbService.practice(capsuleDto.getWkTblPoliOrgPartyUsageReportEntity(),
+        Long newId = updatePartyUsageWkTbService.practice(capsuleDto.getWkTblPoliPartyUsageReportEntity(),
                 capsuleDto.getCheckPrivilegeDto());
         TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
         final long noUpdate = 0L;

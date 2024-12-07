@@ -1,0 +1,118 @@
+package mitei.mitei.investigate.report.balance.politician.batch.poli_party.usgae.regist.wktbl;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.JobParameters;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.test.JobLauncherTestUtils;
+import org.springframework.batch.test.context.SpringBatchTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import mitei.mitei.investigate.report.balance.politician.BackApplication;
+import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentResourcePath;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.WkTblPoliPartyUsageReportRepository;
+
+/**
+ * RegistPoliPtyUsageReportBatchConfiguration単体テスト
+ */
+@SpringJUnitConfig
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBatchTest
+@ContextConfiguration(classes = BackApplication.class) // 全体起動
+@DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
+@ConfigurationProperties(prefix = "mitei.mitei.investigate.report.balance.politician")
+class RegistPoliPtyUsageReportBatchConfigurationTest {
+
+    /** テストユーティリティ */
+    @Autowired
+    private JobLauncherTestUtils jobLauncherTestUtils;
+
+    /** 起動をするJob */
+    @Qualifier(RegistPoliPtyUsageReportBatchConfiguration.JOB_NAME)
+    @Autowired
+    private Job registPoliPtyUsageReport;
+
+    /** 政党交付金使途報告書登録準備ワークテーブルレポジトリ */
+    @Autowired
+    private WkTblPoliPartyUsageReportRepository wkTblPoliPartyUsageReportRepository;
+
+    /** 保存親フォルダ */
+    private String storageFolder;
+
+    /**
+     * 最上位保存フォルダ絶対パスを取得する
+     *
+     * @return 最上位保存フォルダ絶対パス
+     */
+    public String getStorageFolder() {
+        return storageFolder;
+    }
+
+    /**
+     * 最上位保存フォルダ絶対パスを設定する
+     *
+     * @param storageFolder 最上位保存フォルダ絶対パス
+     */
+    public void setStorageFolder(final String storageFolder) {
+        this.storageFolder = storageFolder;
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    void testJob() {
+        assertEquals(RegistPoliPtyUsageReportBatchConfiguration.JOB_NAME, registPoliPtyUsageReport.getName(),"");
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    @Sql("wk_tbl_poli_party_usage_report_document.sql")
+    void test() throws Exception {
+
+        // 全件取得してChunkと要求されているファイルを作成してセット
+        List<WkTblPoliPartyUsageReportEntity> listTask = wkTblPoliPartyUsageReportRepository.findAll();
+        for (WkTblPoliPartyUsageReportEntity entity : listTask) {
+            Path path = Paths.get(storageFolder, entity.getFullPath());
+            if (!Files.exists(path.getParent())) {
+                Files.createDirectories(path.getParent());
+            }
+            Files.write(path, this.readBinaryFile(entity.getFileName()));
+        }
+
+        jobLauncherTestUtils.setJob(registPoliPtyUsageReport);
+
+        JobParameters jobParameters = new JobParametersBuilder(
+                registPoliPtyUsageReport.getJobParametersIncrementer().getNext(new JobParameters())) // NOPMD
+                .addLocalDateTime("executeTime", LocalDateTime.now()).toJobParameters();
+
+        JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
+        assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode(),"");
+    }
+
+    // バイナリで指定されたファイルの中身を読み込む
+    private byte[] readBinaryFile(final String fileName) throws IOException { // NOPMD
+        Path path = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "/sample/usage/2022_政治家女子48党_SITO.xml");
+        return Files.readAllBytes(path);
+    }
+
+}

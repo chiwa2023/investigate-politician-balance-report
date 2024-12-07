@@ -1,16 +1,16 @@
 ﻿<script setup lang="ts">
 import { onBeforeMount, ref, Ref } from "vue";
-import TaskPlanBalancesheetDetailInterface from "../../../entity/taskPlanBalancesheetDetailEntity";
+import TaskPlanPartyUsageDetailInterface from "../../../entity/taskPlanPartyUsageDetailEntity";
 import TemplateFrameworkCapsuleDto from "../../../dto/template/templateFrameworkCapsuleDto";
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
 import PoliticalOrganizationLeastInterface from "../../../dto/political_organization/politicalOrganizationLeastDto";
-import WkTblPoliOrgBalancesheetReportInterface from "../../../entity/wkTblPoliOrgBalancesheetReportEntity";
+import WkTblPoliPartyUsageReportInterface from "../../../entity/wkTblPoliPartyUsageReportEntity";
 import SearchPoliticalOrganization from "../../common/search_political_organization/SearchPoliticalOrganization.vue";
-import UpdateBalancesheetTaskPlanCapsuleInterface from "../../../dto/political_organization/updateBalancesheetTaskPlanCapsuleDto";
-import UpdateBalancesheetTaskPlanCapsuleDto from "../../../dto/political_organization/updateBalancesheetTaskPlanCapsuleDto";
-import UpdateBalancesheetWkTblCapsuleInterface from "../../../dto/political_organization/updateBalancesheetWkTblCapsuleDto";
-import UpdateBalancesheetWkTblCapsuleDto from "../../../dto/political_organization/updateBalancesheetWkTblCapsuleDto";
+import UpdatePartyUsageTaskPlanCapsuleInterface from "../../../dto/party_usage/updatePartyUsageTaskPlanCapsuleDto";
+import UpdatePartyUsageTaskPlanCapsuleDto from "../../../dto/party_usage/updatePartyUsageTaskPlanCapsuleDto";
+import UpdatePartyUsageWkTblCapsuleInterface from "../../../dto/party_usage/updatePartyUsageWkTblCapsuleDto";
+import UpdatePartyUsageWkTblCapsuleDto from "../../../dto/party_usage/updatePartyUsageWkTblCapsuleDto";
 import TemplateFrameworkResultInterface from "../../../dto/template/templateFrameworkResultDto";
 
 // 公式ソフトウェアでは名前、住所の連結には全角スペース
@@ -22,10 +22,10 @@ const SOFT_BALANCESHEET: string = "収支報告書作成ソフト";
 const SOFT_PARTY_USAGE: string = "使途等報告書作成ソフト";
 
 // 詳細リスト
-const listDetail: Ref<TaskPlanBalancesheetDetailInterface[]> = ref([]);
+const listDetail: Ref<TaskPlanPartyUsageDetailInterface[]> = ref([]);
 
 // 準備リスト
-const listPrepared: Ref<WkTblPoliOrgBalancesheetReportInterface[]> = ref([]);
+const listPrepared: Ref<WkTblPoliPartyUsageReportInterface[]> = ref([]);
 
 //検索コンポーネント表示／非表示
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
@@ -60,7 +60,7 @@ function recieveCancelSearchPoliticalOrganizationLeast() {
 function recievePoliticalOrganizationLeastInterface(sendDto: PoliticalOrganizationLeastInterface) {
 
     // 選択したEntityをフィルタ(Idなので一意が保証)
-    const editEntity = listPrepared.value.filter(e1 => { return e1.wkTblPoliOrgBalancesheetReportId === editEntityId; }
+    const editEntity = listPrepared.value.filter(e1 => { return e1.wkTblPoliPartyUsageReportId === editEntityId; }
     )[0];
 
     // 政治団体を設定
@@ -127,14 +127,14 @@ function onsSearchPrepared() {
 
 function onsUpdateDetail(editId: number) {
 
-    const capsuleEntityDto: UpdateBalancesheetTaskPlanCapsuleInterface = new UpdateBalancesheetTaskPlanCapsuleDto();
+    const capsuleEntityDto: UpdatePartyUsageTaskPlanCapsuleInterface = new UpdatePartyUsageTaskPlanCapsuleDto();
     //セッションストレージ取得
     capsuleEntityDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
     capsuleEntityDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
     //編集可否フラグがある場合は、そのフラグ(の反転した値)を照会フラグに設定する
     capsuleEntityDto.checkTransactionDto = createCheckTransactionDto(true);
-    capsuleEntityDto.taskPlanBalancesheetDetailEntity
-        = listDetail.value.filter(e1 => { return e1.taskPlanBalancesheetDetailId === editId; })[0];
+    capsuleEntityDto.taskPlanPartyUsageDetailEntity
+        = listDetail.value.filter(e1 => { return e1.taskPlanPartyUsageDetailId === editId; })[0];
 
     // タスク予定を更新
     const url = "http://localhost:9080/update-party-usage-prepare/task-plan";
@@ -154,14 +154,14 @@ function onsUpdateDetail(editId: number) {
 
 function onsUpdatePrepared(editId: number) {
 
-    const capsuleWkTblDto: UpdateBalancesheetWkTblCapsuleInterface = new UpdateBalancesheetWkTblCapsuleDto();
+    const capsuleWkTblDto: UpdatePartyUsageWkTblCapsuleInterface = new UpdatePartyUsageWkTblCapsuleDto();
     //セッションストレージ取得
     capsuleWkTblDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
     capsuleWkTblDto.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
     //編集可否フラグがある場合は、そのフラグ(の反転した値)を照会フラグに設定する
     capsuleWkTblDto.checkTransactionDto = createCheckTransactionDto(true);
-    capsuleWkTblDto.wkTblPoliOrgBalancesheetReportEntity
-        = listPrepared.value.filter(e1 => { return e1.wkTblPoliOrgBalancesheetReportId === editId; })[0];
+    capsuleWkTblDto.wkTblPoliPartyUsageReportEntity
+        = listPrepared.value.filter(e1 => { return e1.wkTblPoliPartyUsageReportId === editId; })[0];
 
     // ワークテーブルを更新
     const url = "http://localhost:9080/update-porty-usage-prepare/worktable";
@@ -194,7 +194,7 @@ function onsUpdatePrepared(editId: number) {
                 <th>文書</th>
                 <th>変更　　</th>
             </tr>
-            <tr v-for="detailEntity in listDetail" :key="detailEntity.taskPlanBalancesheetDetailId">
+            <tr v-for="detailEntity in listDetail" :key="detailEntity.taskPlanPartyUsageDetailId">
                 <td>{{ detailEntity.insertTimestamp }}</td>
                 <td>{{ detailEntity.fileName }}</td>
                 <td>処理予定なし</td>
@@ -208,7 +208,7 @@ function onsUpdatePrepared(editId: number) {
                         <option :value="SOFT_PARTY_USAGE">政党交付金使途報告書</option>
                     </select>
                 </td>
-                <td><button @click="onsUpdateDetail(detailEntity.taskPlanBalancesheetDetailId)">変更</button> </td>
+                <td><button @click="onsUpdateDetail(detailEntity.taskPlanPartyUsageDetailId)">変更</button> </td>
             </tr>
         </table>
     </div>
@@ -227,18 +227,18 @@ function onsUpdatePrepared(editId: number) {
                 <th>&nbsp;</th>
                 <th>&nbsp;</th>
             </tr>
-            <tr v-for="xmlDto in listPrepared" :key="xmlDto.wkTblPoliOrgBalancesheetReportId">
+            <tr v-for="xmlDto in listPrepared" :key="xmlDto.wkTblPoliPartyUsageReportId">
                 <td>{{ xmlDto.insertTimestamp }}</td>
-                <td>{{ xmlDto.houkokuNen }}</td>
+                <td>{{ xmlDto.nendo }}</td>
                 <td>{{ xmlDto.fileName }}</td>
-                <td>{{ xmlDto.dantaiName01 }}</td>
-                <td>{{ xmlDto.daihyoushaNameLast + BLANK + xmlDto.daihyoushaNameFirst
+                <td>{{ xmlDto.dantaiName }}</td>
+                <td>{{ xmlDto.daihyouName
                     }}</td>
                 <td>{{ xmlDto.politicalOrganizationName }}</td>
                 <td><button class="left-space"
-                        @click="onSearchPoliticalOrgnaization(xmlDto.wkTblPoliOrgBalancesheetReportId)">政治団体検索</button>
+                        @click="onSearchPoliticalOrgnaization(xmlDto.wkTblPoliPartyUsageReportId)">政治団体検索</button>
                 </td>
-                <td><button @click="onsUpdatePrepared(xmlDto.wkTblPoliOrgBalancesheetReportId)">変更</button></td>
+                <td><button @click="onsUpdatePrepared(xmlDto.wkTblPoliPartyUsageReportId)">変更</button></td>
             </tr>
         </table>
     </div>

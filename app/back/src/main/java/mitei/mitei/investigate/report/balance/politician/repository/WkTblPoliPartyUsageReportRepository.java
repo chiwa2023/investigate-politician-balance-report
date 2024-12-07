@@ -10,13 +10,13 @@ import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
 
 /**
- * wk_tbl_poli_org_party_usage_report接続用Repository
+ * wk_tbl_poli_party_usage_report接続用Repository
  */
-public interface WkTblPoliOrgPartyUsageReportRepository
-        extends JpaRepository<WkTblPoliOrgPartyUsageReportEntity, Long> {
+public interface WkTblPoliPartyUsageReportRepository
+        extends JpaRepository<WkTblPoliPartyUsageReportEntity, Long> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
@@ -25,8 +25,8 @@ public interface WkTblPoliOrgPartyUsageReportRepository
      * @param searchWords 検索語
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM wk_tbl_poli_org_party_usage_report WHERE saishin_kbn= 1 AND MATCH(wk_tbl_poli_org_party_usage_report_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<WkTblPoliOrgPartyUsageReportEntity> findFullText(String searchWords);
+    @Query(value = "SELECT * FROM wk_tbl_poli_party_usage_report WHERE saishin_kbn= 1 AND MATCH(wk_tbl_poli_party_usage_report_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    List<WkTblPoliPartyUsageReportEntity> findFullText(String searchWords);
 
     /**
      * 最大同一識別コードのEntityを取得する
@@ -34,7 +34,7 @@ public interface WkTblPoliOrgPartyUsageReportRepository
      * @return allBookDto
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    Optional<WkTblPoliOrgPartyUsageReportEntity> findFirstByOrderByWkTblPoliOrgPartyUsageReportCodeDesc();
+    Optional<WkTblPoliPartyUsageReportEntity> findFirstByOrderByWkTblPoliPartyUsageReportCodeDesc();
 
     /**
      * 該当する政治団体を指定して検索する(未指定0検出用)
@@ -43,7 +43,7 @@ public interface WkTblPoliOrgPartyUsageReportRepository
      * @param poliOrgId  政治団体Id
      * @return ワークテーブルリスト検索結果
      */
-    List<WkTblPoliOrgPartyUsageReportEntity> findBySaishinKbnAndPoliticalOrganizationId(Integer saishinKbn,
+    List<WkTblPoliPartyUsageReportEntity> findBySaishinKbnAndPoliticalOrganizationId(Integer saishinKbn,
             Long poliOrgId);
 
     /**
@@ -53,7 +53,7 @@ public interface WkTblPoliOrgPartyUsageReportRepository
      * @param poliOrgId  政治団体Id
      * @return ワークテーブルリスト検索結果
      */
-    List<WkTblPoliOrgPartyUsageReportEntity> findBySaishinKbnAndPoliticalOrganizationIdNot(Integer saishinKbn,
+    List<WkTblPoliPartyUsageReportEntity> findBySaishinKbnAndPoliticalOrganizationIdNot(Integer saishinKbn,
             Long poliOrgId);
 
     /**
@@ -63,7 +63,7 @@ public interface WkTblPoliOrgPartyUsageReportRepository
      * @param poliOrgId  政治団体Id
      * @return ワークテーブルリスト検索結果
      */
-    Page<WkTblPoliOrgPartyUsageReportEntity> findBySaishinKbnAndPoliticalOrganizationIdNot(Integer saishinKbn,
+    Page<WkTblPoliPartyUsageReportEntity> findBySaishinKbnAndPoliticalOrganizationIdNot(Integer saishinKbn,
             Long poliOrgId, Pageable pageable);
 
     /**
@@ -72,6 +72,6 @@ public interface WkTblPoliOrgPartyUsageReportRepository
      * @param saishinKbn 最新区分
      * @return ワークテーブルリスト検索結果
      */
-    Page<WkTblPoliOrgPartyUsageReportEntity> findBySaishinKbn(Integer saishinKbn, Pageable pageable);
+    Page<WkTblPoliPartyUsageReportEntity> findBySaishinKbn(Integer saishinKbn, Pageable pageable);
 
 }

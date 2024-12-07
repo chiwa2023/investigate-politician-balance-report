@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mitei.mitei.investigate.report.balance.politician.batch.poli_org.balancesheet.regist.RegistPreaparePoliOrgBalancesheetBatchAyncService;
+import mitei.mitei.investigate.report.balance.politician.batch.poli_party.usgae.regist.detail.RegistPreaparePoliPtyUsageBatchAyncService;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkResultDto;
@@ -33,8 +33,8 @@ public class ForcePreparePartyUsageWkTbController extends AbstractTemplateCheckC
 
     /** 政党交付金使途報告書一括準備処理を非同期で実行WrapService */
     @Autowired
-    private RegistPreaparePoliOrgBalancesheetBatchAyncService registPreaparePoliOrgBalancesheetBatchAyncService;
-    
+    private RegistPreaparePoliPtyUsageBatchAyncService registPreaparePoliPtyUsageBatchAyncService;
+
     /**
      * 計画テーブルから政治団体を推定してワークテーブルに移す処理
      *
@@ -77,8 +77,8 @@ public class ForcePreparePartyUsageWkTbController extends AbstractTemplateCheckC
              */
 
             // バッチ非同期実行
-            registPreaparePoliOrgBalancesheetBatchAyncService.practice();
-            
+            registPreaparePoliPtyUsageBatchAyncService.practice();
+
             TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
             resultDto.setIsOk(true);
             resultDto.setMessage("一括処理を起動しました。処理完了までしばらくお待ちください");

@@ -36,7 +36,7 @@ class UpdateFinishedTaskPlanBalancesheetDetailItemWriterTest {
     @Autowired
     private UpdateFinishedTaskPlanBalancesheetDetailItemWriter updateFinishedTaskPlanBalancesheetDetailItemWriter;
 
-    /** ワークテーブルRpository */
+    /** ワークテーブルRepository */
     @Autowired
     private WkTblPoliOrgBalancesheetReportRepository wkTblPoliOrgBalancesheetReportRepository;
 

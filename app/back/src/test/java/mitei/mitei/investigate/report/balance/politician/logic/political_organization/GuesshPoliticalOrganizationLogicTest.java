@@ -29,7 +29,7 @@ class GuesshPoliticalOrganizationLogicTest {
 
     /** テスト対象 */
     @Autowired
-    private GuesshPoliticalOrganizationLogic guesshPoliticalOrganizationLogic;
+    private GuessPoliticalOrganizationLogic guessPoliticalOrganizationLogic;
 
     @Test
     @Tag("TableTruncate")
@@ -55,7 +55,7 @@ class GuesshPoliticalOrganizationLogicTest {
         oathDto00.setDateOath("R5/2/17");
 
         // Idと代表者名が想定と一致していること
-        BalancesheetReportDocumentPoliticalPropertyDto dto00 = guesshPoliticalOrganizationLogic.practice(coverDto00,
+        BalancesheetReportDocumentPoliticalPropertyDto dto00 = guessPoliticalOrganizationLogic.practice(coverDto00,
                 oathDto00);
         assertThat(dto00.getPoliticalOrganizationId()).isEqualTo(114L);
         assertThat(dto00.getPoliticalOrganizationName()).isEqualTo(coverDto00.getDantaiName01());
@@ -63,7 +63,7 @@ class GuesshPoliticalOrganizationLogicTest {
 
         // 団体名一致が存在していない
         coverDto00.setDantaiName01("ちゃらんぽらん政治団体X");
-        BalancesheetReportDocumentPoliticalPropertyDto dto01 = guesshPoliticalOrganizationLogic.practice(coverDto00,
+        BalancesheetReportDocumentPoliticalPropertyDto dto01 = guessPoliticalOrganizationLogic.practice(coverDto00,
                 oathDto00);
         assertThat(dto01.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -71,7 +71,7 @@ class GuesshPoliticalOrganizationLogicTest {
         coverDto00.setDaihyoushaNameFirst("代表者");
         coverDto00.setDaihyoushaNameLast("太郎Ver2");
         coverDto00.setDantaiName01("ちゃらんぽらん政治団体1");
-        BalancesheetReportDocumentPoliticalPropertyDto dto02 = guesshPoliticalOrganizationLogic.practice(coverDto00,
+        BalancesheetReportDocumentPoliticalPropertyDto dto02 = guessPoliticalOrganizationLogic.practice(coverDto00,
                 oathDto00);
         assertThat(dto02.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -79,7 +79,7 @@ class GuesshPoliticalOrganizationLogicTest {
         coverDto00.setDaihyoushaNameFirst("代表者");
         coverDto00.setDaihyoushaNameLast("太郎");
         coverDto00.setDantaiKbn("1");
-        BalancesheetReportDocumentPoliticalPropertyDto dto03 = guesshPoliticalOrganizationLogic.practice(coverDto00,
+        BalancesheetReportDocumentPoliticalPropertyDto dto03 = guessPoliticalOrganizationLogic.practice(coverDto00,
                 oathDto00);
         assertThat(dto03.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -87,7 +87,7 @@ class GuesshPoliticalOrganizationLogicTest {
         coverDto00.setDantaiKbn("3");
         coverDto00.setJimushoJusho("東京都千代田区霞が関");
         coverDto00.setJimushoJushoTatemono("三角ビル310");
-        BalancesheetReportDocumentPoliticalPropertyDto dto04 = guesshPoliticalOrganizationLogic.practice(coverDto00,
+        BalancesheetReportDocumentPoliticalPropertyDto dto04 = guessPoliticalOrganizationLogic.practice(coverDto00,
                 oathDto00);
         assertThat(dto04.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -96,7 +96,7 @@ class GuesshPoliticalOrganizationLogicTest {
         coverDto00.setDaihyoushaNameFirst(null);
         coverDto00.setDaihyoushaNameLast(null);
         coverDto00.setDantaiKbn(null);
-        BalancesheetReportDocumentPoliticalPropertyDto dto05 = guesshPoliticalOrganizationLogic.practice(coverDto00,
+        BalancesheetReportDocumentPoliticalPropertyDto dto05 = guessPoliticalOrganizationLogic.practice(coverDto00,
                 oathDto00);
         assertThat(dto05.getPoliticalOrganizationId()).isEqualTo(0L); // 空Dto
 
@@ -118,7 +118,7 @@ class GuesshPoliticalOrganizationLogicTest {
         Sheet072000OathDto oathDto01 = new Sheet072000OathDto();
         oathDto01.setDateOath("R5/2/17");
 
-        BalancesheetReportDocumentPoliticalPropertyDto dto11 = guesshPoliticalOrganizationLogic.practice(coverDto01,
+        BalancesheetReportDocumentPoliticalPropertyDto dto11 = guessPoliticalOrganizationLogic.practice(coverDto01,
                 oathDto01);
         assertThat(dto11.getPoliticalOrganizationId()).isEqualTo(496L); // 最新データ
 
@@ -140,7 +140,7 @@ class GuesshPoliticalOrganizationLogicTest {
         Sheet072000OathDto oathDto02 = new Sheet072000OathDto();
         oathDto02.setDateOath("R5/2/17");
 
-        BalancesheetReportDocumentPoliticalPropertyDto dto12 = guesshPoliticalOrganizationLogic.practice(coverDto02,
+        BalancesheetReportDocumentPoliticalPropertyDto dto12 = guessPoliticalOrganizationLogic.practice(coverDto02,
                 oathDto02);
         assertThat(dto12.getPoliticalOrganizationId()).isEqualTo(611L); // 範囲名での最新データ
         // ※2022年の報告書を出そうとしたとき、2023年3月提出の報告書で、1月に団体名(代表者名)を変更した場合、

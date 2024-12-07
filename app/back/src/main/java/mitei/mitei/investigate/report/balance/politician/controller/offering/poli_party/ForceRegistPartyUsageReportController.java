@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mitei.mitei.investigate.report.balance.politician.batch.poli_org.balancesheet.regist.RegistPoliOrgBalancesheetReportBatchAyncService;
+import mitei.mitei.investigate.report.balance.politician.batch.poli_party.usgae.regist.wktbl.RegistPoliPtyUsageReportBatchAsyncService;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkResultDto;
@@ -33,7 +33,7 @@ public class ForceRegistPartyUsageReportController   extends AbstractTemplateChe
 
     /** 政党交付金使途報告書一括処理の非同期実行Service */
     @Autowired
-    private RegistPoliOrgBalancesheetReportBatchAyncService registPoliOrgBalancesheetReportBatchAyncService;
+    private RegistPoliPtyUsageReportBatchAsyncService registPoliPtyUsageReportBatchAsyncService;
     
     
     /**
@@ -78,7 +78,7 @@ public class ForceRegistPartyUsageReportController   extends AbstractTemplateChe
              */
 
             // 一括登録処理非同期実行
-            registPoliOrgBalancesheetReportBatchAyncService.practice();
+            registPoliPtyUsageReportBatchAsyncService.practice();
             
             TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
             resultDto.setIsOk(true);

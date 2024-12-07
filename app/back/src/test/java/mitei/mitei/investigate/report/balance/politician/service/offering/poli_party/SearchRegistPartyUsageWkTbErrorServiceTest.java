@@ -16,7 +16,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliOrgPartyUsageReportEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblPoliPartyUsageReportEntity;
 
 /**
  * SearchRegistPartyUsageWkTbErrorService単体テスト
@@ -35,20 +35,20 @@ class SearchRegistPartyUsageWkTbErrorServiceTest {
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("wk_tbl_poli_org_party_usage_report.sql")
+    @Sql("wk_tbl_poli_party_usage_report.sql")
     void testPractice() {
 
-        List<WkTblPoliOrgPartyUsageReportEntity> list = searchRegistPartyUsageWkTbErrorService.practice();
+        List<WkTblPoliPartyUsageReportEntity> list = searchRegistPartyUsageWkTbErrorService.practice();
 
         list.sort((e1, e2) -> e1.getInsertUserCode() - e2.getInsertUserCode());
 
         assertEquals(2,list.size(),"正常登録は2件");
 
-        WkTblPoliOrgPartyUsageReportEntity entity00 = list.get(0);
-        assertEquals(2239L, entity00.getWkTblPoliOrgPartyUsageReportId(),"取得Idが一致");
+        WkTblPoliPartyUsageReportEntity entity00 = list.get(0);
+        assertEquals(2239L, entity00.getWkTblPoliPartyUsageReportId(),"取得Idが一致");
 
-        WkTblPoliOrgPartyUsageReportEntity entity01 = list.get(1);
-        assertEquals(2240L, entity01.getWkTblPoliOrgPartyUsageReportId(),"取得Idが一致");
+        WkTblPoliPartyUsageReportEntity entity01 = list.get(1);
+        assertEquals(2240L, entity01.getWkTblPoliPartyUsageReportId(),"取得Idが一致");
         
     }
 

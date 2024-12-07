@@ -68,8 +68,8 @@ class ReadXmlDocumentByCompressedZipControllerWorksBandTest {
 
         try {
             readXmlDocumentByCompressedZipControllerWorksBand.wakeBusiness(capsuleDto, shori);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+        } catch (Exception exception) { // NOPMD
+            exception.printStackTrace(); // NOPMD
         }
 
         assertEquals(count, saveFileStorage2024Repository.count(), "ロールバックされているので件数に変化なし");
