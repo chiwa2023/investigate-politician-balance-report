@@ -22,6 +22,7 @@ const routes = [
     { path: "/show-org-balancesheet-report", name: "ShowOrgBalancesheetReport", component: () => import("./components/pages/show_org_balancesheet_report/ShowOrgBalancesheetReport.vue") },
     { path: "/show-party-usage-report", name: "ShowPartyUsageReport", component: () => import("./components/pages/show_party_usage_report/ShowPartyUsageReport.vue") },
 
+    { path: "/inquire-nationarity", name: "InquireNationality", component: () => import("./components/pages/inquire_nationarity/InquireNationality.vue") },
 ];
 
 
