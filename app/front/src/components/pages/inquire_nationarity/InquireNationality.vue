@@ -160,45 +160,46 @@ function onSave() {
     listInquireAnswer.value.splice(0);
 
     // 外部APIに国籍情報問い合わせ
-    //    const url = "http://localhost:9080/listup-party-usage-charset/normal";
-    //    const method = "POST";
-    //    const body = JSON.stringify(listInquireGroup.value);
-    //    const headers = {
-    //        'Accept': 'application/json',
-    //        'Content-Type': 'application/json'
-    //    };
-    //    fetch(url, { method, headers, body })
-    //        .then(async (response) => {
-    //            listInquireAnswer.value = await response.json();
-    //        })
-    //        .catch((error) => { alert(error); });
-    //}
+    const url = "http://localhost:7080/inquire-nationarity";
+    const method = "POST";
+    const body = JSON.stringify(list.value);
+    const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+    fetch(url, { method, headers, body })
+        .then(async (response) => {
+            listInquireAnswer.value = await response.json();
+        })
+        .catch((error) => { alert(error); });
 
-    let counter: number = 1;
-    for (const dto of list.value) {
 
-        switch (counter % 3) {
-            case 0:
-                dto.nationalityAnswerKbn = "1";
-                dto.nationalityAnswerKbnText = "日本国籍保持";
-                break;
-
-            case 1:
-                dto.nationalityAnswerKbn = "2";
-                dto.nationalityAnswerKbnText = "外国人籍";
-                break;
-
-            case 2:
-                dto.nationalityAnswerKbn = "3";
-                dto.nationalityAnswerKbnText = "基礎情報不備";
-                break;
-
-            default:
-                break;
-        }
-        listInquireAnswer.value.push(dto);
-        counter++;
-    }
+        // TODO 毎回external_apiを起動するのは煩わしいので数か月後に戻す
+//    let counter: number = 1;
+//    for (const dto of list.value) {
+//
+//        switch (counter % 3) {
+//            case 0:
+//                dto.nationalityAnswerKbn = "1";
+//                dto.nationalityAnswerKbnText = "日本国籍保持";
+//                break;
+//
+//            case 1:
+//                dto.nationalityAnswerKbn = "2";
+//                dto.nationalityAnswerKbnText = "外国人籍";
+//                break;
+//
+//            case 2:
+//                dto.nationalityAnswerKbn = "3";
+//                dto.nationalityAnswerKbnText = "基礎情報不備";
+//                break;
+//
+//            default:
+//                break;
+//        }
+//        listInquireAnswer.value.push(dto);
+//        counter++;
+//    }
 }
 </script>
 <template>
@@ -283,11 +284,8 @@ function onSave() {
     </div>
     <div class="clear-both"><br></div>
 
-
-
-
     <div class="one-line" v-show="listInquireAnswer.length > 0">
-        問い合わせを回答(時間がかかる場合は非同期移行)<br>
+        問い合わせを回答(時間がかかる場合は非同期移行・プロトタイプでは電話番号が9で始まると外国籍、7で始まると情報不足)<br>
         <table>
             <tr>
                 <th>問い合わせ回答</th>
