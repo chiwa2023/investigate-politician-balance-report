@@ -100,7 +100,7 @@ public class ConvertAsserThatToIsEqualUtil {
     }
 
     // actual節が終了しているかどうか確認
-    private String useKey(final String line) {
+    private String useKey(final String line) { // SUPPRESS CHECKSTYLE ReturnCountCheck
 
         if (line.indexOf(KEY_CLOSE_EQUALS) != -1) {
             return KEY_CLOSE_EQUALS;
