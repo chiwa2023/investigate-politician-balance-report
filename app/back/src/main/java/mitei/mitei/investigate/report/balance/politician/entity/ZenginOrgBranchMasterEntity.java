@@ -11,14 +11,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
-
-
 /**
  * zengin_org_branch_master接続用Entity
  */
 @Entity
 @Table(name = "zengin_org_branch_master")
-public class ZenginOrgBranchMasterEntity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
+public class ZenginOrgBranchMasterEntity implements Serializable, AllTabeDataHistoryInterface { // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -28,18 +26,19 @@ public class ZenginOrgBranchMasterEntity  implements Serializable,AllTabeDataHis
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-    
+
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1948,7,29);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
 
     /** 初期データ(Timestamp) */
     private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 金融機関マスタId */
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "zengin_org_tempo_master_id")
     private Integer zenginOrgTempoMasterId = INIT_Integer;
 
@@ -149,6 +148,28 @@ public class ZenginOrgBranchMasterEntity  implements Serializable,AllTabeDataHis
      */
     public void setOrgCode(final String orgCode) {
         this.orgCode = orgCode;
+    }
+
+    /** 全銀協金融機関コード数字 */
+    @Column(name = "org_number")
+    private Integer orgNumber = INIT_Integer;
+
+    /**
+     * 全銀協金融機関コード数字を取得する
+     *
+     * @return 全銀協金融機関コード数字
+     */
+    public Integer getOrgNumber() {
+        return orgNumber;
+    }
+
+    /**
+     * 全銀協金融機関コード数字を設定する
+     *
+     * @param orgNumber 全銀協金融機関コード数字
+     */
+    public void setOrgNumber(final Integer orgNumber) {
+        this.orgNumber = orgNumber;
     }
 
     /** 全銀協金融機関支店コード */

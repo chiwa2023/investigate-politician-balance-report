@@ -4,25 +4,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchWk1Entity;
 
 /**
  * FinancialOrgCsvWkTbl1Processor単体テスト
  */
+@SpringJUnitConfig
+@AutoConfigureMockMvc
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 class FinancialOrgCsvWkTbl1ProcessorTest {
+
+    /** テスト対象 */
+    @Autowired
+    private FinancialOrgCsvWkTbl1Processor financialOrgCsvWkTbl1Processor;
+
+    /** csv 変換LineMapper */
+    @Autowired
+    private FinancialOrgCsvLineMapper financialOrgCsvLineMapper;
 
     @Test
     @Tag("TableTruncate")
     void test() throws Exception {
 
-        FinancialOrgCsvLineMapper financialOrgCsvLineMapper = new FinancialOrgCsvLineMapper();
-
         String data = "\"1311\",\"035\",\"トウキョウシティシンヨウキンコ\",\"東京シティ信用金庫\",\"ニンギョウマチシュッチョウショ\",\"日本橋支店 人形町出張所\",\"post\",\"中央区日本橋人形町3-7-9\",\"0356145160\",\"1\",\"1\",\"1\"";
 
         FinancialOrgCsvDto csvDto = financialOrgCsvLineMapper.mapLine(data, 0);
-
-        FinancialOrgCsvWkTbl1Processor financialOrgCsvWkTbl1Processor = new FinancialOrgCsvWkTbl1Processor();
 
         ZenginOrgBranchWk1Entity wkEntity = financialOrgCsvWkTbl1Processor.process(csvDto);
 
@@ -38,6 +53,8 @@ class FinancialOrgCsvWkTbl1ProcessorTest {
         assertEquals(wkEntity.getBillExchangeNumber(), csvDto.getBillExchangeNumber(), "手形交換所番号");
         assertEquals(wkEntity.getOrderCode(), csvDto.getOrderCode(), "並びコード");
         assertEquals(wkEntity.getFlgNaikokuKawase(), csvDto.getFlgNaikokuKawase(), "内国為替制度加盟");
+
+        assertEquals("東京シティ信用金庫日本橋支店人形町出張所", wkEntity.getZenginOrgBranchWk1Name(), "検索テキスト(名称)");
 
     }
 

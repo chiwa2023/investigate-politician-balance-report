@@ -10,7 +10,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
  * テーブルの更新履歴に必要なログインユーザ、更新時間情報をセットする
  */
 public final class SetTableDataHistoryUtil {
-    
+
     // インスタンス生成よけ
     private SetTableDataHistoryUtil() {
 
@@ -26,16 +26,21 @@ public final class SetTableDataHistoryUtil {
     public static void practice(final CheckPrivilegeDto checkPrivilegeDto,
             final AllTabeDataHistoryInterface interfaceImple, final DataHistoryStatusConstants status) {
 
-        LocalDateTime timestampNow = LocalDateTime.now();
+        final LocalDateTime timestampNow = LocalDateTime.now();
+        final LocalDateTime timestampInit = LocalDateTime.of(1948, 7, 29, 0, 0, 0); // SUPPRESS CHECKSTYLE MagicNumber
 
         // Insert(初回)データセット
         if (DataHistoryStatusConstants.INSERT.equals(status)) {
-            
+
             interfaceImple.setSaishinKbn(DataHistoryStatusConstants.INSERT.value());
             interfaceImple.setInsertUserId(checkPrivilegeDto.getLoginUserId());
             interfaceImple.setInsertUserCode(checkPrivilegeDto.getLoginUserCode());
             interfaceImple.setInsertUserName(checkPrivilegeDto.getLoginUserName());
             interfaceImple.setInsertTimestamp(timestampNow);
+            interfaceImple.setUpdateUserId(0L);
+            interfaceImple.setUpdateUserCode(0);
+            interfaceImple.setUpdateUserName("");
+            interfaceImple.setUpdateTimestamp(timestampInit);
         }
 
         // Update(更新)データセット

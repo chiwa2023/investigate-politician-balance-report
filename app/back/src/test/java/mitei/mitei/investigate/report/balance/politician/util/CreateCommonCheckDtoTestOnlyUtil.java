@@ -30,6 +30,7 @@ public final class CreateCommonCheckDtoTestOnlyUtil {
         checkPrivilegeDto.setIsRaiseExcception(false);
         checkPrivilegeDto.setLoginUserId(1007L); // CHECKSTYLE:OFF
         checkPrivilegeDto.setLoginUserCode(995); // CHECKSTYLE:OFF
+        checkPrivilegeDto.setLoginUserName("会計責任者　正夫"); // CHECKSTYLE:OFF
         checkPrivilegeDto.setPoliticalOrganizationId(2345L); // CHECKSTYLE:OFF
         checkPrivilegeDto.setPoliticalOrganizationCode(2333); // CHECKSTYLE:OFF
         checkPrivilegeDto.setPoliticalOrganizationName("サンプル政治団体");

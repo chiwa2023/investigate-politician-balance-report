@@ -154,7 +154,10 @@
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
     <module name="RequireThis"/>
-    <module name="ReturnCount"/>
+    <module name="ReturnCount">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
     <module name="StringLiteralEquality"/>

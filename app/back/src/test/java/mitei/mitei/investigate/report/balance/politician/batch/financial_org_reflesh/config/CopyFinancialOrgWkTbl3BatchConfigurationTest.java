@@ -85,7 +85,7 @@ class CopyFinancialOrgWkTbl3BatchConfigurationTest {
         String fileName = "nkyk3.csv";
 
         // ファイル準備(読み取り)
-        Path pathSrc = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/bank/orgin", fileName);
+        Path pathSrc = Paths.get(GetCurrentResourcePath.getBackTestResourcePath(), "sample/bank/pro", fileName);
         String srcData = Files.readString(pathSrc);
 
         // 確実にテストを行うため都度書き出し
