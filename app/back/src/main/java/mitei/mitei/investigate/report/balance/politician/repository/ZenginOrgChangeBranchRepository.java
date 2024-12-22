@@ -1,5 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,13 +39,14 @@ public interface ZenginOrgChangeBranchRepository extends JpaRepository<ZenginOrg
     /**
      * 未処理かつ変更区分条件で異動支店を抽出する
      *
-     * @param changeKbn 変更区分
+     * @param changeKbn   変更区分
      * @param isFisinshed 処理終了フラグ
-     * @param saishinKbn 最新区分
-     * @param pageable ページングDto
-     * @return 検査区結果
+     * @param saishinKbn  最新区分
+     * @param pageable    ページングDto
+     * @return 検索結果
      */
-    Page<ZenginOrgChangeBranchEntity> findByChangeKbnAndIsFinishedAndSaishinKbn(Integer changeKbn,boolean isFisinshed,Integer saishinKbn,Pageable pageable);
+    Page<ZenginOrgChangeBranchEntity> findByChangeKbnAndIsFinishedAndSaishinKbn(Integer changeKbn, boolean isFisinshed,
+            Integer saishinKbn, Pageable pageable);
 
     /**
      * 変更区分が条件通りの異動データを取得する(ただし使い方として取得確認済は除く)
@@ -54,6 +56,41 @@ public interface ZenginOrgChangeBranchRepository extends JpaRepository<ZenginOrg
      * @return 検索結果
      */
     @Query(value = "SELECT * FROM zengin_org_change_branch WHERE is_finished = 0 AND saishin_kbn = 1 AND change_kbn =?1 AND zengin_org_change_branch_id NOT IN (?2) Limit 30", nativeQuery = true)
-    List<ZenginOrgChangeBranchEntity> findByYetFinished(Integer changeKbn,List<Integer> checkedId);
+    List<ZenginOrgChangeBranchEntity> findByYetFinished(Integer changeKbn, List<Integer> checkedId);
+
+    /**
+     * 検索条件に基づいて検索する(金融機関コードなし)
+     *
+     * @param listChangeKbn 変更区分リスト
+     * @param saishinKbn    最新区分
+     * @param startTime     開始日時
+     * @param endTime       終了日時
+     * @return 検索結果
+     */
+    List<ZenginOrgChangeBranchEntity> findByChangeKbnInAndSaishinKbnAndInsertTimestampBetween(
+            List<Integer> listChangeKbn, int saishinKbn, LocalDateTime startTime, LocalDateTime endTime);
+
+    /**
+     * 検索条件に基づいて検索する(金融機関コードあり)
+     *
+     * @param listChangeKbn 変更区分リスト
+     * @param saishinKbn    最新区分
+     * @param startTime     開始日時
+     * @param endTime       終了日時
+     * @param financialCode 金融機関コード
+     * @return 検索結果
+     */
+    List<ZenginOrgChangeBranchEntity> findByChangeKbnInAndSaishinKbnAndInsertTimestampBetweenAndOrgCode(
+            List<Integer> listChangeKbn, Integer saishinKbn, LocalDateTime startTime, LocalDateTime endTime,
+            String financialCode);
+
+    /**
+     * 未処理データを抽出する
+     *
+     * @param isFisinshed 終了フラグ
+     * @param saishinKbn  最新区分
+     * @return 検索結果
+     */
+    List<ZenginOrgChangeBranchEntity> findByIsFinishedAndSaishinKbn(boolean isFisinshed, Integer saishinKbn);
 
 }
