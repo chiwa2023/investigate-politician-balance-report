@@ -278,7 +278,5 @@ const TRANSFER_STATEMENT: string = "19";
         </div>
     </div>
 
-
-
 </template>
 <style scoped></style>

@@ -23,6 +23,14 @@ const routes = [
     { path: "/show-party-usage-report", name: "ShowPartyUsageReport", component: () => import("./components/pages/show_party_usage_report/ShowPartyUsageReport.vue") },
 
     { path: "/inquire-nationarity", name: "InquireNationality", component: () => import("./components/pages/inquire_nationarity/InquireNationality.vue") },
+
+
+    // 金融機関支店更新
+    { path: "/schedule-force/regist-zengin-master", name: "ZenginBatchForce", component: () => import("./components/pages/schedule_force/regist_zengin_master/ZenginBatchForce.vue") },
+    { path: "/regist-zengin-master/upload-csv", name: "UploadCsvZenginWkTbl", component: () => import("./components/pages/regist_zengin_master/UploadCsvZenginWkTbl.vue") },
+    { path: "/regist-zengin-master/show-ido-list", name: "ShowZenginIdoList", component: () => import("./components/pages/regist_zengin_master/ShowZenginIdoList.vue") },
+
+
 ];
 
 

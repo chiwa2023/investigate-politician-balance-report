@@ -8,7 +8,6 @@ import SearchPoliticalOrganizationLeastCapsuleDto from "../../../dto/political_o
 import SessionStorageCommonCheck from "../../../dto/common_check/sessionStorageCommonCheck";
 import createCheckTransactionDto from "../../../dto/common_check/createCheckTransactionDto";
 import mockGetRelationPerson from "./mock/mockGetRelationPerson";
-import InputAddress from "../../common/input_address/InputAddress.vue";
 import InputAddressDto from "../../../dto/Input_address/inputAddressDto";
 import InputAddressCode from "../../common/input_address_code/InputAddressCode.vue";
 
