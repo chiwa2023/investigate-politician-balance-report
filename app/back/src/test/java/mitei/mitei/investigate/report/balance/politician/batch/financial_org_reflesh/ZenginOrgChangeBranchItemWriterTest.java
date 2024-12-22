@@ -57,7 +57,10 @@ class ZenginOrgChangeBranchItemWriterTest {
         entity.setZenginOrgTempoMasterId(300);
         entity.setZenginOrgTempoMasterCode(301);
         entity.setZenginOrgTempoMasterName("名称");
-        entity.setChangeKbn(4);
+        entity.setZenginOrgMoveId(1000L);
+        entity.setZenginOrgMoveCode(900);
+        entity.setZenginOrgMoveName("統合店舗");
+                entity.setChangeKbn(4);
         entity.setChangeKbnText("追加");
         entity.setIsFinished(false);
         entity.setOrgCode("400");
@@ -105,6 +108,9 @@ class ZenginOrgChangeBranchItemWriterTest {
         assertEquals(entity.getBillExchangeNumber(), entityRecorded.getBillExchangeNumber(), "   手形交換所番号が一致");
         assertEquals(entity.getOrderCode(), entityRecorded.getOrderCode(), "並び順が一致");
         assertEquals(entity.getFlgNaikokuKawase(), entityRecorded.getFlgNaikokuKawase(), "内国為替加盟フラグが一致");
+        assertEquals(entity.getZenginOrgMoveId(), entityRecorded.getZenginOrgMoveId(), "移転先Idが一致");
+        assertEquals(entity.getZenginOrgMoveCode(), entityRecorded.getZenginOrgMoveCode(), "移転先同一識別コードが一致");
+        assertEquals(entity.getZenginOrgMoveName(), entityRecorded.getZenginOrgMoveName(), "移転先名称が一致");
 
         assertEquals(1, entity.getSaishinKbn(), "最新データ");
 

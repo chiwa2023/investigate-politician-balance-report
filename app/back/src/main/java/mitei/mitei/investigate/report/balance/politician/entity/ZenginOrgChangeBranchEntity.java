@@ -11,12 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 
+
+
 /**
  * zengin_org_change_branch接続用Entity
  */
 @Entity
 @Table(name = "zengin_org_change_branch")
-public class ZenginOrgChangeBranchEntity implements Serializable, AllTabeDataHistoryInterface { // NOPMD DataClass
+public class ZenginOrgChangeBranchEntity  implements Serializable,AllTabeDataHistoryInterface{ // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -26,7 +28,7 @@ public class ZenginOrgChangeBranchEntity implements Serializable, AllTabeDataHis
 
     /** 初期データ(Integer) */
     private static final Integer INIT_Integer = 0;
-
+    
     /** 初期データ(Long) */
     private static final Long INIT_Long = 0L;
 
@@ -34,14 +36,13 @@ public class ZenginOrgChangeBranchEntity implements Serializable, AllTabeDataHis
     private static final Boolean INIT_Boolean = false;
 
     /** 初期データ(LocalcDate) */
-    private static final LocalDate INIT_LocalDate = LocalDate.of(1948, 7, 29);
+    private static final LocalDate INIT_LocalDate = LocalDate.of(1948,7,29);
 
     /** 初期データ(Timestamp) */
     private static final LocalDateTime INIT_Timestamp = INIT_LocalDate.atTime(0, 0, 0);
 
     /** 金融機関異動Id */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "zengin_org_change_branch_id")
     private Integer zenginOrgChangeBranchId = INIT_Integer;
 
@@ -109,23 +110,23 @@ public class ZenginOrgChangeBranchEntity implements Serializable, AllTabeDataHis
         this.saishinKbn = saishinKbn;
     }
 
-    /** 完了フラグ */
+    /** 処理終了フラグ */
     @Column(name = "is_finished")
     private Boolean isFinished = INIT_Boolean;
 
     /**
-     * 完了フラグを取得する
+     * 処理終了フラグを取得する
      *
-     * @return 完了フラグ
+     * @return 処理終了フラグ
      */
     public Boolean getIsFinished() {
         return isFinished;
     }
 
     /**
-     * 完了フラグを設定する
+     * 処理終了フラグを設定する
      *
-     * @param isFinished 完了フラグ
+     * @param isFinished 処理終了フラグ
      */
     public void setIsFinished(final Boolean isFinished) {
         this.isFinished = isFinished;
@@ -239,6 +240,72 @@ public class ZenginOrgChangeBranchEntity implements Serializable, AllTabeDataHis
      */
     public void setZenginOrgTempoMasterName(final String zenginOrgTempoMasterName) {
         this.zenginOrgTempoMasterName = zenginOrgTempoMasterName;
+    }
+
+    /** 移転先金融機関id */
+    @Column(name = "zengin_org_move_id")
+    private Long zenginOrgMoveId = INIT_Long;
+
+    /**
+     * 移転先金融機関idを取得する
+     *
+     * @return 移転先金融機関id
+     */
+    public Long getZenginOrgMoveId() {
+        return zenginOrgMoveId;
+    }
+
+    /**
+     * 移転先金融機関idを設定する
+     *
+     * @param zenginOrgMoveId 移転先金融機関id
+     */
+    public void setZenginOrgMoveId(final Long zenginOrgMoveId) {
+        this.zenginOrgMoveId = zenginOrgMoveId;
+    }
+
+    /** 移転先金融機関同一識別コード */
+    @Column(name = "zengin_org_move_code")
+    private Integer zenginOrgMoveCode = INIT_Integer;
+
+    /**
+     * 移転先金融機関同一識別コードを取得する
+     *
+     * @return 移転先金融機関同一識別コード
+     */
+    public Integer getZenginOrgMoveCode() {
+        return zenginOrgMoveCode;
+    }
+
+    /**
+     * 移転先金融機関同一識別コードを設定する
+     *
+     * @param zenginOrgMoveCode 移転先金融機関同一識別コード
+     */
+    public void setZenginOrgMoveCode(final Integer zenginOrgMoveCode) {
+        this.zenginOrgMoveCode = zenginOrgMoveCode;
+    }
+
+    /** 移転先金融機関名称 */
+    @Column(name = "zengin_org_move_name")
+    private String zenginOrgMoveName = INIT_String;
+
+    /**
+     * 移転先金融機関名称を取得する
+     *
+     * @return 移転先金融機関名称
+     */
+    public String getZenginOrgMoveName() {
+        return zenginOrgMoveName;
+    }
+
+    /**
+     * 移転先金融機関名称を設定する
+     *
+     * @param zenginOrgMoveName 移転先金融機関名称
+     */
+    public void setZenginOrgMoveName(final String zenginOrgMoveName) {
+        this.zenginOrgMoveName = zenginOrgMoveName;
     }
 
     /** 全銀協金融機関コード */

@@ -33,7 +33,7 @@ public class ForceRegistZenginOrgChangeController extends AbstractTemplateCheckC
 
     /** 非同期BatchService */
     @Autowired
-    private PickupIdoFinancialOrgTenpoAsyncService asyncService;
+    private PickupIdoFinancialOrgTenpoAsyncService pickupIdoFinancialOrgTenpoAsyncService;
 
 
     /**
@@ -76,7 +76,7 @@ public class ForceRegistZenginOrgChangeController extends AbstractTemplateCheckC
             /*
              * ここに固有のビジネス処理を記載する
              */
-            asyncService.practice(capsuleDto.getCheckPrivilegeDto());
+            pickupIdoFinancialOrgTenpoAsyncService.practice(capsuleDto.getCheckPrivilegeDto());
             
             TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
             resultDto.setIsOk(true);

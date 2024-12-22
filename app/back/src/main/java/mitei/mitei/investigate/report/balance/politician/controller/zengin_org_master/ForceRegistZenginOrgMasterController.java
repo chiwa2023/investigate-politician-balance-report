@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mitei.mitei.investigate.report.balance.politician.batch.financial_org_reflesh.config.CopyFinancialOrgWkTblAsyncService;
+import mitei.mitei.investigate.report.balance.politician.batch.financial_org_reflesh.config.UpdateAddAndMoveZenginMasterFromIdoAysncService;
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateFrameworkResultDto;
-import mitei.mitei.investigate.report.balance.politician.dto.zengin_org_master.RegistZenginOrgWkTbleCapsuleDto;
 
 /**
- * アップロード済みの全銀協csvファイルの内容をワークテーブルに複写するController
+ * 全銀金融機関支店ワークてブルから異動テーブル複写Controller
  */
-@RequestMapping("/zengin-org-master")
 @Controller
-public class RegistZenginOrgWkTblController extends AbstractTemplateCheckController {
+@RequestMapping("/zengin-org-master")
+public class ForceRegistZenginOrgMasterController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -33,7 +33,7 @@ public class RegistZenginOrgWkTblController extends AbstractTemplateCheckControl
 
     /** 非同期BatchService */
     @Autowired
-    private CopyFinancialOrgWkTblAsyncService copyFinancialOrgWkTblAsyncService;
+    private UpdateAddAndMoveZenginMasterFromIdoAysncService updateAddAndMoveZenginMasterFromIdoAysncService;
 
 
     /**
@@ -45,9 +45,9 @@ public class RegistZenginOrgWkTblController extends AbstractTemplateCheckControl
      * @throws AuthenticationException            権限例外
      * @throws PessimisticLockingFailureException トランザクション例外
      */
-    @PostMapping("/copy-wktbl")
+    @PostMapping("/force-copy-master")
     public ResponseEntity<TemplateFrameworkResultDto> practice(
-            final @RequestBody RegistZenginOrgWkTbleCapsuleDto capsuleDto)
+            final @RequestBody TemplateFrameworkCapsuleDto capsuleDto)
             throws SecurityException, AuthenticationException, PessimisticLockingFailureException { // NOPMD
 
         // NOTE:共通処理を行ったのちビジネス処理を行うフレームワークのため、ビジネス処理以外は丸コピすること
@@ -76,7 +76,7 @@ public class RegistZenginOrgWkTblController extends AbstractTemplateCheckControl
             /*
              * ここに固有のビジネス処理を記載する
              */
-            copyFinancialOrgWkTblAsyncService.practice(capsuleDto);
+            updateAddAndMoveZenginMasterFromIdoAysncService.practice(capsuleDto);
             
             TemplateFrameworkResultDto resultDto = new TemplateFrameworkResultDto();
             resultDto.setIsOk(true);
@@ -102,4 +102,5 @@ public class RegistZenginOrgWkTblController extends AbstractTemplateCheckControl
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 }
