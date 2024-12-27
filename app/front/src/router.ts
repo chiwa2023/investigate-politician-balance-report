@@ -23,6 +23,7 @@ const routes = [
     { path: "/show-party-usage-report", name: "ShowPartyUsageReport", component: () => import("./components/pages/show_party_usage_report/ShowPartyUsageReport.vue") },
 
     { path: "/inquire-nationarity", name: "InquireNationality", component: () => import("./components/pages/inquire_nationarity/InquireNationality.vue") },
+    { path: "/investigate-membership-fee", name: "InvestigateMembershipFee", component: () => import("./components/pages/investigate_membership_fee/InvestigateMembershipFee.vue") },
 
 
     // 金融機関支店更新

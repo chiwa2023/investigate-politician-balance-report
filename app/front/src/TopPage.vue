@@ -59,6 +59,7 @@ if (0 === securityDto.loginUserId) {
     <RouterLink to="/propose-accept-not-regist-organization">未登録政治団体登録承認</RouterLink><br>
     <hr>
     <RouterLink to="/inquire-nationarity">国籍問い合わせ(寄付者)</RouterLink><br>
+    <RouterLink to="/investigate-membership-fee">党費チェッカー</RouterLink><br>
 
     <RouterLink to="/regist-zengin-master/upload-csv">全銀協金融機関支店最新csv登録</RouterLink><br>
     <RouterLink to="/regist-zengin-master/show-ido-list">全銀協金融機関支店異動(廃止店舗異動指定)</RouterLink><br>
