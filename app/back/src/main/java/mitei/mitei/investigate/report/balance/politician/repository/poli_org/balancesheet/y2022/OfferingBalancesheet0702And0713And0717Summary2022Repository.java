@@ -25,8 +25,6 @@ public interface OfferingBalancesheet0702And0713And0717Summary2022Repository  ex
      */
     @Query(value = "SELECT * FROM offering_balancesheet_0702_and_0713_and_0717_summary_2022 WHERE saishin_kbn= 1 AND MATCH(offering_balancesheet_0702_and_0713_and_0717_summary_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
     List<OfferingBalancesheet0702And0713And0717Summary2022Entity> findFullText(String searchWords);
-
-    
     
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する
@@ -43,5 +41,7 @@ public interface OfferingBalancesheet0702And0713And0717Summary2022Repository  ex
      * @return データリスト
      */
     List<OfferingBalancesheet0702And0713And0717Summary2022Entity> findByDocumentCodeOrderByOfferingBalancesheet0702And0713And0717SummaryId(Long documentCode);
-    
+
+    List<OfferingBalancesheet0702And0713And0717Summary2022Entity> findByRelationPersonCodeDelegateInAndSaishinKbn(List<Integer> list ,Integer saishinKbn);
+
 }

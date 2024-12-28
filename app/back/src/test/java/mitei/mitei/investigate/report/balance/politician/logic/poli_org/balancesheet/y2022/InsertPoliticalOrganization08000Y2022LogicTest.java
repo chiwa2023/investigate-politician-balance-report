@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -47,6 +48,7 @@ class InsertPoliticalOrganization08000Y2022LogicTest {
     private OfferingBalancesheetDifficalt0800Recipt2022Repository offeringBalancesheetDifficalt0800Recipt2022Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void testPractice() {
 
