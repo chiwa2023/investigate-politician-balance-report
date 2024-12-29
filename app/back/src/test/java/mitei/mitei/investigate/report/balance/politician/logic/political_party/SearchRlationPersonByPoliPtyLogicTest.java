@@ -17,7 +17,6 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_party.search.SearchPoliPartyRelationPersonResultDto;
-import mitei.mitei.investigate.report.balance.politician.entity.PoliticalPartyRelationPersonEntity;
 
 /**
  * SearchRlationPersonByPoliPtyLogic単体テスト
@@ -32,30 +31,28 @@ class SearchRlationPersonByPoliPtyLogicTest {
     /** テスト対象 */
     @Autowired
     private SearchRlationPersonByPoliPtyLogic searchRlationPersonByPoliPtyLogic;
-    
+
     @Test
     @Transactional
     @Tag("TableTruncate")
     @Sql("political_party_relation_person.sql")
     void test() {
-        
-        int poliPartyCode =35;
-        SearchPoliPartyRelationPersonResultDto resultDto1 = searchRlationPersonByPoliPtyLogic.practice(poliPartyCode, 0);
-        assertEquals(12, resultDto1.getCountAll() , "全件12件");
-        assertEquals(0, resultDto1.getPosPage(),"指定ページと一致");
-        
-        List<PoliticalPartyRelationPersonEntity> list1 = resultDto1.getListPerson();
+
+        int poliPartyCode = 35;
+        SearchPoliPartyRelationPersonResultDto resultDto1 = searchRlationPersonByPoliPtyLogic.practice(poliPartyCode,
+                0);
+        assertEquals(12, resultDto1.getCountAll(), "全件12件");
+        assertEquals(0, resultDto1.getPosPage(), "指定ページと一致");
+
+        List<Integer> list1 = resultDto1.getListPerson();
 
         final String text1 = "3件取得";
         final String text2 = "codeが一致";
 
         assertEquals(12, list1.size(), text1);
-        PoliticalPartyRelationPersonEntity e1 = list1.get(0);
-        assertEquals(144, e1.getRelationPersonCode(), text2);
-        PoliticalPartyRelationPersonEntity e2 = list1.get(1);
-        assertEquals(154, e2.getRelationPersonCode(), text2);
-        PoliticalPartyRelationPersonEntity e3 = list1.get(2);
-        assertEquals(164, e3.getRelationPersonCode(), text2);
+        assertEquals(144, list1.get(0), text2);
+        assertEquals(154, list1.get(1), text2);
+        assertEquals(164, list1.get(2), text2);
     }
 
 }

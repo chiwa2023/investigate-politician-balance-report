@@ -53,7 +53,7 @@ CREATE TABLE `offering_balancesheet_0702_and_0713_and_0717_summary_2024` (
   `kohfu_keihi_shoukei` bigint DEFAULT NULL COMMENT '経費の供与した交付金に係る支出',
   `bikou_keihi_shoukei` varchar(210) DEFAULT NULL COMMENT '経費の備考',
   `goukei_sonota_keihi` bigint DEFAULT NULL COMMENT '経費項目の合計',
-  `kohfu_sonota_keihi` bigint DEFAULT NULL COMMENT '経費項目の合計のうち交付金に係る支出',
+  `kohfu_sonota_keihi` varchar(20) DEFAULT NULL COMMENT '経費項目の合計のうち交付金に係る支出',
   `bikou_sonota_keihi` varchar(210) DEFAULT NULL COMMENT '経費項目の合計備考',
   `goukei_soshiki_katsudouhi` bigint DEFAULT NULL COMMENT '組織費合計',
   `kohfu_soshiki_katsudouhi` varchar(210) DEFAULT NULL COMMENT '組織費合計のうち交付金に係る支出',
@@ -62,7 +62,7 @@ CREATE TABLE `offering_balancesheet_0702_and_0713_and_0717_summary_2024` (
   `kohfu_senkyo_katsudou` varchar(210) DEFAULT NULL COMMENT '選挙費合計のうち交付金に係る支出',
   `bikou_senkyo_katsudou` varchar(210) DEFAULT NULL COMMENT '選挙費合計備考',
   `goukei_sonota_jigyou` bigint DEFAULT NULL COMMENT 'その他事業費合計',
-  `kohfu_sonota_jigyou` bigint DEFAULT NULL COMMENT 'その他事業費合計のうち交付金に係る支出',
+  `kohfu_sonota_jigyou` varchar(20) DEFAULT NULL COMMENT 'その他事業費合計のうち交付金に係る支出',
   `bikou_sonota_jigyou` varchar(210) DEFAULT NULL COMMENT 'その他事業費合計備考',
   `goukei_hakkou` bigint DEFAULT NULL COMMENT '機関誌発行合計',
   `kohfu_hakkou` varchar(210) DEFAULT NULL COMMENT '機関誌発行合計のうち交付金に係る支出',
@@ -113,10 +113,10 @@ CREATE TABLE `offering_balancesheet_0702_and_0713_and_0717_summary_2024` (
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
   `insert_user_name` varchar(300) DEFAULT NULL COMMENT '挿入ユーザ姓名',
-  `insert_timestamp` DATETIME NULL DEFAULT NULL COMMENT '挿入タイムスタンプ',
+  `insert_timestamp` datetime DEFAULT NULL COMMENT '挿入タイムスタンプ',
   `update_user_id` bigint DEFAULT NULL COMMENT '更新ユーザId',
   `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
-  `update_timestamp` DATETIME NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
+  `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`offering_balancesheet_0702_and_0713_and_0717_summary_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

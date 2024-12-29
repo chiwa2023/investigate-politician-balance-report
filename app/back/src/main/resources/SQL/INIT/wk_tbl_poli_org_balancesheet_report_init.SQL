@@ -1,0 +1,1 @@
+TRUNCATE wk_tbl_poli_org_balancesheet_report;ALTER TABLE wk_tbl_poli_org_balancesheet_report auto_increment = 1;

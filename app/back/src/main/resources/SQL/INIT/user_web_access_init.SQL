@@ -1,0 +1,1 @@
+TRUNCATE user_web_access;ALTER TABLE user_web_access auto_increment = 1;

@@ -1,0 +1,1 @@
+TRUNCATE zengin_org_branch_master;ALTER TABLE zengin_org_branch_master auto_increment = 1;

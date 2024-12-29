@@ -1,0 +1,21 @@
+CREATE TABLE `political_party_relation_person` (
+  `political_party_relation_person_id` bigint NOT NULL AUTO_INCREMENT COMMENT 'タスク予定Id',
+  `political_party_relation_person_code` bigint DEFAULT NULL COMMENT 'タスク予定同一識別コード',
+  `saishin_kbn` int DEFAULT NULL COMMENT '最新区分',
+  `political_party_id` bigint DEFAULT NULL COMMENT '政党Id',
+  `political_party_code` int DEFAULT NULL COMMENT '政党同一識別コード',
+  `political_party_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '政党名称',
+  `relation_person_id` bigint DEFAULT NULL COMMENT '関連者id',
+  `kanrensha_code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '政治関連者コード',
+  `relation_person_code` int DEFAULT NULL COMMENT '関連者同一識別コード',
+  `relation_person_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '関連者名称',
+  `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
+  `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
+  `insert_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '挿入ユーザ姓名',
+  `insert_timestamp` datetime DEFAULT NULL COMMENT '挿入タイムスタンプ',
+  `update_user_id` bigint DEFAULT NULL COMMENT '更新ユーザId',
+  `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
+  `update_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新ユーザ姓名',
+  `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
+  PRIMARY KEY (`political_party_relation_person_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin

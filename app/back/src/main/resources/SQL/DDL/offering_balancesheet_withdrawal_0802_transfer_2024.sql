@@ -19,11 +19,11 @@ CREATE TABLE `offering_balancesheet_withdrawal_0802_transfer_2024` (
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
   `insert_user_name` varchar(300) DEFAULT NULL COMMENT '挿入ユーザ姓名',
-  `insert_timestamp` DATETIME NULL DEFAULT NULL COMMENT '挿入タイムスタンプ',
+  `insert_timestamp` datetime DEFAULT NULL COMMENT '挿入タイムスタンプ',
   `update_user_id` bigint DEFAULT NULL COMMENT '更新ユーザId',
   `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
-  `update_timestamp` DATETIME NULL DEFAULT NULL COMMENT '更新タイムスタンプ',
+  `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   `dantai_name_0820` varchar(210) DEFAULT NULL,
   PRIMARY KEY (`offering_balancesheet_withdrawal_0802_transfer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=646 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

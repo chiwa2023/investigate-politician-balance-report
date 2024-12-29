@@ -1,0 +1,1 @@
+TRUNCATE wk_tbl_poli_party_usage_report;ALTER TABLE wk_tbl_poli_party_usage_report auto_increment = 1;

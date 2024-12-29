@@ -1,0 +1,1 @@
+TRUNCATE task_info;ALTER TABLE task_info auto_increment = 1;

@@ -2,12 +2,10 @@ package mitei.mitei.investigate.report.balance.politician.dto.poli_party.search;
 
 import java.util.List;
 
-import mitei.mitei.investigate.report.balance.politician.entity.PoliticalPartyRelationPersonEntity;
-
 /**
  * 政党と関連者紐づけテーブルからページ情報も含めた検索結果格納Dto
  */
-public class SearchPoliPartyRelationPersonResultDto {
+public class SearchPoliPartyRelationPersonResultDto { // NOPMD DataClass
 
     /** 検索結果全件 */
     private long countAll;
@@ -16,7 +14,7 @@ public class SearchPoliPartyRelationPersonResultDto {
     private long posPage;
 
     /** 検索結果 */
-    private List<PoliticalPartyRelationPersonEntity> listPerson;
+    private List<Integer> listPerson;
 
     /**
      * 検索結果全件を取得する
@@ -59,7 +57,7 @@ public class SearchPoliPartyRelationPersonResultDto {
      *
      * @return 検索結果
      */
-    public List<PoliticalPartyRelationPersonEntity> getListPerson() {
+    public List<Integer> getListPerson() {
         return listPerson;
     }
 
@@ -68,7 +66,7 @@ public class SearchPoliPartyRelationPersonResultDto {
      *
      * @param listPerson 検索結果
      */
-    public void setListPerson(final List<PoliticalPartyRelationPersonEntity> listPerson) {
+    public void setListPerson(final List<Integer> listPerson) {
         this.listPerson = listPerson;
     }
 

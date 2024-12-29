@@ -1,0 +1,1 @@
+TRUNCATE send_alert_mail_2024;ALTER TABLE send_alert_mail_2024 auto_increment = 1;

@@ -1,0 +1,1 @@
+TRUNCATE batch_step_execution_seq;ALTER TABLE batch_step_execution_seq auto_increment = 1;

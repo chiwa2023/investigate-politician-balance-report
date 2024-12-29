@@ -1,0 +1,1 @@
+TRUNCATE task_plan_balancesheet_detail;ALTER TABLE task_plan_balancesheet_detail auto_increment = 1;

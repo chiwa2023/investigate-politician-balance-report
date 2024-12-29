@@ -1,0 +1,1 @@
+TRUNCATE zengin_org_branch_wk3;ALTER TABLE zengin_org_branch_wk3 auto_increment = 1;

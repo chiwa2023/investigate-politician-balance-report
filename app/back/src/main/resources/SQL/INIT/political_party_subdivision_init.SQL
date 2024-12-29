@@ -1,0 +1,1 @@
+TRUNCATE political_party_subdivision;ALTER TABLE political_party_subdivision auto_increment = 1;

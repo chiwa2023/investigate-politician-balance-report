@@ -1,0 +1,1 @@
+TRUNCATE save_file_storage_2024;ALTER TABLE save_file_storage_2024 auto_increment = 1;

@@ -1,0 +1,1 @@
+TRUNCATE offering_balancesheet_0718_estate_2024;ALTER TABLE offering_balancesheet_0718_estate_2024 auto_increment = 1;

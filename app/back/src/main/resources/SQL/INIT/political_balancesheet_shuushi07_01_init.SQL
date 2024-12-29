@@ -1,0 +1,1 @@
+TRUNCATE political_balancesheet_shuushi07_01;ALTER TABLE political_balancesheet_shuushi07_01 auto_increment = 1;

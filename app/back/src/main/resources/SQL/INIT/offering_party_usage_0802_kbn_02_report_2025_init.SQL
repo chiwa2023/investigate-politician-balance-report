@@ -1,0 +1,1 @@
+TRUNCATE offering_party_usage_0802_kbn_02_report_2025;ALTER TABLE offering_party_usage_0802_kbn_02_report_2025 auto_increment = 1;

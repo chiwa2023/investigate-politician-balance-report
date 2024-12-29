@@ -1,0 +1,1 @@
+TRUNCATE political_party_relation_person;ALTER TABLE political_party_relation_person auto_increment = 1;

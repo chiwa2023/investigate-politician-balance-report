@@ -1,0 +1,1 @@
+TRUNCATE offering_balancesheet_withdrawal_0802_transfer_2022;ALTER TABLE offering_balancesheet_withdrawal_0802_transfer_2022 auto_increment = 1;

@@ -1,0 +1,1 @@
+TRUNCATE task_plan_2022;ALTER TABLE task_plan_2022 auto_increment = 1;

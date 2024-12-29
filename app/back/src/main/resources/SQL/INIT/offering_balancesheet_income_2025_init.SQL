@@ -1,0 +1,1 @@
+TRUNCATE offering_balancesheet_income_2025;ALTER TABLE offering_balancesheet_income_2025 auto_increment = 1;

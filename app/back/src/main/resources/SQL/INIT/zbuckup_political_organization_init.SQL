@@ -1,0 +1,1 @@
+TRUNCATE zbuckup_political_organization;ALTER TABLE zbuckup_political_organization auto_increment = 1;

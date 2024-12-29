@@ -37,7 +37,7 @@ public class SearchRlationPersonByPoliPtyLogic {
 
         resultDto.setPosPage(page.getPageNumber());
         
-        resultDto.setListPerson(politicalPartyRelationPersonRepository.findByPoliticalPartyCodeAndSaishinKbn(poliPartyCode, 1, page));
+        resultDto.setListPerson(politicalPartyRelationPersonRepository.findByPoliticalPartyCode(poliPartyCode, page));
         
         return resultDto;
     }

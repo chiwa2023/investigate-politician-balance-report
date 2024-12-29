@@ -1,0 +1,1 @@
+TRUNCATE save_file_hisotry;ALTER TABLE save_file_hisotry auto_increment = 1;

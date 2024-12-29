@@ -1,0 +1,1 @@
+TRUNCATE political_organization;ALTER TABLE political_organization auto_increment = 1;

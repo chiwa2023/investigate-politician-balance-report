@@ -1,0 +1,7 @@
+CREATE TABLE `batch_job_instance` (
+  `JOB_INSTANCE_ID` bigint NOT NULL,
+  `VERSION` bigint DEFAULT NULL,
+  `JOB_NAME` varchar(100) NOT NULL,
+  `JOB_KEY` varchar(32) NOT NULL,
+  PRIMARY KEY (`JOB_INSTANCE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

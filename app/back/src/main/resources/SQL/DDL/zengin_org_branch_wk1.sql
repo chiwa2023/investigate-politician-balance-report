@@ -25,4 +25,4 @@ CREATE TABLE `zengin_org_branch_wk1` (
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`zengin_org_branch_wk1_id`),
   KEY `name` (`zengin_org_branch_wk1_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

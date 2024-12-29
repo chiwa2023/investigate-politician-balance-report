@@ -1,0 +1,1 @@
+TRUNCATE task_plan_party_usage_detail;ALTER TABLE task_plan_party_usage_detail auto_increment = 1;

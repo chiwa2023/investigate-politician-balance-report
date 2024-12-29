@@ -1,0 +1,1 @@
+TRUNCATE batch_job_execution_context;ALTER TABLE batch_job_execution_context auto_increment = 1;

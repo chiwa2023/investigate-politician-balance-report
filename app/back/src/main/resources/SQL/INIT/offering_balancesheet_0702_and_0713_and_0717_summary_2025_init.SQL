@@ -1,0 +1,1 @@
+TRUNCATE offering_balancesheet_0702_and_0713_and_0717_summary_2025;ALTER TABLE offering_balancesheet_0702_and_0713_and_0717_summary_2025 auto_increment = 1;
