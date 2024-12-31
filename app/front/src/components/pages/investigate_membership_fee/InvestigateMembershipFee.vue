@@ -11,9 +11,11 @@ import getHoukokunen from "../../../dto/houkokunen/getHoukokunen";
 import mockGetPoliParty from "./mock/mockGetPoliParty";
 import MembershipFeeSearchCapsuleDto from "../../../dto/membership_fee/membershipFeeSearchCapsuleDto";
 import FeeSummaryDto from "../../../dto/membership_fee/feeSummaryDto";
-import PoliOrgFeeInsuDto from "../../../dto/membership_fee/poliOrgFeeInsuDto";
 import mockGetFeeInsuDoubutsuList from "./mock/mockGetFeeInsuDoubutsuList";
 import mockGetFeeInsuShokubutsuList from "./mock/mockGetFeeInsuShokubutsuList";
+import SearchPoliOrgBalancesheetMembershipFeeSummaryResultInterface from "../../../dto/membership_fee/searchPoliOrgBalancesheetMembershipFeeSummaryResultDto";
+import SearchPoliOrgBalancesheetMembershipFeeSummaryResultDto from "../../../dto/membership_fee/searchPoliOrgBalancesheetMembershipFeeSummaryResultDto";
+import getPagingOption from "../paging/getPagingOption";
 
 //政治団体検索コンポーネント
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
@@ -90,7 +92,6 @@ const isPoliOrgInput = computed(() => {
 });
 
 
-
 // 検索条件
 const capsuleDto: Ref<MembershipFeeSearchCapsuleDto> = ref(new MembershipFeeSearchCapsuleDto());
 capsuleDto.value.searchConditionDto.houkokunen = 2022;
@@ -100,31 +101,41 @@ function onCancel() {
     alert("キャンセル");
 }
 
-const feeList:Ref<PoliOrgFeeInsuDto[]> =  ref([]);
+//const feeList: Ref<PoliOrgFeeInsuDto[]> = ref([]);
+
+const resultDto: Ref<SearchPoliOrgBalancesheetMembershipFeeSummaryResultInterface> = ref(new SearchPoliOrgBalancesheetMembershipFeeSummaryResultDto());
+
+    const listPage:Ref<SelectOptionInterface[]> = ref([]);
+
 function onSearchList() {
     capsuleDto.value.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
     capsuleDto.value.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
     capsuleDto.value.checkTransactionDto = createCheckTransactionDto(true);// 変更を許可しない
-    if(capsuleDto.value.searchConditionDto.poliPartyCode === "987"){
-        feeList.value = mockGetFeeInsuShokubutsuList();
-    }else{
-        feeList.value = mockGetFeeInsuDoubutsuList();
+    if (capsuleDto.value.searchConditionDto.poliPartyCode === "987") {
+        
+        resultDto.value.listSummary =mockGetFeeInsuShokubutsuList();
+        resultDto.value.countAll = 452;
+    } else {
+        resultDto.value.listSummary = mockGetFeeInsuDoubutsuList();
+        resultDto.value.countAll = 190;
     }
-} 
+
+    listPage.value = getPagingOption(resultDto.value.countAll,100);
+}
 
 const feeSummaryDto: Ref<FeeSummaryDto> = ref(new FeeSummaryDto());
 function onSearchSummary() {
     let fee = 0;
     let insu = 0;
-
-    if(feeList.value.length){
-        for(const dto of feeList.value){
+    
+    if (resultDto.value.listSummary.length) {
+        for (const dto of resultDto.value.listSummary) {
             fee += dto.fee;
             insu += dto.insu;
         }
-    }else{
+    } else {
         fee = 12345;
-            insu = 77;
+        insu = 77;
 
     }
 
@@ -178,8 +189,10 @@ function onSearchSummary() {
         水準
     </div>
     <div class="right-area">
-        <span>注意：党費の<input type="number" v-model="capsuleDto.searchConditionDto.levelAttention" class="code-input">倍</span>
-        <span class="left-space">警告：党費の<input type="number" v-model="capsuleDto.searchConditionDto.levelWarning" class="code-input">倍</span>
+        <span>注意：党費の<input type="number" v-model="capsuleDto.searchConditionDto.levelAttention"
+                class="code-input">倍</span>
+        <span class="left-space">警告：党費の<input type="number" v-model="capsuleDto.searchConditionDto.levelWarning"
+                class="code-input">倍</span>
         <span class="left-space">※テストデータでは有効ではない</span>
     </div>
     <div class="clear-both"></div>
@@ -222,6 +235,11 @@ function onSearchSummary() {
     <div class="one-line">
         確認結果<br>
 
+        <!-- ページング -->
+        <select v-model="resultDto.posPage">
+            <option v-for="option in listPage" :key="option.value" :value="option.value"> {{ option.text }}</option>
+        </select>
+
         <table>
             <tr>
                 <th>判定</th>
@@ -231,7 +249,7 @@ function onSearchSummary() {
                 <th>頭割り</th>
                 <th>代表者</th>
             </tr>
-            <tr v-for="raw of feeList" :key="raw.politicalOrgnaizationId">
+            <tr v-for="raw of resultDto.listSummary" :key="raw.politicalOrgnaizationId">
                 <td>{{ raw.rating }}</td>
                 <td>{{ raw.politicalOrgnaizationCode }}<br>{{ raw.politicalOrgnaizationName }}</td>
                 <td>{{ raw.fee }}</td>

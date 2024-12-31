@@ -24,9 +24,6 @@ export default class PoliOrgFeeInsuDto {
     /** 頭割り */
     average: number;
 
-
-
-
     constructor() {
         const INIT_NUMBER: number = 0;
         const INIT_STRING: string = "";
