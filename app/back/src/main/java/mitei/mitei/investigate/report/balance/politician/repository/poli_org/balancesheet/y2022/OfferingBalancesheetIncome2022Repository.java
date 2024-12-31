@@ -58,4 +58,35 @@ public interface OfferingBalancesheetIncome2022Repository
      */
     List<OfferingBalancesheetIncome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetIncomeId(Long documentCode);
 
+    /**
+     * 政治団体とと取引相手の同一識別コードを条件に収入を取得する
+     *
+     * @param relationCode 取引相手同一識別コード
+     * @param saishinKbn   最新区分
+     * @param poliOrgCode  政治団体同一識別コード
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetIncome2022Entity> findByRelationPoliticalOrgCodeIncomeNotAndSaishinKbnAndPoliticalOrganizationCode(
+            Integer relationCode, Integer saishinKbn, Integer poliOrgCode);
+
+    /**
+     * 原文書団体名と取引相手名を条件に収入を取得する
+     *
+     * @param partnerName 取引相手名
+     * @param saishinKbn  最新区分
+     * @param dantaiName  団体名
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetIncome2022Entity> findByPartnerNameIsNotAndSaishinKbnAndDantaiName(String partnerName,
+            Integer saishinKbn, String dantaiName);
+
+    /**
+     * 団体名称取得用に該当の最初のデータを取得する
+     *
+     * @param poliOrgCode 政治団体
+     * @param saishinKbn  最新区分
+     * @return 収入最初の1件
+     */
+    Optional<OfferingBalancesheetIncome2022Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbn(
+            Integer poliOrgCode, Integer saishinKbn);
 }

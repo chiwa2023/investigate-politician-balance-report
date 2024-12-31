@@ -10,15 +10,17 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.constants.ZenginOrgChangeKbnConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgChangeBranchEntity;
-import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBranchMasterRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgChangeBranchRepository;
+import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDtoByParamUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
+@Component
 public class EraseChangeIdoDeleteRowTasklet implements Tasklet, StepExecutionListener {
 
     /** 金融機関支店異動Repository */
@@ -44,9 +46,8 @@ public class EraseChangeIdoDeleteRowTasklet implements Tasklet, StepExecutionLis
         CheckPrivilegeDto privilegeDto = new CheckPrivilegeDto();
         if (!listDelete.isEmpty()) {
             tempEntity = listDelete.get(0);
-            privilegeDto.setLoginUserId(tempEntity.getInsertUserId());
-            privilegeDto.setLoginUserCode(tempEntity.getInsertUserCode());
-            privilegeDto.setLoginUserName(tempEntity.getInsertUserName());
+            privilegeDto = CreatePrivilegeDtoByParamUtil.practice(tempEntity.getInsertUserId(),
+                    tempEntity.getInsertUserCode(), tempEntity.getInsertUserName());
         }
 
         while (!listDelete.isEmpty()) {

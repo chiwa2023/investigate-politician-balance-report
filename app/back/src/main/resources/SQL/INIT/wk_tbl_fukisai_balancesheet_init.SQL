@@ -1,0 +1,1 @@
+TRUNCATE wk_tbl_fukisai_balancesheet;ALTER TABLE wk_tbl_fukisai_balancesheet auto_increment = 1;

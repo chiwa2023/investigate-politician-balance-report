@@ -19,6 +19,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchM
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgChangeBranchEntity;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBranchMasterRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgChangeBranchRepository;
+import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDtoByParamUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -48,13 +49,12 @@ public class EraseChangeIdoAddRowTasklet implements Tasklet, StepExecutionListen
                 .findByYetFinished(ZenginOrgChangeKbnConstants.ADD, listCheckAddId);
 
         // ユーザ設定する
-        ZenginOrgChangeBranchEntity tempEnity;
+        ZenginOrgChangeBranchEntity tempEntity;
         CheckPrivilegeDto privilegeDto = new CheckPrivilegeDto();
         if (!listAdd.isEmpty()) {
-            tempEnity = listAdd.get(0);
-            privilegeDto.setLoginUserId(tempEnity.getInsertUserId());
-            privilegeDto.setLoginUserCode(tempEnity.getInsertUserCode());
-            privilegeDto.setLoginUserName(tempEnity.getInsertUserName());
+            tempEntity = listAdd.get(0);
+            privilegeDto = CreatePrivilegeDtoByParamUtil.practice(tempEntity.getInsertUserId(),
+                    tempEntity.getInsertUserCode(), tempEntity.getInsertUserName());
         }
 
         while (!listAdd.isEmpty()) {
@@ -66,7 +66,7 @@ public class EraseChangeIdoAddRowTasklet implements Tasklet, StepExecutionListen
                 List<ZenginOrgBranchMasterEntity> listMaster = zenginOrgBranchMasterRepository
                         .findByZenginOrgTempoMasterNameAndSaishinKbn(addEntity.getZenginOrgTempoMasterName(),
                                 DataHistoryStatusConstants.INSERT.value());
-                
+
                 if (!listMaster.isEmpty()) {
                     SetTableDataHistoryUtil.practice(privilegeDto, addEntity, DataHistoryStatusConstants.UPDATE);
                     listAddHistory.add(addEntity);

@@ -12,7 +12,7 @@ public class TemplateFrameworkResultDto extends AbstractResultDto implements Ser
     /** Serialize id */
     private static final long serialVersionUID = 1L;
 
-    /** 初期データ(Long) */
+    /** 初期データ(String) */
     private static final String INIT_String = "";
 
     /** 表示メッセージ */

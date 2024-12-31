@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.EntityManagerFactory;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchMasterEntity;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBranchMasterRepository;
+import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDtoByParamUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -38,8 +38,14 @@ public class MoveZenginTenpoMasterItemWriter extends JpaItemWriter<ZenginOrgBran
         super.setEntityManagerFactory(entityManagerFactory);
     }
 
-    /** 権限確認Dto */
-    private final CheckPrivilegeDto privilegeDto = new CheckPrivilegeDto();
+    /** 操作者同一識別コード */
+    private Long userId;
+
+    /** 操作者同一識別コード */
+    private Integer userCode;
+
+    /** 操作者同一識別コード */
+    private String userName;
 
     /**
      * ログインユーザ情報を取得する
@@ -49,9 +55,9 @@ public class MoveZenginTenpoMasterItemWriter extends JpaItemWriter<ZenginOrgBran
     @BeforeStep
     public void beforeStep(final StepExecution stepExecution) {
 
-        privilegeDto.setLoginUserId(stepExecution.getJobParameters().getLong("loginUserId"));
-        privilegeDto.setLoginUserCode(Integer.parseInt(stepExecution.getJobParameters().getString("loginUserCode")));
-        privilegeDto.setLoginUserName(stepExecution.getJobParameters().getString("loginUserName"));
+        userId = stepExecution.getJobParameters().getLong("userId");
+        userCode = Math.toIntExact(stepExecution.getJobParameters().getLong("userCode"));
+        userName = stepExecution.getJobParameters().getString("userName");
     }
 
     /**
@@ -64,7 +70,7 @@ public class MoveZenginTenpoMasterItemWriter extends JpaItemWriter<ZenginOrgBran
         for (ZenginOrgBranchMasterEntity entity : items) {
             
             
-            SetTableDataHistoryUtil.practice(privilegeDto, entity, DataHistoryStatusConstants.UPDATE);
+            SetTableDataHistoryUtil.practice(CreatePrivilegeDtoByParamUtil.practice(userId, userCode, userName), entity, DataHistoryStatusConstants.UPDATE);
             listMoved.add(entity);
             listMoved.add(this.createMoveEntity(entity));
         }
@@ -79,7 +85,7 @@ public class MoveZenginTenpoMasterItemWriter extends JpaItemWriter<ZenginOrgBran
 
         ZenginOrgBranchMasterEntity entity = new ZenginOrgBranchMasterEntity();
         BeanUtils.copyProperties(entitySrc, entity);
-        SetTableDataHistoryUtil.practice(privilegeDto, entity, DataHistoryStatusConstants.INSERT);
+        SetTableDataHistoryUtil.practice(CreatePrivilegeDtoByParamUtil.practice(userId, userCode, userName), entity, DataHistoryStatusConstants.INSERT);
         entity.setZenginOrgTempoMasterId(0); // 新たな履歴用なのでauto increment
 
         return entity;

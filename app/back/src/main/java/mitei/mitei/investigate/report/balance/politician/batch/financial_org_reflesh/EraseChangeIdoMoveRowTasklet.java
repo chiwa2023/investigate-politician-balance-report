@@ -19,6 +19,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchM
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgChangeBranchEntity;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBranchMasterRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgChangeBranchRepository;
+import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDtoByParamUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
 /**
@@ -42,7 +43,7 @@ public class EraseChangeIdoMoveRowTasklet implements Tasklet, StepExecutionListe
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // ユーザ設定する
-        ZenginOrgChangeBranchEntity tempEnity;
+        ZenginOrgChangeBranchEntity tempEntity;
         CheckPrivilegeDto privilegeDto = new CheckPrivilegeDto();
 
         List<Integer> listCheckMoveId = new ArrayList<>();
@@ -51,19 +52,16 @@ public class EraseChangeIdoMoveRowTasklet implements Tasklet, StepExecutionListe
                 .findByYetFinished(ZenginOrgChangeKbnConstants.MOVE, listCheckMoveId);
 
         if (!listMove.isEmpty()) {
-            tempEnity = listMove.get(0);
-            privilegeDto.setLoginUserId(tempEnity.getInsertUserId());
-            privilegeDto.setLoginUserCode(tempEnity.getInsertUserCode());
-            privilegeDto.setLoginUserName(tempEnity.getInsertUserName());
+            tempEntity = listMove.get(0);
+            privilegeDto = CreatePrivilegeDtoByParamUtil.practice(tempEntity.getInsertUserId(),
+                    tempEntity.getInsertUserCode(), tempEntity.getInsertUserName());
         }
 
         // 取得リストが空でなく権限確認Dtoが未設定の場合
         if (!listMove.isEmpty()) {
-            tempEnity = listMove.get(0);
-            privilegeDto = new CheckPrivilegeDto();
-            privilegeDto.setLoginUserId(tempEnity.getInsertUserId());
-            privilegeDto.setLoginUserCode(tempEnity.getInsertUserCode());
-            privilegeDto.setLoginUserName(tempEnity.getInsertUserName());
+            tempEntity = listMove.get(0);
+            privilegeDto = CreatePrivilegeDtoByParamUtil.practice(tempEntity.getInsertUserId(),
+                    tempEntity.getInsertUserCode(), tempEntity.getInsertUserName());
         }
 
         while (!listMove.isEmpty()) {
