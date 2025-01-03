@@ -60,7 +60,7 @@ class PickupIdo1FinancialOrgTenpoConfigurationTest {
         JobParameters jobParameters = new JobParametersBuilder(
                 pickupIdo1FinancialOrgTenpo.getJobParametersIncrementer().getNext(new JobParameters())) // NOPMD
                 .addLocalDateTime("executeTime", LocalDateTime.now())
-                .addLong("loginUserId", 339L).addString("loginUserCode", "330").addString("loginUserName", "ユーザA")
+                .addLong("userId", 339L).addLong("userCode", 330L).addString("userName", "ユーザA")
                 .toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);

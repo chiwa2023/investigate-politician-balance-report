@@ -68,14 +68,14 @@ public class PickupIdoFinancialOrgTenpoAsyncService {
         String loginUserName = privilegeDto.getLoginUserName();
 
         final String paramKeyTime = "executeTime";
-        final String paramKeyUserId = "loginUserId";
-        final String paramKeyUserCode = "loginUserCode";
-        final String paramKeyUserName = "loginUserName";
+        final String paramKeyUserId = "userId";
+        final String paramKeyUserCode = "userCode";
+        final String paramKeyUserName = "userName";
 
         // ワークテーブル1
         JobParameters jobParametersWkTbl1 = new JobParametersBuilder() // NOPMD
                 .addLocalDateTime(paramKeyTime, LocalDateTime.now()).addLong(paramKeyUserId, loginUserId)
-                .addString(paramKeyUserCode, String.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
+                .addLong(paramKeyUserCode, Long.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
                 .toJobParameters();
 
         jobLauncher.run(pickupIdoWkTbl1Job, jobParametersWkTbl1);
@@ -83,7 +83,7 @@ public class PickupIdoFinancialOrgTenpoAsyncService {
         // ワークテーブル1
         JobParameters jobParametersWkTbl2 = new JobParametersBuilder() // NOPMD
                 .addLocalDateTime(paramKeyTime, LocalDateTime.now()).addLong(paramKeyUserId, loginUserId)
-                .addString(paramKeyUserCode, String.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
+                .addLong(paramKeyUserCode, Long.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
                 .toJobParameters();
 
         jobLauncher.run(pickupIdoWkTbl2Job, jobParametersWkTbl2);
@@ -91,7 +91,7 @@ public class PickupIdoFinancialOrgTenpoAsyncService {
         // ワークテーブル3
         JobParameters jobParametersWkTbl3 = new JobParametersBuilder() // NOPMD
                 .addLocalDateTime(paramKeyTime, LocalDateTime.now()).addLong(paramKeyUserId, loginUserId)
-                .addString(paramKeyUserCode, String.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
+                .addLong(paramKeyUserCode, Long.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
                 .toJobParameters();
 
         jobLauncher.run(pickupIdoWkTbl3Job, jobParametersWkTbl3);
@@ -99,7 +99,7 @@ public class PickupIdoFinancialOrgTenpoAsyncService {
         // ワークテーブル4
         JobParameters jobParametersWkTbl4 = new JobParametersBuilder()
                 .addLocalDateTime(paramKeyTime, LocalDateTime.now()).addLong(paramKeyUserId, loginUserId)
-                .addString(paramKeyUserCode, String.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
+                .addLong(paramKeyUserCode, Long.valueOf(loginUserCode)).addString(paramKeyUserName, loginUserName)
                 .toJobParameters();
 
         jobLauncher.run(pickupIdoWkTbl4Job, jobParametersWkTbl4);

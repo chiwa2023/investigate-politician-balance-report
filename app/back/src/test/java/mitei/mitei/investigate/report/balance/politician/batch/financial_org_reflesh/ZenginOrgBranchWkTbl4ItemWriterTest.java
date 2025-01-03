@@ -49,7 +49,7 @@ class ZenginOrgBranchWkTbl4ItemWriterTest {
     private StepExecution getStepExecution() throws URISyntaxException, IOException {
 
         JobParameters jobParameters = new JobParametersBuilder() // NOPMD
-                .addLong("loginUserId", 339L).addString("loginUserCode", "330").addString("loginUserName", "ユーザ")
+                .addLong("userId", 339L).addLong("userCode", 330L).addString("userName", "ユーザ")
                 .toJobParameters();
 
         // 起動引数付きのStepExecutionを作成

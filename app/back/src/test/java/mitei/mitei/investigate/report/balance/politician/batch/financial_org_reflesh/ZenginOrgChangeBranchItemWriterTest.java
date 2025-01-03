@@ -57,7 +57,7 @@ class ZenginOrgChangeBranchItemWriterTest {
         entity.setZenginOrgTempoMasterId(300);
         entity.setZenginOrgTempoMasterCode(301);
         entity.setZenginOrgTempoMasterName("名称");
-        entity.setZenginOrgMoveId(1000L);
+        entity.setZenginOrgMoveId(1000);
         entity.setZenginOrgMoveCode(900);
         entity.setZenginOrgMoveName("統合店舗");
                 entity.setChangeKbn(4);

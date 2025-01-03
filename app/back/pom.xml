@@ -148,6 +148,7 @@
 					<groups>NaturalTextSearch</groups>
 					<groups>LoadTest</groups>
 					<groups>SourceReflesh</groups>
+					<groups>WebClient8080</groups>
 				</configuration>
 			</plugin>
 		</plugins>

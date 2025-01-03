@@ -37,7 +37,6 @@ import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBra
 class ZenginOrgBranchWkTbl1ItemWriterTest {
     // CHECKSTYLE:OFF
 
-    
     /** テスト対象 */
     @Autowired
     private ZenginOrgBranchWkTbl1ItemWriter zenginOrgBranchWkTbl1ItemWriter;
@@ -46,11 +45,10 @@ class ZenginOrgBranchWkTbl1ItemWriterTest {
     @Autowired
     private ZenginOrgBranchWk1Repository zenginOrgBranchWk1Repository;
 
-    
     private StepExecution getStepExecution() throws URISyntaxException, IOException {
 
         JobParameters jobParameters = new JobParametersBuilder() // NOPMD
-                .addLong("loginUserId", 339L).addString("loginUserCode", "330").addString("loginUserName", "ユーザ")
+                .addLong("userId", 339L).addLong("userCode", 330L).addString("userName", "ユーザ")
                 .toJobParameters();
 
         // 起動引数付きのStepExecutionを作成
@@ -61,8 +59,8 @@ class ZenginOrgBranchWkTbl1ItemWriterTest {
     @Tag("TableTruncate")
     @Transactional
     @Sql("truncate_zengin_org_branch_wk1.sql")
-    void test()throws Exception { // NOPMD
-        
+    void test() throws Exception { // NOPMD
+
         StepExecution execution = this.getStepExecution();
         zenginOrgBranchWkTbl1ItemWriter.beforeStep(execution);
 
@@ -145,7 +143,7 @@ class ZenginOrgBranchWkTbl1ItemWriterTest {
         assertEquals(339, answerEntity00.getInsertUserId(), "");
         assertEquals(330, answerEntity00.getInsertUserCode(), "");
         assertEquals("ユーザ", answerEntity00.getInsertUserName(), "");
-        
+
     }
 
 }

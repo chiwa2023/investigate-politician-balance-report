@@ -11,7 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchWk3Entity;
 
@@ -30,6 +32,8 @@ class AddFinancialTenpoWkTbl3ItemReaderTest {
 
     @Test
     @Tag("TableTruncate")
+    @Transactional
+    @Sql({"sample/zengin_org_branch_wk3.sql","sample/zengin_org_branch_master.sql"})
     void test() throws Exception {
 
         ZenginOrgBranchWk3Entity entity1 = addFinancialTenpoWkTbl3ItemReader.read();

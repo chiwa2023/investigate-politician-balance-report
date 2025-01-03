@@ -92,10 +92,8 @@ class FinancialOrgCsvItemReaderTest {
         financialOrgCsvItemReader.beforeStep(execution);
         financialOrgCsvItemReader.open(execution.getExecutionContext());
 
-        FinancialOrgCsvDto csvDto00 = financialOrgCsvItemReader.read();
-        assertEquals("店舗コード", csvDto00.getBranchCode(), "店舗コード"); // NOPMD
         FinancialOrgCsvDto csvDto01 = financialOrgCsvItemReader.read();
-        assertEquals("011", csvDto01.getBranchCode(), "店舗コード");
+        assertEquals("011", csvDto01.getBranchCode(), "店舗コード"); // NOPMD
         FinancialOrgCsvDto csvDto02 = financialOrgCsvItemReader.read();
         assertEquals("035", csvDto02.getBranchCode(), "店舗コード");
         FinancialOrgCsvDto csvDto03 = financialOrgCsvItemReader.read();

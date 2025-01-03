@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.EntityManagerFactory;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchMasterEntity;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBranchMasterRepository;
@@ -67,26 +68,32 @@ public class MoveZenginTenpoMasterItemWriter extends JpaItemWriter<ZenginOrgBran
     public void write(final Chunk<? extends ZenginOrgBranchMasterEntity> items) {
 
         List<ZenginOrgBranchMasterEntity> listMoved = new ArrayList<>();
+        CheckPrivilegeDto privilegeDto = CreatePrivilegeDtoByParamUtil.practice(userId, userCode, userName);
         for (ZenginOrgBranchMasterEntity entity : items) {
-            
-            
-            SetTableDataHistoryUtil.practice(CreatePrivilegeDtoByParamUtil.practice(userId, userCode, userName), entity, DataHistoryStatusConstants.UPDATE);
-            listMoved.add(entity);
-            listMoved.add(this.createMoveEntity(entity));
+            listMoved.add(this.getSrcEntity(entity.getZenginOrgTempoMasterName(), privilegeDto));
+            listMoved.add(this.createMoveEntity(entity, privilegeDto));
         }
-        
+
         zenginOrgBranchMasterRepository.saveAllAndFlush(listMoved);
 
-        // TODO 仮に調査側で金融機関情報を含むマスタが存在する場合は更新する
-        // 作成側では少なくとも継続事業登録は決定。関連者マスタの参照用に口座を紐づける場合は関連者マスタ
     }
 
-    private ZenginOrgBranchMasterEntity createMoveEntity(final ZenginOrgBranchMasterEntity entitySrc) {
+    private ZenginOrgBranchMasterEntity createMoveEntity(final ZenginOrgBranchMasterEntity entitySrc,
+            final CheckPrivilegeDto privilegeDto) {
 
         ZenginOrgBranchMasterEntity entity = new ZenginOrgBranchMasterEntity();
         BeanUtils.copyProperties(entitySrc, entity);
-        SetTableDataHistoryUtil.practice(CreatePrivilegeDtoByParamUtil.practice(userId, userCode, userName), entity, DataHistoryStatusConstants.INSERT);
+        SetTableDataHistoryUtil.practice(privilegeDto, entity, DataHistoryStatusConstants.INSERT);
         entity.setZenginOrgTempoMasterId(0); // 新たな履歴用なのでauto increment
+
+        return entity;
+    }
+
+    private ZenginOrgBranchMasterEntity getSrcEntity(final String tableName, final CheckPrivilegeDto privilegeDto) {
+
+        ZenginOrgBranchMasterEntity entity = zenginOrgBranchMasterRepository
+                .findByZenginOrgTempoMasterNameAndSaishinKbn(tableName, DataHistoryStatusConstants.INSERT.value()).get(0);
+        SetTableDataHistoryUtil.practice(privilegeDto, entity, DataHistoryStatusConstants.UPDATE);
 
         return entity;
     }

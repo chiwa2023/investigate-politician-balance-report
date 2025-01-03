@@ -39,10 +39,12 @@ public class FinancialOrgCsvMasterProcessor implements ItemProcessor<FinancialOr
         Pattern pattern = Pattern.compile("^0+([0-9]+.*)");
         Matcher matcher = pattern.matcher(masterEntity.getOrgCode());
         if (matcher.matches()) {
-            masterEntity.setOrgNumber(Integer.parseInt(matcher.group(1)));    
-        }else {
+            masterEntity.setOrgNumber(Integer.parseInt(matcher.group(1)));
+        } else {
+
             // 1000番台以上0で始まらないとき
-            masterEntity.setOrgNumber(Integer.parseInt(masterEntity.getOrgCode()));    
+            // 数字でないデータの場合はPGもしくはデータに問題があるので落とす
+            masterEntity.setOrgNumber(Integer.parseInt(masterEntity.getOrgCode()));
         }
 
         return masterEntity;

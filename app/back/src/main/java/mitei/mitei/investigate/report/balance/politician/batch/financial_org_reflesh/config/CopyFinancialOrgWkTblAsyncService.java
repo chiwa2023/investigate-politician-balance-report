@@ -71,9 +71,9 @@ public class CopyFinancialOrgWkTblAsyncService {
         String loginUserName = privilegeDto.getLoginUserName();
 
         final String paramKeyTime = "executeTime";
-        final String paramKeyUserId = "loginUserId";
-        final String paramKeyUserCode = "loginUserCode";
-        final String paramKeyUserName = "loginUserName";
+        final String paramKeyUserId = "userId";
+        final String paramKeyUserCode = "userCode";
+        final String paramKeyUserName = "userName";
         final String paramKeyFile = "readFileName";
 
         JobParameters jobParametersWkTbl1 = new JobParametersBuilder() // NOPMD

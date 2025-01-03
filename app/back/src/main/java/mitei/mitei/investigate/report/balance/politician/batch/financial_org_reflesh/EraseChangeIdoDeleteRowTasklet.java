@@ -15,11 +15,16 @@ import org.springframework.stereotype.Component;
 import mitei.mitei.investigate.report.balance.politician.constants.ZenginOrgChangeKbnConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
+import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchMasterEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgChangeBranchEntity;
+import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgBranchMasterRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.ZenginOrgChangeBranchRepository;
 import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDtoByParamUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
 
+/**
+ * 削除データが積みあがっているのを確認して終了フラグとする
+ */
 @Component
 public class EraseChangeIdoDeleteRowTasklet implements Tasklet, StepExecutionListener {
 
@@ -27,6 +32,9 @@ public class EraseChangeIdoDeleteRowTasklet implements Tasklet, StepExecutionLis
     @Autowired
     private ZenginOrgChangeBranchRepository zenginOrgChangeBranchRepository;
 
+    /** 金融機関支店マスタRepository */
+    @Autowired
+    private ZenginOrgBranchMasterRepository zenginOrgBranchMasterRepository;
 
     /**
      * 実行メソッド
@@ -53,26 +61,25 @@ public class EraseChangeIdoDeleteRowTasklet implements Tasklet, StepExecutionLis
         while (!listDelete.isEmpty()) {
             List<ZenginOrgChangeBranchEntity> listDeleteHistory = new ArrayList<>(); // NOPMD
             for (ZenginOrgChangeBranchEntity deleteEntity : listDelete) {
-                
+
                 listCheckDeleteId.add(deleteEntity.getZenginOrgChangeBranchId());
 
-                
-                
-                
-                
-                SetTableDataHistoryUtil.practice(privilegeDto, deleteEntity, DataHistoryStatusConstants.UPDATE);
+                List<ZenginOrgBranchMasterEntity> listMaster = zenginOrgBranchMasterRepository
+                        .findByZenginOrgTempoMasterNameAndSaishinKbn(deleteEntity.getZenginOrgTempoMasterName(),
+                                DataHistoryStatusConstants.INSERT.value());
 
-                // TODO マスタでこのデータを使っているものを移転先に移し終えたものが存在するか確認する
-                // 調査側に現時点で移すものはない。作成側は継続事業
+                if (listMaster.isEmpty()) {
+                    SetTableDataHistoryUtil.practice(privilegeDto, deleteEntity, DataHistoryStatusConstants.UPDATE);
 
-                listDeleteHistory.add(deleteEntity);
-                listDeleteHistory.add(this.createChangeData(deleteEntity, privilegeDto));
+                    listDeleteHistory.add(deleteEntity);
+                    listDeleteHistory.add(this.createChangeData(deleteEntity, privilegeDto));
+                }
             }
 
             zenginOrgChangeBranchRepository.saveAllAndFlush(listDeleteHistory);
 
             // loopが終わったらリストを更新
-            listDelete = zenginOrgChangeBranchRepository.findByYetFinished(ZenginOrgChangeKbnConstants.ADD,
+            listDelete = zenginOrgChangeBranchRepository.findByYetFinished(ZenginOrgChangeKbnConstants.DELETE,
                     listCheckDeleteId);
         }
 

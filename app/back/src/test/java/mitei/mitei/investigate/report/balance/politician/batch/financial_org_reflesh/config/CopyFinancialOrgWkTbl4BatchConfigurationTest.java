@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.batch.financial_org_reflesh.config;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Files;
@@ -101,7 +100,7 @@ class CopyFinancialOrgWkTbl4BatchConfigurationTest {
         JobParameters jobParameters = new JobParametersBuilder(
                 copyFinancialOrgWkTbl4.getJobParametersIncrementer().getNext(new JobParameters())) // NOPMD
                 .addLocalDateTime("executeTime", LocalDateTime.now()).addString("readFileName", paramPath)
-                .addLong("loginUserId", 339L).addString("loginUserCode", "330").addString("loginUserName", "ユーザA")
+                .addLong("userId", 339L).addLong("userCode", 330L).addString("userName", "ユーザA")
                 .toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);

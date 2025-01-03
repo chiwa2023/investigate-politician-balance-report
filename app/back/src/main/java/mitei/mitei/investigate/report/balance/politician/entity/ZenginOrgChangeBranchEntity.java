@@ -244,14 +244,14 @@ public class ZenginOrgChangeBranchEntity  implements Serializable,AllTabeDataHis
 
     /** 移転先金融機関id */
     @Column(name = "zengin_org_move_id")
-    private Long zenginOrgMoveId = INIT_Long;
+    private Integer zenginOrgMoveId = INIT_Integer;
 
     /**
      * 移転先金融機関idを取得する
      *
      * @return 移転先金融機関id
      */
-    public Long getZenginOrgMoveId() {
+    public Integer getZenginOrgMoveId() {
         return zenginOrgMoveId;
     }
 
@@ -260,7 +260,7 @@ public class ZenginOrgChangeBranchEntity  implements Serializable,AllTabeDataHis
      *
      * @param zenginOrgMoveId 移転先金融機関id
      */
-    public void setZenginOrgMoveId(final Long zenginOrgMoveId) {
+    public void setZenginOrgMoveId(final Integer zenginOrgMoveId) {
         this.zenginOrgMoveId = zenginOrgMoveId;
     }
 

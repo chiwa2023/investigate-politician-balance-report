@@ -60,8 +60,8 @@ class PickupIdo4FinancialOrgTenpoConfigurationTest {
 
         JobParameters jobParameters = new JobParametersBuilder(
                 pickupIdo4FinancialOrgTenpo.getJobParametersIncrementer().getNext(new JobParameters())) // NOPMD
-                .addLocalDateTime("executeTime", LocalDateTime.now()).addLong("loginUserId", 339L)
-                .addString("loginUserCode", "330").addString("loginUserName", "ユーザA").toJobParameters();
+                .addLocalDateTime("executeTime", LocalDateTime.now()).addLong("userId", 339L)
+                .addLong("userCode", 330L).addString("userName", "ユーザA").toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
         assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode(), "作業完了Statusが戻ってくる");

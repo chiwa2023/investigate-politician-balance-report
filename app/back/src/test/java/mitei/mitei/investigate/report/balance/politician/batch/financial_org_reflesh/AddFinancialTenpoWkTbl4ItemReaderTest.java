@@ -10,7 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.investigate.report.balance.politician.entity.ZenginOrgBranchWk4Entity;
 
@@ -29,6 +31,8 @@ class AddFinancialTenpoWkTbl4ItemReaderTest {
     
     @Test
     @Tag("TableTruncate")
+    @Transactional
+    @Sql({"sample/zengin_org_branch_wk4.sql","sample/zengin_org_branch_master.sql"})
     void test()throws Exception {
         ZenginOrgBranchWk4Entity entity1 = addFinancialTenpoWkTbl4ItemReader.read();
         assertEquals("農林中央金庫札幌支店", entity1.getZenginOrgBranchWk4Name(), "金融機関店舗名称が一致");

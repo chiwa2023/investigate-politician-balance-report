@@ -24,6 +24,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import mitei.mitei.investigate.report.balance.politician.BackApplication;
@@ -79,6 +80,8 @@ class CopyFinancialOrgWkTbl1BatchConfigurationTest {
 
     @Test
     @Tag("TableTruncate")
+    //@Transactional
+    @Sql("../truncate_zengin_org_branch_wk1.sql")
     void testExecute() throws Exception {
 
         String childDir = "zengin";
@@ -101,7 +104,7 @@ class CopyFinancialOrgWkTbl1BatchConfigurationTest {
         JobParameters jobParameters = new JobParametersBuilder(
                 copyFinancialOrgWkTbl1.getJobParametersIncrementer().getNext(new JobParameters())) // NOPMD
                 .addLocalDateTime("executeTime", LocalDateTime.now()).addString("readFileName", paramPath)
-                .addLong("loginUserId", 339L).addString("loginUserCode", "330").addString("loginUserName", "ユーザA")
+                .addLong("userId", 339L).addLong("userCode", 330L).addString("userName", "ユーザA")
                 .toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);

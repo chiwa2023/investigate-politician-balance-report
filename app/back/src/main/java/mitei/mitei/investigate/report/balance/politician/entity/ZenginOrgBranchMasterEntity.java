@@ -128,6 +128,28 @@ public class ZenginOrgBranchMasterEntity implements Serializable, AllTabeDataHis
         this.saishinKbn = saishinKbn;
     }
 
+    /** 異動区分 */
+    @Column(name = "change_kbn")
+    private Integer changeKbn = INIT_Integer;
+
+    /**
+     * 異動区分を取得する
+     *
+     * @return 異動区分
+     */
+    public Integer getChangeKbn() {
+        return changeKbn;
+    }
+
+    /**
+     * 異動区分を設定する
+     *
+     * @param changeKbn 異動区分
+     */
+    public void setChangeKbn(final Integer changeKbn) {
+        this.changeKbn = changeKbn;
+    }
+
     /** 全銀協金融機関コード */
     @Column(name = "org_code")
     private String orgCode = INIT_String;

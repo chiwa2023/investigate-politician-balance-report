@@ -47,27 +47,27 @@ class EraseChangeIdoAddRowTaskletTest {
     @Sql({ "zengin_org_change_branch.sql", "zengin_org_branch_master.sql" })
     void testNoData() throws Exception {
 
-        assertEquals(4L, zenginOrgChangeBranchRepository.count(), "初期4件");
+        assertEquals(5L, zenginOrgChangeBranchRepository.count(), "初期5件");
 
         // とにかく最後まで実行(該当データがないのでなにもしない)
         assertEquals(RepeatStatus.FINISHED, eraseChangeIdoAddRowTasklet.execute(null, null),"正常に実行できる");
 
-        assertEquals(4L, zenginOrgChangeBranchRepository.count(), "履歴が積みあがらず4件のまま");
+        assertEquals(5L, zenginOrgChangeBranchRepository.count(), "履歴が積みあがらず5件のまま");
 
     }
 
     @Test
-    //@Transactional
+    @Transactional
     @Tag("TableTruncate")
     @Sql({ "zengin_org_change_branch.sql", "zengin_org_branch_master_add.sql" })
     void test() throws Exception {
 
-        assertEquals(4L, zenginOrgChangeBranchRepository.count(), "初期4件");
+        assertEquals(5L, zenginOrgChangeBranchRepository.count(), "初期5件");
 
         // 2件ある追加データを消化する
         assertEquals(RepeatStatus.FINISHED, eraseChangeIdoAddRowTasklet.execute(null, null),"正常に実行できる");
 
-        assertEquals(6L, zenginOrgChangeBranchRepository.count(), "履歴が積みあがり6件");
+        assertEquals(7L, zenginOrgChangeBranchRepository.count(), "履歴が積みあがり7件");
 
         List<Integer> listId = new ArrayList<>();
         listId.add(0);

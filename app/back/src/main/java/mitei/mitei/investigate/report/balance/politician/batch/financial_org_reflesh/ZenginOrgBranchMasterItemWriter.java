@@ -76,6 +76,7 @@ public class ZenginOrgBranchMasterItemWriter extends JpaItemWriter<ZenginOrgBran
             code++;
             SetTableDataHistoryUtil.practice(CreatePrivilegeDtoByParamUtil.practice(userId, userCode, userName), entity, DataHistoryStatusConstants.INSERT);
             entity.setZenginOrgTempoMasterCode(code);
+            entity.setZenginOrgTempoMasterId(0); // auto_increment
         }
 
         zenginOrgBranchMasterRepository.saveAll(items).size();

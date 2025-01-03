@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.service.zengin_org;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -36,7 +35,7 @@ class SearchZenginOrgChangeServiceTest {
     /** テスト対象 */
     @Autowired
     private SearchZenginOrgChangeService searchZenginOrgChangeService;
-    
+
     @Test
     @Transactional
     @Tag("TableTruncate")
@@ -46,20 +45,27 @@ class SearchZenginOrgChangeServiceTest {
         SearchZenginChangeConditionCapsuleDto capsuleDto = new SearchZenginChangeConditionCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
         capsuleDto.setMishoriOnly(true);
-        
+
         List<ZenginOrgChangeBranchEntity> list = searchZenginOrgChangeService.practice(capsuleDto);
-        assertEquals(4, list.size(),"4件取得");
+        assertEquals(6, list.size(), "6件取得");
+
+        final String textId = "指定id取得";
         
         // id順にソード
-        list.sort((e1,e2) -> e1.getZenginOrgChangeBranchId() - e2.getZenginOrgChangeBranchId());
+        list.sort((e1, e2) -> e1.getZenginOrgChangeBranchId() - e2.getZenginOrgChangeBranchId());
         ZenginOrgChangeBranchEntity entity0 = list.get(0);
-        assertEquals(94, entity0.getZenginOrgChangeBranchId(),"");
+        assertEquals(94, entity0.getZenginOrgChangeBranchId(), textId);
         ZenginOrgChangeBranchEntity entity1 = list.get(1);
-        assertEquals(96, entity1.getZenginOrgChangeBranchId(),"");
+        assertEquals(96, entity1.getZenginOrgChangeBranchId(), textId);
         ZenginOrgChangeBranchEntity entity2 = list.get(2);
-        assertEquals(98, entity2.getZenginOrgChangeBranchId(),"");
+        assertEquals(97, entity2.getZenginOrgChangeBranchId(), textId);
         ZenginOrgChangeBranchEntity entity3 = list.get(3);
-        assertEquals(99, entity3.getZenginOrgChangeBranchId(),"");
+        assertEquals(98, entity3.getZenginOrgChangeBranchId(), textId);
+        ZenginOrgChangeBranchEntity entity4 = list.get(4);
+        assertEquals(99, entity4.getZenginOrgChangeBranchId(), textId);
+        ZenginOrgChangeBranchEntity entity5 = list.get(5);
+        assertEquals(100, entity5.getZenginOrgChangeBranchId(), textId);
+
     }
 
     @Test
@@ -76,15 +82,17 @@ class SearchZenginOrgChangeServiceTest {
         capsuleDto.setFinancialCode("3100");
         capsuleDto.getListChangeKbn().add(ZenginOrgChangeKbnConstants.MOVE);
         capsuleDto.getListChangeKbn().add(ZenginOrgChangeKbnConstants.ADD);
-        
+
         List<ZenginOrgChangeBranchEntity> list = searchZenginOrgChangeService.practice(capsuleDto);
-        assertEquals(1, list.size(),"1件取得");
+        assertEquals(1, list.size(), "1件取得");
+
+        final String textId = "指定id取得";
         
         // id順にソード
-        list.sort((e1,e2) -> e1.getZenginOrgChangeBranchId() - e2.getZenginOrgChangeBranchId());
+        list.sort((e1, e2) -> e1.getZenginOrgChangeBranchId() - e2.getZenginOrgChangeBranchId());
         ZenginOrgChangeBranchEntity entity0 = list.get(0);
-        assertEquals(94, entity0.getZenginOrgChangeBranchId(),"");
-        
+        assertEquals(94, entity0.getZenginOrgChangeBranchId(), textId);
+
     }
 
     @Test
@@ -100,17 +108,22 @@ class SearchZenginOrgChangeServiceTest {
         capsuleDto.setEndDate(LocalDate.of(2025, 1, 4));
         capsuleDto.getListChangeKbn().add(ZenginOrgChangeKbnConstants.MOVE);
         capsuleDto.getListChangeKbn().add(ZenginOrgChangeKbnConstants.DELETE);
-        
+
         List<ZenginOrgChangeBranchEntity> list = searchZenginOrgChangeService.practice(capsuleDto);
-        assertEquals(2, list.size(),"2件取得");
-        
+        assertEquals(3, list.size(), "3件取得");
+
+        final String textId = "指定id取得";
+
         // id順にソード
-        list.sort((e1,e2) -> e1.getZenginOrgChangeBranchId() - e2.getZenginOrgChangeBranchId());
+        list.sort((e1, e2) -> e1.getZenginOrgChangeBranchId() - e2.getZenginOrgChangeBranchId());
         ZenginOrgChangeBranchEntity entity0 = list.get(0);
-        assertEquals(96, entity0.getZenginOrgChangeBranchId(),"");
+        assertEquals(96, entity0.getZenginOrgChangeBranchId(), textId);
 
         ZenginOrgChangeBranchEntity entity1 = list.get(1);
-        assertEquals(97, entity1.getZenginOrgChangeBranchId(),"");
+        assertEquals(97, entity1.getZenginOrgChangeBranchId(), textId);
+
+        ZenginOrgChangeBranchEntity entity2 = list.get(2);
+        assertEquals(100, entity2.getZenginOrgChangeBranchId(), textId);
 
     }
 

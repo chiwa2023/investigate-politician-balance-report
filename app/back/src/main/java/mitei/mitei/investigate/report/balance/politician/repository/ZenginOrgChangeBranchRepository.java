@@ -93,4 +93,17 @@ public interface ZenginOrgChangeBranchRepository extends JpaRepository<ZenginOrg
      */
     List<ZenginOrgChangeBranchEntity> findByIsFinishedAndSaishinKbn(boolean isFisinshed, Integer saishinKbn);
 
+    /**
+     * 未処理かつ変更区分条件で異動支店を抽出する
+     *
+     * @param changeKbn   変更区分
+     * @param isFisinshed 処理終了フラグ
+     * @param saishinKbn  最新区分
+     * @param pageable    ページングDto
+     * @return 検索結果
+     */
+    Page<ZenginOrgChangeBranchEntity> findByChangeKbnAndIsFinishedAndSaishinKbnAndZenginOrgMoveIdNotAndZenginOrgMoveCodeNotAndZenginOrgMoveNameNot(
+            Integer changeKbn, boolean isFisinshed, Integer saishinKbn, Integer moveId, Integer moveCode,
+            String moveName, Pageable pageable);
+
 }

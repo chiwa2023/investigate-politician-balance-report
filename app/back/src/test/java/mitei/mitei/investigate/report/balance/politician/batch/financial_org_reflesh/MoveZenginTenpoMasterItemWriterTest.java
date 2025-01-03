@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.batch.financial_org_reflesh;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -42,7 +41,7 @@ class MoveZenginTenpoMasterItemWriterTest {
     /** テスト対象 */
     @Autowired
     private MoveZenginTenpoMasterItemWriter moveZenginTenpoMasterItemWriter;
-    
+
     /** 全銀協記入機関・店舗マスタRepository */
     @Autowired
     private ZenginOrgBranchMasterRepository zenginOrgBranchMasterRepository;
@@ -50,7 +49,7 @@ class MoveZenginTenpoMasterItemWriterTest {
     private StepExecution getStepExecution() throws URISyntaxException, IOException {
 
         JobParameters jobParameters = new JobParametersBuilder() // NOPMD
-                .addLong("loginUserId", 339L).addString("loginUserCode", "330").addString("loginUserName", "ユーザ")
+                .addLong("userId", 339L).addLong("userCode", 330L).addString("userName", "ユーザ")
                 .toJobParameters();
 
         // 起動引数付きのStepExecutionを作成
@@ -60,16 +59,17 @@ class MoveZenginTenpoMasterItemWriterTest {
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("zengin_org_branch_master.sql")
-    void test()throws Exception {
-        
+    @Sql("zengin_org_branch_master2.sql")
+    void test() throws Exception {
+
         StepExecution execution = this.getStepExecution();
         moveZenginTenpoMasterItemWriter.beforeStep(execution);
 
-        // id=39 みずほ銀行府中銀行が移転する想定になる
+        // みずほ銀行府中支店が移転する想定になる
         ZenginOrgBranchMasterEntity entity01 = new ZenginOrgBranchMasterEntity();
         entity01.setZenginOrgTempoMasterId(39);
         entity01.setZenginOrgTempoMasterCode(33);
+        entity01.setZenginOrgTempoMasterName("みずほ銀行府中支店");
         entity01.setOrgCode("111");
         entity01.setBranchCode("112");
         entity01.setOrgNameKana("113");
@@ -94,9 +94,9 @@ class MoveZenginTenpoMasterItemWriterTest {
         assertEquals(13, listAnswer.size(), "もとの12件から1件登録");
 
         // id逆順にソート
-        listAnswer.sort((e1,e2) -> e2.getZenginOrgTempoMasterId()-e1.getZenginOrgTempoMasterId());
+        listAnswer.sort((e1, e2) -> e2.getZenginOrgTempoMasterId() - e1.getZenginOrgTempoMasterId());
         ZenginOrgBranchMasterEntity entityAnswer = listAnswer.get(0);
-        
+
         assertEquals("111", entityAnswer.getOrgCode(), "");
         assertEquals("112", entityAnswer.getBranchCode(), "");
         assertEquals("113", entityAnswer.getOrgNameKana(), "");
@@ -115,10 +115,10 @@ class MoveZenginTenpoMasterItemWriterTest {
         assertEquals("ユーザ", entityAnswer.getInsertUserName(), "");
 
         assertEquals(33, entityAnswer.getZenginOrgTempoMasterCode(), "最重要：編集前と同一識別コードが同じ");
-        
+
         Optional<ZenginOrgBranchMasterEntity> optional = zenginOrgBranchMasterRepository.findById(39);
         assertEquals(0, optional.get().getSaishinKbn(), "最重要：元データは履歴に変更");
-        
+
     }
 
 }

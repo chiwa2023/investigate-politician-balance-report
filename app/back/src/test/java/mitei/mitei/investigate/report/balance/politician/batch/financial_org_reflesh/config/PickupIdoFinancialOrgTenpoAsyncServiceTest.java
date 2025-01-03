@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.batch.financial_org_reflesh.config;
 
-import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Tag;
@@ -27,9 +26,9 @@ import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivileg
 @SpringBatchTest
 @ContextConfiguration(classes = BackApplication.class) // 全体起動
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-@Sql({ "../sammple/zengin_org_branch_master.sql", "../sammple/zengin_org_branch_wk1.sql",
-        "../sammple/zengin_org_branch_wk2.sql", "../sammple/zengin_org_branch_wk3.sql",
-        "../sammple/zengin_org_branch_wk4.sql" })
+@Sql({ "../sample/zengin_org_branch_master.sql", "../sample/zengin_org_branch_wk1.sql",
+        "../sample/zengin_org_branch_wk2.sql", "../sample/zengin_org_branch_wk3.sql",
+        "../sample/zengin_org_branch_wk4.sql" })
 class PickupIdoFinancialOrgTenpoAsyncServiceTest {
 
     /** テスト対象 */
@@ -42,10 +41,7 @@ class PickupIdoFinancialOrgTenpoAsyncServiceTest {
     void test() throws Exception {
 
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
-
         assertDoesNotThrow(() -> pickupIdoFinancialOrgTenpoAsyncService.practice(privilegeDto), "データが整備されていれば例外なく走る");
-
-        fail("Not yet implemented");
     }
 
 }

@@ -31,10 +31,9 @@ public class ForceRegistZenginOrgMasterController extends AbstractTemplateCheckC
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** 非同期BatchService */
+    /** 追加・異動非同期BatchService */
     @Autowired
     private UpdateAddAndMoveZenginMasterFromIdoAysncService updateAddAndMoveZenginMasterFromIdoAysncService;
-
 
     /**
      * XMLを解析して登録予定情報を提供する

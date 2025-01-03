@@ -53,15 +53,15 @@ class UpdateAddAndMoveZenginMasterFromIdoBatchConfigurationTest {
 
     @Test
     @Tag("TableTruncate")
-    @Sql({"../sample/zengin_org_change_branch.sql","../sample/zengin_org_branch_master.sql"})
+    @Sql({ "../sample/zengin_org_change_branch.sql", "../sample/zengin_org_branch_master.sql" })
     void testExecute() throws Exception {
 
         jobLauncherTestUtils.setJob(updateAddAndMoveZenginMasterFromIdo);
 
         JobParameters jobParameters = new JobParametersBuilder(
                 updateAddAndMoveZenginMasterFromIdo.getJobParametersIncrementer().getNext(new JobParameters())) // NOPMD
-                .addLocalDateTime("executeTime", LocalDateTime.now()).addLong("loginUserId", 339L)
-                .addString("loginUserCode", "330").addString("loginUserName", "ユーザA").toJobParameters();
+                .addLocalDateTime("executeTime", LocalDateTime.now()).addLong("userId", 339L)
+                .addLong("userCode", 330L).addString("userName", "ユーザA").toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
         assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode(), "作業完了Statusが戻ってくる");

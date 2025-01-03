@@ -57,13 +57,13 @@ public class UpdateAddAndMoveZenginMasterFromIdoAysncService {
         String loginUserName = privilegeDto.getLoginUserName();
 
         final String paramKeyTime = "executeTime";
-        final String paramKeyUserId = "loginUserId";
-        final String paramKeyUserCode = "loginUserCode";
-        final String paramKeyUserName = "loginUserName";
+        final String paramKeyUserId = "userId";
+        final String paramKeyUserCode = "userCode";
+        final String paramKeyUserName = "userName";
 
         JobParameters jobParametersMaster = new JobParametersBuilder() // NOPMD
                 .addLocalDateTime(paramKeyTime, LocalDateTime.now())
-                .addLong(paramKeyUserId, loginUserId).addString(paramKeyUserCode, String.valueOf(loginUserCode))
+                .addLong(paramKeyUserId, loginUserId).addLong(paramKeyUserCode,Long.valueOf(loginUserCode))
                 .addString(paramKeyUserName, loginUserName).toJobParameters();
 
         jobLauncher.run(updateAddAndMoveZenginMasterFromIdo, jobParametersMaster);

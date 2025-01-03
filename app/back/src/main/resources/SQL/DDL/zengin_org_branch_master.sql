@@ -3,6 +3,7 @@ CREATE TABLE `zengin_org_branch_master` (
   `zengin_org_tempo_master_code` int DEFAULT NULL COMMENT '全銀協金融機関マスタ同一識別コード',
   `zengin_org_tempo_master_name` varchar(300) DEFAULT NULL COMMENT '全銀協金融機関名称',
   `saishin_kbn` tinyint DEFAULT NULL COMMENT '最新区分',
+  `change_kbn` int DEFAULT NULL COMMENT '変更区分',
   `org_number` int DEFAULT NULL COMMENT '金融機関コード数字',
   `org_code` varchar(100) DEFAULT NULL COMMENT '全銀協金融機関コード',
   `branch_code` varchar(100) DEFAULT NULL COMMENT '全銀協金融機関支店コード',
@@ -26,4 +27,4 @@ CREATE TABLE `zengin_org_branch_master` (
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`zengin_org_tempo_master_id`),
   FULLTEXT KEY `name` (`zengin_org_tempo_master_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=459 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
