@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import mitei.mitei.investigate.report.balance.politician.batch.year_reflesh.tasklet.RefleshYearDataAccessDdlTasklet;
+import mitei.mitei.investigate.report.balance.politician.batch.year_reflesh.tasklet.RefleshYearDataAccessDdlTaskletV1;
 import mitei.mitei.investigate.report.balance.politician.batch.year_reflesh.tasklet.RefleshYearDataAccessEntityTasklet;
 import mitei.mitei.investigate.report.balance.politician.batch.year_reflesh.tasklet.RefleshYearDataAccessLogicTasklet;
 import mitei.mitei.investigate.report.balance.politician.batch.year_reflesh.tasklet.RefleshYearDataAccessLogicTestTasklet;
@@ -57,7 +57,7 @@ public class RefleshYearDataAccessObjectAndLogicBatchConfiguration {
 
     /** DDL複写タスクレット */
     @Autowired
-    private RefleshYearDataAccessDdlTasklet refleshYearDataAccessDdlTasklet;
+    private RefleshYearDataAccessDdlTaskletV1 refleshYearDataAccessDdlTaskletV1;
 
 
     /**
@@ -91,7 +91,7 @@ public class RefleshYearDataAccessObjectAndLogicBatchConfiguration {
                 .tasklet(refleshYearDataAccessRepositoryTasklet, transactionManager) // Repositoy
                 .tasklet(refleshYearDataAccessLogicTasklet, transactionManager) // Logic
                 .tasklet(refleshYearDataAccessLogicTestTasklet, transactionManager) // Logicのテスト
-                .tasklet(refleshYearDataAccessDdlTasklet, transactionManager) // DDL
+                .tasklet(refleshYearDataAccessDdlTaskletV1, transactionManager) // DDL
                 // .tasklet(null, transactionManager) ファクトリメソッドLogicに生成したLogicを導入
                 .build();
     }

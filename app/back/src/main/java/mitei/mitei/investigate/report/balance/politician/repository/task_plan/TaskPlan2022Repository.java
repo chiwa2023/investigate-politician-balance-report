@@ -11,7 +11,7 @@ import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.entity.task_plan.TaskPlan2022Entity;
 
 /**
- * task_plan_2022接続用Repository
+ * task_plan_202接続用Repository
  */
 public interface TaskPlan2022Repository extends JpaRepository<TaskPlan2022Entity, Long> {
 
@@ -22,7 +22,7 @@ public interface TaskPlan2022Repository extends JpaRepository<TaskPlan2022Entity
      * @param searchWords 検索語
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM task_plan_2022 WHERE saishin_kbn= 1 AND MATCH(task_plan_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    @Query(value = "SELECT * FROM task_plan_202 WHERE saishin_kbn= 1 AND MATCH(task_plan_202_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
     List<TaskPlan2022Entity> findFullText(String searchWords);
 
     /**
@@ -51,5 +51,28 @@ public interface TaskPlan2022Repository extends JpaRepository<TaskPlan2022Entity
      * @return 検索結果
      */
     List<TaskPlan2022Entity> findBySaishinKbnAndTaskPlanName(Integer saishinKbn, String taskName);
+
+    /**
+     * ユーザとタスクに紐づく計画を取得する
+     *
+     * @param userCode     ユーザ同一識別コード
+     * @param listTaskName タスク名称リスト
+     * @param saishinKbn   最新区分
+     * @return 検索結果
+     */
+    List<TaskPlan2022Entity> findByInsertUserCodeAndTaskPlanNameInAndSaishinKbn(Integer userCode,
+            List<String> listTaskName, Integer saishinKbn);
+
+    /**
+     * 最新の指定タスクを取得する
+     *
+     * @param taskPlanCode タスク計画同一識別コード
+     * @param userCode     ユーザ同一識別コード
+     * @param taskName     タスク名
+     * @param saishinKbn   最新区分
+     * @return 検索結果
+     */
+    List<TaskPlan2022Entity> findByTaskPlanCodeAndInsertUserCodeAndTaskPlanNameAndSaishinKbn(Integer taskPlanCode,
+            Integer userCode, String taskName, Integer saishinKbn);
 
 }

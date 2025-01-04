@@ -17,7 +17,7 @@ class ConvertAsserThatToIsEqualUtilTest {
     @Test
     void test() throws Exception {
 
-        final String root = "/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y2022";
+        final String root = "/mitei/mitei/investigate/report/balance/politician/service/offering/natural_search";
 
         ConvertAsserThatToIsEqualUtil convertAsserThatToIsEqualUtil = new ConvertAsserThatToIsEqualUtil();
 

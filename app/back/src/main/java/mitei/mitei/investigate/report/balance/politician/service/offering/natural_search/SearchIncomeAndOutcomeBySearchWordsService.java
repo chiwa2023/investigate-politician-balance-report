@@ -12,6 +12,7 @@ import mitei.mitei.investigate.report.balance.politician.logic.natural_search.Cr
 import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2022.NaturalAllSentenceSearchY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2024.NaturalAllSentenceSearchY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2025.NaturalAllSentenceSearchY2025Logic;
+// importを追加
 
 /**
  * 自然検索による項目抽出
@@ -27,12 +28,13 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
     @Autowired
     private CreateSearchCondeitionPeriodMapLogic createSearchCondeitionPeriodMapLogic;
 
+    // フィールドテンプレート始まり
     /** 登録対応年(2022) */
     private static final int YEAR_2022 = 2022;
     /** 検索実行Logic(2022年) */
-    @Autowired
+    @Autowired // 2022
     private NaturalAllSentenceSearchY2022Logic naturalAllSentenceSearchY2022Logic;
-
+    
     /** 登録対応年(2024) */
     private static final int YEAR_2024 = 2024;
     /** 検索実行Logic(2024年) */
@@ -42,9 +44,11 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
     /** 登録対応年(2025) */
     private static final int YEAR_2025 = 2025;
     /** 検索実行Logic(2025年) */
-    @Autowired
+    @Autowired // 2025
     private NaturalAllSentenceSearchY2025Logic naturalAllSentenceSearchY2025Logic;
 
+    // フィールドの追加位置
+    
     /**
      * 検索を行う
      *
@@ -78,12 +82,15 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
                     this.plusResult(searchResultDto, dtoTemp);
                     break;
 
-                // 2022年
+                // caseテンプレート始まり
+                // 2025年
                 case YEAR_2025:
                     dtoTemp = naturalAllSentenceSearchY2025Logic.practice(map.get(houkokuNen));
-                    this.plusResult(searchResultDto, dtoTemp);
-                    break;
+                    this.plusResult(searchResultDto, dtoTemp); // 2025年
+                    break; // 2025年
 
+                // caseの追加位置
+                    
                 default:
                     break;
             }

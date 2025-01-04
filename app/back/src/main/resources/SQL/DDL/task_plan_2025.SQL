@@ -7,8 +7,7 @@ CREATE TABLE `task_plan_2025` (
   `political_organization_code` int DEFAULT NULL COMMENT '政治団体同一識別コード',
   `political_organization_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '政治団体名称',
   `is_finished` tinyint(1) DEFAULT NULL COMMENT '作業終了フラグ',
-  `kengen_kbn` int DEFAULT NULL COMMENT '権限区分',
-  `list_user_code` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '対象ユーザリスト',
+  `task_level_list` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '対象ユーザリスト',
   `transfer_pass` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '遷移パス',
   `insert_user_id` bigint DEFAULT NULL COMMENT '挿入ユーザId',
   `insert_user_code` int DEFAULT NULL COMMENT '挿入ユーザ同一識別コード',
@@ -19,4 +18,4 @@ CREATE TABLE `task_plan_2025` (
   `update_user_name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`task_plan_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=225 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+) ENGINE=InnoDB AUTO_INCREMENT=268 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin

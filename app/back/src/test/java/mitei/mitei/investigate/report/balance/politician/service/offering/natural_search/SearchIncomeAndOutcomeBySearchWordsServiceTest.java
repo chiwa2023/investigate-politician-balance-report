@@ -1,10 +1,11 @@
 package mitei.mitei.investigate.report.balance.politician.service.offering.natural_search;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,6 +18,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchConditionCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeSearchLineDto;
+// 2022年
+// import追加指定位置
 
 /**
  * SearchIncomeAndOutcomeBySearchWordsService単体テスト
@@ -34,7 +37,9 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
     private SearchIncomeAndOutcomeBySearchWordsService searchIncomeAndOutcomeBySearchWordsService;
 
     @Test
+    // SQLは全文検索のためテスト直前に書き込みしても動かない
     // @Sql({"truncate_income_outcome_2022.sql","offering_balancesheet_income_horie_2022.sql","offering_balancesheet_outcome_horie_2022.sql","offering_balancesheet_income_joshi_2022.sql","offering_balancesheet_outcome_joshi_2022.sql"})
+    @Tag("NaturalTextSearch")
     void testPractice() { // NOPMD
 
         IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
@@ -50,77 +55,107 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
                 .practice(searchConditionDto);
 
         // 検索語が独自規則でフォーマットされていること
-        assertThat(searchResultDto.getSearchWords()).isEqualTo("+七日市");
+        assertEquals("+七日市", searchResultDto.getSearchWords(), "");
 
         // 件数など
-        assertThat(searchResultDto.getCountIncome()).isEqualTo(1);
-        assertThat(searchResultDto.getCountOutcome()).isEqualTo(4);
-        assertThat(searchResultDto.getIsOk()).isEqualTo(true);
-        assertThat(searchResultDto.getSuccessCount()).isEqualTo(5);
+        assertEquals(1, searchResultDto.getCountIncome(), "");
+        assertEquals(4, searchResultDto.getCountOutcome(), "");
+        assertEquals(true, searchResultDto.getIsOk(), "");
+        assertEquals(5, searchResultDto.getSuccessCount(), "");
 
         // 収入
         List<IncomeAndOutcomeSearchLineDto> listIncome = searchResultDto.getListIncome();
         IncomeAndOutcomeSearchLineDto dtoIncome1 = listIncome.get(0);
 
-        assertThat(dtoIncome1.getAccrualDate()).isEqualTo("R4/10/17");
-        assertThat(dtoIncome1.getAccrualDateValue()).isEqualTo(LocalDate.of(2022, 10, 17));
-        assertThat(dtoIncome1.getDaihyouName()).isEqualTo("大津綾香");
-        assertThat(dtoIncome1.getDantaiName()).isEqualTo("政治家女子４８党");
-        assertThat(dtoIncome1.getItemName()).isEqualTo("寄付");
-        assertThat(dtoIncome1.getKingaku()).isEqualTo(1200000L); // NOPMD
-        assertThat(dtoIncome1.getMokuteki()).isEqualTo("");
-        assertThat(dtoIncome1.getPartnerName()).isEqualTo("大桃聴");
-        assertThat(dtoIncome1.getPartnerJuusho()).isEqualTo("新潟県魚沼市七日市");
-        assertThat(dtoIncome1.getYoushikiKbn()).isEqualTo(7);
-        assertThat(dtoIncome1.getYoushikiEdaKbn()).isEqualTo(1);
-        assertThat(dtoIncome1.getKingakuIncomeText()).isEqualTo("1,200,000");
-        assertThat(dtoIncome1.getKingakuOutcomeText()).isEqualTo("");
-        assertThat(dtoIncome1.getKingakuShuukei()).isEqualTo(1_200_000L);
+        assertEquals("R4/10/17", dtoIncome1.getAccrualDate(), "");
+        assertEquals(LocalDate.of(2022, 10, 17), dtoIncome1.getAccrualDateValue(), "");
+        assertEquals("大津綾香", dtoIncome1.getDaihyouName(), "");
+        assertEquals("政治家女子４８党", dtoIncome1.getDantaiName(), "");
+        assertEquals("寄付", dtoIncome1.getItemName(), "");
+        assertEquals(1_200_000L, dtoIncome1.getKingaku(), "");
+        assertEquals("", dtoIncome1.getMokuteki(), "");
+        assertEquals("大桃聴", dtoIncome1.getPartnerName(), "");
+        assertEquals("新潟県魚沼市七日市", dtoIncome1.getPartnerJuusho(), "");
+        assertEquals(7, dtoIncome1.getYoushikiKbn(), "");
+        assertEquals(1, dtoIncome1.getYoushikiEdaKbn(), "");
+        assertEquals("1,200,000", dtoIncome1.getKingakuIncomeText(), "");
+        assertEquals("", dtoIncome1.getKingakuOutcomeText(), "");
+        assertEquals(1_200_000L, dtoIncome1.getKingakuShuukei(), "");
 
         // 支出
         List<IncomeAndOutcomeSearchLineDto> listOutcome = searchResultDto.getListOutcome();
         // 一行目
         IncomeAndOutcomeSearchLineDto dtoOutcome1 = listOutcome.get(0);
-        assertThat(dtoOutcome1.getAccrualDate()).isEqualTo("R4/4/20");
-        assertThat(dtoOutcome1.getAccrualDateValue()).isEqualTo(LocalDate.of(2022, 4, 20));
-        assertThat(dtoOutcome1.getDaihyouName()).isEqualTo("大津綾香");
-        assertThat(dtoOutcome1.getDantaiName()).isEqualTo("政治家女子４８党");
-        assertThat(dtoOutcome1.getItemName()).isEqualTo("(寄付金)寄付金");
-        assertThat(dtoOutcome1.getKingaku()).isEqualTo(300_000L); // NOPMD
-        assertThat(dtoOutcome1.getMokuteki()).isEqualTo("寄付金");
-        assertThat(dtoOutcome1.getPartnerName()).isEqualTo("NHKから国民を守る党");
-        assertThat(dtoOutcome1.getPartnerJuusho()).isEqualTo("新潟県魚沼市七日市");
-        assertThat(dtoOutcome1.getYoushikiKbn()).isEqualTo(15);
-        assertThat(dtoOutcome1.getYoushikiEdaKbn()).isEqualTo(8);
-        assertThat(dtoOutcome1.getKingakuIncomeText()).isEqualTo("");
-        assertThat(dtoOutcome1.getKingakuOutcomeText()).isEqualTo("300,000");
-        assertThat(dtoOutcome1.getKingakuShuukei()).isEqualTo(-300_000L);
+        assertEquals("R4/4/20", dtoOutcome1.getAccrualDate(), "");
+        assertEquals(LocalDate.of(2022, 4, 20), dtoOutcome1.getAccrualDateValue(), "");
+        assertEquals("大津綾香", dtoOutcome1.getDaihyouName(), "");
+        assertEquals("政治家女子４８党", dtoOutcome1.getDantaiName(), "");
+        assertEquals("(寄付金)寄付金", dtoOutcome1.getItemName(), "");
+        assertEquals(300_000L, dtoOutcome1.getKingaku(), "");
+        assertEquals("寄付金", dtoOutcome1.getMokuteki(), "");
+        assertEquals("NHKから国民を守る党", dtoOutcome1.getPartnerName(), "");
+        assertEquals("新潟県魚沼市七日市", dtoOutcome1.getPartnerJuusho(), "");
+        assertEquals(15, dtoOutcome1.getYoushikiKbn(), "");
+        assertEquals(8, dtoOutcome1.getYoushikiEdaKbn(), "");
+        assertEquals("", dtoOutcome1.getKingakuIncomeText(), "");
+        assertEquals("300,000", dtoOutcome1.getKingakuOutcomeText(), "");
+        assertEquals(-300_000L, dtoOutcome1.getKingakuShuukei(), "");
 
         // サンプルデータの特性として日付と金額が変わるだけ
         IncomeAndOutcomeSearchLineDto dtoOutcome2 = listOutcome.get(1);
-        assertThat(dtoOutcome2.getAccrualDate()).isEqualTo("R4/7/20");
-        assertThat(dtoOutcome2.getAccrualDateValue()).isEqualTo(LocalDate.of(2022, 7, 20));
-        assertThat(dtoOutcome2.getKingaku()).isEqualTo(300000L); // NOPMD
-        assertThat(dtoOutcome2.getKingakuIncomeText()).isEqualTo("");
-        assertThat(dtoOutcome2.getKingakuOutcomeText()).isEqualTo("300,000");
-        assertThat(dtoOutcome2.getKingakuShuukei()).isEqualTo(-300_000L);
+        assertEquals("R4/7/20", dtoOutcome2.getAccrualDate(), "");
+        assertEquals(LocalDate.of(2022, 7, 20), dtoOutcome2.getAccrualDateValue(), "");
+        assertEquals(300_000L, dtoOutcome2.getKingaku(), "");
+        assertEquals("", dtoOutcome2.getKingakuIncomeText(), "");
+        assertEquals("300,000", dtoOutcome2.getKingakuOutcomeText(), "");
+        assertEquals(-300_000L, dtoOutcome2.getKingakuShuukei(), "");
 
         IncomeAndOutcomeSearchLineDto dtoOutcome3 = listOutcome.get(2);
-        assertThat(dtoOutcome3.getAccrualDate()).isEqualTo("R4/10/20");
-        assertThat(dtoOutcome3.getAccrualDateValue()).isEqualTo(LocalDate.of(2022, 10, 20));
-        assertThat(dtoOutcome3.getKingaku()).isEqualTo(1500000L); // NOPMD
-        assertThat(dtoOutcome3.getKingakuIncomeText()).isEqualTo("");
-        assertThat(dtoOutcome3.getKingakuOutcomeText()).isEqualTo("1,500,000");
-        assertThat(dtoOutcome3.getKingakuShuukei()).isEqualTo(-1_500_000L);
+        assertEquals("R4/10/20", dtoOutcome3.getAccrualDate(), "");
+        assertEquals(LocalDate.of(2022, 10, 20), dtoOutcome3.getAccrualDateValue(), "");
+        assertEquals(1_500_000L, dtoOutcome3.getKingaku(), "");
+        assertEquals("", dtoOutcome3.getKingakuIncomeText(), "");
+        assertEquals("1,500,000", dtoOutcome3.getKingakuOutcomeText(), "");
+        assertEquals(-1_500_000L, dtoOutcome3.getKingakuShuukei(), "");
 
         IncomeAndOutcomeSearchLineDto dtoOutcome4 = listOutcome.get(3);
-        assertThat(dtoOutcome4.getAccrualDate()).isEqualTo("R4/10/20");
-        assertThat(dtoOutcome4.getAccrualDateValue()).isEqualTo(LocalDate.of(2022, 10, 20));
-        assertThat(dtoOutcome4.getKingaku()).isEqualTo(300000L); // NOPMD
-        assertThat(dtoOutcome4.getKingakuIncomeText()).isEqualTo("");
-        assertThat(dtoOutcome4.getKingakuOutcomeText()).isEqualTo("300,000");
-        assertThat(dtoOutcome4.getKingakuShuukei()).isEqualTo(-300_000L);
+        assertEquals("R4/10/20", dtoOutcome4.getAccrualDate(), "");
+        assertEquals(LocalDate.of(2022, 10, 20), dtoOutcome4.getAccrualDateValue(), "");
+        assertEquals(300_000L, dtoOutcome4.getKingaku(), "");
+        assertEquals("", dtoOutcome4.getKingakuIncomeText(), "");
+        assertEquals("300,000", dtoOutcome4.getKingakuOutcomeText(), "");
+        assertEquals(-300_000L, dtoOutcome4.getKingakuShuukei(), "");
 
     }
+
+    // テンプレート開始位置
+    @Test
+    @Tag("NaturalTextSearch")
+    // @Sql({"truncate_income_outcome_2022.sql","offering_balancesheet_income_horie_2022.sql","offering_balancesheet_outcome_horie_2022.sql","offering_balancesheet_income_joshi_2022.sql","offering_balancesheet_outcome_joshi_2022.sql"})
+    void testPractice2022() {
+        IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
+        searchConditionDto.setUserKeyWords("七日市");
+        searchConditionDto.setIsSearchIncome(true);
+        searchConditionDto.setIsSearchOutcome(true);
+        searchConditionDto.setOffsetIncome(0);
+        searchConditionDto.setOffsetOutcome(0);
+        searchConditionDto.setStartDate(LocalDate.of(2022, 01, 01));
+        searchConditionDto.setEndDate(LocalDate.of(2022, 12, 31));
+
+        IncomeAndOutcomeNaturalSearchResultDto searchResultDto = searchIncomeAndOutcomeBySearchWordsService
+                .practice(searchConditionDto);
+
+        // 検索語が独自規則でフォーマットされていること
+        assertEquals("+七日市", searchResultDto.getSearchWords(), "");
+
+        // 件数など
+        assertEquals(1, searchResultDto.getCountIncome(), "収入件数");
+        assertEquals(4, searchResultDto.getCountOutcome(), "支出件数");
+        assertEquals(true, searchResultDto.getIsOk(), "出力結果");
+        assertEquals(5, searchResultDto.getSuccessCount(), "合計件数");
+    }
+    // テンプレート終了位置
+
+// 追加位置    
 
 }

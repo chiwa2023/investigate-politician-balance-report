@@ -10,6 +10,8 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.entity.TaskInfoEntity;
 import mitei.mitei.investigate.report.balance.politician.logic.task_plan.y2022.InsertTaskPlanY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.task_plan.y2024.InsertTaskPlanY2024Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.task_plan.y2023.InsertTaskPlanY2023Logic;
+// importを追加
 
 /**
  * タスク計画データを挿入する
@@ -17,6 +19,7 @@ import mitei.mitei.investigate.report.balance.politician.logic.task_plan.y2024.I
 @Component
 public class InsertTaskPlanFactoryLogic {
 
+    // フィールドテンプレート始まり
     /** 2024年 */
     private static final int YEAR_2024 = 2024;
     /** 2024年Loigc */
@@ -35,6 +38,14 @@ public class InsertTaskPlanFactoryLogic {
     @Autowired // 2025
     private InsertTaskPlanY2024Logic insertTaskPlanY2025Logic;
 
+    /** 2023年 */
+    private static final int YEAR_2023 = 2023;
+    /** 2023年Loigc */
+    @Autowired // 2023
+    private InsertTaskPlanY2023Logic insertTaskPlanY2023Logic;
+
+    // フィールドの追加位置
+
     /**
      * 挿入作業を行う
      *
@@ -48,7 +59,6 @@ public class InsertTaskPlanFactoryLogic {
 
         switch (year) {
             // caseテンプレート始まり
-
             // 2024年
             case YEAR_2024:
                 return insertTaskPlanY2024Logic.practice(privilegeDto, listTask);
@@ -61,7 +71,12 @@ public class InsertTaskPlanFactoryLogic {
             case YEAR_2025:
                 return insertTaskPlanY2025Logic.practice(privilegeDto, listTask);
 
+            // 2023年
+            case YEAR_2023:
+                return insertTaskPlanY2023Logic.practice(privilegeDto, listTask);
+
             // caseの追加位置
+                
             default:
                 return 0;
         }

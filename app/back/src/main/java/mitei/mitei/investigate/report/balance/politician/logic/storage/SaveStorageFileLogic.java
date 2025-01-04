@@ -10,10 +10,12 @@ import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorageResultDto;
+import mitei.mitei.investigate.report.balance.politician.util.SaveFileOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.logic.storage.y2022.SaveStorageFileY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.storage.y2024.SaveStorageFileY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.storage.y2025.SaveStorageFileY2025Logic;
-import mitei.mitei.investigate.report.balance.politician.util.SaveFileOnlyUtil;
+import mitei.mitei.investigate.report.balance.politician.logic.storage.y2023.SaveStorageFileY2023Logic;
+// importを追加
 
 /**
  * アップロードされたファイルをストレージに格納する
@@ -28,10 +30,11 @@ public class SaveStorageFileLogic {
     /** Base64ヘッダ */
     private static final String BASE64_HEADER = ";base64,";
 
+    // フィールドテンプレート始まり
     /** 処理年(2022) */
     private static final int YEAR_2022 = 2022;
     /** ファイル保存Logic(2022年) */
-    @Autowired
+    @Autowired // 2022
     private SaveStorageFileY2022Logic saveStorageFileY2022Logic;
 
     /** 処理年(2024) */
@@ -45,6 +48,13 @@ public class SaveStorageFileLogic {
     /** ファイル保存Logic(2025年) */
     @Autowired
     private SaveStorageFileY2025Logic saveStorageFileY2025Logic;
+
+    /** 処理年(2023) */
+    private static final int YEAR_2023 = 2023;
+    /** ファイル保存Logic(2023年) */
+    private SaveStorageFileY2023Logic saveStorageFileY2023Logic;
+
+    // フィールドの追加位置
 
     /**
      * ファイル保存とDB保存記録処理を行う
@@ -110,6 +120,7 @@ public class SaveStorageFileLogic {
             case YEAR_2022:
                 return saveStorageFileY2022Logic.practice(privilegeDto, unixTime, childDir, fileName);
 
+            // caseテンプレート始まり
             // 2024年
             case YEAR_2024:
                 return saveStorageFileY2024Logic.practice(privilegeDto, unixTime, childDir, fileName);
@@ -117,6 +128,12 @@ public class SaveStorageFileLogic {
             // 2025年
             case YEAR_2025:
                 return saveStorageFileY2025Logic.practice(privilegeDto, unixTime, childDir, fileName);
+
+            // 2023年
+            case YEAR_2023:
+                return saveStorageFileY2023Logic.practice(privilegeDto, unixTime, childDir, fileName);
+
+            // caseの追加位置
 
             default:
                 throw new IllegalArgumentException("Unexpected value: " + year);

@@ -24,6 +24,10 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHi
 import mitei.mitei.investigate.report.balance.politician.entity.task_plan.TaskPlan2024Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.task_plan.TaskPlan2024Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
+// 2022年
+// 2025年
+// 2023年
+// import追加指定位置
 
 /**
  * UpdateFinishedByTaskNameUserLogic単体テスト
@@ -45,7 +49,7 @@ class UpdateFinishedByTaskNameUserLogicTest {
     private TaskPlan2024Repository taskPlan2024Repository;
 
     @Test
-    @Tag("TableTruncate")
+    @Tag("TableTruncate") // NOPMD
     @Transactional
     @Sql("update_task_plan_2024.sql")
     void test() {
@@ -74,11 +78,28 @@ class UpdateFinishedByTaskNameUserLogicTest {
 
     }
 
+    // テンプレート開始位置
+    @Test
+    @Tag("TableTruncate")
+    @Transactional
+    @Sql("update_task_plan_2022.sql")
+    void testSuspended2022() {
+
+        final int taskPlanCode = 0;
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+        final String taskName = "";
+        final int year = 2022;
+
+        assertEquals(0, updateFinishedByTaskNameUserLogic.practice(taskPlanCode, privilegeDto, taskName, year),
+                "更新する元データが不正"); // NOPMD
+    }
+    // テンプレート終了位置
+
     @Test
     @Tag("TableTruncate")
     @Transactional
     @Sql("update_task_plan_2024.sql")
-    void testSuspended() {
+    void testSuspended2024() {
 
         final int taskPlanCode = 0;
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
@@ -89,5 +110,37 @@ class UpdateFinishedByTaskNameUserLogicTest {
                 "更新する元データが不正");
 
     }
+
+    @Test
+    @Tag("TableTruncate")
+    @Transactional
+    @Sql("update_task_plan_2025.sql")
+    void testSuspended2025() {
+
+        final int taskPlanCode = 0;
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+        final String taskName = "";
+        final int year = 2025;
+
+        assertEquals(0, updateFinishedByTaskNameUserLogic.practice(taskPlanCode, privilegeDto, taskName, year),
+                "更新する元データが不正");
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    @Transactional
+    @Sql("update_task_plan_2023.sql")
+    void testSuspended2023() {
+
+        final int taskPlanCode = 0;
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+        final String taskName = "";
+        final int year = 2023;
+
+        assertEquals(0, updateFinishedByTaskNameUserLogic.practice(taskPlanCode, privilegeDto, taskName, year),
+                "更新する元データが不正");
+    }
+
+// 追加位置
 
 }

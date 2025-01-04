@@ -52,4 +52,27 @@ public interface TaskPlan2025Repository extends JpaRepository<TaskPlan2025Entity
      */
     List<TaskPlan2025Entity> findBySaishinKbnAndTaskPlanName(Integer saishinKbn, String taskName);
 
+    /**
+     * ユーザとタスクに紐づく計画を取得する
+     *
+     * @param userCode     ユーザ同一識別コード
+     * @param listTaskName タスク名称リスト
+     * @param saishinKbn   最新区分
+     * @return 検索結果
+     */
+    List<TaskPlan2025Entity> findByInsertUserCodeAndTaskPlanNameInAndSaishinKbn(Integer userCode,
+            List<String> listTaskName, Integer saishinKbn);
+
+    /**
+     * 最新の指定タスクを取得する
+     *
+     * @param taskPlanCode タスク計画同一識別コード
+     * @param userCode     ユーザ同一識別コード
+     * @param taskName     タスク名
+     * @param saishinKbn   最新区分
+     * @return 検索結果
+     */
+    List<TaskPlan2025Entity> findByTaskPlanCodeAndInsertUserCodeAndTaskPlanNameAndSaishinKbn(Integer taskPlanCode,
+            Integer userCode, String taskName, Integer saishinKbn);
+
 }
