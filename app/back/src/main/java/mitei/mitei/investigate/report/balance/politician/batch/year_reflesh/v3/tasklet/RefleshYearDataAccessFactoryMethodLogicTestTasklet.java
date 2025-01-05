@@ -14,6 +14,7 @@ import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -25,6 +26,7 @@ import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentRes
 /**
  * ファクトリメソッドLogic単体テストの年更新処理を追加する
  */
+@StepScope
 @Component
 public class RefleshYearDataAccessFactoryMethodLogicTestTasklet implements Tasklet, StepExecutionListener {
 

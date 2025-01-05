@@ -9,6 +9,8 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.InsertPoliticalOrganizationSheet0701And0720Y2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.InsertPoliticalOrganizationSheet0701And0720Y2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.InsertPoliticalOrganizationSheet0701And0720Y2025Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2023.InsertPoliticalOrganizationSheet0701And0720Y2023Logic;
+// importを追加
 
 /**
  * 政治資金収支報告書の表紙、宣誓書、文書属性を保存する
@@ -16,10 +18,11 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
 @Component
 public class InsertPoliticalOrganizationSheet0701And0720Logic {
 
+    // フィールドテンプレート始まり
     /** 登録対応年(2022) */
     private static final int YEAR_2022 = 2022;
     /** 登録対応年(2022)Logic */
-    @Autowired
+    @Autowired // 2022
     private InsertPoliticalOrganizationSheet0701And0720Y2022Logic insertPoliticalOrganizationSheet0701And0720Y2022Logic;
 
     /** 登録対応年(2024) */
@@ -34,7 +37,12 @@ public class InsertPoliticalOrganizationSheet0701And0720Logic {
     @Autowired
     private InsertPoliticalOrganizationSheet0701And0720Y2025Logic insertPoliticalOrganizationSheet0701And0720Y2025Logic;
 
-    // NOTE:コンポーネントとswitchラベル追加位置
+    /** 登録対応年(2023) */
+    private static final int YEAR_2023 = 2023;
+    /** 登録対応年(2023)Logic */
+    private InsertPoliticalOrganizationSheet0701And0720Y2023Logic insertPoliticalOrganizationSheet0701And0720Y2023Logic;
+
+    // フィールドの追加位置
 
     /**
      * 登録作業を行う
@@ -49,6 +57,8 @@ public class InsertPoliticalOrganizationSheet0701And0720Logic {
 
         Long code = 0L;
         switch (documentPropertyDto.getHoukokuNen()) {
+
+            // caseテンプレート始まり
             // 2022年
             case YEAR_2022:
                 code = insertPoliticalOrganizationSheet0701And0720Y2022Logic.practice(documentPropertyDto, allBookDto,
@@ -65,7 +75,13 @@ public class InsertPoliticalOrganizationSheet0701And0720Logic {
                         checkPrivilegeDto);
                 break;
 
-            // NOTE:Logic実行追加位置
+            // 2023年
+            case YEAR_2023:
+                code = insertPoliticalOrganizationSheet0701And0720Y2023Logic.practice(documentPropertyDto, allBookDto,
+                        checkPrivilegeDto);
+                break;
+
+            // caseの追加位置
 
             default:
                 break;

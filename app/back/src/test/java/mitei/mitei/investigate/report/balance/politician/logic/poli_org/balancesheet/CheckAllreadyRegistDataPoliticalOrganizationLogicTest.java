@@ -2,10 +2,12 @@ package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balance
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +20,9 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
+// 2022
+// 2024
+// import追加指定位置
 
 /**
  * CheckAllreadyRegistDataLogic単体テスト
@@ -32,6 +37,9 @@ class CheckAllreadyRegistDataPoliticalOrganizationLogicTest {
     /** テスト対象 */
     @Autowired
     private CheckAllreadyRegistDataPoliticalOrganizationLogic checkAllreadyRegistDataPoliticalOrganizationLogic;
+    
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
 
     @Test
     @Transactional
@@ -92,4 +100,25 @@ class CheckAllreadyRegistDataPoliticalOrganizationLogicTest {
 
     }
 
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("check_allready_regist_data.sql")
+    void testPractice2022() {
+
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("check_allready_regist_data.sql")
+    void testPractice2024() {
+
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 }

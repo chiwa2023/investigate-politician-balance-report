@@ -1,6 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,12 +22,15 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllSheet
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet080200WithdrawalItemsByTransferDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetWithdrawal0802Transfer2024Entity;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetWithdrawal0802Transfer2025Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheetWithdrawal0802Transfer2024Repository;
-import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetWithdrawal0802Transfer2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetWithdrawal0802Transfer2024Entity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetWithdrawal0802Transfer2025Entity;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheetWithdrawal0802Transfer2022Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheetWithdrawal0802Transfer2024Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetWithdrawal0802Transfer2025Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2023.OfferingBalancesheetWithdrawal0802Transfer2023Repository;
+// import追加指定位置
 
 /**
  * InsertPoliticalOrganization0802Logic単体テスト
@@ -48,14 +54,27 @@ class InsertPoliticalOrganization0802LogicTest {
     @Autowired
     private OfferingBalancesheetWithdrawal0802Transfer2024Repository offeringBalancesheetWithdrawal0802Transfer2024Repository;
 
+    /** 様式08その2 支出項目別金額の内訳Repository */
+    @Autowired
+    private OfferingBalancesheetWithdrawal0802Transfer2022Repository offeringBalancesheetWithdrawal0802Transfer2022Repository;
+
+    /** 様式08その2 支出項目別金額の内訳Repository */
+    @Autowired
+    private OfferingBalancesheetWithdrawal0802Transfer2023Repository offeringBalancesheetWithdrawal0802Transfer2023Repository;
 
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;
+    
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
+    // テスト初期状態説明
+    private static final String TEST_INIT_COUNT = "初期は1件"; // NOPMD
 
     @Test
     @Transactional
-    @Tag("TableTruncate")
+    @Tag(TEST_TAG)
     void testPractice2024() {
 
         Long documentCode = 3434L;
@@ -123,12 +142,10 @@ class InsertPoliticalOrganization0802LogicTest {
         assertThat(entity.getTekiyou()).isEqualTo(sheet1.getTekiyou());
         assertThat(entity.getDantaiName0820()).isEqualTo(sheet1.getDantaiName0820());
     }
-
-    
-    
     
     @Test
     @Transactional
+    @Tag(TEST_TAG)
     void testPractice2025() {
 
         Long documentCode = 3434L;
@@ -196,5 +213,32 @@ class InsertPoliticalOrganization0802LogicTest {
         assertThat(entity.getTekiyou()).isEqualTo(sheet1.getTekiyou());
         assertThat(entity.getDantaiName0820()).isEqualTo(sheet1.getDantaiName0820());
     }
+
+
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2022/offering_balancesheet_withdrawal_0802_transfer_2022.sql")
+    void testPractice2022() {
+        
+        assertEquals(1L , offeringBalancesheetWithdrawal0802Transfer2022Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2023/offering_balancesheet_withdrawal_0802_transfer_2023.sql")
+    void testPractice2023() {
+        
+        assertEquals(1L , offeringBalancesheetWithdrawal0802Transfer2023Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 
 }

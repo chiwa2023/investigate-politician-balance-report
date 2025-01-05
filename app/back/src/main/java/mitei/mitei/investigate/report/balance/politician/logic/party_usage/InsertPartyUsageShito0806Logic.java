@@ -9,6 +9,8 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2022.InsertPartyUsageShito0806Y2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2024.InsertPartyUsageShito0806Y2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2025.InsertPartyUsageShito0806Y2025Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2023.InsertPartyUsageShito0806Y2023Logic;
+// importを追加
 
 /**
  * 使途報告書様式8その6を保存する
@@ -16,10 +18,11 @@ import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2025
 @Component
 public class InsertPartyUsageShito0806Logic {
 
+    // フィールドテンプレート始まり
     /** 登録対応年(2022) */
     private static final int YEAR_2022 = 2022;
     /** 登録対応年(2022)Logic */
-    @Autowired
+    @Autowired // 2022
     private InsertPartyUsageShito0806Y2022Logic insertPartyUsageShito0806Y2022Logic;
 
     /** 登録対応年(2024) */
@@ -34,7 +37,12 @@ public class InsertPartyUsageShito0806Logic {
     @Autowired
     private InsertPartyUsageShito0806Y2025Logic insertPartyUsageShito0806Y2025Logic;
 
-    // NOTE:コンポーネントとswitchラベル追加位置
+    /** 登録対応年(2023) */
+    private static final int YEAR_2023 = 2023;
+    /** 登録対応年(2023)Logic */
+    private InsertPartyUsageShito0806Y2023Logic insertPartyUsageShito0806Y2023Logic;
+
+    // フィールドの追加位置
 
     /** 様式8その6区分1 */
     public static final int KUBUN01 = 1;
@@ -55,11 +63,13 @@ public class InsertPartyUsageShito0806Logic {
 
         int size = 0;
         switch (documentPropertyDto.getNendo()) {
+            
+            // caseテンプレート始まり
             // 2022年
             case YEAR_2022:
                 size = insertPartyUsageShito0806Y2022Logic.practice(documentCode, documentPropertyDto, shito0806Dto,
-                        checkPrivilegeDto);
-                break;
+                        checkPrivilegeDto); // 2022
+                break; // 2022
 
             // 2024年
             case YEAR_2024:
@@ -73,7 +83,13 @@ public class InsertPartyUsageShito0806Logic {
                         checkPrivilegeDto);
                 break;
 
-            // NOTE:Logic実行追加位置
+            // 2023年
+            case YEAR_2023:
+                size = insertPartyUsageShito0806Y2023Logic.practice(documentCode, documentPropertyDto, shito0806Dto,
+                        checkPrivilegeDto);
+                break;
+
+            // caseの追加位置
 
             default:
                 break;

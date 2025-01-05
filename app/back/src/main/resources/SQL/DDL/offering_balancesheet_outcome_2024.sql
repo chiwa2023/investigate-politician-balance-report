@@ -47,5 +47,6 @@ CREATE TABLE `offering_balancesheet_outcome_2024` (
   `update_user_code` int DEFAULT NULL COMMENT '更新ユーザ同一識別コード',
   `update_user_name` varchar(300) DEFAULT NULL COMMENT '更新ユーザ姓名',
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
-  PRIMARY KEY (`offering_balancesheet_outcome_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1611 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+  PRIMARY KEY (`offering_balancesheet_outcome_id`),
+  FULLTEXT KEY `search_words` (`search_words`) /*!50100 WITH PARSER `ngram` */ 
+) ENGINE=InnoDB AUTO_INCREMENT=19838 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

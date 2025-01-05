@@ -12,6 +12,7 @@ import mitei.mitei.investigate.report.balance.politician.logic.natural_search.Cr
 import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2022.NaturalAllSentenceSearchY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2024.NaturalAllSentenceSearchY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2025.NaturalAllSentenceSearchY2025Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.natural_search.y2023.NaturalAllSentenceSearchY2023Logic;
 // importを追加
 
 /**
@@ -46,6 +47,12 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
     /** 検索実行Logic(2025年) */
     @Autowired // 2025
     private NaturalAllSentenceSearchY2025Logic naturalAllSentenceSearchY2025Logic;
+
+    /** 登録対応年(2023) */
+    private static final int YEAR_2023 = 2023;
+    /** 検索実行Logic(2023年) */
+    @Autowired // 2023
+    private NaturalAllSentenceSearchY2023Logic naturalAllSentenceSearchY2023Logic;
 
     // フィールドの追加位置
     
@@ -88,6 +95,12 @@ public class SearchIncomeAndOutcomeBySearchWordsService {
                     dtoTemp = naturalAllSentenceSearchY2025Logic.practice(map.get(houkokuNen));
                     this.plusResult(searchResultDto, dtoTemp); // 2025年
                     break; // 2025年
+
+                // 2023年
+                case YEAR_2023:
+                    dtoTemp = naturalAllSentenceSearchY2023Logic.practice(map.get(houkokuNen));
+                    this.plusResult(searchResultDto, dtoTemp); // 2023年
+                    break; // 2023年
 
                 // caseの追加位置
                     

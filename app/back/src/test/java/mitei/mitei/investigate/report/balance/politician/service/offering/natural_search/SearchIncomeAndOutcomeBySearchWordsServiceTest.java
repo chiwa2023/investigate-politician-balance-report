@@ -19,7 +19,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balanceshe
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeSearchLineDto;
 // 2022年
-// import追加指定位置
+// importを追加
 
 /**
  * SearchIncomeAndOutcomeBySearchWordsService単体テスト
@@ -36,14 +36,24 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
     @Autowired
     private SearchIncomeAndOutcomeBySearchWordsService searchIncomeAndOutcomeBySearchWordsService;
 
+    // テストタグ自然検索
+    private static final String TAG_SEARCH = "NaturalTextSearch"; // NOPMD
+
+    // 年処理テスト用テキスト
+    private static final String incomeText = "収入件数"; // NOPMD
+    private static final String outcomeText = "支出件数"; // NOPMD
+    private static final String isOkText = "出力結果"; // NOPMD
+    private static final String isSumText = "合計件数"; // NOPMD
+
+    
     @Test
     // SQLは全文検索のためテスト直前に書き込みしても動かない
     // @Sql({"truncate_income_outcome_2022.sql","offering_balancesheet_income_horie_2022.sql","offering_balancesheet_outcome_horie_2022.sql","offering_balancesheet_income_joshi_2022.sql","offering_balancesheet_outcome_joshi_2022.sql"})
-    @Tag("NaturalTextSearch")
+    @Tag(TAG_SEARCH)
     void testPractice() { // NOPMD
 
         IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
-        searchConditionDto.setUserKeyWords("七日市");
+        searchConditionDto.setUserKeyWords("七日市");// NOPMD
         searchConditionDto.setIsSearchIncome(true);
         searchConditionDto.setIsSearchOutcome(true);
         searchConditionDto.setOffsetIncome(0);
@@ -55,7 +65,7 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
                 .practice(searchConditionDto);
 
         // 検索語が独自規則でフォーマットされていること
-        assertEquals("+七日市", searchResultDto.getSearchWords(), "");
+        assertEquals("+七日市", searchResultDto.getSearchWords(), ""); // NOPMD
 
         // 件数など
         assertEquals(1, searchResultDto.getCountIncome(), "");
@@ -130,7 +140,7 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
 
     // テンプレート開始位置
     @Test
-    @Tag("NaturalTextSearch")
+    @Tag(TAG_SEARCH)
     // @Sql({"truncate_income_outcome_2022.sql","offering_balancesheet_income_horie_2022.sql","offering_balancesheet_outcome_horie_2022.sql","offering_balancesheet_income_joshi_2022.sql","offering_balancesheet_outcome_joshi_2022.sql"})
     void testPractice2022() {
         IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
@@ -147,14 +157,93 @@ class SearchIncomeAndOutcomeBySearchWordsServiceTest {
 
         // 検索語が独自規則でフォーマットされていること
         assertEquals("+七日市", searchResultDto.getSearchWords(), "");
-
+        
         // 件数など
-        assertEquals(1, searchResultDto.getCountIncome(), "収入件数");
-        assertEquals(4, searchResultDto.getCountOutcome(), "支出件数");
-        assertEquals(true, searchResultDto.getIsOk(), "出力結果");
-        assertEquals(5, searchResultDto.getSuccessCount(), "合計件数");
+        assertEquals(1, searchResultDto.getCountIncome(), incomeText);
+        assertEquals(4, searchResultDto.getCountOutcome(), outcomeText);
+        assertEquals(true, searchResultDto.getIsOk(), isOkText);
+        assertEquals(5, searchResultDto.getSuccessCount(), isSumText);
     }
     // テンプレート終了位置
+
+    @Test
+    @Tag(TAG_SEARCH)
+    // @Sql({"truncate_income_outcome_2024.sql","offering_balancesheet_income_horie_2024.sql","offering_balancesheet_outcome_horie_2024.sql","offering_balancesheet_income_joshi_2024.sql","offering_balancesheet_outcome_joshi_2024.sql"})
+    void testPractice2024() {
+        IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
+        searchConditionDto.setUserKeyWords("七日市");
+        searchConditionDto.setIsSearchIncome(true);
+        searchConditionDto.setIsSearchOutcome(true);
+        searchConditionDto.setOffsetIncome(0);
+        searchConditionDto.setOffsetOutcome(0);
+        searchConditionDto.setStartDate(LocalDate.of(2024, 01, 01));
+        searchConditionDto.setEndDate(LocalDate.of(2024, 12, 31));
+
+        IncomeAndOutcomeNaturalSearchResultDto searchResultDto = searchIncomeAndOutcomeBySearchWordsService
+                .practice(searchConditionDto);
+
+        // 検索語が独自規則でフォーマットされていること
+        assertEquals("+七日市", searchResultDto.getSearchWords(), "");
+
+        
+        // 件数など
+        assertEquals(1, searchResultDto.getCountIncome(), incomeText);
+        assertEquals(4, searchResultDto.getCountOutcome(), outcomeText);
+        assertEquals(true, searchResultDto.getIsOk(), isOkText);
+        assertEquals(5, searchResultDto.getSuccessCount(), isSumText);
+    }
+
+    @Test
+    @Tag(TAG_SEARCH)
+    // @Sql({"truncate_income_outcome_2025.sql","offering_balancesheet_income_horie_2025.sql","offering_balancesheet_outcome_horie_2025.sql","offering_balancesheet_income_joshi_2025.sql","offering_balancesheet_outcome_joshi_2025.sql"})
+    void testPractice2025() {
+        IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
+        searchConditionDto.setUserKeyWords("七日市");
+        searchConditionDto.setIsSearchIncome(true);
+        searchConditionDto.setIsSearchOutcome(true);
+        searchConditionDto.setOffsetIncome(0);
+        searchConditionDto.setOffsetOutcome(0);
+        searchConditionDto.setStartDate(LocalDate.of(2025, 01, 01));
+        searchConditionDto.setEndDate(LocalDate.of(2025, 12, 31));
+
+        IncomeAndOutcomeNaturalSearchResultDto searchResultDto = searchIncomeAndOutcomeBySearchWordsService
+                .practice(searchConditionDto);
+
+        // 検索語が独自規則でフォーマットされていること
+        assertEquals("+七日市", searchResultDto.getSearchWords(), "");
+        
+        // 件数など
+        assertEquals(1, searchResultDto.getCountIncome(), incomeText);
+        assertEquals(4, searchResultDto.getCountOutcome(), outcomeText);
+        assertEquals(true, searchResultDto.getIsOk(), isOkText);
+        assertEquals(5, searchResultDto.getSuccessCount(), isSumText);
+    }
+
+    @Test
+    @Tag(TAG_SEARCH)
+    // @Sql({"truncate_income_outcome_2023.sql","offering_balancesheet_income_horie_2023.sql","offering_balancesheet_outcome_horie_2023.sql","offering_balancesheet_income_joshi_2023.sql","offering_balancesheet_outcome_joshi_2023.sql"})
+    void testPractice2023() {
+        IncomeAndOutcomeNaturalSearchConditionCapsuleDto searchConditionDto = new IncomeAndOutcomeNaturalSearchConditionCapsuleDto();
+        searchConditionDto.setUserKeyWords("七日市");
+        searchConditionDto.setIsSearchIncome(true);
+        searchConditionDto.setIsSearchOutcome(true);
+        searchConditionDto.setOffsetIncome(0);
+        searchConditionDto.setOffsetOutcome(0);
+        searchConditionDto.setStartDate(LocalDate.of(2023, 01, 01));
+        searchConditionDto.setEndDate(LocalDate.of(2023, 12, 31));
+
+        IncomeAndOutcomeNaturalSearchResultDto searchResultDto = searchIncomeAndOutcomeBySearchWordsService
+                .practice(searchConditionDto);
+
+        // 検索語が独自規則でフォーマットされていること
+        assertEquals("+七日市", searchResultDto.getSearchWords(), "");
+        
+        // 件数など
+        assertEquals(1, searchResultDto.getCountIncome(), incomeText);
+        assertEquals(4, searchResultDto.getCountOutcome(), outcomeText);
+        assertEquals(true, searchResultDto.getIsOk(), isOkText);
+        assertEquals(5, searchResultDto.getSuccessCount(), isSumText);
+    }
 
 // 追加位置    
 

@@ -14,6 +14,7 @@ import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -25,6 +26,7 @@ import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentRes
 /**
  * ファクトリロジックに新たな年を追加するTasklet
  */
+@StepScope
 @Component
 public class RefleshYearDataAccessFactoryMethodLogicTasklet implements Tasklet, StepExecutionListener {
 
@@ -119,7 +121,7 @@ public class RefleshYearDataAccessFactoryMethodLogicTasklet implements Tasklet, 
 
         List<String> listBody = Files
                 .readAllLines(Paths.get(GetCurrentResourcePath.getBackSrcPath(listFilePath.get(fileIndex))));
-
+        
         baseYear = this.getBaseYear(listBody);
 
         List<String> listNewContets = new ArrayList<>();

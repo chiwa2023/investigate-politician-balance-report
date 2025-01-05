@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -50,6 +51,7 @@ class InsertPoliticalOrganizationSheet0701And0720Y2024LogicTest {
     private OfferingBalancesheet0701And0720Surface2024Repository offeringBalancesheet0701And0720Surface2024Repository;
 
     @Test
+    @Tag("TableTruncate")
     @Transactional
     void testPractice() { // NOPMD
 

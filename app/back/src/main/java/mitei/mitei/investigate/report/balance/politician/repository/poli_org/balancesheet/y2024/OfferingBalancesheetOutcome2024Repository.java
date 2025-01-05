@@ -14,29 +14,34 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 /**
  * offering_balancesheet_outcome_2024接続用Repository
  */
-public interface OfferingBalancesheetOutcome2024Repository  extends JpaRepository<OfferingBalancesheetOutcome2024Entity, Integer>{
+public interface OfferingBalancesheetOutcome2024Repository
+        extends JpaRepository<OfferingBalancesheetOutcome2024Entity, Integer> {
 
-
-    //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
+    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
-     * 名称を検索対象として全文検索をする
+     * 全文検索をする
      *
      * @param searchWords 検索語
+     * @param offset      検索表示位置
+     * @param startDate   開始日付
+     * @param endDate     終了日付
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2024 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE) LIMIT 100 OFFSET ?2", nativeQuery = true)
-    List<OfferingBalancesheetOutcome2024Entity> findFullText(String searchWords, int offset, LocalDate startDate, LocalDate endDate);
+    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2024 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?3 AND ?4 AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE) LIMIT 100 OFFSET ?2", nativeQuery = true)
+    List<OfferingBalancesheetOutcome2024Entity> findFullText(String searchWords, int offset, LocalDate startDate,
+            LocalDate endDate);
 
     /**
-     * 名称を検索対象として全文検索をする
+     * 検索対象行数を取得する
      *
      * @param searchWords 検索語
-     * @return 検索結果
+     * @param startDate   開始日付
+     * @param endDate     終了日付
+     * @return 件数
      */
-    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2024 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?2 AND ?3  AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
+    @Query(value = "SELECT count(*) AS count FROM offering_balancesheet_outcome_2024 WHERE saishin_kbn= 1 AND accrual_date_value BETWEEN ?2 AND ?3 AND MATCH(search_words) AGAINST (?1 IN BOOLEAN MODE)", nativeQuery = true)
     Integer findFullTextCount(String searchWords, LocalDate startDate, LocalDate endDate);
-    
-    
+
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する
      *
@@ -44,14 +49,36 @@ public interface OfferingBalancesheetOutcome2024Repository  extends JpaRepositor
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<OfferingBalancesheetOutcome2024Entity> findFirstByOrderByOfferingBalancesheetOutcomeCodeDesc();
-    
+
     /**
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param documentCode 文書同一識別コード
      * @return データリスト
      */
-    List<OfferingBalancesheetOutcome2024Entity> findByDocumentCodeOrderByOfferingBalancesheetOutcomeId(Long documentCode);
-    
+    List<OfferingBalancesheetOutcome2024Entity> findByDocumentCodeOrderByOfferingBalancesheetOutcomeId(
+            Long documentCode);
+
+    /**
+     * 政治団体リストと取引相手同一識別コード条件から支出を取得する
+     *
+     * @param relationCode  取引相手政治団体同一識別コード
+     * @param saishinKbn    最新区分
+     * @param listPoliOrgId 政治団体同一識別コードリスト
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetOutcome2024Entity> findByRelationPoliticalOrgCodeOutcomeAndSaishinKbnAndPoliticalOrganizationCodeIn(
+            Integer relationCode, Integer saishinKbn, List<Integer> listPoliOrgId);
+
+    /**
+     * 原文書政治団体リストと取引相手名称条件から支出を取得する
+     *
+     * @param partnerName    取引相手名称
+     * @param saishinKbn     最新区分
+     * @param listDantaiName 団体名称リスト
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetOutcome2024Entity> findByPartnerNameAndSaishinKbnAndDantaiNameIn(String partnerName,
+            Integer saishinKbn, List<String> listDantaiName);
 
 }

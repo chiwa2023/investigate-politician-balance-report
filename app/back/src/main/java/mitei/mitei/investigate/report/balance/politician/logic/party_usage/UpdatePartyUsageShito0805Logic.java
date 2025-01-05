@@ -7,6 +7,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2022.UpdatePartyUsageShito0805Y2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2024.UpdatePartyUsageShito0805Y2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2025.UpdatePartyUsageShito0805Y2025Logic;
+// importを追加
 
 /**
  * 様式8その5更新Logic
@@ -14,10 +15,11 @@ import mitei.mitei.investigate.report.balance.politician.logic.party_usage.y2025
 @Component
 public class UpdatePartyUsageShito0805Logic {
 
+    // フィールドテンプレート始まり
     /** 登録対応年(2022) */
     private static final int YEAR_2022 = 2022;
     /** 登録対応年(2022)Logic */
-    @Autowired
+    @Autowired // 2022
     private UpdatePartyUsageShito0805Y2022Logic updatePartyUsageShito0805Y2022Logic;
 
     /** 登録対応年(2024) */
@@ -32,6 +34,8 @@ public class UpdatePartyUsageShito0805Logic {
     @Autowired
     private UpdatePartyUsageShito0805Y2025Logic updatePartyUsageShito0805Y2025Logic;
 
+    // フィールドの追加位置
+
     /**
      * 最新データを履歴データにする
      *
@@ -45,10 +49,12 @@ public class UpdatePartyUsageShito0805Logic {
         int result = 0;
 
         switch (nendo) {
+            
+            // caseテンプレート始まり
             // 2022年
             case YEAR_2022:
                 result = updatePartyUsageShito0805Y2022Logic.practice(oldCode, checkPrivilegeDto);
-                break;
+                break; // 2022
 
             // 2024年
             case YEAR_2024:
@@ -59,6 +65,8 @@ public class UpdatePartyUsageShito0805Logic {
             case YEAR_2025:
                 result = updatePartyUsageShito0805Y2025Logic.practice(oldCode, checkPrivilegeDto);
                 break;
+
+            // caseの追加位置
 
             default:
                 break;

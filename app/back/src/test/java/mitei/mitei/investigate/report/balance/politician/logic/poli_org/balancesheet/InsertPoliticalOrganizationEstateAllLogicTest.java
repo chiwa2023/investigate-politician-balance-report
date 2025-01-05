@@ -1,6 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,17 +49,22 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071812BorrowingsAmongAssetsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071900RealEstateDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
+import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
+import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheet0718Estate2024Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheet0719RealEstate2024Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0718Estate2025Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0719RealEstate2025Entity;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheet0718Estate2022Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheet0719RealEstate2022Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheet0718Estate2024Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheet0719RealEstate2024Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0718Estate2025Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0719RealEstate2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
-import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2023.OfferingBalancesheet0718Estate2023Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2023.OfferingBalancesheet0719RealEstate2023Repository;
+// import追加指定位置
 
 /**
  * InsertPoliticalOrganizationEstateAllLogic単体テスト
@@ -78,6 +86,14 @@ class InsertPoliticalOrganizationEstateAllLogicTest {
 
     /** 様式7その18資産詳細Repository */
     @Autowired
+    private OfferingBalancesheet0718Estate2022Repository offeringBalancesheet0718Estate2022Repository;
+
+    /** 様式7その19不動産の利用状況詳細Repository */
+    @Autowired
+    private OfferingBalancesheet0719RealEstate2022Repository offeringBalancesheet0719RealEstate2022Repository;
+
+    /** 様式7その18資産詳細Repository */
+    @Autowired
     private OfferingBalancesheet0718Estate2025Repository offeringBalancesheet0718Estate2025Repository;
 
     /** 様式7その19不動産の利用状況詳細Repository */
@@ -92,9 +108,23 @@ class InsertPoliticalOrganizationEstateAllLogicTest {
     @Autowired
     private OfferingBalancesheet0719RealEstate2024Repository offeringBalancesheet0719RealEstate2024Repository;
 
+    /** 様式7その18資産詳細Repository */
+    @Autowired
+    private OfferingBalancesheet0718Estate2023Repository offeringBalancesheet0718Estate2023Repository;
+
+    /** 様式7その19不動産の利用状況詳細Repository */
+    @Autowired
+    private OfferingBalancesheet0719RealEstate2023Repository offeringBalancesheet0719RealEstate2023Repository;
+    
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
+    // テスト初期状態説明
+    private static final String TEST_INIT_COUNT = "初期は1件"; // NOPMD
+
     @Test
     @Transactional
-    @Tag("TableTruncate")
+    @Tag(TEST_TAG)
     void testPractice2025() { // NOPMD
 
         // 文書同一識別コード
@@ -542,6 +572,7 @@ class InsertPoliticalOrganizationEstateAllLogicTest {
     }
 
     @Test
+    @Tag(TEST_TAG)
     @Transactional
     void testPractice2024() { // NOPMD
 
@@ -988,5 +1019,33 @@ class InsertPoliticalOrganizationEstateAllLogicTest {
         assertThat(entityRealEstate3.getShiyouKakaku()).isEqualTo(row15.getShiyouKakaku());
 
     }
+
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql({"y2022/offering_balancesheet_0718_estate_2022.sql","offering_balancesheet_0719_real_estate_2022.sql"})
+    void testPractice2022() {
+        
+        assertEquals(1L , offeringBalancesheet0718Estate2022Repository.count(),TEST_INIT_COUNT);
+        assertEquals(1L , offeringBalancesheet0719RealEstate2022Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql({"y2023/offering_balancesheet_0718_estate_2023.sql","offering_balancesheet_0719_real_estate_2023.sql"})
+    void testPractice2023() {
+        
+        assertEquals(1L , offeringBalancesheet0718Estate2023Repository.count(),TEST_INIT_COUNT);
+        assertEquals(1L , offeringBalancesheet0719RealEstate2023Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 
 }

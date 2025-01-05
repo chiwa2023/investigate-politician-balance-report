@@ -229,7 +229,7 @@ public class InsertPoliticalOrganizationOutcomeAllY2024Logic {
         BeanUtils.copyProperties(rowDto, outcomeEntity);
 
         outcomeEntity.setPartnerName(rowDto.getName());
-        outcomeEntity.setPartnerJuusho(rowDto.getJusho());
+        outcomeEntity.setPartnerJusho(rowDto.getJusho());
 
         outcomeEntity.setAccrualDateValue(dateConvertUtil.practiceWarekiToLocalDate(outcomeEntity.getAccrualDate()));
 

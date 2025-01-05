@@ -1,6 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -16,11 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
+import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0701And0720Surface2025Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0701And0720Surface2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheet0701And0720Surface2024Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2023.OfferingBalancesheet0701And0720Surface2023Repository;
+// import追加指定位置
 
 /**
  * UpdatePoliticalOrganizationSheet0701And0720Logic単体テスト
@@ -44,8 +49,22 @@ class UpdatePoliticalOrganizationSheet0701And0720LogicTest {
     @Autowired
     private OfferingBalancesheet0701And0720Surface2025Repository offeringBalancesheet0701And0720Surface2025Repository;
 
+    /** 政治資金収支報告書の表紙、宣誓書、文書属性Repository */
+    @Autowired
+    private OfferingBalancesheet0701And0720Surface2024Repository offeringBalancesheet0701And0720Surface2024Repository;
+
+    /** 政治資金収支報告書の表紙、宣誓書、文書属性Repository */
+    @Autowired
+    private OfferingBalancesheet0701And0720Surface2023Repository offeringBalancesheet0701And0720Surface2023Repository;
+    
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
+    // テスト初期状態説明
+    private static final String TEST_INIT_COUNT = "初期は1件"; // NOPMD
+
     @Test
-    @Tag("TableTruncate")
+    @Tag(TEST_TAG)
     @Transactional
     @Sql("offering_balancesheet_0701_and_0720_surface.sql")
     void testPractice() {
@@ -87,5 +106,42 @@ class UpdatePoliticalOrganizationSheet0701And0720LogicTest {
         assertThat(entity2025Pro.getSaishinKbn()).isEqualTo(DataHistoryStatusConstants.INSERT.value());
 
     }
+    
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2022/offering_balancesheet_0701_and_0720_surface_2022.sql")
+    void testPractice2022() {
+        
+        assertEquals(1L , offeringBalancesheet0701And0720Surface2022Repository.count(),TEST_INIT_COUNT);
+
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2024/offering_balancesheet_0701_and_0720_surface_2024.sql")
+    void testPractice2024() {
+        
+        assertEquals(1L , offeringBalancesheet0701And0720Surface2024Repository.count(),TEST_INIT_COUNT);
+
+        fail("Not yet implemented");
+    }
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2023/offering_balancesheet_0701_and_0720_surface_2023.sql")
+    void testPractice2023() {
+        
+        assertEquals(1L , offeringBalancesheet0701And0720Surface2023Repository.count(),TEST_INIT_COUNT);
+
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 
 }

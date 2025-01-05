@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -38,7 +37,6 @@ class ConvertSheetDtoToEntity0705RelatedToGrantsY2025LogicTest {
     private ConvertSheetDtoToEntity0705RelatedToGrantsY2025Logic convertSheetDtoToEntity0705RelatedToGrantsY2025Logic;
 
     @Test
-    @Tag("TableTruncate")
     void testPractice() {
 
         DateConvertUtil dateConvertUtil = new DateConvertUtil();

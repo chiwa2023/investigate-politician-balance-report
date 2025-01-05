@@ -1,9 +1,12 @@
-package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet;
+package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,12 +25,15 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071300ListOfExpenditureItemsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071700SummaryTableOfAssetsDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheet0702And0713And0717Summary2024Entity;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Entity;
-import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheet0702And0713And0717Summary2024Repository;
-import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Repository;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheet0702And0713And0717Summary2024Entity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Entity;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheet0702And0713And0717Summary2022Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheet0702And0713And0717Summary2024Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheet0702And0713And0717Summary2025Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2023.OfferingBalancesheet0702And0713And0717Summary2023Repository;
+// import追加指定位置
 
 /**
  * InsertPoliticalOrganizationSummaryLogic単体テスト
@@ -54,8 +61,23 @@ class InsertPoliticalOrganizationSummaryLogicTest {
     @Autowired
     private OfferingBalancesheet0702And0713And0717Summary2024Repository offeringBalancesheet0702And0713And0717Summary2024Repository;
 
+    /** 政治資金収支報告書集計表登録Repository */
+    @Autowired
+    private OfferingBalancesheet0702And0713And0717Summary2022Repository offeringBalancesheet0702And0713And0717Summary2022Repository;
+
+    /** 政治資金収支報告書集計表登録Repository */
+    @Autowired
+    private OfferingBalancesheet0702And0713And0717Summary2023Repository offeringBalancesheet0702And0713And0717Summary2023Repository;
+    
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
+    // テスト初期状態説明
+    private static final String TEST_INIT_COUNT = "初期は1件"; // NOPMD
+
     @Test
     @Transactional
+    @Tag(TEST_TAG)
     void testPractice2025() { // NOPMD
 
         // 文書同一識別コード
@@ -313,6 +335,7 @@ class InsertPoliticalOrganizationSummaryLogicTest {
     
     @Test
     @Transactional
+    @Tag(TEST_TAG)
     void testPractice2024() { // NOPMD
 
         // 文書同一識別コード
@@ -565,5 +588,32 @@ class InsertPoliticalOrganizationSummaryLogicTest {
         assertThat(entitySummary.getBikouKariire()).isEqualTo(sheet17.getBikouKariire());
 
     }
+    
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2022/offering_balancesheet_0702_and_0713_and_0717_summary_2022.sql")
+    void testPractice2022() {
+        
+        assertEquals(1L , offeringBalancesheet0702And0713And0717Summary2022Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2023/offering_balancesheet_0702_and_0713_and_0717_summary_2023.sql")
+    void testPractice2023() {
+        
+        assertEquals(1L , offeringBalancesheet0702And0713And0717Summary2023Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 
 }

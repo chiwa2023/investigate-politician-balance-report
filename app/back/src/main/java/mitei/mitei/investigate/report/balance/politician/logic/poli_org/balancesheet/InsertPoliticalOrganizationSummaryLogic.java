@@ -11,6 +11,8 @@ import mitei.mitei.investigate.report.balance.politician.dto.political_organizat
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.InsertPoliticalOrganizationSummaryY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.InsertPoliticalOrganizationSummaryY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.InsertPoliticalOrganizationSummaryY2025Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2023.InsertPoliticalOrganizationSummaryY2023Logic;
+// importを追加
 
 /**
  * 政治資金収支報告書の集計表(収入・支出・資産)を登録する
@@ -18,10 +20,11 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
 @Component
 public class InsertPoliticalOrganizationSummaryLogic {
 
+    // フィールドテンプレート始まり
     /** 登録対応年(2022) */
     private static final int YEAR_2022 = 2022;
     /** 登録対応年(2022)Logic */
-    @Autowired
+    @Autowired // 2022
     private InsertPoliticalOrganizationSummaryY2022Logic insertPoliticalOrganizationSummaryY2022Logic;
 
     /** 登録対応年(2024) */
@@ -36,7 +39,12 @@ public class InsertPoliticalOrganizationSummaryLogic {
     @Autowired
     private InsertPoliticalOrganizationSummaryY2025Logic insertPoliticalOrganizationSummaryY2025Logic;
 
-    // NOTE:コンポーネントとswitchラベル追加位置
+    /** 登録対応年(2023) */
+    private static final int YEAR_2023 = 2023;
+    /** 登録対応年(2023)Logic */
+    private InsertPoliticalOrganizationSummaryY2023Logic insertPoliticalOrganizationSummaryY2023Logic;
+
+    // フィールドの追加位置
 
     /**
      * 登録作業を行う
@@ -57,6 +65,8 @@ public class InsertPoliticalOrganizationSummaryLogic {
 
         int size = 0;
         switch (documentPropertyDto.getHoukokuNen()) {
+
+            // caseテンプレート始まり
             // 2022年
             case YEAR_2022:
                 size = insertPoliticalOrganizationSummaryY2022Logic.practice(documentCode, documentPropertyDto,
@@ -75,7 +85,13 @@ public class InsertPoliticalOrganizationSummaryLogic {
                         allSheet0702dto, allSheet0713dto, allSheet0717dto, checkPrivilegeDto);
                 break;
 
-            // NOTE:Logic実行追加位置
+            // 2023年
+            case YEAR_2023:
+                size = insertPoliticalOrganizationSummaryY2023Logic.practice(documentCode, documentPropertyDto,
+                        allSheet0702dto, allSheet0713dto, allSheet0717dto, checkPrivilegeDto);
+                break;
+
+            // caseの追加位置
 
             default:
                 break;

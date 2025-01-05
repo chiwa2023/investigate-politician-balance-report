@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -22,6 +21,10 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.fukisai.FukisaiSearchConditionDto;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblFukisaiBalancesheetEntity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
+// 2022
+// 2025
+// 2024
+// import追加指定位置
 
 /**
  * ConvertFukisaiIncomeLogic単体テスト
@@ -36,19 +39,22 @@ class ConvertFukisaiIncomeLogicTest {
     /** テスト対象 */
     @Autowired
     private ConvertFukisaiIncomeLogic convertFukisaiIncomeLogic;
-
+    
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+    
     @Test
-    @Tag("TableTruncate")
+    @Tag(TEST_TAG)
     @Transactional
     @Sql("y2022/convert_income_fukisai_2022.sql")
-    void test2022() {
+    void test() {
 
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
         FukisaiSearchConditionDto conditionDto = new FukisaiSearchConditionDto();
         conditionDto.setIsSearchCode(true);
         conditionDto.setPoliOrgCode(431);
-        conditionDto.setDantaiName("ホリエモン新党");
+        conditionDto.setDantaiName("ホリエモン新党"); // NOPMD
         conditionDto.setHoukokuNen(2022);
 
         List<WkTblFukisaiBalancesheetEntity> listEntity = convertFukisaiIncomeLogic.practice(conditionDto,
@@ -89,5 +95,68 @@ class ConvertFukisaiIncomeLogicTest {
         assertEquals(1, entity00.getSaishinKbn(), "最新区分");
 
     }
+    
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2022/convert_income_fukisai_2022.sql")
+    void testPractice2022() {
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
+        FukisaiSearchConditionDto conditionDto = new FukisaiSearchConditionDto();
+        conditionDto.setIsSearchCode(true);
+        conditionDto.setPoliOrgCode(431);
+        conditionDto.setDantaiName("ホリエモン新党");
+        conditionDto.setHoukokuNen(2022);
+
+        List<WkTblFukisaiBalancesheetEntity> listEntity = convertFukisaiIncomeLogic.practice(conditionDto,
+                privilegeDto);
+
+        assertEquals(1, listEntity.size(), "指定したテーブルから取得されている");
+
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2025/convert_income_fukisai_2025.sql")
+    void testPractice2025() {
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+
+        FukisaiSearchConditionDto conditionDto = new FukisaiSearchConditionDto();
+        conditionDto.setIsSearchCode(true);
+        conditionDto.setPoliOrgCode(431);
+        conditionDto.setDantaiName("ホリエモン新党");
+        conditionDto.setHoukokuNen(2025);
+
+        List<WkTblFukisaiBalancesheetEntity> listEntity = convertFukisaiIncomeLogic.practice(conditionDto,
+                privilegeDto);
+
+        assertEquals(1, listEntity.size(), "指定したテーブルから取得されている");
+
+    }
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2024/convert_income_fukisai_2024.sql")
+    void testPractice2024() {
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+
+        FukisaiSearchConditionDto conditionDto = new FukisaiSearchConditionDto();
+        conditionDto.setIsSearchCode(true);
+        conditionDto.setPoliOrgCode(431);
+        conditionDto.setDantaiName("ホリエモン新党");
+        conditionDto.setHoukokuNen(2024);
+
+        List<WkTblFukisaiBalancesheetEntity> listEntity = convertFukisaiIncomeLogic.practice(conditionDto,
+                privilegeDto);
+
+        assertEquals(1, listEntity.size(), "指定したテーブルから取得されている");
+
+    }
+
+    // 追加位置
 }

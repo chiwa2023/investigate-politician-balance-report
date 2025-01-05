@@ -614,8 +614,8 @@ public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllT
     }
 
     /** 取引相手先住所 */
-    @Column(name = "partner_jusho")
     // TODO カラム名タイプミス修正する
+    @Column(name = "partner_jusho")
     private String partnerJuusho = INIT_String;
 
     /**
@@ -632,7 +632,7 @@ public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllT
      *
      * @param partnerJuusho 取引相手先住所
      */
-    public void setPartnerJuusho(final String partnerJuusho) {
+    public void setPartnerJusho(final String partnerJuusho) {
         this.partnerJuusho = partnerJuusho;
     }
 

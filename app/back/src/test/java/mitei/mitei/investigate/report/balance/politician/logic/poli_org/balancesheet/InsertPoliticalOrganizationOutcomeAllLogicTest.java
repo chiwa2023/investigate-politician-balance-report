@@ -1,6 +1,8 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,13 +48,16 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071508DonationsGrantsDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet071509OtherExpensesDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
+import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
+import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetOutcome2024Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Entity;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheetOutcome2022Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheetOutcome2024Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2025.OfferingBalancesheetOutcome2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
-import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2023.OfferingBalancesheetOutcome2023Repository;
+// import追加指定位置
 
 /**
  * InsertPoliticalOrganizationOutcomeAllLogic単体テスト
@@ -75,14 +81,27 @@ class InsertPoliticalOrganizationOutcomeAllLogicTest {
     @Autowired
     private OfferingBalancesheetOutcome2025Repository offeringBalancesheetOutcome2025Repository;
 
-
     /** 政治資金収支報告書支出提出分Repository */
     @Autowired
     private OfferingBalancesheetOutcome2024Repository offeringBalancesheetOutcome2024Repository;
 
+    /** 政治資金収支報告書支出提出分Repository */
+    @Autowired
+    private OfferingBalancesheetOutcome2022Repository offeringBalancesheetOutcome2022Repository;
+
+    /** 政治資金収支報告書支出提出分Repository */
+    @Autowired
+    private OfferingBalancesheetOutcome2023Repository offeringBalancesheetOutcome2023Repository;
+
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
+    // テスト初期状態説明
+    private static final String TEST_INIT_COUNT = "初期は1件"; // NOPMD
+    
     @Test
     @Transactional
-    @Tag("TableTruncate")
+    @Tag(TEST_TAG)
     void testPractice2025() { // NOPMD
 
         // 文書同一識別コード
@@ -786,16 +805,9 @@ class InsertPoliticalOrganizationOutcomeAllLogicTest {
         assertThat(entity1509.getSearchWords()).isEqualTo("費目9目的9支出の相手先名称東京都千代田区");
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
     @Test
     @Transactional
+    @Tag(TEST_TAG)
     void testPractice2024() { // NOPMD
 
         // 文書同一識別コード
@@ -1498,5 +1510,31 @@ class InsertPoliticalOrganizationOutcomeAllLogicTest {
         assertThat(entity1508.getSearchWords()).isEqualTo("費目8目的8支出の相手先名称東京都千代田区");
         assertThat(entity1509.getSearchWords()).isEqualTo("費目9目的9支出の相手先名称東京都千代田区");
     }
+
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2022/offering_balancesheet_outcome_2022.sql")
+    void testPractice2022() {
+        
+        assertEquals(1L , offeringBalancesheetOutcome2022Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2023/offering_balancesheet_outcome_2023.sql")
+    void testPractice2023() {
+        
+        assertEquals(1L , offeringBalancesheetOutcome2023Repository.count(),TEST_INIT_COUNT);
+        
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 
 }

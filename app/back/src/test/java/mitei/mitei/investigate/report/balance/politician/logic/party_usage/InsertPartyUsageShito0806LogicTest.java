@@ -1,10 +1,13 @@
-package mitei.mitei.investigate.report.balance.politician.logic.party_usage;
+package mitei.mitei.investigate.report.balance.politician.logic.party_usage; // NOPMD
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +27,14 @@ import mitei.mitei.common.publish.party.usage.report.dto.v5.Sheet0806Dto;
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Shito0806Dto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
+import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2022.OfferingPartyUsage0806Report2022Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0806Report2025Entity;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2022.OfferingPartyUsage0806Report2022Repository;
 import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2025.OfferingPartyUsage0806Report2025Repository;
-import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2024.OfferingPartyUsage0806Report2024Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_party.usage.y2023.OfferingPartyUsage0806Report2023Repository;
+// import追加指定位置
 
 /**
  * InsertPartyUsageShito0806Logic単体テスト
@@ -43,18 +50,29 @@ class InsertPartyUsageShito0806LogicTest {
     @Autowired
     private InsertPartyUsageShito0806Logic insertPartyUsageShito0806Logic;
 
-    /** 様式8その6Repository */
+    /** 様式8その6Repository(2025) */
     @Autowired
     private OfferingPartyUsage0806Report2025Repository offeringPartyUsage0806Report2025Repository;
 
-
-    /** 様式8その6Repository */
+    /** 様式8その6Repository(2022) */
     @Autowired
     private OfferingPartyUsage0806Report2022Repository offeringPartyUsage0806Report2022Repository;
 
+    /** 様式8その6Repository(2024) */
+    @Autowired
+    private OfferingPartyUsage0806Report2024Repository offeringPartyUsage0806Report2024Repository;
+
+    /** 様式8その6Repository(2023) */
+    @Autowired
+    private OfferingPartyUsage0806Report2023Repository offeringPartyUsage0806Report2023Repository;
+
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
     @Test
     @Transactional
-    void testPractice2025() { // NOPMD
+    @Tag(TEST_TAG)
+    void testPractice20251() { // NOPMD
 
         // 政治団体基礎情報
         Long documentCode = 3434L;
@@ -223,10 +241,10 @@ class InsertPartyUsageShito0806LogicTest {
 
     }
 
-    
     @Test
     @Transactional
-    void testPractice2022() { // NOPMD
+    @Tag(TEST_TAG)
+    void testPractice20221() { // NOPMD
 
         // 政治団体基礎情報
         Long documentCode = 3434L;
@@ -394,5 +412,75 @@ class InsertPartyUsageShito0806LogicTest {
         assertThat(entity4.getTotalIncreaseBikou()).isEqualTo(INIT_STRING);
 
     }
+
+    // テンプレート開始位置
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2022/offering_party_usage_0806_report_2022.sql")
+    void testPractice2022() {
+
+        assertEquals(1L, offeringPartyUsage0806Report2022Repository.count(), "初期入力1件");
+
+        int houkokuNen = 2022;
+
+        long documentCode = 100L;
+        PartyUsageDocumentPoliticalPropertyDto documentlPropertyDto = new PartyUsageDocumentPoliticalPropertyDto();
+        documentlPropertyDto.setNendo(houkokuNen); // 実際には表紙からコピー
+
+        insertPartyUsageShito0806Logic.practice(documentCode, documentlPropertyDto, new Shito0806Dto(),
+                CreateTestPrivilegeDtoUtil.pracitce());
+
+        assertEquals(2L, offeringPartyUsage0806Report2022Repository.count(), "追加で1件");
+
+        fail("Not yet implemented");
+    }
+    // テンプレート終了位置
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2024/offering_party_usage_0806_report_2024.sql")
+    void testPractice2024() {
+
+        assertEquals(1L, offeringPartyUsage0806Report2024Repository.count(), "初期入力1件");
+
+        int houkokuNen = 2024;
+
+        long documentCode = 100L;
+        PartyUsageDocumentPoliticalPropertyDto documentlPropertyDto = new PartyUsageDocumentPoliticalPropertyDto();
+        documentlPropertyDto.setNendo(houkokuNen); // 実際には表紙からコピー
+
+        insertPartyUsageShito0806Logic.practice(documentCode, documentlPropertyDto, new Shito0806Dto(),
+                CreateTestPrivilegeDtoUtil.pracitce());
+
+        assertEquals(2L, offeringPartyUsage0806Report2024Repository.count(), "追加で1件");
+
+        fail("Not yet implemented");
+    }
+
+    @Test
+    @Transactional
+    @Tag(TEST_TAG)
+    @Sql("y2023/offering_party_usage_0806_report_2023.sql")
+    void testPractice2023() {
+
+        assertEquals(1L, offeringPartyUsage0806Report2023Repository.count(), "初期入力1件");
+
+        int houkokuNen = 2023;
+
+        long documentCode = 100L;
+        PartyUsageDocumentPoliticalPropertyDto documentlPropertyDto = new PartyUsageDocumentPoliticalPropertyDto();
+        documentlPropertyDto.setNendo(houkokuNen); // 実際には表紙からコピー
+
+        insertPartyUsageShito0806Logic.practice(documentCode, documentlPropertyDto, new Shito0806Dto(),
+                CreateTestPrivilegeDtoUtil.pracitce());
+
+        assertEquals(2L, offeringPartyUsage0806Report2023Repository.count(), "追加で1件");
+
+        fail("Not yet implemented");
+    }
+
+    // 追加位置
 
 }

@@ -7,6 +7,8 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.UpdatePoliticalOrganizationOutcomeAllY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.UpdatePoliticalOrganizationOutcomeAllY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.UpdatePoliticalOrganizationOutcomeAllY2025Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2023.UpdatePoliticalOrganizationOutcomeAllY2023Logic;
+// importを追加
 
 /**
  * 政治資金収支報告書の支出の最新データを履歴データにする
@@ -14,14 +16,12 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
 @Component
 public class UpdatePoliticalOrganizationOutcomeAllLogic {
 
-    
-    
+    // フィールドテンプレート始まり
     /** 最新を履歴に変換するLogic2022年 */
     private static final int YEAR_2022 = 2022;
     /** 最新を履歴に変換するLogic2022年 */
-    @Autowired
+    @Autowired // 2022
     private UpdatePoliticalOrganizationOutcomeAllY2022Logic updatePoliticalOrganizationOutcomeAllY2022Logic;
-    
 
     /** 最新を履歴に変換するLogic2024年 */
     private static final int YEAR_2024 = 2024;
@@ -35,21 +35,29 @@ public class UpdatePoliticalOrganizationOutcomeAllLogic {
     @Autowired
     private UpdatePoliticalOrganizationOutcomeAllY2025Logic updatePoliticalOrganizationOutcomeAllY2025Logic;
 
-    
-    
+    /** 最新を履歴に変換するLogic2023年 */
+    private static final int YEAR_2023 = 2023;
+    /** 最新を履歴に変換するLogic2023年 */
+    private UpdatePoliticalOrganizationOutcomeAllY2023Logic updatePoliticalOrganizationOutcomeAllY2023Logic;
+
+    // フィールドの追加位置
+
     /**
      * 最新データを履歴データにする
      *
-     * @param houkokuNen 報告年
-     * @param oldCode 更新すべき文書同一識別コード
+     * @param houkokuNen        報告年
+     * @param oldCode           更新すべき文書同一識別コード
      * @param checkPrivilegeDto 権限確認Dto
      * @return 更新件数
      */
     public int practice(final int houkokuNen, final Long oldCode, final CheckPrivilegeDto checkPrivilegeDto) {
 
         int result = 0;
-        
+
         switch (houkokuNen) {
+
+            // caseテンプレート始まり
+            // 2022年
             case YEAR_2022:
                 result = updatePoliticalOrganizationOutcomeAllY2022Logic.practice(oldCode, checkPrivilegeDto);
                 break;
@@ -59,6 +67,13 @@ public class UpdatePoliticalOrganizationOutcomeAllLogic {
             case YEAR_2025:
                 result = updatePoliticalOrganizationOutcomeAllY2025Logic.practice(oldCode, checkPrivilegeDto);
                 break;
+
+            case YEAR_2023:
+                result = updatePoliticalOrganizationOutcomeAllY2023Logic.practice(oldCode, checkPrivilegeDto);
+                break;
+
+            // caseの追加位置
+
             default:
                 break;
         }

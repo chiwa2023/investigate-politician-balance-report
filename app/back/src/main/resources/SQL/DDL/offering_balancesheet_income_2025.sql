@@ -56,4 +56,4 @@ CREATE TABLE `offering_balancesheet_income_2025` (
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`offering_balancesheet_income_id`),
   FULLTEXT KEY `search_words` (`search_words`) /*!50100 WITH PARSER `ngram` */ 
-) ENGINE=InnoDB AUTO_INCREMENT=13004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=13445 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

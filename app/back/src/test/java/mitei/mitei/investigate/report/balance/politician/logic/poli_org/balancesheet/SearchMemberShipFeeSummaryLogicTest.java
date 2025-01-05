@@ -40,9 +40,12 @@ class SearchMemberShipFeeSummaryLogicTest {
     @Autowired
     private SearchRlationPersonByPoliPtyLogic searchRlationPersonByPoliPtyLogic;
 
+    // テストタグ
+    private static final String TEST_TAG = "TableTruncate"; // NOPMD
+
     @Test
     @Transactional
-    @Tag("TableTruncate")
+    @Tag(TEST_TAG)
     @Sql("offering_0702_fee_poli_org.sql")
     void testPoliticalOrg() throws Exception {
 

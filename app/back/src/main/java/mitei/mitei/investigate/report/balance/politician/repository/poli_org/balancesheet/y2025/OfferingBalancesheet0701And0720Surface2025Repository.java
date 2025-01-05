@@ -44,7 +44,7 @@ public interface OfferingBalancesheet0701And0720Surface2025Repository  extends J
      * @return データリスト
      */
     List<OfferingBalancesheet0701And0720Surface2025Entity> findByOfferingBalancesheet0701And0720SurfaceCodeOrderByOfferingBalancesheet0701And0720SurfaceId(Long partyUsage0801And0807ReportCode);
-    
+
     /**
      * 最新かつ政治団体Idと提出日が一致するデータを抽出する
      *

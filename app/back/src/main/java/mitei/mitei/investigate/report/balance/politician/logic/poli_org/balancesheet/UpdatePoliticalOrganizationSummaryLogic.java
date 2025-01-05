@@ -7,6 +7,8 @@ import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckP
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.UpdatePoliticalOrganizationSummaryY2022Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024.UpdatePoliticalOrganizationSummaryY2024Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025.UpdatePoliticalOrganizationSummaryY2025Logic;
+import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2023.UpdatePoliticalOrganizationSummaryY2023Logic;
+// importを追加
 
 /**
  * 政治資金収支報告書の集計表(収入・支出・資産)のうち最新データを履歴データする
@@ -14,10 +16,11 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
 @Component
 public class UpdatePoliticalOrganizationSummaryLogic {
 
+    // フィールドテンプレート始まり
     /** 最新を履歴に変換するLogic2022年 */
     private static final int YEAR_2022 = 2022;
     /** 最新を履歴に変換するLogic2022年 */
-    @Autowired
+    @Autowired // 2022
     private UpdatePoliticalOrganizationSummaryY2022Logic updatePoliticalOrganizationSummaryY2022Logic;
 
     /** 最新を履歴に変換するLogic2024年 */
@@ -32,6 +35,14 @@ public class UpdatePoliticalOrganizationSummaryLogic {
     @Autowired
     private UpdatePoliticalOrganizationSummaryY2025Logic updatePoliticalOrganizationSummaryY2025Logic;
 
+    /** 2023年 */
+    private static final int YEAR_2023 = 2023;
+    /** 最新を履歴に変換するLogic2023年 */
+    @Autowired
+    private UpdatePoliticalOrganizationSummaryY2023Logic updatePoliticalOrganizationSummaryY2023Logic;
+
+    // フィールドの追加位置
+
     /**
      * 最新データを履歴データにする
      *
@@ -45,6 +56,9 @@ public class UpdatePoliticalOrganizationSummaryLogic {
         int result = 0;
 
         switch (houkokuNen) {
+
+            // caseテンプレート始まり
+            // 2022年
             case YEAR_2022:
                 result = updatePoliticalOrganizationSummaryY2022Logic.practice(oldCode, checkPrivilegeDto);
                 break;
@@ -54,6 +68,13 @@ public class UpdatePoliticalOrganizationSummaryLogic {
             case YEAR_2025:
                 result = updatePoliticalOrganizationSummaryY2025Logic.practice(oldCode, checkPrivilegeDto);
                 break;
+
+            case YEAR_2023:
+                result = updatePoliticalOrganizationSummaryY2023Logic.practice(oldCode, checkPrivilegeDto);
+                break;
+
+            // caseの追加位置
+
             default:
                 break;
         }

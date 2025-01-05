@@ -58,8 +58,10 @@ class UpdatePartyUsageShito0902Y2024LogicTest {
         assertThat(preEntity.getUpdateUserId()).isEqualTo(0L);
         assertThat(preEntity.getUpdateUserCode()).isEqualTo(0);
         assertThat(preEntity.getUpdateUserName()).isEqualTo("");
-        assertThat(preEntity.getUpdateTimestamp()).isEqualTo(LocalDateTime.of(1948, 7, 29, 0, 0, 0));
-
+        assertThat(preEntity.getUpdateTimestamp())
+                .isEqualTo(LocalDateTime.of(1948, 7, 29, 0, 0, 0));
+        
+        
         CheckPrivilegeDto checkPrivilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
         int size = updatePartyUsageShito0902Y2024Logic.practice(oldDcoumentCode, checkPrivilegeDto);

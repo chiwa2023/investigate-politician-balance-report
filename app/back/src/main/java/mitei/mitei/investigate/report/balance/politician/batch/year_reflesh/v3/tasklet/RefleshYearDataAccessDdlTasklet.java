@@ -11,6 +11,7 @@ import java.util.Locale;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -21,6 +22,7 @@ import mitei.mitei.investigate.report.balance.politician.constants.GetCurrentRes
 /**
  * メール通知SNSダイレクトメッセージ通知DDLを複写する
  */
+@StepScope
 @Component
 public class RefleshYearDataAccessDdlTasklet implements Tasklet, StepExecutionListener {
 
@@ -78,6 +80,9 @@ public class RefleshYearDataAccessDdlTasklet implements Tasklet, StepExecutionLi
     private List<String> createTableList(final String pathSearch) throws IOException {
 
         String searchAbsPath = GetCurrentResourcePath.getBackSrcPath(pathSearch);
+        if (searchAbsPath.endsWith("\\y")) {
+            searchAbsPath = searchAbsPath + baseYear;
+        }
 
         List<String> listTablename = new ArrayList<>();
 

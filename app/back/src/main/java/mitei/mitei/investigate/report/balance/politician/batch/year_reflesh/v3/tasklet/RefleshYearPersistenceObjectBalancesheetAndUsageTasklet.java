@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.StepExecution;
@@ -75,12 +76,22 @@ public class RefleshYearPersistenceObjectBalancesheetAndUsageTasklet implements 
 
         // Logic
         this.worksByOneFunction(dirLogic + baseYear, dirLogic + copyYear);
+
+        final String incomeText = "/income";
+        
         // Logic_income
-        this.worksByOneFunction(dirLogicIncome + baseYear, dirLogicIncome + copyYear);
+        if (!Objects.isNull(dirLogicIncome)) {
+            this.worksByOneFunction(dirLogic + baseYear + incomeText, dirLogic + copyYear + incomeText);
+        }
+
         // LogicTest
         this.worksByOneFunction(dirLogicTest + baseYear, dirLogicTest + copyYear);
+
         // Logic_incomeTest
-        this.worksByOneFunction(dirLogicTestIncome + baseYear, dirLogicTestIncome + copyYear);
+        if (!Objects.isNull(dirLogicTestIncome)) {
+            this.worksByOneFunction(dirLogicTest + baseYear + incomeText, dirLogicTest + copyYear + incomeText);
+        }
+
         // LogicTestのSQL
         this.worksByOneFunction(dirLogicTestSql + baseYear, dirLogicTestSql + copyYear);
 

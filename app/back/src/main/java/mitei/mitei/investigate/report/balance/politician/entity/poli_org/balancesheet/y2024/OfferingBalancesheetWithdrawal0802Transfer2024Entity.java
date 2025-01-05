@@ -18,7 +18,7 @@ import mitei.mitei.investigate.report.balance.politician.entity.AllTabeDataHisto
 @Entity
 @Table(name = "offering_balancesheet_withdrawal_0802_transfer_2024")
 public class OfferingBalancesheetWithdrawal0802Transfer2024Entity implements Serializable, AllTabeDataHistoryInterface { // NOPMD
- 
+
     /** Serialize id */
     private static final long serialVersionUID = 1L;
 
