@@ -30,6 +30,7 @@ public class TransferChageListGetLogic {
     public List<ZenginOrgChangeBranchEntity> practice() {
 
         List<ZenginOrgChangeBranchEntity> listChange = new ArrayList<>();
+        
         Pageable pageable = Pageable.unpaged();
         List<ZenginOrgChangeBranchEntity> list1 = zenginOrgChangeBranchRepository
                 .findByChangeKbnAndIsFinishedAndSaishinKbn(ZenginOrgChangeKbnConstants.ADD, false,

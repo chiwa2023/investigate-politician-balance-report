@@ -62,6 +62,12 @@ public class BalancesheetReportDocumentPoliticalPropertyDto implements Serializa
     /** 政治団体追加該否 */
     private Boolean isAddOrganization = INIT_Boolean;
 
+    /** 政治団体区分 */
+    private String dantaiKbn = INIT_String;
+
+    /** 資金管理団体該否 */
+    private Integer umuShikinKnariDanti = INIT_Integer;
+
     /**
      * 政治団体Idを取得する
      *
@@ -276,6 +282,42 @@ public class BalancesheetReportDocumentPoliticalPropertyDto implements Serializa
      */
     public void setIsAddOrganization(final Boolean isAddOrganization) {
         this.isAddOrganization = isAddOrganization;
+    }
+
+    /**
+     * 政治団体区分
+     *
+     * @return 政治団体区分
+     */
+    public String getDantaiKbn() {
+        return dantaiKbn;
+    }
+
+    /**
+     * 政治団体区分
+     *
+     * @param dantaiKbn 政治団体区分
+     */
+    public void setDantaiKbn(final String dantaiKbn) {
+        this.dantaiKbn = dantaiKbn;
+    }
+
+    /**
+     * 資金管理団体の有無
+     *
+     * @return 資金管理団体の有無
+     */
+    public Integer getUmuShikinKnariDanti() {
+        return umuShikinKnariDanti;
+    }
+
+    /**
+     * 資金管理団体の有無
+     *
+     * @param umuShikinKnariDanti 資金管理団体の有無
+     */
+    public void setUmuShikinKnariDanti(final Integer umuShikinKnariDanti) {
+        this.umuShikinKnariDanti = umuShikinKnariDanti;
     }
 
 }
