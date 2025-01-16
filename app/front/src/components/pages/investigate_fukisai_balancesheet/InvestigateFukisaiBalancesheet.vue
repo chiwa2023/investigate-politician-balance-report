@@ -71,10 +71,6 @@ function recievePoliticalOrganizationLeastInterface(sendDto: PoliticalOrganizati
 // 報告年リスト
 const houkokunenList: Ref<SelectOptionInterface[]> = ref(getHoukokunen());
 
-
-
-
-
 function onPreResearch() {
     alert("前回データ保存");
 }
@@ -92,6 +88,9 @@ const createReultDto: TemplateWithTaskPlanInfoResultInterface = new TemplateWith
 function onCreateWkTbl() {
     capsuleDto.value.fukisaiSearchConditionDto.isSearchCode = isSearchCode.value;
     // TODO 作成作業
+
+    // 下記UrlとSearchBalancesheetFukisaiCapsuleDtoでBack側アクセス
+    // const url:string = "/check-fukisai/create-wktbl";
 
     // タスク計画を登録してBatchを非同期で動作した想定
     createReultDto.year = capsuleDto.value.fukisaiSearchConditionDto.houkokuNen;
@@ -125,6 +124,10 @@ function onSearch() {
 
     // TODO 送信作業
     if (fukisaiResultDto.value.isOk) {
+
+        // 下記URLとSearchWkTblFukisaiPagingCapsuleDtoでBackアクセス
+        // const url:string = "/check-fukisai/search";
+
         fukisaiResultDto.value = mockGetFukisaiMeisaiData();
         listPage.value = getPagingOption(fukisaiResultDto.value.countAll,50);
         alert(fukisaiResultDto.value.message);

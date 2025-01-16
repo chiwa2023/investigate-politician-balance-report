@@ -105,29 +105,36 @@ function onCancel() {
 
 const resultDto: Ref<SearchPoliOrgBalancesheetMembershipFeeSummaryResultInterface> = ref(new SearchPoliOrgBalancesheetMembershipFeeSummaryResultDto());
 
-    const listPage:Ref<SelectOptionInterface[]> = ref([]);
+const listPage: Ref<SelectOptionInterface[]> = ref([]);
 
 function onSearchList() {
     capsuleDto.value.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
     capsuleDto.value.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
     capsuleDto.value.checkTransactionDto = createCheckTransactionDto(true);// 変更を許可しない
+
+    // 下記UrlとMembershipFeeSearchCapsuleDtoでBack側アクセスする
+    // const url:string = "/invest-membership-fee/search-summary"
+
     if (capsuleDto.value.searchConditionDto.poliPartyCode === "987") {
-        
-        resultDto.value.listSummary =mockGetFeeInsuShokubutsuList();
+
+        resultDto.value.listSummary = mockGetFeeInsuShokubutsuList();
         resultDto.value.countAll = 452;
     } else {
         resultDto.value.listSummary = mockGetFeeInsuDoubutsuList();
         resultDto.value.countAll = 190;
     }
 
-    listPage.value = getPagingOption(resultDto.value.countAll,100);
+    listPage.value = getPagingOption(resultDto.value.countAll, 100);
 }
 
 const feeSummaryDto: Ref<FeeSummaryDto> = ref(new FeeSummaryDto());
 function onSearchSummary() {
     let fee = 0;
     let insu = 0;
-    
+
+    // 下記Urlと(Back側CalcMebershipFeeInsuCapsuleDto)でBack側アクセスする
+    // const url:string = "/invest-membership-fee/calc-sum"
+
     if (resultDto.value.listSummary.length) {
         for (const dto of resultDto.value.listSummary) {
             fee += dto.fee;
@@ -143,6 +150,14 @@ function onSearchSummary() {
     feeSummaryDto.value.sumInsu = insu;
 }
 
+// 5万円以上で警告する
+function cellAlert(average: number): string {
+    if (average > 50000) {
+        return "alert";
+    } else {
+        return "";
+    }
+}
 </script>
 <template>
     <h1>党費チェッカー</h1>
@@ -249,18 +264,16 @@ function onSearchSummary() {
                 <th>頭割り</th>
                 <th>代表者</th>
             </tr>
-            <tr v-for="raw of resultDto.listSummary" :key="raw.politicalOrgnaizationId">
-                <td>{{ raw.rating }}</td>
-                <td>{{ raw.politicalOrgnaizationCode }}<br>{{ raw.politicalOrgnaizationName }}</td>
-                <td>{{ raw.fee }}</td>
-                <td>{{ raw.insu }}</td>
-                <td>{{ raw.average }}</td>
-                <td>{{ raw.poliOrgDaihyoushaCode }}<br> {{ raw.poliOrgDaihyoushaName }} </td>
+            <tr v-for="row of resultDto.listSummary" :key="row.politicalOrgnaizationId">
+                <td>{{ row.rating }}</td>
+                <td>{{ row.politicalOrgnaizationCode }}<br>{{ row.politicalOrgnaizationName }}</td>
+                <td>{{ row.fee }}</td>
+                <td>{{ row.insu }}</td>
+                <td :class="cellAlert(row.average)">{{ row.average }}</td>
+                <td>{{ row.poliOrgDaihyoushaCode }}<br> {{ row.poliOrgDaihyoushaName }} </td>
             </tr>
-
-
         </table>
-
+        ※住所・名前なしで個人が寄付できる上限が50,000円のため、超えたときは赤セルで警告する
     </div>
     <div class="clear-both"></div>
 
@@ -293,6 +306,10 @@ table {
 td {
     border-style: solid;
     border-width: 1px;
+}
+
+td.alert {
+    background-color: red;
 }
 
 th {
