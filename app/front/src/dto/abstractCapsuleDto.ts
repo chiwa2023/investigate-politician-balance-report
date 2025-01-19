@@ -1,11 +1,11 @@
-﻿import CheckPrivilegeDto from "../dto/common_check/checkPrivilegeDto";
-import CheckSecurityDto from "../dto/common_check/checkSecurityDto";
-import CheckTransactionDto from "../dto/common_check/checkTransactionDto";
+﻿import CheckPrivilegeDto from "./common_check/checkPrivilegeDto";
+import CheckSecurityDto from "./common_check/checkSecurityDto";
+import CheckTransactionDto from "./common_check/checkTransactionDto";
 
 /**
  * 共通処理に関する情報を格納するカプセルDto
  */
-export default class AbstactCapsuleDto {
+export default class AbstractCapsuleDto {
 
     /** セキュリティDto */
     checkSecurityDto: CheckSecurityDto;

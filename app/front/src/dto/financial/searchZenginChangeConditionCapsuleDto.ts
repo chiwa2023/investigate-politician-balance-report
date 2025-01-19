@@ -1,8 +1,8 @@
-import AbstactCapsuleDto from "../abstactCapsuleDto";
+import AbstractCapsuleDto from "../abstractCapsuleDto";
 
 
 
-export default class SearchZenginChangeConditionCapsuleDto extends AbstactCapsuleDto {
+export default class SearchZenginChangeConditionCapsuleDto extends AbstractCapsuleDto {
 
     /** 未処理フラグ */
     isMishoriOnly: boolean;

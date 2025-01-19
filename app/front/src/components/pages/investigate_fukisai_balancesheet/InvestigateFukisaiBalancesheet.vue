@@ -187,8 +187,6 @@ function warningClass(isDiffer: boolean): string {
     </div>
     <div class="clear-both"></div>
 
-
-
     <div class="left-area">
         データ抽出
     </div>

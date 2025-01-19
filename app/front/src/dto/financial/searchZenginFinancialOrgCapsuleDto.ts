@@ -1,6 +1,6 @@
-﻿import AbstactCapsuleDto from "../abstactCapsuleDto";
+﻿import AbstractCapsuleDto from "../abstractCapsuleDto";
 
-export default class SearchZenginFinancialOrgCapsuleDto extends AbstactCapsuleDto {
+export default class SearchZenginFinancialOrgCapsuleDto extends AbstractCapsuleDto {
 
     /** 検索語 */
     searchWords: string;

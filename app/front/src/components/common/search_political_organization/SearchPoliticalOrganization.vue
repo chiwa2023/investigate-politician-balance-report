@@ -127,7 +127,7 @@ async function onSearch() {
     <br>
     <div class="footer" v-if="!isEditable">
         <button @click="onCancel">キャンセル</button>
-        <button @click="onSelect">選択</button>
+        <button @click="onSelect" class="left-space">選択</button>
     </div>
 </template>
 <style scoped>

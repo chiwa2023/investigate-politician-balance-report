@@ -1,8 +1,8 @@
-﻿import AbstactCapsuleDto from "../abstactCapsuleDto";
+﻿import AbstractCapsuleDto from "../abstractCapsuleDto";
 import BalancesheetIncomeInterface from "./balancesheetIncomeDto";
 import BalancesheetOutcomeInterface from "./balancesheetOutcomeDto";
 
-export default class RegistBalancesheetInOutCapsuleDto extends AbstactCapsuleDto {
+export default class RegistBalancesheetInOutCapsuleDto extends AbstractCapsuleDto {
 
     /** 収入項目リスト */
     listIncome: BalancesheetIncomeInterface[];

@@ -1,6 +1,6 @@
-﻿import AbstactCapsuleDto from "../abstactCapsuleDto";
+﻿import AbstractCapsuleDto from "../abstractCapsuleDto";
 
-export default class SearchElectionCommissionLeastCapsuleDto extends AbstactCapsuleDto{
+export default class SearchElectionCommissionLeastCapsuleDto extends AbstractCapsuleDto{
 
     /** 検索語 */    
     searchWords:string;

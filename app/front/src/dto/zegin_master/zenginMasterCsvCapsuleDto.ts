@@ -1,11 +1,11 @@
-import AbstactCapsuleDto from "../abstactCapsuleDto";
+import AbstractCapsuleDto from "../abstractCapsuleDto";
 import SaveStorageResultDto from "../storage/saveStorageResultDto";
 
 export default interface ZenginMasterCsvCapsuleInterface {
 
 }
 
-export default class ZenginMasterCsvCapsuleDto extends AbstactCapsuleDto implements ZenginMasterCsvCapsuleInterface {
+export default class ZenginMasterCsvCapsuleDto extends AbstractCapsuleDto implements ZenginMasterCsvCapsuleInterface {
 
     /** 書証保存Dto(csv1) */
     csvData1: SaveStorageResultDto;

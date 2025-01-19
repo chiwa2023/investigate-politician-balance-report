@@ -25,6 +25,7 @@ const routes = [
     { path: "/inquire-nationarity", name: "InquireNationality", component: () => import("./components/pages/inquire_nationarity/InquireNationality.vue") },
     { path: "/investigate-membership-fee", name: "InvestigateMembershipFee", component: () => import("./components/pages/investigate_membership_fee/InvestigateMembershipFee.vue") },
     { path: "/investigate-fukisai-balancesheet", name: "InvestigateFukisaiBalancesheet", component: () => import("./components/pages/investigate_fukisai_balancesheet/InvestigateFukisaiBalancesheet.vue") },
+    { path: "/investigate-kifu-jougen", name: "InvestigateKifuJougen", component: () => import("./components/pages/investigate_kifu_jougen/InvestigateKifuJougen.vue") },
 
 
     // 金融機関支店更新

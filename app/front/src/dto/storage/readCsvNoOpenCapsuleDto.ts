@@ -1,11 +1,11 @@
-import AbstactCapsuleDto from "../abstactCapsuleDto";
+import AbstractCapsuleDto from "../abstractCapsuleDto";
 
 export default interface ReadCsvNoOpenCapsuleInterface {
 
 
 }
 
-export default class ReadCsvNoOpenCapsuleDto extends AbstactCapsuleDto implements ReadCsvNoOpenCapsuleInterface {
+export default class ReadCsvNoOpenCapsuleDto extends AbstractCapsuleDto implements ReadCsvNoOpenCapsuleInterface {
 
     /** csvテキスト形式  */
     content: string;

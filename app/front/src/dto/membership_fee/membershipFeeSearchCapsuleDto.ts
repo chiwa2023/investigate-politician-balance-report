@@ -1,7 +1,7 @@
-import AbstactCapsuleDto from "../abstactCapsuleDto";
+import AbstractCapsuleDto from "../abstractCapsuleDto";
 import SearchMembershipFeeConditionDto from "./searchMembershipFeeConditionDto";
 
-export default class MembershipFeeSearchCapsuleDto extends AbstactCapsuleDto{
+export default class MembershipFeeSearchCapsuleDto extends AbstractCapsuleDto{
 
     searchConditionDto:SearchMembershipFeeConditionDto;
 

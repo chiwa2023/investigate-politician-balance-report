@@ -1,10 +1,10 @@
-import AbstactCapsuleDto from "../abstactCapsuleDto";
+import AbstractCapsuleDto from "../abstractCapsuleDto";
 
 export default interface SearchWkTblFukisaiPagingCapsuleInterface {
 
 }
 
-export default class SearchWkTblFukisaiPagingCapsuleDto extends AbstactCapsuleDto implements SearchWkTblFukisaiPagingCapsuleInterface {
+export default class SearchWkTblFukisaiPagingCapsuleDto extends AbstractCapsuleDto implements SearchWkTblFukisaiPagingCapsuleInterface {
 
     /** 政治団体同一識別コード */
     poliOrgCode: number;
