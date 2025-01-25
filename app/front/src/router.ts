@@ -26,6 +26,7 @@ const routes = [
     { path: "/investigate-membership-fee", name: "InvestigateMembershipFee", component: () => import("./components/pages/investigate_membership_fee/InvestigateMembershipFee.vue") },
     { path: "/investigate-fukisai-balancesheet", name: "InvestigateFukisaiBalancesheet", component: () => import("./components/pages/investigate_fukisai_balancesheet/InvestigateFukisaiBalancesheet.vue") },
     { path: "/investigate-kifu-jougen", name: "InvestigateKifuJougen", component: () => import("./components/pages/investigate_kifu_jougen/InvestigateKifuJougen.vue") },
+    { path: "/investigate-ukai-kenkin", name: "InvestigateUkaiKenkin", component: () => import("./components/pages/investigate_ukai_kenkin/InvestigateUkaiKenkin.vue") },
 
 
     // 金融機関支店更新

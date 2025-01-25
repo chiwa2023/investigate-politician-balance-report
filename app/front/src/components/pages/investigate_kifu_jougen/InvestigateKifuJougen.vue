@@ -39,8 +39,6 @@ const EDA_KBN_POLI_ORG: number = parseInt(YoushikiEdaKbnIncomeConstants.POLITIC_
 const SEARCH_PARTY: number = KifuJougenConstnts.SEARCH_PARTY;
 const SEARCH_OTHER: number = KifuJougenConstnts.SEARCH_OTHER;
 
-
-
 //政治団体検索コンポーネント
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
 const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
@@ -280,7 +278,7 @@ function searchMeisaiKobetsu(edaKbn: number, pageNum: number) {
     capsuleMeisaiDto.value.pageNum = pageNum;
 
     // 下記Urlと上記検索条件Dtoを用いてBackアクセス(ページングあり明細)
-    // const urlSouryou:string = "http://localhost:9080/kifu-jougen//get-jouegn-meisai"
+    // const urlSouryou:string = "http://localhost:9080/kifu-jougen/get-jouegn-meisai"
 
     // fetchのmockはこの1行のみ
     const resultDto: SearchKifuJougenMeisaiBalancesheetResultInterface = mockGetSouryouMeisai(edaKbn, pageNum);
@@ -689,7 +687,6 @@ function searchMeisaiKobetsu(edaKbn: number, pageNum: number) {
             </SearchPoliticalOrganization>
         </div>
     </div>
-
 
 </template>
 <style scoped>

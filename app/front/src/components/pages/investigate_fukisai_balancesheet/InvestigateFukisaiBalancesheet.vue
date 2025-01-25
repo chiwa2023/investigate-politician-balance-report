@@ -195,7 +195,6 @@ function warningClass(isDiffer: boolean): string {
     </div>
     <div class="clear-both"><br></div>
 
-
     <div class="one-line">
         抽出結果<span class="left-space"><button @click="onSearch">更新する</button></span>
     </div>
