@@ -165,7 +165,7 @@ public interface OfferingBalancesheetIncome2022Repository
             List<String> listDantaiKbn);
 
     /**
-     * 原文書取引相手名称から
+     * 原文書取引相手名称から取引明細を取得する
      *
      * @param listDantaiName 取引相手名称リスト
      * @param listDantaiKbn  団体区分リスト
@@ -219,5 +219,15 @@ public interface OfferingBalancesheetIncome2022Repository
     List<OfferingBalancesheetIncome2022Entity> findByRelationPoliticalOrgCodeIncomeInAndDantaiKbnInAndYoushikiEdaKbnAndSaishinKbnOrderByRelationPoliticalOrgCodeIncomeAsc(
             List<Integer> listRelationCode, List<String> listDantaiKbn, Integer youshikiEdaKbn, Integer saishinKbn,
             Pageable pageable);
+
+    
+    /**
+     * 政治団体から取引データをすべて取得する
+     *
+     * @param listPoliOrgCode 政治団体同一識別コードリスト
+     * @param saishinKbn 最新区分
+     * @return 収入データリスト
+     */
+    List<OfferingBalancesheetIncome2022Entity> findByPoliticalOrganizationCodeInAndYoushikiKbnInAndSaishinKbn(List<Integer> listPoliOrgCode,List<Integer> listYoushikiKbn,Integer saishinKbn);
 
 }
