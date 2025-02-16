@@ -27,6 +27,16 @@ public interface PoliticalOrganizationPropertyRepository
     /**
      * 政治団体Idからデータを取得する
      *
+     * @param poliOrgCode  政治団体同一識別コード
+     * @param saishinKbn 最新区分
+     * @return 政治団体属性Entity
+     */
+    Optional<PoliticalOrganizationPropertyEntity> findByPoliticalOrganizationCodeAndSaishinKbn(Integer poliOrgCode,
+            Integer saishinKbn);
+
+    /**
+     * 政治団体Idからデータを取得する
+     *
      * @param poliOrgId  政治団体Id
      * @param saishinKbn 最新区分
      * @return 政治団体属性Entity

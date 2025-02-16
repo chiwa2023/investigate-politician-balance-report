@@ -42,6 +42,7 @@ public class GetSamePersonPoliOrgByCodeLogic {
         // 国会議員3
         this.addList(listPersonCode, propertyEntity.getGiin3RelationPersonCode());
 
+        // すべての関連者を含む政治団体コードを検索
         return politicalOrganizationPropertyRepository.findSameRelationPerson(listPersonCode);
     }
 

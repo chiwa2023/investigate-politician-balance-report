@@ -67,7 +67,7 @@ public class PickupSameRelationPersonDataLogic {
         return map.values().stream().toList();
     }
 
-    // 重複なｌく抽出したリストを保存する
+    // 重複なく抽出したリストを保存する
     private void recordMap(final Map<Long, WkTblUkaiKenkinPickupRouteEntity> map,
             final List<WkTblUkaiKenkinPickupRouteEntity> list) {
         for (WkTblUkaiKenkinPickupRouteEntity entity : list) {

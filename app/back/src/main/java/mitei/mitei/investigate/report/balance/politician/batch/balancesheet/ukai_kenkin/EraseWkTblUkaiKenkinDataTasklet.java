@@ -7,6 +7,7 @@ import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.repository.WkTblUkaiKenkinPickupRouteRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.WkTblUkaiKenkinRepository;
@@ -14,6 +15,7 @@ import mitei.mitei.investigate.report.balance.politician.repository.WkTblUkaiKen
 /**
  * 迂回献金ワークテーブルの操作者のデータを削除する
  */
+@Component
 public class EraseWkTblUkaiKenkinDataTasklet implements Tasklet, StepExecutionListener{
 
     
@@ -37,7 +39,6 @@ public class EraseWkTblUkaiKenkinDataTasklet implements Tasklet, StepExecutionLi
     public void beforeStep(final StepExecution stepExecution) {
         // Jobパラメータの取得
         userCode = Math.toIntExact(stepExecution.getJobParameters().getLong("userCode"));
-
     }
 
     /**

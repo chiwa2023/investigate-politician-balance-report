@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
@@ -11,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheetIncome2022Entity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.OfferingBalancesheetIncomeEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.SouryouKiseiByCodeEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.SouryouKiseiGenBunshoEntity;
 
@@ -230,4 +232,33 @@ public interface OfferingBalancesheetIncome2022Repository
      */
     List<OfferingBalancesheetIncome2022Entity> findByPoliticalOrganizationCodeInAndYoushikiKbnInAndSaishinKbn(List<Integer> listPoliOrgCode,List<Integer> listYoushikiKbn,Integer saishinKbn);
 
+    
+    /**
+     * 迂回献金明細テーブルの直前の取得階層に存在する政治団体の収入データを取得する
+     *
+     * @param userCode 操作ユーザ同一識別コード
+     * @param stage 取得階層
+     * @param koufukinKbn 交付金検索有無
+     * @param pageable ページング条件
+     * @return 収支報告書収入データ
+     */
+    @Query(value = "SELECT *,(?2) AS pickup_stage FROM offering_balancesheet_income_2022 WHERE political_organization_code IN ("
+            + " SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code = ?1 AND pickup_stage = (?2-1) AND ((youshiki_eda_kbn =3 AND youshiki_kbn =7) OR youshiki_kbn =?3)"
+            + ")", nativeQuery = true)
+    Page<OfferingBalancesheetIncomeEntity> findUkaiKenkiMeisai(Integer userCode,Integer stage,Integer koufukinKbn,Pageable pageable);
+
+    /**
+     * 迂回献金明細テーブルの直前の取得階層に存在する政治団体の収入データの総件数を取得する
+     *
+     * @param userCode 操作ユーザ同一識別コード
+     * @param stage 取得階層
+     * @param koufukinKbn 交付金検索有無
+     * @return 総件数
+     */
+    @Query(value = "SELECT COUNT(*) FROM offering_balancesheet_income_2022 WHERE political_organization_code IN ("
+            + " SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code = ?1 AND  pickup_stage = (?2-1) AND ((youshiki_eda_kbn =3 AND youshiki_kbn =7) OR youshiki_kbn = ?3)"
+            + ")", nativeQuery = true)
+    Integer findUkaiKenkiMeisaiCount(Integer userCode,Integer stage,Integer koufukinKbn);
 }

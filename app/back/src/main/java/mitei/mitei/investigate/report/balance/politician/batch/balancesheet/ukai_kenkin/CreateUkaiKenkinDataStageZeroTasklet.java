@@ -6,14 +6,13 @@ import java.util.Optional;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.StepExecutionListener;
+import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiKbn;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationPropertyEntity;
@@ -28,7 +27,7 @@ import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDto
  * 階層0(迂回なし)での関連全データを抽出する
  */
 @Component
-public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet, StepExecutionListener {
+public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet {
 
     /** 収入データ取得Logic */
     @Autowired
@@ -65,7 +64,7 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet, StepExecut
      * JobParameterを取得する
      *
      */
-    @Override
+    @BeforeStep
     public void beforeStep(final StepExecution stepExecution) {
         // Jobパラメータの取得
         userId = stepExecution.getJobParameters().getLong("userId");
@@ -79,7 +78,6 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet, StepExecut
      * 実行メソッド
      */
     @Override
-    @Transactional
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 指定した政治団体同一識別コードから政治団体関連者を抽出する

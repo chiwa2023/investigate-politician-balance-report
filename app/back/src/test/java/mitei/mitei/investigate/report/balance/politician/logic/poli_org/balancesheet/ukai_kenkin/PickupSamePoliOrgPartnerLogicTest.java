@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -56,12 +55,11 @@ class PickupSamePoliOrgPartnerLogicTest {
         listPoliOrgCode0.add(670);
 
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
-        List<WkTblUkaiKenkinPickupRouteEntity> list =        pickupSamePoliOrgPartnerLogic.practice(privilegeDto.getLoginUserCode(), listPoliOrgCode0);
+        List<WkTblUkaiKenkinPickupRouteEntity> list = pickupSamePoliOrgPartnerLogic
+                .practice(privilegeDto.getLoginUserCode(), listPoliOrgCode0,null);
 
-        assertEquals(1, list.size(),"取得サイズ");
+        assertEquals(1, list.size(), "取得サイズ");
 
-        
-        
         WkTblUkaiKenkinPickupRouteEntity entity00 = list.get(0);
         final String POLI_ID_TEXT = "明細側Idが一致";
         final String POLI_CODE_TEXT = "明細側コードが一致";
@@ -74,8 +72,8 @@ class PickupSamePoliOrgPartnerLogicTest {
 
         assertEquals(301L, entity00.getTablleId(), "テーブルIdが一致");
         assertEquals("R4/9/30", entity00.getAccrualDate(), "発生日が一致");
-        assertEquals(LocalDate.of(2022, 9,30), entity00.getAccrualDateValue(), "発生日実値が一致");
-        assertEquals(LocalDateTime.of(2025,2,8,16,31,39), entity00.getInsertTimestamp(), "挿入時間が一致");
+        assertEquals(LocalDate.of(2022, 9, 30), entity00.getAccrualDateValue(), "発生日実値が一致");
+        assertEquals(LocalDateTime.of(2025, 2, 8, 16, 31, 39), entity00.getInsertTimestamp(), "挿入時間が一致");
         assertEquals(987, entity00.getInsertUserCode(), "挿入ユーザコードが一致");
         assertEquals(123_321L, entity00.getInsertUserId(), "挿入ユーザIdが一致");
         assertEquals("ユーザ", entity00.getInsertUserName(), "挿入ユーザ名が一致");
@@ -100,7 +98,8 @@ class PickupSamePoliOrgPartnerLogicTest {
         assertEquals(30_491L, entity00.getTradingRelationPersonId(), TRADING_ID_TEXT);
         assertEquals("国会議員 2太郎", entity00.getTradingRelationPersonName(), TRADING_NAME_TEXT);
         // 名称検索のときは住所も識別条件だがコード検索時は不要
-        assertEquals(RelationPersonYakuwariConstants.YAKUWARI_GIIN2, entity00.getTradingRelationPersonYakuari(), TRADING_YAKUWARI_TEXT);
+        assertEquals(RelationPersonYakuwariConstants.YAKUWARI_GIIN2, entity00.getTradingRelationPersonYakuari(),
+                TRADING_YAKUWARI_TEXT);
     }
 
 }

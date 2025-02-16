@@ -13,7 +13,7 @@ import mitei.mitei.investigate.report.balance.politician.repository.PoliticalOrg
 import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Repository;
 
 /**
- * 対象の政治団体に属する関連者すべてを抽出する
+ * 対象の政治団体に属する関連者すべてを抽出する(2022年)
  */
 @Component
 public class GetRelationPersonPoliOrgByCodeY2022Logic {
