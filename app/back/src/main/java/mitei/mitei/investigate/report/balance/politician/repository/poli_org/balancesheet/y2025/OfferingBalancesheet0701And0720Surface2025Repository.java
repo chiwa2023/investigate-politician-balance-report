@@ -55,4 +55,13 @@ public interface OfferingBalancesheet0701And0720Surface2025Repository  extends J
      */
     List<OfferingBalancesheet0701And0720Surface2025Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(Integer saishinKbn,Integer politicalOrgCode,LocalDate offeringDate);
 
+    /**
+     * 政治団体同一識別コードが一致する最新データを取得する
+     *
+     * @param politicalOrgCode 政治団体同一識別コード
+     * @param saishinKbn 最新区分
+     * @return 表紙データ
+     */
+    Optional<OfferingBalancesheet0701And0720Surface2025Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbnOrderByOfferingDateDesc(Integer politicalOrgCode,Integer saishinKbn);
+
 }

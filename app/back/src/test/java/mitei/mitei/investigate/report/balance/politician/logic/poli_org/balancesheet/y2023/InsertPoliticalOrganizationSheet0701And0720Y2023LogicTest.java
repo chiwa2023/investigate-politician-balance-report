@@ -150,6 +150,7 @@ class InsertPoliticalOrganizationSheet0701And0720Y2023LogicTest {
         documentPropertyDto.setDantaiName("ちゃらん団体");
         documentPropertyDto.setDaihyouName("代表者 世間芸名");
         documentPropertyDto.setRelationKbn(223);
+        documentPropertyDto.setDantaiKbn("05");
         documentPropertyDto.setRelationPersonIdDelegate(9898L);
         documentPropertyDto.setRelationPersonCodeDelegate(9867);
         documentPropertyDto.setRelationPersonNameDelegate("代表者　戸籍の名前");

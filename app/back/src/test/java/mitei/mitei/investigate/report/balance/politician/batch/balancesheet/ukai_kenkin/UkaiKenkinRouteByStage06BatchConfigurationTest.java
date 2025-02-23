@@ -71,7 +71,7 @@ class UkaiKenkinRouteByStage06BatchConfigurationTest {
     // @Transactional
     @Sql({ "configuration_income_2022.sql", "configuration_poli_org_property.sql",
             "configuration_wktbl_meisai_clean.sql", "configuration_wktbl_route.sql" })
-    void test() throws Exception {
+    void test() throws Exception { // NOPMD
 
         jobLauncherTestUtils.setJob(ukaiKenkinRouteByStage06);
 

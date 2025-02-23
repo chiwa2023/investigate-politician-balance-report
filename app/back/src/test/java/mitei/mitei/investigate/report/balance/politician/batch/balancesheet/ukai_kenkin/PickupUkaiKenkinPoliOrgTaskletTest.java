@@ -48,7 +48,7 @@ class PickupUkaiKenkinPoliOrgTaskletTest {
     private CreateUkaiKenkinRouteSelectOptionLogic createUkaiKenkinRouteSelectOptionLogic;
 
     /** 権限確認Dto */
-    private CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+    private final CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
     /** 迂回献金経路Repository */
     @Autowired
@@ -58,7 +58,7 @@ class PickupUkaiKenkinPoliOrgTaskletTest {
     @Tag("TableTruncate")
     @Transactional
     @Sql({ "truncate_wk_tbl_ukai_kenkin_route.sql", "configuration_income_2022.sql", "configuration_wktbl_meisai.sql" })
-    void test() throws Exception {
+    void test() throws Exception { // NOPMD
 
         StepExecution execution = this.getStepExecution();
         pickupUkaiKenkinPoliOrgTasklet.beforeStep(execution);

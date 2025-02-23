@@ -8,6 +8,7 @@ CREATE TABLE `offering_balancesheet_income_2022` (
   `political_organization_id` bigint DEFAULT NULL COMMENT '政治団体Id',
   `political_organization_code` int DEFAULT NULL COMMENT '政治団体同一識別コード',
   `political_organization_name` varchar(210) DEFAULT NULL COMMENT '政治団体名称',
+  `dantai_kbn` varchar(2) DEFAULT NULL COMMENT '団体区分',
   `daihyou_name` varchar(210) DEFAULT NULL COMMENT '原文書政治団体代表者名',
   `dantai_name` varchar(210) DEFAULT NULL COMMENT '原文書政治団体名称',
   `relation_kbn` int DEFAULT NULL COMMENT '関連者区分',
@@ -56,4 +57,4 @@ CREATE TABLE `offering_balancesheet_income_2022` (
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`offering_balancesheet_income_id`),
   FULLTEXT KEY `search_words` (`search_words`) /*!50100 WITH PARSER `ngram` */ 
-) ENGINE=InnoDB AUTO_INCREMENT=13445 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=28002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

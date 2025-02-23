@@ -49,7 +49,7 @@ class PickupUkaiKenkinPersonAndCorpTaskletTest {
     private CreateUkaiKenkinRouteSelectOptionLogic createUkaiKenkinRouteSelectOptionLogic;
 
     /** 権限確認Dto */
-    private CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+    private final CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
     /** 迂回献金経路Repository */
     @Autowired

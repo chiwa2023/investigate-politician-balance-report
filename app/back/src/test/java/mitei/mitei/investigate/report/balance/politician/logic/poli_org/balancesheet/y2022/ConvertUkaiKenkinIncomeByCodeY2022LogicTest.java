@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022;
 
-import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -320,8 +319,6 @@ class ConvertUkaiKenkinIncomeByCodeY2022LogicTest {
         assertEquals(130_588L, entity03.getTradingOrgKokkaiGiin3Id(), "取引相手国会議員3関連者Idデータ3");
         assertEquals(130_580, entity03.getTradingOrgKokkaiGiin3Code(), "取引相手国会議員3関連者同一識別コードデータ3");
         assertEquals("ちゃらんぽらん国会議員 3太郎", entity03.getTradingOrgKokkaiGiin3Name(), "取引相手国会議員3関連者名称データ3");
-
-        fail("Not yet implemented");
     }
 
 }

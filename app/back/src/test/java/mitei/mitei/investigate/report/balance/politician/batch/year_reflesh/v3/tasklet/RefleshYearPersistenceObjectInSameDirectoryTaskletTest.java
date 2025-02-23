@@ -54,7 +54,6 @@ class RefleshYearPersistenceObjectInSameDirectoryTaskletTest {
     void test() throws Exception {
 
         refleshYearPersistenceObjectInSameDirectoryTasklet.beforeStep(this.getStepExecution());
-
         assertEquals(RepeatStatus.FINISHED, refleshYearPersistenceObjectInSameDirectoryTasklet.execute(null, null),
                 "とりあえず例外なく最後まで走る");
 

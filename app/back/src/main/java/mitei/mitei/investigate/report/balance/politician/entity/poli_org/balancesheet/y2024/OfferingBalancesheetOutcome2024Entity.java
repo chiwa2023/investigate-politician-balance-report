@@ -1114,4 +1114,5 @@ public class OfferingBalancesheetOutcome2024Entity implements Serializable, AllT
         this.updateTimestamp = updateTimestamp;
     }
 
+    // TODO 必要に応じて政治団体区分と資金管理団体該当非該当を追加する
 }

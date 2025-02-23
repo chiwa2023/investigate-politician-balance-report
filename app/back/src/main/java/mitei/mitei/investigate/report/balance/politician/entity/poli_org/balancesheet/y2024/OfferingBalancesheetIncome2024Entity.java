@@ -1270,4 +1270,25 @@ public class OfferingBalancesheetIncome2024Entity implements Serializable, AllTa
         this.updateTimestamp = updateTimestamp;
     }
 
+    /** 政治団体区分 */
+    private String dantaiKbn = INIT_String;
+
+    /**
+     * 政治団体区分
+     *
+     * @return 政治団体区分
+     */
+    public String getDantaiKbn() {
+        return dantaiKbn;
+    }
+
+    /**
+     * 政治団体区分
+     *
+     * @param dantaiKbn 政治団体区分
+     */
+    public void setDantaiKbn(final String dantaiKbn) {
+        this.dantaiKbn = dantaiKbn;
+    }
+
 }
