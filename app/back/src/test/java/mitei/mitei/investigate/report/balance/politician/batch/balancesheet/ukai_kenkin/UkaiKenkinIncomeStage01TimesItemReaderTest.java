@@ -43,40 +43,31 @@ class UkaiKenkinIncomeStage01TimesItemReaderTest {
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql({"wk_tbl_ukai_kenkin_times00.sql","tasklet_stage0_income_2022.sql"})
+    @Sql({ "wk_tbl_ukai_kenkin_times01.sql", "tasklet_stage_income_2022.sql" })
     void test() throws Exception {
 
         StepExecution execution = this.getStepExecution();
         ukaiKenkinIncomeStage01TimesItemReader.beforeStep(execution);
 
         OfferingBalancesheetIncomeEntity entity00 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(201L, entity00.getOfferingBalancesheetIncomeId(), "idが一致0");
+        assertEquals(1001L, entity00.getOfferingBalancesheetIncomeId(), "idが一致0");
         OfferingBalancesheetIncomeEntity entity01 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(202L, entity01.getOfferingBalancesheetIncomeId(), "idが一致1");
+        assertEquals(1002L, entity01.getOfferingBalancesheetIncomeId(), "idが一致1");
 
         OfferingBalancesheetIncomeEntity entity02 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(203L, entity02.getOfferingBalancesheetIncomeId(), "idが一致2");
+        assertEquals(1003L, entity02.getOfferingBalancesheetIncomeId(), "idが一致2");
         OfferingBalancesheetIncomeEntity entity03 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(204L, entity03.getOfferingBalancesheetIncomeId(), "idが一致3");
+        assertEquals(1004L, entity03.getOfferingBalancesheetIncomeId(), "idが一致3");
 
         OfferingBalancesheetIncomeEntity entity04 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(205L, entity04.getOfferingBalancesheetIncomeId(), "idが一致4");
-        OfferingBalancesheetIncomeEntity entity05 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(206L, entity05.getOfferingBalancesheetIncomeId(), "idが一致5");
-
-        OfferingBalancesheetIncomeEntity entity06 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertEquals(207L, entity06.getOfferingBalancesheetIncomeId(), "idが一致6");
-
-        OfferingBalancesheetIncomeEntity entity07 = ukaiKenkinIncomeStage01TimesItemReader.read();
-        assertNull(entity07, "件数以上の場合はnull");
-
+        assertNull(entity04, "最大4件");
     }
 
     private StepExecution getStepExecution() throws URISyntaxException, IOException {
 
         JobParameters jobParameters = new JobParametersBuilder() // NOPMD
                 .addLong("userId", 123_321L).addLong("userCode", 987L).addString("userName", "ユーザ")
-                .addLong("houkokuNen", 2022L).addString("isSearchKoufukin", "false")
+                .addLong("houkokuNen", 2022L).addString("isSearchKoufukin", "true")
                 .addLocalDateTime("executeTime", LocalDateTime.now()).toJobParameters();
 
         // 起動引数付きのStepExecutionを作成

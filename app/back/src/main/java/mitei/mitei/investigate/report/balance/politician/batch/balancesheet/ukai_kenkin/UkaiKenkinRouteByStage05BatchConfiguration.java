@@ -21,6 +21,9 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 @Configuration
 public class UkaiKenkinRouteByStage05BatchConfiguration {
 
+    /** チャンクサイズ */
+    private static final int CHUNK_SIZE = 50;
+
     /** 機能名 */
     private static final String FUNCTION_NAME = "ukaiKenkinRouteByStage05";
 
@@ -54,8 +57,11 @@ public class UkaiKenkinRouteByStage05BatchConfiguration {
     /** 抽出階層5Step名 */
     public static final String STEP_STAGE_5 = FUNCTION_NAME + "Stage05" + STEP;
 
-    /** チャンクサイズ */
-    private static final int CHUNK_SIZE = 50;
+    /** 個人・企業経路抽出Step名 */
+    public static final String STEP_ROUTE_PERSON_CORP = FUNCTION_NAME + "RoutePersonCorp" + STEP;
+
+    /** 政治団体経路抽出Step名 */
+    public static final String STEP_ROUTE_POLI_ORG = FUNCTION_NAME + "RoutePoliOrg" + STEP;
 
     /** ワークテーブル消去Tasklet */
     @Autowired
@@ -93,6 +99,14 @@ public class UkaiKenkinRouteByStage05BatchConfiguration {
     @Autowired
     private UkaiKenkinIncomeStage05TimesItemReader ukaiKenkinIncomeStage05TimesItemReader;
 
+    /** 経路抽出個人・企業Tasklet */
+    @Autowired
+    private PickupUkaiKenkinPersonAndCorpTasklet pickupUkaiKenkinPersonAndCorpTasklet;
+
+    /** 経路抽出政治団体Tasklet */
+    @Autowired
+    private PickupUkaiKenkinPoliOrgTasklet pickupUkaiKenkinPoliOrgTasklet;
+
     /**
      * Jobを返却する
      *
@@ -104,11 +118,13 @@ public class UkaiKenkinRouteByStage05BatchConfiguration {
     protected Job getJob(final JobRepository jobRepository, @Qualifier(STEP_CLEAN_NAME) final Step stepClean,
             @Qualifier(STEP_STAGE_0) final Step stepStage0, @Qualifier(STEP_STAGE_1) final Step stepStage1,
             @Qualifier(STEP_STAGE_2) final Step stepStage2, @Qualifier(STEP_STAGE_3) final Step stepStage3,
-            @Qualifier(STEP_STAGE_4) final Step stepStage4, @Qualifier(STEP_STAGE_5) final Step stepStage5) {
+            @Qualifier(STEP_STAGE_4) final Step stepStage4, @Qualifier(STEP_STAGE_5) final Step stepStage5,
+            @Qualifier(STEP_ROUTE_PERSON_CORP) final Step stepPickupPerson,
+            @Qualifier(STEP_ROUTE_POLI_ORG) final Step stepPickupOrg) {
 
         return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepClean)
-                .next(stepStage0).next(stepStage1).next(stepStage2).next(stepStage3).next(stepStage4).next(stepStage5)
-                .end().build();
+                .next(stepStage0).next(stepStage1).next(stepStage2).next(stepStage3).next(stepStage4).next(stepStage5) // ここまで階層
+                .next(stepPickupPerson).next(stepPickupOrg).end().build();
     }
 
     /**
@@ -224,6 +240,36 @@ public class UkaiKenkinRouteByStage05BatchConfiguration {
                 .<OfferingBalancesheetIncomeEntity, WkTblUkaiKenkinEntity>chunk(CHUNK_SIZE, transactionManager)
                 .reader(ukaiKenkinIncomeStage05TimesItemReader)
                 .processor(ukaiKenkinBalancesheetIncomeMeisaiItemProcessor).writer(ukaiKenkinMeisaiItemWriter).build();
+    }
+
+    /**
+     * 経路抽出個人・企業
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_PERSON_CORP)
+    protected Step getRoutePersonCorp(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_PERSON_CORP, jobRepository)
+                .tasklet(pickupUkaiKenkinPersonAndCorpTasklet, transactionManager).build();
+    }
+
+    /**
+     * 経路抽出個人・企業
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_POLI_ORG)
+    protected Step getRoutePoliOrg(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_POLI_ORG, jobRepository)
+                .tasklet(pickupUkaiKenkinPoliOrgTasklet, transactionManager).build();
     }
 
 }

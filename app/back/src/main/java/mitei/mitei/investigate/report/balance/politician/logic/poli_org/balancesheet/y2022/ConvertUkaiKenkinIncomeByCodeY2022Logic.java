@@ -54,7 +54,6 @@ public class ConvertUkaiKenkinIncomeByCodeY2022Logic {
 
         List<WkTblUkaiKenkinEntity> list = new ArrayList<>();
         for (OfferingBalancesheetIncome2022Entity entityIncome : listByPoliOrg) {
-
             list.add(
                     this.convertEntity(entityIncome,
                             politicalOrganizationPropertyRepository.findByPoliticalOrganizationIdAndSaishinKbn(

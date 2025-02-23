@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RelationPersonYakuwariConstants;
+import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationPropertyEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinPickupRouteEntity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 
@@ -55,8 +56,14 @@ class PickupSamePoliOrgPartnerLogicTest {
         listPoliOrgCode0.add(670);
 
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+        
+        PoliticalOrganizationPropertyEntity propertyEntity = new PoliticalOrganizationPropertyEntity();
+        propertyEntity.setGiin2RelationPersonId(30_491L);
+        propertyEntity.setGiin2RelationPersonCode(30_490);
+        propertyEntity.setGiin2KoushokuName("国会議員 2太郎");
+        
         List<WkTblUkaiKenkinPickupRouteEntity> list = pickupSamePoliOrgPartnerLogic
-                .practice(privilegeDto.getLoginUserCode(), listPoliOrgCode0,null);
+                .practice(privilegeDto.getLoginUserCode(), listPoliOrgCode0,propertyEntity);
 
         assertEquals(1, list.size(), "取得サイズ");
 

@@ -24,29 +24,21 @@ public class PickupSamePoliOrgPartnerLogic {
     @Autowired
     private ConvertUkaiKenkinDetailToRouteByInClassLogic convertUkaiKenkinDetailToRouteByInClassLogic;
 
-//    /**
-//     * 処理を行う
-//     *
-//     * @param userCode                操作者同一識別コード
-//     * @param listRelationPoliOrgCode 関連者が同一である政治団体同一識別コードリスト
-//     */
-//    public List<WkTblUkaiKenkinPickupRouteEntity> practice(final Integer userCode,
-//            final List<Integer> listRelationPoliOrgCode) {
-//
-//        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository
-//                .findTradingByRelationPoliOrg(userCode, listRelationPoliOrgCode);
-//
-//        return convertUkaiKenkinDetailToRouteByInClassLogic.practice(list);
-//    }
-
-
+    /**
+     * 処理を行う
+     *
+     * @param userCode                操作者同一識別コード
+     * @param listRelationPoliOrgCode 関連者が同一である政治団体同一識別コードリスト
+     * @param propertyEntity          検索団体の政治団体属性Entity
+     * @return 迂回献金経路リスト
+     */
     public List<WkTblUkaiKenkinPickupRouteEntity> practice(final Integer userCode,
-            final List<Integer> listRelationPoliOrgCode,final PoliticalOrganizationPropertyEntity propertyEntity) {
+            final List<Integer> listRelationPoliOrgCode, final PoliticalOrganizationPropertyEntity propertyEntity) {
 
-        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository
-                .findTradingByRelationPoliOrg(userCode, listRelationPoliOrgCode);
+        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository.findTradingByRelationPoliOrg(userCode,
+                listRelationPoliOrgCode);
 
-        return convertUkaiKenkinDetailToRouteByInClassLogic.practice(list,propertyEntity);
+        return convertUkaiKenkinDetailToRouteByInClassLogic.practice(list, propertyEntity);
     }
 
 }

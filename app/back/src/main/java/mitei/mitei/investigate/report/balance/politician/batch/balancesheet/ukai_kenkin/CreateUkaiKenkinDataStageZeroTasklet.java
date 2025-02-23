@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.StepExecution;
-import org.springframework.batch.core.annotation.BeforeStep;
+import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -27,7 +27,7 @@ import mitei.mitei.investigate.report.balance.politician.util.CreatePrivilegeDto
  * 階層0(迂回なし)での関連全データを抽出する
  */
 @Component
-public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet {
+public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet, StepExecutionListener {
 
     /** 収入データ取得Logic */
     @Autowired
@@ -64,7 +64,7 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet {
      * JobParameterを取得する
      *
      */
-    @BeforeStep
+    @Override
     public void beforeStep(final StepExecution stepExecution) {
         // Jobパラメータの取得
         userId = stepExecution.getJobParameters().getLong("userId");
@@ -81,7 +81,8 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet {
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 指定した政治団体同一識別コードから政治団体関連者を抽出する
-        PoliticalOrganizationPropertyEntity propertyEntity = getRelationPersonPoliOrgByCodeY2022Logic.practice(poliOrgCode);
+        PoliticalOrganizationPropertyEntity propertyEntity = getRelationPersonPoliOrgByCodeY2022Logic
+                .practice(poliOrgCode);
 
         // 政治団体関連者から該当政治団体同一識別コードを抽出する
         List<Integer> listPoliOrgCode0 = getSamePersonPoliOrgByCodeLogic.paractice(propertyEntity);
@@ -91,10 +92,10 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet {
         // 検索する様式区分を設定する
         List<Integer> listYoushikiKbn = new ArrayList<>();
         listYoushikiKbn.add(YoushikiKbn.DONATE);
-        if(isSearchKoufukin) {
+        if (isSearchKoufukin) {
             listYoushikiKbn.add(YoushikiKbn.KOUFUKIN);
         }
-        
+
         List<WkTblUkaiKenkinEntity> list = convertUkaiKenkinIncomeByCodeY2022Logic.practice(listPoliOrgCode0,
                 propertyEntity, listYoushikiKbn, privilegeDto);
 
@@ -114,7 +115,7 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet {
 
         // 全保存
         wkTblUkaiKenkinRepository.saveAll(list);
-        
+
         // 処理終了
         return RepeatStatus.FINISHED;
     }

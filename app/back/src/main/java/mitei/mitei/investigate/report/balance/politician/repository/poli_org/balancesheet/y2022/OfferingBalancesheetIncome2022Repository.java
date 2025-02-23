@@ -244,8 +244,11 @@ public interface OfferingBalancesheetIncome2022Repository
      */
     @Query(value = "SELECT *,(?2) AS pickup_stage FROM offering_balancesheet_income_2022 WHERE political_organization_code IN ("
             + " SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
-            + " WHERE insert_user_code = ?1 AND pickup_stage = (?2-1) AND ((youshiki_eda_kbn =3 AND youshiki_kbn =7) OR youshiki_kbn =?3)"
-            + ")", nativeQuery = true)
+            + " WHERE insert_user_code = ?1 AND pickup_stage = (?2-1)"
+            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn =7) OR youshiki_kbn = ?3)"
+            + ")"
+            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn =7) OR youshiki_kbn =?3)"
+            , nativeQuery = true)
     Page<OfferingBalancesheetIncomeEntity> findUkaiKenkiMeisai(Integer userCode,Integer stage,Integer koufukinKbn,Pageable pageable);
 
     /**
@@ -258,7 +261,9 @@ public interface OfferingBalancesheetIncome2022Repository
      */
     @Query(value = "SELECT COUNT(*) FROM offering_balancesheet_income_2022 WHERE political_organization_code IN ("
             + " SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
-            + " WHERE insert_user_code = ?1 AND  pickup_stage = (?2-1) AND ((youshiki_eda_kbn =3 AND youshiki_kbn =7) OR youshiki_kbn = ?3)"
-            + ")", nativeQuery = true)
+            + " WHERE insert_user_code = ?1 AND  pickup_stage = (?2-1) "
+            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn = 7) OR youshiki_kbn = ?3)"
+            + ")"
+            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn = 7) OR youshiki_kbn = ?3)", nativeQuery = true)
     Integer findUkaiKenkiMeisaiCount(Integer userCode,Integer stage,Integer koufukinKbn);
 }

@@ -48,7 +48,7 @@ public class UkaiKenkinBalancesheetIncomeMeisaiItemProcessor
 
         // 報告書記載政治団体関連者を複写
         Optional<PoliticalOrganizationPropertyEntity> optionalPoliOrg = politicalOrganizationPropertyRepository
-                .findByPoliticalOrganizationIdAndSaishinKbn(item.getRelationPoliticalOrgIdIncome(), saishinKbn);
+                .findByPoliticalOrganizationIdAndSaishinKbn(item.getPoliticalOrganizationId(), saishinKbn);
         if (!optionalPoliOrg.isEmpty()) {
 
             PoliticalOrganizationPropertyEntity poliOrg = optionalPoliOrg.get();

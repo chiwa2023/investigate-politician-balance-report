@@ -11,7 +11,6 @@ import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balances
  */
 @Component
 public class GetRelationPersonPoliOrgByCodeLogic {
-
     
     // フィールドテンプレート始まり
     /** 登録対応年(2022) */
@@ -20,7 +19,14 @@ public class GetRelationPersonPoliOrgByCodeLogic {
     @Autowired // 2022
     private GetRelationPersonPoliOrgByCodeY2022Logic getRelationPersonPoliOrgByCodeY2022Logic;
 
-    public PoliticalOrganizationPropertyEntity practice(Integer houkokuNen,Integer poliOrgCode) {
+    /**
+     * 処理を行う
+     *
+     * @param houkokuNen 報告年
+     * @param poliOrgCode 政治団体同一識別コード
+     * @return 政治団体属性Entity
+     */
+    public PoliticalOrganizationPropertyEntity practice(final Integer houkokuNen,final Integer poliOrgCode) {
         
         switch (houkokuNen) {
             // 2022年

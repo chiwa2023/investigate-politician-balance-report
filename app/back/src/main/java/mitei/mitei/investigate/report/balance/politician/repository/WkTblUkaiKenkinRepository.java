@@ -9,15 +9,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage01Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage02Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage03Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage04Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage05Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage06Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage07Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage08Dto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RouteUkaiKenkinStage09Dto;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinEntity;
 import reactor.util.function.Tuple3;
 import reactor.util.function.Tuple4;
@@ -57,13 +48,12 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
     /**
      * 政治団体同一識別コードリストから該当取引を抽出する
      *
-     * @param userCode       操作者同一識別コード
-     * @param listPoliOrg    政治団体同一識別コードリスト
+     * @param userCode    操作者同一識別コード
+     * @param listPoliOrg 政治団体同一識別コードリスト
      * @return 検索結果
      */
     @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND (youshiki_eda_kbn = 0 OR youshiki_eda_kbn = 3)  AND trading_partner_code IN (?2)", nativeQuery = true)
-    List<WkTblUkaiKenkinEntity> findTradingByRelationPoliOrg(Integer userCode,
-            List<Integer> listPoliOrg);
+    List<WkTblUkaiKenkinEntity> findTradingByRelationPoliOrg(Integer userCode, List<Integer> listPoliOrg);
 
     /**
      * 個人データから取引を行った関連者個人同一識別コードを重複なしで取得する
@@ -113,264 +103,27 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
             + " OR trading_org_kokkai_giin3_code = ?3" + " )", nativeQuery = true)
     List<WkTblUkaiKenkinEntity> findDataByKigyouDaihyousha(Integer userCode, Integer corpCode, Integer personCode);
 
-    
-    
-    @Query(value = "WITH poli_code_01 AS ("
-            + "    SELECT DISTINCT political_org_code AS code01 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code = ?2"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage01Dto> findRouteStage01(Integer userCode,Integer poliOrgCode);
+    /**
+     * 登録炭の経路データから該当する記載政治団体と取り引き相手政治団体が一致するデータを抽出する
+     *
+     * @param userCode       操作ユーザ同一識別コード
+     * @param poliOrgCode    収支報告書記載団体
+     * @param tradingOrgCode 取り引き相手団体
+     * @param stage          取得階層
+     * @return 検索結果
+     */
+    List<WkTblUkaiKenkinEntity> findByInsertUserCodeAndPoliticalOrgCodeAndTradingPartnerCodeAndPickupStage(
+            Integer userCode, Integer poliOrgCode, Integer tradingOrgCode, Integer stage);
 
-    @Query(value = "WITH poli_code_02 AS ("
-            + "    SELECT DISTINCT political_org_code AS code09 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN = ?2"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage02Dto> findRouteStage02(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_03 AS ("
-            + "    SELECT DISTINCT political_org_code AS code03 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code = ?2"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage03Dto> findRouteStage03(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_04 AS ("
-            + "    SELECT DISTINCT political_org_code AS code04 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 4 AND trading_partner_code = ?2"
-            + " ),"
-            + " poli_code_03 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code03 FROM wk_tbl_ukai_kenkin,poli_code_04"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code IN (poli_code_04.code04)"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT code00,code01,code02,code03,code04 FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03,poli_code_04"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage04Dto> findRouteStage04(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_05 AS ("
-            + "    SELECT DISTINCT political_org_code AS code05 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 5 AND trading_partner_code = ?2"
-            + " ),"
-            + " poli_code_04 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code04 FROM wk_tbl_ukai_kenkin,poli_code_05"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 4 AND trading_partner_code IN (poli_code_05.code05)"
-            + " ),"
-            + " poli_code_03 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code03 FROM wk_tbl_ukai_kenkin,poli_code_04"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code IN (poli_code_04.code04)"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03,poli_code_04"
-            + "             ,poli_code_05"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage05Dto> findRouteStage05(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_06 AS ("
-            + "    SELECT DISTINCT political_org_code AS code06 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 6 AND trading_partner_code = ?2"
-            + " ),"
-            + "poli_code_05 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code05 FROM wk_tbl_ukai_kenkin,poli_code_06"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 5 AND trading_partner_code IN (poli_code_06.code06)"
-            + " ),"
-            + " poli_code_04 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code04 FROM wk_tbl_ukai_kenkin,poli_code_05"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 4 AND trading_partner_code IN (poli_code_05.code05)"
-            + " ),"
-            + " poli_code_03 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code03 FROM wk_tbl_ukai_kenkin,poli_code_04"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code IN (poli_code_04.code04)"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03,poli_code_04"
-            + "             ,poli_code_05,poli_code_06"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage06Dto> findRouteStage06(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_07 AS ("
-            + "    SELECT DISTINCT political_org_code AS code07 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 7 AND trading_partner_code = ?2"
-            + " ),"
-            + "poli_code_06 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code06 FROM wk_tbl_ukai_kenkin,poli_code_07"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 6 AND trading_partner_code IN (poli_code_07.code07)"
-            + " ),"
-            + "poli_code_05 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code05 FROM wk_tbl_ukai_kenkin,poli_code_06"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 5 AND trading_partner_code IN (poli_code_06.code06)"
-            + " ),"
-            + " poli_code_04 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code04 FROM wk_tbl_ukai_kenkin,poli_code_05"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 4 AND trading_partner_code IN (poli_code_05.code05)"
-            + " ),"
-            + " poli_code_03 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code03 FROM wk_tbl_ukai_kenkin,poli_code_04"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code IN (poli_code_04.code04)"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03,poli_code_04"
-            + "             ,poli_code_05,poli_code_06,poli_code_07"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage07Dto> findRouteStage07(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_08 AS ("
-            + "    SELECT DISTINCT political_org_code AS code08 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 8 AND trading_partner_code = ?2"
-            + " ),"
-            + "poli_code_07 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code07 FROM wk_tbl_ukai_kenkin,poli_code_08"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 7 AND trading_partner_code IN (poli_code_08.code08)"
-            + " ),"
-            + "poli_code_06 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code06 FROM wk_tbl_ukai_kenkin,poli_code_07"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 6 AND trading_partner_code IN (poli_code_07.code07)"
-            + " ),"
-            + "poli_code_05 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code05 FROM wk_tbl_ukai_kenkin,poli_code_06"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 5 AND trading_partner_code IN (poli_code_06.code06)"
-            + " ),"
-            + " poli_code_04 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code04 FROM wk_tbl_ukai_kenkin,poli_code_05"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 4 AND trading_partner_code IN (poli_code_05.code05)"
-            + " ),"
-            + " poli_code_03 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code03 FROM wk_tbl_ukai_kenkin,poli_code_04"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code IN (poli_code_04.code04)"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03,poli_code_04"
-            + "             ,poli_code_05,poli_code_06,poli_code_07,poli_code_08"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage08Dto> findRouteStage08(Integer userCode,Integer poliOrgCode);
-    
-    @Query(value = "WITH poli_code_09 AS ("
-            + "    SELECT DISTINCT political_org_code AS code09 FROM wk_tbl_ukai_kenkin"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 9 AND trading_partner_code = ?2"
-            + " ),"
-            + "poli_code_08 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code08 FROM wk_tbl_ukai_kenkin,poli_code_09"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 8 AND trading_partner_code IN (poli_code_09.code09)"
-            + " ),"
-            + "poli_code_07 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code07 FROM wk_tbl_ukai_kenkin,poli_code_08"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 7 AND trading_partner_code IN (poli_code_08.code08)"
-            + " ),"
-            + "poli_code_06 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code06 FROM wk_tbl_ukai_kenkin,poli_code_07"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 6 AND trading_partner_code IN (poli_code_07.code07)"
-            + " ),"
-            + "poli_code_05 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code05 FROM wk_tbl_ukai_kenkin,poli_code_06"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 5 AND trading_partner_code IN (poli_code_06.code06)"
-            + " ),"
-            + " poli_code_04 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code04 FROM wk_tbl_ukai_kenkin,poli_code_05"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 4 AND trading_partner_code IN (poli_code_05.code05)"
-            + " ),"
-            + " poli_code_03 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code03 FROM wk_tbl_ukai_kenkin,poli_code_04"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 3 AND trading_partner_code IN (poli_code_04.code04)"
-            + " ),"
-            + " poli_code_02 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code02 FROM wk_tbl_ukai_kenkin,poli_code_03"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 2 AND trading_partner_code IN (poli_code_03.code03)"
-            + " ),"
-            + " poli_code_01 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code01 FROM wk_tbl_ukai_kenkin,poli_code_02"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 1 AND trading_partner_code IN (poli_code_02.code02)"
-            + " ),"
-            + " poli_code_00 AS ("
-            + "    SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin,poli_code_01"
-            + "    WHERE insert_user_code = ?1 AND pickup_stage = 0 AND trading_partner_code IN (poli_code_01.code01)"
-            + " )"
-            + "SELECT * FROM poli_code_00,poli_code_01,poli_code_02,poli_code_03,poli_code_04"
-            + "             ,poli_code_05,poli_code_06,poli_code_07,poli_code_08,poli_code_09"
-            , nativeQuery = true)
-    List<RouteUkaiKenkinStage09Dto> findRouteStage09(Integer userCode,Integer poliOrgCode);
-    
-    
+    /**
+     * 取得回数、取り引き相手から記載政治団体コードリストを抽出する
+     *
+     * @param userCode    操作ユーザ同一識別コード
+     * @param stage       取得階層
+     * @param listOrgCode 取り引き相手政治団体同一識別コードリスト
+     * @return 検索結果
+     */
+    @Query(value = "SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin WHERE insert_user_code = ?1 AND pickup_stage = ?2 AND trading_partner_code IN (?3)", nativeQuery = true)
+    List<Integer> findRouteByOrgCodeAndStage(Integer userCode, Integer stage, List<Integer> listOrgCode);
+
 }

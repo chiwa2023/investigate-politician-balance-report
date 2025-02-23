@@ -38,7 +38,7 @@ class PoliOrgUkaiKenkinDetailLogicTest {
     @Tag("TableTruncate")
     @Transactional
     @Sql({ "../y2022/wk_tbl_ukai_kenkin_times00.sql", "../y2022/tasklet_stage0_income_2022.sql" })
-    void testCount() throws Exception {
+    void test() throws Exception {
 
         final int chunkSize = 2;
         Pageable pageable = Pageable.ofSize(chunkSize).withPage(0);
@@ -60,9 +60,9 @@ class PoliOrgUkaiKenkinDetailLogicTest {
 
     @Test
     @Tag("TableTruncate")
-    @Transactional
+    //@Transactional
     @Sql({ "../y2022/wk_tbl_ukai_kenkin_times00.sql", "../y2022/tasklet_stage0_income_2022.sql" })
-    void test() throws Exception {
+    void testCount() throws Exception {
 
         Integer userCode = 987;
 
