@@ -1,30 +1,26 @@
 package mitei.mitei.investigate.report.balance.politician.controller.ukai_kenkin;
 
-import java.time.LocalDate;
-
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.PessimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateWithTaskPlanInfoResultDto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.UkaiKenkinConditionCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.service.task_plan.RegistTaskPlanNoAlertPersonalService;
-import mitei.mitei.investigate.report.balance.politician.service.ukai_kenkin.CreateUkaiKenkinWktblAsyncService;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.UkaiKenkinPickupRouteResultDto;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.UkaiKenkinSearchCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.service.ukai_kenkin.SearchUkaiKenkinRouteByPickupStageService;
 
 /**
- * 迂回献金キャッチャー用ワークテーブル作成Controller
+ * ページングで迂回献金経路を取得するController
  */
 @Controller
 @RequestMapping("/catch-ukai-kenkin")
-public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckController {
+public class SearchUkaiKenkinRouteByPickupStageController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -35,24 +31,19 @@ public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckContro
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** タスク計画登録Service */
+    /** 迂回献金明細検索Service */
     @Autowired
-    private RegistTaskPlanNoAlertPersonalService registTaskPlanNoAlertPersonalService;
-
-    /** 不記載ワークテーブル作成Batch非同期実行Service */
-    @Autowired
-    private CreateUkaiKenkinWktblAsyncService createUkaiKenkinWktblAsyncService;
+    private SearchUkaiKenkinRouteByPickupStageService searchUkaiKenkinRouteByPickupStageService;
 
     /**
-     * 登録処理を行う
+     * 処理を行う
      *
-     * @param capsuleDto 政党交付金使途報告書処理条件Dto
-     * @return 政党交付金使途報告書処理結果Dto
+     * @param capsuleDto 迂回献金検索条件Dto
+     * @return 検索結果Dto
      */
-    @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
-    @PostMapping("/create-wktbl")
-    public ResponseEntity<TemplateWithTaskPlanInfoResultDto> practice(
-            @RequestBody final UkaiKenkinConditionCapsuleDto capsuleDto) {
+    @PostMapping("/route-meisai-paging")
+    public ResponseEntity<UkaiKenkinPickupRouteResultDto> practice(
+            @RequestBody final UkaiKenkinSearchCapsuleDto capsuleDto) {
 
         // NOTE:共通処理を行ったのちビジネス処理を行うフレームワークのため、ビジネス処理以外は丸コピすること
         try {
@@ -76,32 +67,11 @@ public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckContro
                 default:
                     throw new IllegalArgumentException(OTHER_EXCEPTION_MESSAGE);
             }
-
             /*
              * ここに固有のビジネス処理を記載する
              */
-            int year = LocalDate.now().getYear();
-            final String taskName = "迂回献金キャッチャー";
-            Integer code = registTaskPlanNoAlertPersonalService.practice(capsuleDto.getCheckPrivilegeDto(), taskName,
-                    year);
 
-            TemplateWithTaskPlanInfoResultDto codeResultDto = new TemplateWithTaskPlanInfoResultDto();
-
-            if (code == 0) {
-                codeResultDto.setIsOk(false);
-                codeResultDto.setYear(year);
-                codeResultDto.setMessage("作業の登録に失敗しました");
-            } else {
-                codeResultDto.setTaskPlanCode(code);
-                codeResultDto.setYear(year);
-                codeResultDto.setIsOk(true);
-                codeResultDto.setMessage("作業中です。しばらくしてから結果を取得してください");
-            }
-
-            // 非同期でBatch起動
-            createUkaiKenkinWktblAsyncService.practice(capsuleDto,code,taskName,year);
-
-            return ResponseEntity.ok(codeResultDto);
+            return ResponseEntity.ok(searchUkaiKenkinRouteByPickupStageService.practice(capsuleDto));
 
             /* ここまで */
 

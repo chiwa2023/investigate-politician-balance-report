@@ -13,6 +13,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import jakarta.transaction.Transactional;
 import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiKbn;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationPropertyEntity;
@@ -78,6 +79,7 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet, StepExecut
      * 実行メソッド
      */
     @Override
+    @Transactional
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 指定した政治団体同一識別コードから政治団体関連者を抽出する
@@ -96,9 +98,10 @@ public class CreateUkaiKenkinDataStageZeroTasklet implements Tasklet, StepExecut
             listYoushikiKbn.add(YoushikiKbn.KOUFUKIN);
         }
 
+        // 関連者が同じ政治団体団体取り引きを抽出する
         List<WkTblUkaiKenkinEntity> list = convertUkaiKenkinIncomeByCodeY2022Logic.practice(listPoliOrgCode0,
                 propertyEntity, listYoushikiKbn, privilegeDto);
-
+        
         // テーブル用同一識別コードを算出
         Integer code = 1;
         Optional<WkTblUkaiKenkinEntity> optional = wkTblUkaiKenkinRepository

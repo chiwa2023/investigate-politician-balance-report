@@ -23,19 +23,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import mitei.mitei.investigate.report.balance.politician.BackApplication;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.UkaiKenkinConditionCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.UkaiKenkinSearchCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
 /**
- * CreateUkaiKenkinWktblController単体テスト
+ * SearchUkaiKenkinMeisaiController単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 @ContextConfiguration(classes = BackApplication.class) // 全体起動
-class CreateUkaiKenkinWktblControllerTest {
+class SearchUkaiKenkinMeisaiControllerTest {
     // CHECKSTYLE:OFF
 
     /** MockMvc */
@@ -45,33 +45,26 @@ class CreateUkaiKenkinWktblControllerTest {
     @Test
     @Transactional
     @Tag("TableTruncate")
-    @Sql({ "erase_task_plan_2025.sql", "task_info.sql",
-            "../../batch/balancesheet/ukai_kenkin/configuration_income_2022.sql",
-            "../../batch/balancesheet/ukai_kenkin/configuration_poli_org_property.sql",
-            "../../batch/balancesheet/ukai_kenkin/configuration_wktbl_meisai_clean.sql",
-            "../../batch/balancesheet/ukai_kenkin/configuration_wktbl_route.sql" })
+    @Sql("../../batch/balancesheet/ukai_kenkin/configuration_wktbl_meisai.sql")
     void test() throws Exception {
 
-        UkaiKenkinConditionCapsuleDto capsuleDto = new UkaiKenkinConditionCapsuleDto();
+        UkaiKenkinSearchCapsuleDto capsuleDto = new UkaiKenkinSearchCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
-        capsuleDto.setHoukokuNen(2022);
-        capsuleDto.setIsKoufukin(true);
-        capsuleDto.setIsNameSearch(false);
-        capsuleDto.setOffset(0);
-        capsuleDto.setPageNum(0);
-        capsuleDto.setPickupTimes(5);
-        capsuleDto.setPoliOrgId(105L);
-        capsuleDto.setPoliOrgCode(100);
-        capsuleDto.setPoliOrgName("ABCD政治団体");
+        capsuleDto.setLimit(5);
+        capsuleDto.setCountAll(0);
+        capsuleDto.setPageNumber(2);
+        capsuleDto.setTaskPlanCode(100);
+        capsuleDto.setYear(2025);
 
         ObjectMapper objectMapper = GetObjectMapperWithTimeModuleUtil.practice();
 
-        String url = "/catch-ukai-kenkin/create-wktbl";
+        String url = "/catch-ukai-kenkin/search-meisai";
         assertEquals(HttpStatus.OK.value(), mockMvc. // NOPMD
                 perform(post(url) // 以下引数指定
                         .content(objectMapper.writeValueAsString(capsuleDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk()).andReturn().getResponse().getStatus(), "レスポンスokが戻る");
+                .andExpect(status().isOk()).andReturn().getResponse().getStatus()
+                , "レスポンスokが戻る(タスク完了がfalseのため作成中扱い)");
     }
 
 }

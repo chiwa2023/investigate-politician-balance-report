@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -46,6 +47,7 @@ class RefleshYearDataAccessDdlTaskletTest {
     private RefleshYearDataAccessDdlTasklet refleshYearDataAccessDdlTasklet;
     
     @Test
+    @Tag("SourceReflesh")
     void test()throws Exception {
         
         refleshYearDataAccessDdlTasklet.beforeStep(this.getStepExecution());

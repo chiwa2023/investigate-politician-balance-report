@@ -69,6 +69,7 @@ class PickupUkaiKenkinPersonAndCorpTaskletTest {
 
         // 全体を選択肢リスト形式で取得
         List<SelectOptionDto> listOption = createUkaiKenkinRouteSelectOptionLogic.practice(userCode);
+        listOption.remove(0); // 最初の1行は0階層(全)
         assertEquals(8, listOption.size(), "8経路取得できた");
 
         // 経路1

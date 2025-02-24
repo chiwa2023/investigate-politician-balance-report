@@ -35,6 +35,7 @@ import mitei.mitei.investigate.report.balance.politician.BackApplication;
 @ContextConfiguration(classes = BackApplication.class) // 全体起動
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 class CreateWkTblFukisaiBatchConfigurationTest {
+    // CHECKSTYLE:OFF
 
     /** テストユーティリティ */
     @Autowired
@@ -77,6 +78,9 @@ class CreateWkTblFukisaiBatchConfigurationTest {
                 .addLong("taskPlanCode", Long.valueOf(taskPlanCode)).addString("taskName", taskName)
                 .addLong("year", Long.valueOf(year)).addLong("poliOrgCode", Long.valueOf(poliOrgCode))
                 .addLong("houkokunen", Long.valueOf(houkokunen)).addString("isSearchCode", String.valueOf(isSearchCode))
+                .addLong("taskPlanCode", Long.valueOf(260))
+                .addString("taskName", "迂回献金キャッチャー")
+                .addLong("year", Long.valueOf(2025))
                 .toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);

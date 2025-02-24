@@ -1,6 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.controller.ukai_kenkin;
 
-import java.time.LocalDate;
+import java.util.List;
 
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
-import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateWithTaskPlanInfoResultDto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.UkaiKenkinConditionCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.service.task_plan.RegistTaskPlanNoAlertPersonalService;
-import mitei.mitei.investigate.report.balance.politician.service.ukai_kenkin.CreateUkaiKenkinWktblAsyncService;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplateWithInSelectedCodeCapsuleDto;
+import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinPickupRouteEntity;
+import mitei.mitei.investigate.report.balance.politician.service.ukai_kenkin.SearchUkaiKenkinRouteByRouteService;
 
 /**
- * 迂回献金キャッチャー用ワークテーブル作成Controller
+ * 迂回献金経路明細(経路コードから)取得Controller
  */
 @Controller
 @RequestMapping("/catch-ukai-kenkin")
-public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckController {
+public class SearchUkaiKenkinRouteByRouteController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -35,13 +34,9 @@ public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckContro
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** タスク計画登録Service */
+    /** 迂回献金経路経路ごと取得Service */
     @Autowired
-    private RegistTaskPlanNoAlertPersonalService registTaskPlanNoAlertPersonalService;
-
-    /** 不記載ワークテーブル作成Batch非同期実行Service */
-    @Autowired
-    private CreateUkaiKenkinWktblAsyncService createUkaiKenkinWktblAsyncService;
+    private SearchUkaiKenkinRouteByRouteService searchUkaiKenkinRouteByRouteService;
 
     /**
      * 登録処理を行う
@@ -50,9 +45,9 @@ public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckContro
      * @return 政党交付金使途報告書処理結果Dto
      */
     @Transactional // SUPPRESS CHECKSTYLE ReturnCountCheck
-    @PostMapping("/create-wktbl")
-    public ResponseEntity<TemplateWithTaskPlanInfoResultDto> practice(
-            @RequestBody final UkaiKenkinConditionCapsuleDto capsuleDto) {
+    @PostMapping("/route-meisai-code")
+    public ResponseEntity<List<WkTblUkaiKenkinPickupRouteEntity>> practice(
+            @RequestBody final TemplateWithInSelectedCodeCapsuleDto capsuleDto) {
 
         // NOTE:共通処理を行ったのちビジネス処理を行うフレームワークのため、ビジネス処理以外は丸コピすること
         try {
@@ -80,28 +75,9 @@ public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckContro
             /*
              * ここに固有のビジネス処理を記載する
              */
-            int year = LocalDate.now().getYear();
-            final String taskName = "迂回献金キャッチャー";
-            Integer code = registTaskPlanNoAlertPersonalService.practice(capsuleDto.getCheckPrivilegeDto(), taskName,
-                    year);
 
-            TemplateWithTaskPlanInfoResultDto codeResultDto = new TemplateWithTaskPlanInfoResultDto();
-
-            if (code == 0) {
-                codeResultDto.setIsOk(false);
-                codeResultDto.setYear(year);
-                codeResultDto.setMessage("作業の登録に失敗しました");
-            } else {
-                codeResultDto.setTaskPlanCode(code);
-                codeResultDto.setYear(year);
-                codeResultDto.setIsOk(true);
-                codeResultDto.setMessage("作業中です。しばらくしてから結果を取得してください");
-            }
-
-            // 非同期でBatch起動
-            createUkaiKenkinWktblAsyncService.practice(capsuleDto,code,taskName,year);
-
-            return ResponseEntity.ok(codeResultDto);
+            return ResponseEntity.ok(searchUkaiKenkinRouteByRouteService
+                    .practice(capsuleDto.getCheckPrivilegeDto().getLoginUserCode(), capsuleDto.getCodeSelected()));
 
             /* ここまで */
 
@@ -120,7 +96,5 @@ public class CreateUkaiKenkinWktblController extends AbstractTemplateCheckContro
             // その他のビジネスロジック処理例外はInternalServerError
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
     }
-
 }

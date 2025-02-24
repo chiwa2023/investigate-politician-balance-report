@@ -135,5 +135,4 @@ public class CreateWkTblFukisaiBatchConfiguration {
         return new StepBuilder(STEP_TASK_PLAN_NAME, jobRepository).tasklet(finishTaskPlanTasklet, transactionManager)
                 .build();
     }
-
 }

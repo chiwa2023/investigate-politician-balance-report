@@ -3,6 +3,7 @@ package mitei.mitei.investigate.report.balance.politician.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
@@ -16,7 +17,7 @@ import reactor.util.function.Tuple4;
 /**
  * wk_tbl_ukai_kenkin接続用Repository
  */
-public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkinEntity, Integer> {
+public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkinEntity, Integer> { // NOPMD
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
@@ -126,4 +127,22 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
     @Query(value = "SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin WHERE insert_user_code = ?1 AND pickup_stage = ?2 AND trading_partner_code IN (?3)", nativeQuery = true)
     List<Integer> findRouteByOrgCodeAndStage(Integer userCode, Integer stage, List<Integer> listOrgCode);
 
+    /**
+     * 操作ユーザ同一識別コードに合致する迂回献金明細を取得する
+     *
+     * @param userCode 操作ユーザ同一識別コード
+     * @param pageable ページング条件
+     * @return 検索結果
+     */
+    List<WkTblUkaiKenkinEntity> findByInsertUserCodeOrderByPoliticalOrgCodeAscPickupStageAsc(Integer userCode,
+            Pageable pageable);
+
+    /**
+     * 操作ユーザ同一識別コードに合致する迂回献金明細総件数を取得する
+     *
+     * @param userCode 操作ユーザ同一識別コード
+     * @return 検索結果
+     */
+    @Query(value = "SELECT COUNT(*) FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1", nativeQuery = true)
+    Integer findCount(Integer userCode);
 }

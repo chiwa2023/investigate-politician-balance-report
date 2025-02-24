@@ -1,5 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin;
-
+package mitei.mitei.investigate.report.balance.politician.service.ukai_kenkin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,28 +17,32 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.investigate.report.balance.politician.dto.SelectOptionDto;
+import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
+import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivilegeDtoUtil;
 
 /**
- * CreateUkaiKenkinRouteSelectOptionLogic単体テスト
+ * SearchUkaiKenkinRouteOptionService単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class CreateUkaiKenkinRouteSelectOptionLogicTest {
+class SearchUkaiKenkinRouteOptionServiceTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private CreateUkaiKenkinRouteSelectOptionLogic createUkaiKenkinRouteSelectOptionLogic;
+    private SearchUkaiKenkinRouteOptionService searchUkaiKenkinRouteOptionService;
 
     @Test
     @Tag("TableTruncate")
     @Transactional
     @Sql("route_select_option.sql")
-    void test() {
+    void test() throws Exception {
 
-        List<SelectOptionDto> list = createUkaiKenkinRouteSelectOptionLogic.practice(987);
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+
+        List<SelectOptionDto> list = searchUkaiKenkinRouteOptionService.practice(privilegeDto.getLoginUserCode());
 
         assertEquals(6, list.size(), "取得件数は6件");
 

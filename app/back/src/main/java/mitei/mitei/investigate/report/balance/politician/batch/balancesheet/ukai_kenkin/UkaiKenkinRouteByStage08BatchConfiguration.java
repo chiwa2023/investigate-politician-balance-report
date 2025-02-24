@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import mitei.mitei.investigate.report.balance.politician.batch.task_plan.FinishTaskPlanTasklet;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.OfferingBalancesheetIncomeEntity;
 
@@ -68,6 +69,9 @@ public class UkaiKenkinRouteByStage08BatchConfiguration {
 
     /** 政治団体経路抽出Step名 */
     public static final String STEP_ROUTE_POLI_ORG = FUNCTION_NAME + "RoutePoliOrg" + STEP;
+
+    /** Step名 */
+    public static final String STEP_TASK_PLAN_NAME = FUNCTION_NAME + "TaskPlan" + STEP;
 
     /** チャンクサイズ */
     private static final int CHUNK_SIZE = 50;
@@ -128,6 +132,10 @@ public class UkaiKenkinRouteByStage08BatchConfiguration {
     @Autowired
     private PickupUkaiKenkinPoliOrgTasklet pickupUkaiKenkinPoliOrgTasklet;
 
+    /** タスク計画終了フラグTasklet */
+    @Autowired
+    private FinishTaskPlanTasklet finishTaskPlanTasklet;
+
     /**
      * Jobを返却する
      *
@@ -143,12 +151,13 @@ public class UkaiKenkinRouteByStage08BatchConfiguration {
             @Qualifier(STEP_STAGE_6) final Step stepStage6, @Qualifier(STEP_STAGE_7) final Step stepStage7,
             @Qualifier(STEP_STAGE_8) final Step stepStage8, // ここまで階層
             @Qualifier(STEP_ROUTE_PERSON_CORP) final Step stepPickupPerson,
-            @Qualifier(STEP_ROUTE_POLI_ORG) final Step stepPickupOrg) {
+            @Qualifier(STEP_ROUTE_POLI_ORG) final Step stepPickupOrg,
+            @Qualifier(STEP_TASK_PLAN_NAME) final Step stepTaskPlan) {
 
         return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepClean)
                 .next(stepStage0).next(stepStage1).next(stepStage2).next(stepStage3).next(stepStage4).next(stepStage5)
                 .next(stepStage6).next(stepStage7).next(stepStage8) // ここまで階層
-                .next(stepPickupPerson).next(stepPickupOrg).end().build();
+                .next(stepPickupPerson).next(stepPickupOrg).next(stepTaskPlan).end().build();
     }
 
     /**
@@ -346,5 +355,21 @@ public class UkaiKenkinRouteByStage08BatchConfiguration {
         return new StepBuilder(STEP_ROUTE_POLI_ORG, jobRepository)
                 .tasklet(pickupUkaiKenkinPoliOrgTasklet, transactionManager).build();
     }
+
+    /**
+     * StepIncomeを返却する
+     *
+     * @param jobRepository      ジョブレポジトリ
+     * @param transactionManager トランザクションマネージャ
+     * @return step
+     */
+    @Bean(STEP_TASK_PLAN_NAME)
+    protected Step getStepTaskPlan(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_TASK_PLAN_NAME, jobRepository).tasklet(finishTaskPlanTasklet, transactionManager)
+                .build();
+    }
+
 
 }

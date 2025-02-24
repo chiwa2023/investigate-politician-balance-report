@@ -52,6 +52,12 @@ public class CreateUkaiKenkinRouteSelectOptionLogic {
         // 最後の選択肢に追加
         dto.setText(dto.getText() + goalName);
 
+        SelectOptionDto dtoFirst = new SelectOptionDto();
+        dtoFirst.setValue("0");
+        dtoFirst.setText("経路なし関係者寄付");
+        list.addFirst(dtoFirst);
+        
+        
         return list;
     }
 
