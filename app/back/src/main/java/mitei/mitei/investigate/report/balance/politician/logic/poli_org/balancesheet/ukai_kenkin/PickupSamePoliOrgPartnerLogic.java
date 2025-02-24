@@ -27,16 +27,15 @@ public class PickupSamePoliOrgPartnerLogic {
     /**
      * 処理を行う
      *
-     * @param userCode                操作者同一識別コード
-     * @param listRelationPoliOrgCode 関連者が同一である政治団体同一識別コードリスト
-     * @param propertyEntity          検索団体の政治団体属性Entity
+     * @param userCode       操作者同一識別コード
+     * @param youshikiKbn    交付金様式区分
+     * @param propertyEntity 検索団体の政治団体属性Entity
      * @return 迂回献金経路リスト
      */
-    public List<WkTblUkaiKenkinPickupRouteEntity> practice(final Integer userCode,
-            final List<Integer> listRelationPoliOrgCode, final PoliticalOrganizationPropertyEntity propertyEntity) {
+    public List<WkTblUkaiKenkinPickupRouteEntity> practice(final Integer userCode, final Integer youshikiKbn,
+            final PoliticalOrganizationPropertyEntity propertyEntity) {
 
-        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository.findTradingByRelationPoliOrg(userCode,
-                listRelationPoliOrgCode);
+        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository.findTradingByRelationPoliOrg(userCode, youshikiKbn);
 
         return convertUkaiKenkinDetailToRouteByInClassLogic.practice(list, propertyEntity);
     }

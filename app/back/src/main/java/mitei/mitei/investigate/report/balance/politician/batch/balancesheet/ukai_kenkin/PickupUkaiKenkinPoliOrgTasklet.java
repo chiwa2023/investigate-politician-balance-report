@@ -12,10 +12,10 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiKbn;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationPropertyEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinPickupRouteEntity;
-import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.GetSamePersonPoliOrgByCodeLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.InsertUkaiKenkinRouteTimes01Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.InsertUkaiKenkinRouteTimes02Logic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.InsertUkaiKenkinRouteTimes03Logic;
@@ -34,10 +34,6 @@ import mitei.mitei.investigate.report.balance.politician.repository.PoliticalOrg
 @Component
 public class PickupUkaiKenkinPoliOrgTasklet implements Tasklet, StepExecutionListener {
 
-    /** 関係者が同じである政治団体取得Logic */
-    @Autowired
-    private GetSamePersonPoliOrgByCodeLogic getSamePersonPoliOrgByCodeLogic;
-
     /** 関係者が同じである政治団体明細から経路抽出Logic */
     @Autowired
     private PickupSamePoliOrgPartnerLogic pickupSamePoliOrgPartnerLogic;
@@ -51,6 +47,9 @@ public class PickupUkaiKenkinPoliOrgTasklet implements Tasklet, StepExecutionLis
 
     /** (操作者指定)政治団体同一識別コード */
     private Integer poliOrgCode;
+
+    /** 交付金気分 */
+    private Boolean isSearchKoufukin;
 
     /** 取得階層1回抽出ルート挿入Logic */
     @Autowired
@@ -97,6 +96,8 @@ public class PickupUkaiKenkinPoliOrgTasklet implements Tasklet, StepExecutionLis
         // Jobパラメータの取得
         userCode = Math.toIntExact(stepExecution.getJobParameters().getLong("userCode"));
         poliOrgCode = Math.toIntExact(stepExecution.getJobParameters().getLong("poliOrgCode"));
+        poliOrgCode = Math.toIntExact(stepExecution.getJobParameters().getLong("poliOrgCode"));
+        isSearchKoufukin = Boolean.valueOf(stepExecution.getJobParameters().getString("isSearchKoufukin"));
     }
 
     /**
@@ -110,10 +111,15 @@ public class PickupUkaiKenkinPoliOrgTasklet implements Tasklet, StepExecutionLis
                 .findByPoliticalOrganizationCodeAndSaishinKbn(poliOrgCode, DataHistoryStatusConstants.INSERT.value());
 
         PoliticalOrganizationPropertyEntity propertyEntiy = optional.get();
+        
+        Integer koufukinKbn = 100; // SUPPRESS CHECKSTYLE MagicNumber
+        if (isSearchKoufukin) {
+            koufukinKbn = YoushikiKbn.KOUFUKIN;
+        }
 
-        // 献金が『手元に戻ってきた』瞬間のデータを抽出する
+        // 献金が迂回された瞬間のデータを抽出する
         List<WkTblUkaiKenkinPickupRouteEntity> listPoliOrg = pickupSamePoliOrgPartnerLogic.practice(userCode,
-                getSamePersonPoliOrgByCodeLogic.paractice(propertyEntiy), propertyEntiy);
+                koufukinKbn, propertyEntiy);
 
         final int stage1 = 1;
         final int stage2 = 2;

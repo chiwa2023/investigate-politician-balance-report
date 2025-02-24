@@ -82,10 +82,8 @@ class UkaiKenkinRouteByStage01BatchConfigurationTest {
                 .addLocalDateTime("executeTime", LocalDateTime.now()).addLong("userId", privilegeDto.getLoginUserId())
                 .addLong("userCode", Long.valueOf(String.valueOf(userCode))).addString("userName", "ユーザA")
                 .addLong("houkokuNen", 2022L).addString("isSearchKoufukin", "false").addLong("poliOrgCode", 100L)
-                .addLong("taskPlanCode", Long.valueOf(260))
-                .addString("taskName", "迂回献金キャッチャー")
-                .addLong("year", Long.valueOf(2025))
-                .toJobParameters();
+                .addLong("taskPlanCode", Long.valueOf(260)).addString("taskName", "迂回献金キャッチャー")
+                .addLong("year", Long.valueOf(2025)).toJobParameters();
 
         JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
         assertEquals("COMPLETED", jobExecution.getExitStatus().getExitCode(), "作業完了Statusが戻ってくる");
@@ -177,7 +175,7 @@ class UkaiKenkinRouteByStage01BatchConfigurationTest {
         assertEquals(1, listRoute8.size(), "経路9のデータ数は1");
         WkTblUkaiKenkinPickupRouteEntity entity80 = listRoute8.get(0);
         assertEquals(21L, entity80.getTablleId(), "経路9詳細1");
-        
+
         // 経路10
         SelectOptionDto dto09 = listOption.get(9);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute9 = wkTblUkaiKenkinPickupRouteRepository
@@ -186,7 +184,7 @@ class UkaiKenkinRouteByStage01BatchConfigurationTest {
         assertEquals(1, listRoute9.size(), "経路10のデータ数は1");
         WkTblUkaiKenkinPickupRouteEntity entity90 = listRoute9.get(0);
         assertEquals(22L, entity90.getTablleId(), "経路10詳細1");
-        
+
         /* ここから政治団体(政治団体階層1以上) */
 
         // 経路11(政治団体1)
@@ -194,11 +192,14 @@ class UkaiKenkinRouteByStage01BatchConfigurationTest {
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute10 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto10.getValue()));
-        assertEquals(2, listRoute10.size(), "経路11のデータ数は2");
+        assertEquals(3, listRoute10.size(), "経路11のデータ数は3");
         WkTblUkaiKenkinPickupRouteEntity entity100 = listRoute10.get(0);
         assertEquals(30L, entity100.getTablleId(), "経路11詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity101 = listRoute10.get(1);
-        assertEquals(120L, entity101.getTablleId(), "経路11詳細2");
+        assertEquals(51L, entity101.getTablleId(), "経路11詳細2");
+        WkTblUkaiKenkinPickupRouteEntity entity102 = listRoute10.get(2);
+        assertEquals(120L, entity102.getTablleId(), "経路11詳細3");
+      
     }
 
 }

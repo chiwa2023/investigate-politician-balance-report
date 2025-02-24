@@ -53,8 +53,13 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @param listPoliOrg 政治団体同一識別コードリスト
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND (youshiki_eda_kbn = 0 OR youshiki_eda_kbn = 3)  AND trading_partner_code IN (?2)", nativeQuery = true)
-    List<WkTblUkaiKenkinEntity> findTradingByRelationPoliOrg(Integer userCode, List<Integer> listPoliOrg);
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code = ?1 "
+            + "  AND pickup_stage > 0 AND trading_partner_code IN ("
+            + "    SELECT DISTINCT trading_partner_code FROM wk_tbl_ukai_kenkin"
+            + "      WHERE insert_user_code = ?1 AND pickup_stage = 0"
+            + "         AND ((youshiki_kbn = 7 AND youshiki_eda_kbn =3) OR youshiki_kbn = ?2)"
+            + " )", nativeQuery = true)
+    List<WkTblUkaiKenkinEntity> findTradingByRelationPoliOrg(Integer userCode, Integer kofukinKbn);
 
     /**
      * 個人データから取引を行った関連者個人同一識別コードを重複なしで取得する
@@ -97,7 +102,7 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @param personCode 関連者同一識別コード
      * @return 検索結果
      */
-    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1" + " AND trading_partner_code != ?2 "
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND trading_partner_code != ?2 "
             + " AND (" + " trading_partner_code = ?3" + " OR trading_partner_delegate_code = ?3"
             + " OR trading_org_account_manager_code = ?3" + " OR trading_org_shikin_dantai_code = ?3"
             + " OR trading_org_kokkai_giin1_code = ?3" + " OR trading_org_kokkai_giin2_code = ?3"
@@ -105,7 +110,7 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
     List<WkTblUkaiKenkinEntity> findDataByKigyouDaihyousha(Integer userCode, Integer corpCode, Integer personCode);
 
     /**
-     * 登録炭の経路データから該当する記載政治団体と取り引き相手政治団体が一致するデータを抽出する
+     * 登録済みの経路データから該当する記載政治団体と取り引き相手政治団体が一致するデータを抽出する
      *
      * @param userCode       操作ユーザ同一識別コード
      * @param poliOrgCode    収支報告書記載団体
@@ -124,7 +129,7 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @param listOrgCode 取り引き相手政治団体同一識別コードリスト
      * @return 検索結果
      */
-    @Query(value = "SELECT DISTINCT wk_tbl_ukai_kenkin.political_org_code AS code00 FROM wk_tbl_ukai_kenkin WHERE insert_user_code = ?1 AND pickup_stage = ?2 AND trading_partner_code IN (?3)", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT political_org_code AS code00 FROM wk_tbl_ukai_kenkin WHERE insert_user_code = ?1 AND pickup_stage = ?2 AND trading_partner_code IN (?3)", nativeQuery = true)
     List<Integer> findRouteByOrgCodeAndStage(Integer userCode, Integer stage, List<Integer> listOrgCode);
 
     /**
@@ -145,4 +150,8 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      */
     @Query(value = "SELECT COUNT(*) FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1", nativeQuery = true)
     Integer findCount(Integer userCode);
+    
+    
+    List<WkTblUkaiKenkinEntity> findByInsertUserCodeAndTradingPartnerCodeAndPickupStage(Integer userCode,Integer partnerCode,Integer stage);
+
 }

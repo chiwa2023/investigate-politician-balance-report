@@ -102,8 +102,12 @@ public class UkaiKenkinRouteByStage01BatchConfiguration {
             @Qualifier(STEP_TASK_PLAN_NAME) final Step stepTaskPlan) {
 
         return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepClean)
-                .next(stepStage0).next(stepStage1) // ここまで階層
-                .next(stepPickupPerson).next(stepPickupOrg).next(stepTaskPlan).end().build();
+                .next(stepStage0)
+                .next(stepStage1) // ここまで階層
+                .next(stepPickupPerson)
+                .next(stepPickupOrg)
+                .next(stepTaskPlan)
+                .end().build();
     }
 
     /**

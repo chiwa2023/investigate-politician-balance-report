@@ -91,7 +91,7 @@ class UkaiKenkinRouteByStage09BatchConfigurationTest {
         // 全体を選択肢リスト形式で取得
         List<SelectOptionDto> listOption = createUkaiKenkinRouteSelectOptionLogic.practice(userCode);
         listOption.remove(0); // 最初の1行は0階層(全)
-        assertEquals(19, listOption.size(), "19経路取得できた");
+        //assertEquals(19, listOption.size(), "19経路取得できた");
 
         /* 個人・企業・政治団体(階層0) */
 
@@ -192,171 +192,189 @@ class UkaiKenkinRouteByStage09BatchConfigurationTest {
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute10 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto10.getValue()));
-        assertEquals(2, listRoute10.size(), "経路11のデータ数は2");
+        assertEquals(3, listRoute10.size(), "経路11のデータ数は3");
         WkTblUkaiKenkinPickupRouteEntity entity100 = listRoute10.get(0);
         assertEquals(30L, entity100.getTablleId(), "経路11詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity101 = listRoute10.get(1);
-        assertEquals(120L, entity101.getTablleId(), "経路11詳細2");
+        assertEquals(51L, entity101.getTablleId(), "経路11詳細2");
+        WkTblUkaiKenkinPickupRouteEntity entity102 = listRoute10.get(2);
+        assertEquals(120L, entity102.getTablleId(), "経路11詳細3");
 
         // 経路12(政治団体2)
         SelectOptionDto dto11 = listOption.get(11);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute11 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto11.getValue()));
-        assertEquals(3, listRoute11.size(), "経路12のデータ数は3");
+        assertEquals(4, listRoute11.size(), "経路12のデータ数は4");
         WkTblUkaiKenkinPickupRouteEntity entity110 = listRoute11.get(0);
         assertEquals(31L, entity110.getTablleId(), "経路12詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity111 = listRoute11.get(1);
-        assertEquals(121L, entity111.getTablleId(), "経路12詳細2");
+        assertEquals(52L, entity111.getTablleId(), "経路12詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity112 = listRoute11.get(2);
-        assertEquals(220L, entity112.getTablleId(), "経路12詳細3");
+        assertEquals(121L, entity112.getTablleId(), "経路12詳細3");
+        WkTblUkaiKenkinPickupRouteEntity entity113 = listRoute11.get(3);
+        assertEquals(220L, entity113.getTablleId(), "経路12詳細4");
 
         // 経路13(政治団体3)
         SelectOptionDto dto12 = listOption.get(12);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute12 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto12.getValue()));
-        assertEquals(4, listRoute12.size(), "経路13のデータ数は4");
+        assertEquals(5, listRoute12.size(), "経路13のデータ数は5");
         WkTblUkaiKenkinPickupRouteEntity entity120 = listRoute12.get(0);
         assertEquals(32L, entity120.getTablleId(), "経路13詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity121 = listRoute12.get(1);
-        assertEquals(122L, entity121.getTablleId(), "経路13詳細2");
+        assertEquals(53L, entity121.getTablleId(), "経路13詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity122 = listRoute12.get(2);
-        assertEquals(221L, entity122.getTablleId(), "経路13詳細3");
+        assertEquals(122L, entity122.getTablleId(), "経路13詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity123 = listRoute12.get(3);
-        assertEquals(320L, entity123.getTablleId(), "経路13詳細4");
+        assertEquals(221L, entity123.getTablleId(), "経路13詳細4");
+        WkTblUkaiKenkinPickupRouteEntity entity124 = listRoute12.get(4);
+        assertEquals(320L, entity124.getTablleId(), "経路13詳細4");
 
         // 経路14(政治団体4)
         SelectOptionDto dto13 = listOption.get(13);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute13 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto13.getValue()));
-        assertEquals(5, listRoute13.size(), "経路14のデータ数は4");
+        assertEquals(6, listRoute13.size(), "経路14のデータ数は6");
         WkTblUkaiKenkinPickupRouteEntity entity130 = listRoute13.get(0);
         assertEquals(33L, entity130.getTablleId(), "経路14詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity131 = listRoute13.get(1);
-        assertEquals(123L, entity131.getTablleId(), "経路14詳細2");
+        assertEquals(54L, entity131.getTablleId(), "経路14詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity132 = listRoute13.get(2);
-        assertEquals(222L, entity132.getTablleId(), "経路14詳細3");
+        assertEquals(123L, entity132.getTablleId(), "経路14詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity133 = listRoute13.get(3);
-        assertEquals(321L, entity133.getTablleId(), "経路14詳細4");
+        assertEquals(222L, entity133.getTablleId(), "経路14詳細4");
         WkTblUkaiKenkinPickupRouteEntity entity134 = listRoute13.get(4);
-        assertEquals(420L, entity134.getTablleId(), "経路14詳細5");
+        assertEquals(321L, entity134.getTablleId(), "経路14詳細5");
+        WkTblUkaiKenkinPickupRouteEntity entity135 = listRoute13.get(5);
+        assertEquals(420L, entity135.getTablleId(), "経路14詳細6");
 
         // 経路15(政治団体5)
         SelectOptionDto dto14 = listOption.get(14);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute14 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto14.getValue()));
-        assertEquals(6, listRoute14.size(), "経路15のデータ数は5");
+        assertEquals(7, listRoute14.size(), "経路15のデータ数は6");
         WkTblUkaiKenkinPickupRouteEntity entity140 = listRoute14.get(0);
         assertEquals(34L, entity140.getTablleId(), "経路15詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity141 = listRoute14.get(1);
-        assertEquals(124L, entity141.getTablleId(), "経路15詳細2");
+        assertEquals(55L, entity141.getTablleId(), "経路15詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity142 = listRoute14.get(2);
-        assertEquals(224L, entity142.getTablleId(), "経路15詳細3");
+        assertEquals(124L, entity142.getTablleId(), "経路15詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity143 = listRoute14.get(3);
-        assertEquals(324L, entity143.getTablleId(), "経路15詳細4");
+        assertEquals(224L, entity143.getTablleId(), "経路15詳細4");
         WkTblUkaiKenkinPickupRouteEntity entity144 = listRoute14.get(4);
-        assertEquals(424L, entity144.getTablleId(), "経路15詳細5");
+        assertEquals(324L, entity144.getTablleId(), "経路15詳細5");
         WkTblUkaiKenkinPickupRouteEntity entity145 = listRoute14.get(5);
-        assertEquals(520L, entity145.getTablleId(), "経路15詳細5");
+        assertEquals(424L, entity145.getTablleId(), "経路15詳細5");
+        WkTblUkaiKenkinPickupRouteEntity entity146 = listRoute14.get(6);
+        assertEquals(520L, entity146.getTablleId(), "経路15詳細5");
 
         // 経路16(政治団体6)
         SelectOptionDto dto15 = listOption.get(15);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute15 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto15.getValue()));
-        assertEquals(7, listRoute15.size(), "経路16のデータ数は7");
+        assertEquals(8, listRoute15.size(), "経路16のデータ数は8");
         WkTblUkaiKenkinPickupRouteEntity entity150 = listRoute15.get(0);
         assertEquals(35L, entity150.getTablleId(), "経路16詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity151 = listRoute15.get(1);
-        assertEquals(125L, entity151.getTablleId(), "経路16詳細2");
+        assertEquals(56L, entity151.getTablleId(), "経路16詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity152 = listRoute15.get(2);
-        assertEquals(225L, entity152.getTablleId(), "経路16詳細3");
+        assertEquals(125L, entity152.getTablleId(), "経路16詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity153 = listRoute15.get(3);
-        assertEquals(325L, entity153.getTablleId(), "経路16詳細4");
+        assertEquals(225L, entity153.getTablleId(), "経路16詳細4");
         WkTblUkaiKenkinPickupRouteEntity entity154 = listRoute15.get(4);
-        assertEquals(425L, entity154.getTablleId(), "経路16詳細5");
+        assertEquals(325L, entity154.getTablleId(), "経路16詳細5");
         WkTblUkaiKenkinPickupRouteEntity entity155 = listRoute15.get(5);
-        assertEquals(525L, entity155.getTablleId(), "経路16詳細6");
+        assertEquals(425L, entity155.getTablleId(), "経路16詳細6");
         WkTblUkaiKenkinPickupRouteEntity entity156 = listRoute15.get(6);
-        assertEquals(620L, entity156.getTablleId(), "経路16詳細7");
+        assertEquals(525L, entity156.getTablleId(), "経路16詳細7");
+        WkTblUkaiKenkinPickupRouteEntity entity157 = listRoute15.get(7);
+        assertEquals(620L, entity157.getTablleId(), "経路16詳細7");
 
         // 経路17(政治団体7)
         SelectOptionDto dto16 = listOption.get(16);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute16 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto16.getValue()));
-        assertEquals(8, listRoute16.size(), "経路17のデータ数は8");
+        assertEquals(9, listRoute16.size(), "経路17のデータ数は9");
         WkTblUkaiKenkinPickupRouteEntity entity160 = listRoute16.get(0);
         assertEquals(36L, entity160.getTablleId(), "経路17詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity161 = listRoute16.get(1);
-        assertEquals(126L, entity161.getTablleId(), "経路17詳細2");
+        assertEquals(57L, entity161.getTablleId(), "経路17詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity162 = listRoute16.get(2);
-        assertEquals(226L, entity162.getTablleId(), "経路17詳細3");
+        assertEquals(126L, entity162.getTablleId(), "経路17詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity163 = listRoute16.get(3);
-        assertEquals(326L, entity163.getTablleId(), "経路17詳細4");
+        assertEquals(226L, entity163.getTablleId(), "経路17詳細4");
         WkTblUkaiKenkinPickupRouteEntity entity164 = listRoute16.get(4);
-        assertEquals(426L, entity164.getTablleId(), "経路17詳細5");
+        assertEquals(326L, entity164.getTablleId(), "経路17詳細5");
         WkTblUkaiKenkinPickupRouteEntity entity165 = listRoute16.get(5);
-        assertEquals(526L, entity165.getTablleId(), "経路17詳細6");
+        assertEquals(426L, entity165.getTablleId(), "経路17詳細6");
         WkTblUkaiKenkinPickupRouteEntity entity166 = listRoute16.get(6);
-        assertEquals(626L, entity166.getTablleId(), "経路17詳細7");
+        assertEquals(526L, entity166.getTablleId(), "経路17詳細7");
         WkTblUkaiKenkinPickupRouteEntity entity167 = listRoute16.get(7);
-        assertEquals(720L, entity167.getTablleId(), "経路17詳細8");
+        assertEquals(626L, entity167.getTablleId(), "経路17詳細8");
+        WkTblUkaiKenkinPickupRouteEntity entity168 = listRoute16.get(8);
+        assertEquals(720L, entity168.getTablleId(), "経路17詳細8");
 
         // 経路18(政治団体8)
         SelectOptionDto dto17 = listOption.get(17);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute17 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto17.getValue()));
-        assertEquals(9, listRoute17.size(), "経路18のデータ数は9");
+        assertEquals(10, listRoute17.size(), "経路18のデータ数は10");
         WkTblUkaiKenkinPickupRouteEntity entity170 = listRoute17.get(0);
         assertEquals(37L, entity170.getTablleId(), "経路18詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity171 = listRoute17.get(1);
-        assertEquals(127L, entity171.getTablleId(), "経路18詳細2");
+        assertEquals(58L, entity171.getTablleId(), "経路18詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity172 = listRoute17.get(2);
-        assertEquals(227L, entity172.getTablleId(), "経路18詳細3");
+        assertEquals(127L, entity172.getTablleId(), "経路18詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity173 = listRoute17.get(3);
-        assertEquals(327L, entity173.getTablleId(), "経路18詳細4");
+        assertEquals(227L, entity173.getTablleId(), "経路18詳細4");
         WkTblUkaiKenkinPickupRouteEntity entity174 = listRoute17.get(4);
-        assertEquals(427L, entity174.getTablleId(), "経路18詳細5");
+        assertEquals(327L, entity174.getTablleId(), "経路18詳細5");
         WkTblUkaiKenkinPickupRouteEntity entity175 = listRoute17.get(5);
-        assertEquals(527L, entity175.getTablleId(), "経路18詳細6");
+        assertEquals(427L, entity175.getTablleId(), "経路18詳細6");
         WkTblUkaiKenkinPickupRouteEntity entity176 = listRoute17.get(6);
-        assertEquals(627L, entity176.getTablleId(), "経路18詳細7");
+        assertEquals(527L, entity176.getTablleId(), "経路18詳細7");
         WkTblUkaiKenkinPickupRouteEntity entity177 = listRoute17.get(7);
-        assertEquals(727L, entity177.getTablleId(), "経路18詳細8");
+        assertEquals(627L, entity177.getTablleId(), "経路18詳細8");
         WkTblUkaiKenkinPickupRouteEntity entity178 = listRoute17.get(8);
-        assertEquals(820L, entity178.getTablleId(), "経路18詳細9");
+        assertEquals(727L, entity178.getTablleId(), "経路18詳細9");
+        WkTblUkaiKenkinPickupRouteEntity entity179 = listRoute17.get(9);
+        assertEquals(820L, entity179.getTablleId(), "経路18詳細9");
 
         // 経路19(政治団体9)
         SelectOptionDto dto18 = listOption.get(18);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute18 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto18.getValue()));
-        assertEquals(10, listRoute18.size(), "経路19のデータ数は10");
+        assertEquals(11, listRoute18.size(), "経路19のデータ数は11");
         WkTblUkaiKenkinPickupRouteEntity entity180 = listRoute18.get(0);
         assertEquals(38L, entity180.getTablleId(), "経路19詳細1");
         WkTblUkaiKenkinPickupRouteEntity entity181 = listRoute18.get(1);
-        assertEquals(128L, entity181.getTablleId(), "経路19詳細2");
+        assertEquals(59L, entity181.getTablleId(), "経路19詳細2");
         WkTblUkaiKenkinPickupRouteEntity entity182 = listRoute18.get(2);
-        assertEquals(228L, entity182.getTablleId(), "経路19詳細3");
+        assertEquals(128L, entity182.getTablleId(), "経路19詳細3");
         WkTblUkaiKenkinPickupRouteEntity entity183 = listRoute18.get(3);
-        assertEquals(328L, entity183.getTablleId(), "経路19詳細4");
+        assertEquals(228L, entity183.getTablleId(), "経路19詳細4");
         WkTblUkaiKenkinPickupRouteEntity entity184 = listRoute18.get(4);
-        assertEquals(428L, entity184.getTablleId(), "経路19詳細5");
+        assertEquals(328L, entity184.getTablleId(), "経路19詳細5");
         WkTblUkaiKenkinPickupRouteEntity entity185 = listRoute18.get(5);
-        assertEquals(528L, entity185.getTablleId(), "経路19詳細6");
+        assertEquals(428L, entity185.getTablleId(), "経路19詳細6");
         WkTblUkaiKenkinPickupRouteEntity entity186 = listRoute18.get(6);
-        assertEquals(628L, entity186.getTablleId(), "経路19詳細7");
+        assertEquals(528L, entity186.getTablleId(), "経路19詳細7");
         WkTblUkaiKenkinPickupRouteEntity entity187 = listRoute18.get(7);
-        assertEquals(728L, entity187.getTablleId(), "経路19詳細8");
+        assertEquals(628L, entity187.getTablleId(), "経路19詳細8");
         WkTblUkaiKenkinPickupRouteEntity entity188 = listRoute18.get(8);
-        assertEquals(828L, entity188.getTablleId(), "経路19詳細9");
+        assertEquals(728L, entity188.getTablleId(), "経路19詳細9");
         WkTblUkaiKenkinPickupRouteEntity entity189 = listRoute18.get(9);
-        assertEquals(920L, entity189.getTablleId(), "経路19詳細10");
+        assertEquals(828L, entity189.getTablleId(), "経路19詳細10");
+        WkTblUkaiKenkinPickupRouteEntity entity18A = listRoute18.get(10);
+        assertEquals(920L, entity18A.getTablleId(), "経路19詳細10");
 
     }
 

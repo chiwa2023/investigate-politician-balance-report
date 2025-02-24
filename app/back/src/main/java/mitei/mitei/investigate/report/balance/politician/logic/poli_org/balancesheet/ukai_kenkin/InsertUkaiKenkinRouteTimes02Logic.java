@@ -67,6 +67,11 @@ public class InsertUkaiKenkinRouteTimes02Logic {
         this.searchRoute(stage0, userCode, listStage0, listStage1, propertyEntity, code);
         this.searchRoute(stage1, userCode, listStage1, listStage2, propertyEntity, code);
 
+        // 迂回献金した場合の参照データを保存する
+        List<WkTblUkaiKenkinEntity> listPair = wkTblUkaiKenkinRepository
+                .findByInsertUserCodeAndTradingPartnerCodeAndPickupStage(userCode, entity.getTradingPartnerCode(),
+                       stage0);
+        this.recordEntity(listPair, propertyEntity, code);
     }
 
     // 該当する政治団体の明細リストから経路情報を記録する

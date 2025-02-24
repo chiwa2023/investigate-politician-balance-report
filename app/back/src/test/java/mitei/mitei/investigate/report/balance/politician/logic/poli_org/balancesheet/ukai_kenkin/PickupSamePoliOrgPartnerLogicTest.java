@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Tag;
@@ -46,15 +45,6 @@ class PickupSamePoliOrgPartnerLogicTest {
     @Sql("wk_tbl_ukai_kenkin_pickup_person.sql")
     void test() {
 
-        // (Taskletではロジックから算出しているがテストなので)抽出したい政治団体コードを直接している
-        List<Integer> listPoliOrgCode0 = new ArrayList<>();
-        listPoliOrgCode0.add(620);
-        listPoliOrgCode0.add(630);
-        listPoliOrgCode0.add(640);
-        listPoliOrgCode0.add(650);
-        listPoliOrgCode0.add(660);
-        listPoliOrgCode0.add(670);
-
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
         
         PoliticalOrganizationPropertyEntity propertyEntity = new PoliticalOrganizationPropertyEntity();
@@ -62,8 +52,10 @@ class PickupSamePoliOrgPartnerLogicTest {
         propertyEntity.setGiin2RelationPersonCode(30_490);
         propertyEntity.setGiin2KoushokuName("国会議員 2太郎");
         
+        Integer koufukinKbn = 100; 
+
         List<WkTblUkaiKenkinPickupRouteEntity> list = pickupSamePoliOrgPartnerLogic
-                .practice(privilegeDto.getLoginUserCode(), listPoliOrgCode0,propertyEntity);
+                .practice(privilegeDto.getLoginUserCode(), koufukinKbn,propertyEntity);
 
         assertEquals(1, list.size(), "取得サイズ");
 
@@ -86,15 +78,15 @@ class PickupSamePoliOrgPartnerLogicTest {
         assertEquals("ユーザ", entity00.getInsertUserName(), "挿入ユーザ名が一致");
         assertEquals("寄付事例21", entity00.getItemName(), "項目が一致");
         assertEquals(15_003L, entity00.getKingaku(), "金額が一致");
-        assertEquals(0, entity00.getPickupStage(), "抽出階層が一致");
-        assertEquals(100, entity00.getPoliticalOrgCode(), "記載政治団体コードが一致");
-        assertEquals(105L, entity00.getPoliticalOrgId(), "記載政治団体Idが一致");
-        assertEquals("ABCD団体", entity00.getPoliticalOrgName(), "記載政治団体名称が一致");
+        assertEquals(5, entity00.getPickupStage(), "抽出階層が一致");
+        assertEquals(660, entity00.getPoliticalOrgCode(), "記載政治団体コードが一致");
+        assertEquals(662L, entity00.getPoliticalOrgId(), "記載政治団体Idが一致");
+        assertEquals("関連団体E", entity00.getPoliticalOrgName(), "記載政治団体名称が一致");
         assertEquals(3, entity00.getRenban(), "連番が一致");
         assertEquals(DataHistoryStatusConstants.INSERT.value(), entity00.getSaishinKbn(), "最新区分が一致");
-        assertEquals(660, entity00.getTradingPartnerCode(), "取引相手コードが一致");
-        assertEquals(662L, entity00.getTradingPartnerId(), "取引相手idが一致");
-        assertEquals("関連団体E", entity00.getTradingPartnerName(), "取引相手名称が一致");
+        assertEquals(11_420, entity00.getTradingPartnerCode(), "取引相手コードが一致");
+        assertEquals(11_424L, entity00.getTradingPartnerId(), "取引相手idが一致");
+        assertEquals("ちゃらんぽらん政治団体4", entity00.getTradingPartnerName(), "取引相手名称が一致");
         assertEquals("山形県実在市", entity00.getTradingPartnerAddress(), "取引相手住所が一致");
         assertEquals(30_490, entity00.getPoliOrgRelationPersonCode(), POLI_CODE_TEXT);
         assertEquals(30_491L, entity00.getPoliOrgRelationPersonId(), POLI_ID_TEXT);
