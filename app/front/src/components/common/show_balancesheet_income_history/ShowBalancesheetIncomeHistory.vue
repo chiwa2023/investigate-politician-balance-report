@@ -122,7 +122,7 @@ function viewYoushiKbn(kbn: number): string {
  * @returns 表示テキスト
  */
 function viewYoushiEdaKbn(kbn: number): string {
-    return YoushikiEdaKbnIncomeConstants.convertText(String(kbn));
+    return YoushikiEdaKbnIncomeConstants.convertText(kbn);
 }
 
 /**

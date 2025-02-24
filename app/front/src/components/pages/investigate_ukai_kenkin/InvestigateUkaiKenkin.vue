@@ -25,6 +25,11 @@ import UkaiKenkinDetaillResultInterface from "../../../dto/ukai_kenkin/ukaiKenki
 import UkaiKenkinDetaillResultDto from "../../../dto/ukai_kenkin/ukaiKenkinDetaillResultDto";
 import WkTblUkaiKenkinInterface from "../../../entity/wkTblUkaiKenkinEntity";
 import mockGetUkaikenkinUketorisha from "./mock/mockGetUkaikenkinUketorisha";
+import YoushikiKbnIncomeConstants from "../../../dto/balancesheet/youshikiKbnIncomeConstants";
+import YoushikiEdaKbnIncomeConstants from "../../../dto/balancesheet/youshikiEdaKbnIncomeConstants";
+import WkTblUkaiKenkinPickupRouteInterface from "../../../entity/wkTblUkaiKenkinPickupRouteEntity";
+import mockGetUkaikenkinRouteByRoute from "./mock/mockGetUkaikenkinRouteByRoute";
+import mockGetUkaikenkinRoutePageList from "./mock/mockGetUkaikenkinRoutePageList";
 
 // ラジオボタン設定
 const searchCode: Ref<number> = ref(1);
@@ -71,6 +76,9 @@ function recievePoliticalOrganizationLeastInterface(sendDto: PoliticalOrganizati
     capsuleCreateDto.value.poliOrgCode = sendDto.politicalOrganizationCode;
     orgCode.value = sendDto.politicalOrganizationCode;
     orgName.value = sendDto.politicalOrganizationName;
+
+    orgCode.value = 100;
+    orgName.value = "ABCD団体";
 
     //非表示
     isVisibleSearchPoliticalOrganizationLeast.value = false;
@@ -125,6 +133,12 @@ const pageResultDto: Ref<TemplateWithPagingCapsuleInterface> = ref(new TemplateW
 // 詳細ページング
 const pageDetailDto: Ref<TemplateWithPagingCapsuleInterface> = ref(new TemplateWithPagingCapsuleDto());
 
+// 経路リスト(経路単位)
+const listRoute: Ref<WkTblUkaiKenkinPickupRouteInterface[]> = ref([]);
+
+// 経路単位選択肢
+const listRouteOptiuon: Ref<SelectOptionInterface[]> = ref([]);
+
 function onSearch() {
 
     capsuleSearchDto.value.createCapsuleDto = capsuleCreateDto.value;
@@ -148,6 +162,14 @@ function onSearch() {
     // 下記Urlと上記検索条件Dtoを用いてBackアクセス(受取者関係者全団体)
     // const urlSouryou:string = "http://localhost:9080/"
     listUketorisha.value = mockGetUkaikenkinUketorisha();
+
+    // 下記Urlと上記検索条件Dtoを用いてBackアクセス(経路選択肢)
+    // const urlSouryou:string = "http://localhost:9080/"
+    listRouteOptiuon.value = mockGetUkaikenkinRoutePageList();
+
+    // 下記Urlと上記検索条件Dtoを用いてBackアクセス(経路ごと)
+    // const urlSouryou:string = "http://localhost:9080/"
+    listRoute.value = mockGetUkaikenkinRouteByRoute(0);
 }
 
 
@@ -173,6 +195,12 @@ function onPagingResult() {
     listPickupRoutePage.value = getPagingOption(pickupRouteResultDto.value.countAll, pickupRouteResultDto.value.limit);
 }
 
+// 表示経路選択
+const slectedRoute: Ref<string> = ref("0");
+function onPagingRoute() {
+    listRoute.value = mockGetUkaikenkinRouteByRoute(parseInt(slectedRoute.value));
+}
+
 function onPagingDetail() {
 
     pageDetailDto.value.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
@@ -186,6 +214,14 @@ function onPagingDetail() {
     detailResulDto.value = mockGetUkaikenkinDetail(detailResulDto.value.offset);
     listDetailPage.value = getPagingOption(detailResulDto.value.countAll, detailResulDto.value.limit);
 }
+
+function convertYoushikiKbnText(youshikiKbn: number): string {
+    return YoushikiKbnIncomeConstants.convertText(youshikiKbn);
+}
+function convertYoushikiEdaKbnText(youshikiEdaKbn: number): string {
+    return YoushikiEdaKbnIncomeConstants.convertText(youshikiEdaKbn);
+}
+
 </script>
 <template>
     <h1>迂回献金キャッチャー</h1>
@@ -193,7 +229,7 @@ function onPagingDetail() {
     <div class="one-line">
         抽出条件<br>
         ※前回調査分が残っている場合は削除されます<button @click="onPreResearch">保存</button><br>
-        ※違法でない単純な資金異動も抽出されます。単純な1階層迂回献金でも必ず追加調査を行ってください
+        ※違法でない単純な資金異動も抽出されます。単純な0階層迂回献金でも必ず追加調査を行ってください
     </div>
     <div class="clear-both"></div>
 
@@ -230,7 +266,18 @@ function onPagingDetail() {
         想定階層
     </div>
     <div class="right-area">
-        <input type="number" v-model="capsuleCreateDto.pickupTimes" class="code-input">回まで迂回していると想定
+        <select v-model="capsuleCreateDto.pickupTimes" class="code-input">
+            <option value="1">1階層</option>
+            <option value="2">2階層</option>
+            <option value="3">3階層</option>
+            <option value="4">4階層</option>
+            <option value="5">5階層</option>
+            <option value="6">6階層</option>
+            <option value="7">7階層</option>
+            <option value="8">8階層</option>
+            <option value="1">9階層</option>
+        </select>
+        まで迂回していると想定
     </div>
     <div class="clear-both"></div>
 
@@ -259,11 +306,12 @@ function onPagingDetail() {
     <div class="clear-both"><br></div>
 
     <div class="one-line">
-        <h3>抽出ルート</h3>
-        <div style="overflow-y: scroll">
+        <h3>抽出ルート(ページ)</h3>
+        <div style="overflow-x: scroll">
             <!-- ページング -->
-            <select v-model="pickupRouteResultDto.offset"  @change="onPagingResult">
-                <option v-for="option in listPickupRoutePage" :key="option.value" :value="option.value"> {{ option.text }}
+            <select v-model="pickupRouteResultDto.offset" @change="onPagingResult">
+                <option v-for="option in listPickupRoutePage" :key="option.value" :value="option.value"> {{ option.text
+                    }}
                 </option>
             </select>
             <table>
@@ -271,6 +319,7 @@ function onPagingDetail() {
                     <th>(記載)役割</th>
                     <th>(記載)対象者</th>
                     <th>(記載)政治団体</th>
+                    <th>経路</th>
                     <th>発生日</th>
                     <th>様式区分</th>
                     <th>項目</th>
@@ -283,7 +332,7 @@ function onPagingDetail() {
                 </tr>
 
                 <tr v-for="entity of pickupRouteResultDto.listFirstRouteEntity"
-                    :key="entity.wkTblUkaiKenkinResultEntityId">
+                    :key="entity.wkTblUkaiKenkinPickupRouteId">
                     <td>
                         <!-- 役割 -->
                         {{ entity.poliOrgRelationPersonYakuari }}
@@ -292,7 +341,7 @@ function onPagingDetail() {
                         <!-- 関連者 -->
                         <div v-if="entity.poliOrgRelationPersonId !== 0">
                             <span v-if="entity.poliOrgRelationPersonId !== -1">({{ entity.poliOrgRelationPersonCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgRelationPersonName }}
                         </div>
                     </td>
@@ -302,18 +351,22 @@ function onPagingDetail() {
                         {{ entity.politicalOrgName }}
                     </td>
                     <td>
+                        <!-- 経路 -->
+                        {{ entity.wkTblUkaiKenkinPickupRouteCode }}
+                    </td>
+                    <td>
                         <!-- 発生 -->
                         {{ entity.accrualDate }}
                     </td>
                     <td>
                         <!-- 様式区分 -->
-                        {{ entity.youshikiKbn }}-{{ entity.youshikiEdaKbn }}
+                        {{ convertYoushikiKbnText(entity.youshikiKbn) }}-{{
+                            convertYoushikiEdaKbnText(entity.youshikiEdaKbn) }}
                     </td>
 
                     <td>
                         <!-- 項目 -->
                         {{ entity.itemName }}
-
                     </td>
                     <td>
                         <!-- 金額 -->
@@ -324,8 +377,8 @@ function onPagingDetail() {
                         {{ entity.pickupStage }}
                     </td>
                     <td>
-                        <!-- 抽出階層 -->
-                        {{ entity.renban }}
+                        <!-- 行連番 -->
+                        {{ entity.renban }}({{ entity.tablleId }})
                     </td>
                     <td>
                         <!-- 取引相手 -->
@@ -337,7 +390,7 @@ function onPagingDetail() {
                         <!-- 取引相手関連者 -->
                         <div v-if="entity.tradingRelationPersonId !== -0">
                             <span v-if="entity.tradingRelationPersonId !== -1">({{ entity.tradingRelationPersonCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingRelationPersonName }}
                         </div>
                     </td>
@@ -348,7 +401,7 @@ function onPagingDetail() {
                 </tr>
 
                 <tr v-for="entity of pickupRouteResultDto.listPickupRouteEntity"
-                    :key="entity.wkTblUkaiKenkinResultEntityId">
+                    :key="entity.wkTblUkaiKenkinPickupRouteId">
                     <td>
                         <!-- 役割 -->
                         {{ entity.poliOrgRelationPersonYakuari }}
@@ -357,7 +410,7 @@ function onPagingDetail() {
                         <!-- 関連者 -->
                         <div v-if="entity.poliOrgRelationPersonId !== 0">
                             <span v-if="entity.poliOrgRelationPersonId !== -1">({{ entity.poliOrgRelationPersonCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgRelationPersonName }}
                         </div>
                     </td>
@@ -367,12 +420,17 @@ function onPagingDetail() {
                         {{ entity.politicalOrgName }}
                     </td>
                     <td>
+                        <!-- 経路 -->
+                        {{ entity.wkTblUkaiKenkinPickupRouteCode }}
+                    </td>
+                    <td>
                         <!-- 発生 -->
                         {{ entity.accrualDate }}
                     </td>
                     <td>
                         <!-- 様式区分 -->
-                        {{ entity.youshikiKbn }}-{{ entity.youshikiEdaKbn }}
+                        {{ convertYoushikiKbnText(entity.youshikiKbn) }}-{{
+                            convertYoushikiEdaKbnText(entity.youshikiEdaKbn) }}
                     </td>
 
                     <td>
@@ -389,8 +447,8 @@ function onPagingDetail() {
                         {{ entity.pickupStage }}
                     </td>
                     <td>
-                        <!-- 抽出階層 -->
-                        {{ entity.renban }}
+                        <!-- 行連番 -->
+                        {{ entity.renban }}({{ entity.tablleId }})
                     </td>
                     <td>
                         <!-- 取引相手 -->
@@ -402,7 +460,7 @@ function onPagingDetail() {
                         <!-- 取引相手関連者 -->
                         <div v-if="entity.tradingRelationPersonId !== -0">
                             <span v-if="entity.tradingRelationPersonId !== -1">({{ entity.tradingRelationPersonCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingRelationPersonName }}
                         </div>
                     </td>
@@ -414,7 +472,7 @@ function onPagingDetail() {
 
 
                 <tr v-for="entity of pickupRouteResultDto.listLastRouteEntity"
-                    :key="entity.wkTblUkaiKenkinResultEntityId">
+                    :key="entity.wkTblUkaiKenkinPickupRouteId">
                     <td>
                         <!-- 役割 -->
                         {{ entity.poliOrgRelationPersonYakuari }}
@@ -423,7 +481,7 @@ function onPagingDetail() {
                         <!-- 関連者 -->
                         <div v-if="entity.poliOrgRelationPersonId !== 0">
                             <span v-if="entity.poliOrgRelationPersonId !== -1">({{ entity.poliOrgRelationPersonCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgRelationPersonName }}
                         </div>
                     </td>
@@ -433,14 +491,18 @@ function onPagingDetail() {
                         {{ entity.politicalOrgName }}
                     </td>
                     <td>
+                        <!-- 経路 -->
+                        {{ entity.wkTblUkaiKenkinPickupRouteCode }}
+                    </td>
+                    <td>
                         <!-- 発生 -->
                         {{ entity.accrualDate }}
                     </td>
                     <td>
                         <!-- 様式区分 -->
-                        {{ entity.youshikiKbn }}-{{ entity.youshikiEdaKbn }}
+                        {{ convertYoushikiKbnText(entity.youshikiKbn) }}-{{
+                            convertYoushikiEdaKbnText(entity.youshikiEdaKbn) }}
                     </td>
-
                     <td>
                         <!-- 項目 -->
                         {{ entity.itemName }}
@@ -455,8 +517,8 @@ function onPagingDetail() {
                         {{ entity.pickupStage }}
                     </td>
                     <td>
-                        <!-- 抽出階層 -->
-                        {{ entity.renban }}
+                        <!-- 行連番 -->
+                        {{ entity.renban }}({{ entity.tablleId }})
                     </td>
                     <td>
                         <!-- 取引相手 -->
@@ -468,7 +530,7 @@ function onPagingDetail() {
                         <!-- 取引相手関連者 -->
                         <div v-if="entity.tradingRelationPersonId !== -0">
                             <span v-if="entity.tradingRelationPersonId !== -1">({{ entity.tradingRelationPersonCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingRelationPersonName }}
                         </div>
                     </td>
@@ -484,13 +546,111 @@ function onPagingDetail() {
 
 
     <div class="one-line">
+        <h3>抽出ルート(経路)</h3>
+        <div style="overflow-x: scroll">
+            <!-- ページング -->
+            <select v-model="slectedRoute" @change="onPagingRoute">
+                <option v-for="option in listRouteOptiuon" :key="option.value" :value="option.value"> {{ option.text
+                    }}
+                </option>
+            </select>
+            <table>
+                <tr>
+                    <th>(記載)役割</th>
+                    <th>(記載)対象者</th>
+                    <th>(記載)政治団体</th>
+                    <th>経路</th>
+                    <th>発生日</th>
+                    <th>様式区分</th>
+                    <th>項目</th>
+                    <th>金額</th>
+                    <th>抽出回(番目)</th>
+                    <th>連番(記載行)</th>
+                    <th>(取引)取引相手</th>
+                    <th>(取引)対象者</th>
+                    <th>(役割)役割</th>
+                </tr>
+
+                <tr v-for="entity of listRoute" :key="entity.wkTblUkaiKenkinPickupRouteId">
+                    <td>
+                        <!-- 役割 -->
+                        {{ entity.poliOrgRelationPersonYakuari }}
+                    </td>
+                    <td>
+                        <!-- 関連者 -->
+                        <div v-if="entity.poliOrgRelationPersonId !== 0">
+                            <span v-if="entity.poliOrgRelationPersonId !== -1">({{ entity.poliOrgRelationPersonCode
+                            }})<br></span>
+                            {{ entity.poliOrgRelationPersonName }}
+                        </div>
+                    </td>
+                    <td>
+                        <!-- 政治団体 -->
+                        <span v-if="entity.politicalOrgId !== -1">({{ entity.politicalOrgCode }})<br></span>
+                        {{ entity.politicalOrgName }}
+                    </td>
+                    <td>
+                        <!-- 経路 -->
+                        {{ entity.wkTblUkaiKenkinPickupRouteCode }}
+                    </td>
+                    <td>
+                        <!-- 発生 -->
+                        {{ entity.accrualDate }}
+                    </td>
+                    <td>
+                        <!-- 様式区分 -->
+                        {{ convertYoushikiKbnText(entity.youshikiKbn) }}-{{
+                            convertYoushikiEdaKbnText(entity.youshikiEdaKbn) }}
+                    </td>
+
+                    <td>
+                        <!-- 項目 -->
+                        {{ entity.itemName }}
+                    </td>
+                    <td>
+                        <!-- 金額 -->
+                        {{ entity.kingaku }}
+                    </td>
+                    <td>
+                        <!-- 抽出階層 -->
+                        {{ entity.pickupStage }}
+                    </td>
+                    <td>
+                        <!-- 行連番 -->
+                        {{ entity.renban }}({{ entity.tablleId }})
+                    </td>
+                    <td>
+                        <!-- 取引相手 -->
+                        <span v-if="entity.tradingPartnerId !== -1">({{ entity.tradingPartnerCode }}) {{
+                            entity.tradingPartnerName }}<br></span>
+                        {{ entity.tradingPartnerAddress }}
+                    </td>
+                    <td>
+                        <!-- 取引相手関連者 -->
+                        <div v-if="entity.tradingRelationPersonId !== -0">
+                            <span v-if="entity.tradingRelationPersonId !== -1">({{ entity.tradingRelationPersonCode
+                            }})<br></span>
+                            {{ entity.tradingRelationPersonName }}
+                        </div>
+                    </td>
+                    <td>
+                        <!-- 取引相手役割 -->
+                        {{ entity.tradingRelationPersonYakuari }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="clear-both"><br></div>
+
+    <div class="one-line">
         <h3>キャッチのために抽出したすべてのデータの一覧</h3>
         <!-- ページング -->
-        <select  v-model="detailResulDto.offset" @change="onPagingDetail">
+        <select v-model="detailResulDto.offset" @change="onPagingDetail">
             <option v-for="option in listDetailPage" :key="option.value" :value="option.value"> {{ option.text }}
             </option>
         </select>
-        <div style="overflow-y: scroll">
+        <div style="overflow-x: scroll">
             <table>
                 <tr>
                     <th>(記載)代表者</th>
@@ -521,7 +681,7 @@ function onPagingDetail() {
                         <!-- 寄付される側会計責任者 -->
                         <div v-if="entity.poliOrgAccountManagerId !== 0">
                             <span v-if="entity.poliOrgAccountManagerId !== -1">({{ entity.poliOrgAccountManagerCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgAccountManagerName }}
                         </div>
                     </td>
@@ -529,7 +689,7 @@ function onPagingDetail() {
                         <!-- 寄付される側団体資金管理団体責任者 -->
                         <div v-if="entity.poliOrgShikinDantaiId !== 0">
                             <span v-if="entity.poliOrgShikinDantaiId !== -1">({{ entity.poliOrgShikinDantaiCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgShikinDantaiName }}
                         </div>
                     </td>
@@ -537,19 +697,19 @@ function onPagingDetail() {
                         <!-- 寄付される側国会議員関連団体国会議員 -->
                         <div v-if="entity.poliOrgKokkaiGiin1Id !== 0">
                             <span v-if="entity.poliOrgKokkaiGiin1Id !== -1">({{ entity.poliOrgKokkaiGiin1Code
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgKokkaiGiin1Name }}
                         </div>
 
                         <div v-if="entity.poliOrgKokkaiGiin2Id !== 0">
                             <span v-if="entity.poliOrgKokkaiGiin2Id !== -1">({{ entity.poliOrgKokkaiGiin2Code
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgKokkaiGiin2Name }}
                         </div>
 
                         <div v-if="entity.poliOrgKokkaiGiin3Id !== 0">
                             <span v-if="entity.poliOrgKokkaiGiin3Id !== -1">({{ entity.poliOrgKokkaiGiin3Code
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.poliOrgKokkaiGiin3Name }}
                         </div>
                     </td>
@@ -564,7 +724,8 @@ function onPagingDetail() {
                     </td>
                     <td>
                         <!-- 様式区分 -->
-                        {{ entity.youshikiKbn }}-{{ entity.youshikiEdaKbn }}
+                        {{ convertYoushikiKbnText(entity.youshikiKbn) }}-{{
+                            convertYoushikiEdaKbnText(entity.youshikiEdaKbn) }}
                     </td>
                     <td>
                         <!-- 項目 -->
@@ -590,7 +751,7 @@ function onPagingDetail() {
                         <!-- 取引相手代表者名 -->
                         <div v-if="entity.tradingPartnerDelegateId !== 0">
                             <span v-if="entity.tradingPartnerDelegateId !== -1">({{ entity.tradingPartnerDelegateCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingPartnerDelegateName }}
                         </div>
                     </td>
@@ -606,7 +767,7 @@ function onPagingDetail() {
                         <!-- 寄付される側団体資金管理団体責任者 -->
                         <div v-if="entity.tradingOrgShikinDantaiId !== 0">
                             <span v-if="entity.tradingOrgShikinDantaiId !== -1">({{ entity.tradingOrgShikinDantaiCode
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingOrgShikinDantaiName }}
                         </div>
                     </td>
@@ -615,19 +776,19 @@ function onPagingDetail() {
                         <!-- 寄付される側国会議員関連団体国会議員 -->
                         <div v-if="entity.tradingOrgKokkaiGiin1Id !== 0">
                             <span v-if="entity.tradingOrgKokkaiGiin1Id !== -1">({{ entity.tradingOrgKokkaiGiin1Code
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingOrgKokkaiGiin1Name }}
                         </div>
 
                         <div v-if="entity.tradingOrgKokkaiGiin2Id !== 0">
                             <span v-if="entity.tradingOrgKokkaiGiin2Id !== -1">({{ entity.tradingOrgKokkaiGiin2Code
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingOrgKokkaiGiin2Name }}
                         </div>
 
                         <div v-if="entity.tradingOrgKokkaiGiin3Id !== 0">
                             <span v-if="entity.tradingOrgKokkaiGiin3Id !== -1">({{ entity.tradingOrgKokkaiGiin3Code
-                                }})<br></span>
+                            }})<br></span>
                             {{ entity.tradingOrgKokkaiGiin3Name }}
                         </div>
                     </td>

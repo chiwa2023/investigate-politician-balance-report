@@ -10,6 +10,8 @@ export default function mockGetUkaikenkinDetail(offset: number): UkaiKenkinDetai
     dto.limit = 50;
     dto.offset = offset;
     dto.listDetailEntity.push(createEntity(1 + offset));
+    dto.listDetailEntity.push(createEntity(2 + offset));
+    dto.listDetailEntity.push(createEntity(3 + offset));
 
     return dto;
 }

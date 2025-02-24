@@ -5,10 +5,13 @@ export default interface WkTblUkaiKenkinPickupRouteInterface {
 export default class WkTblUkaiKenkinPickupRoutetEntity implements WkTblUkaiKenkinPickupRouteInterface {
 
     /** 迂回献金キャッチャー用結果抽出ワークテーブルId  */
-    wkTblUkaiKenkinResultEntityId: number;
+    wkTblUkaiKenkinPickupRouteId: number;
 
     /** 迂回献金キャッチャー用結果抽出ワークテーブル同一識別コード  */
-    wkTblUkaiKenkinResultEntityCode: number;
+    wkTblUkaiKenkinPickupRouteCode: number;
+
+    /** 複写元テーブルId */
+    tablleId: number;
 
     /** 収支報告書政治団体Id */
     politicalOrgId: number;
@@ -89,8 +92,9 @@ export default class WkTblUkaiKenkinPickupRoutetEntity implements WkTblUkaiKenki
         const INIT_NUMBER = 0;
         const INIT_DATE: Date = new Date(1947, 7, 28);
 
-        this.wkTblUkaiKenkinResultEntityId = INIT_NUMBER;
-        this.wkTblUkaiKenkinResultEntityCode = INIT_NUMBER;
+        this.wkTblUkaiKenkinPickupRouteId = INIT_NUMBER;
+        this.wkTblUkaiKenkinPickupRouteCode = INIT_NUMBER;
+        this.tablleId = INIT_NUMBER;
 
 
         // 報告書記載政治団体
