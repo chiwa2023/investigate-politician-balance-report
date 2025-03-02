@@ -68,12 +68,21 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
     public static final String STEP_STAGE_9 = FUNCTION_NAME + "Stage09" + STEP;
 
     /** 個人・企業経路抽出Step名 */
-    public static final String STEP_ROUTE_PERSON_CORP = FUNCTION_NAME + "RoutePersonCorp" + STEP;
+    public static final String STEP_ROUTE_PERSON = FUNCTION_NAME + "RoutePerson" + STEP;
+
+    /** 個人・企業経路抽出Step名 */
+    public static final String STEP_ROUTE_CORP = FUNCTION_NAME + "RouteCorp" + STEP;
 
     /** 政治団体経路抽出Step名 */
     public static final String STEP_ROUTE_POLI_ORG = FUNCTION_NAME + "RoutePoliOrg" + STEP;
 
-    /** Step名 */
+    /** 0階層経路抽出Step名 */
+    public static final String STEP_ROUTE_ZERO = FUNCTION_NAME + "RouteZero" + STEP;
+
+    /** 関連者経路抽出Step名 */
+    public static final String STEP_ROUTE_KANRENSHA = FUNCTION_NAME + "RouteKanrensha" + STEP;
+
+    /** タスク計画Step名 */
     public static final String STEP_TASK_PLAN_NAME = FUNCTION_NAME + "TaskPlan" + STEP;
 
     /** チャンクサイズ */
@@ -131,13 +140,26 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
     @Autowired
     private UkaiKenkinIncomeStage09TimesItemReader ukaiKenkinIncomeStage09TimesItemReader;
 
-    /** 経路抽出個人・企業Tasklet */
+
+    /** 経路抽出階層0Tasklet */
     @Autowired
-    private PickupUkaiKenkinPersonAndCorpTasklet pickupUkaiKenkinPersonAndCorpTasklet;
+    private PickupUkaiKenkinStageZeroTasklet pickupUkaiKenkinStageZeroTasklet;
+
+    /** 経路抽出個人Tasklet */
+    @Autowired
+    private PickupUkaiKenkinPersonTasklet pickupUkaiKenkinPersonTasklet;
+
+    /** 経路抽出個人Tasklet */
+    @Autowired
+    private PickupUkaiKenkinCorpTasklet pickupUkaiKenkinCorpTasklet;
 
     /** 経路抽出政治団体Tasklet */
     @Autowired
     private PickupUkaiKenkinPoliOrgTasklet pickupUkaiKenkinPoliOrgTasklet;
+
+    /** 関連者抽出Tasklet */
+    @Autowired
+    private PickupUkaiKenkinKanrenshaTasklet pickupUkaiKenkinKanrenshaTasklet;
 
     /** タスク計画終了フラグTasklet */
     @Autowired
@@ -157,14 +179,23 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
             @Qualifier(STEP_STAGE_4) final Step stepStage4, @Qualifier(STEP_STAGE_5) final Step stepStage5,
             @Qualifier(STEP_STAGE_6) final Step stepStage6, @Qualifier(STEP_STAGE_7) final Step stepStage7,
             @Qualifier(STEP_STAGE_8) final Step stepStage8, @Qualifier(STEP_STAGE_9) final Step stepStage9,
-            @Qualifier(STEP_ROUTE_PERSON_CORP) final Step stepPickupPerson,
+            @Qualifier(STEP_ROUTE_ZERO) final Step stepPickupZero,
+            @Qualifier(STEP_ROUTE_PERSON) final Step stepPickupPerson,
+            @Qualifier(STEP_ROUTE_CORP) final Step stepPickupCorp,
             @Qualifier(STEP_ROUTE_POLI_ORG) final Step stepPickupOrg,
+            @Qualifier(STEP_ROUTE_KANRENSHA) final Step stepPickupKanrensha,
             @Qualifier(STEP_TASK_PLAN_NAME) final Step stepTaskPlan) {
 
         return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepClean)
                 .next(stepStage0).next(stepStage1).next(stepStage2).next(stepStage3).next(stepStage4).next(stepStage5)
                 .next(stepStage6).next(stepStage7).next(stepStage8).next(stepStage9) // ここまで階層
-                .next(stepPickupPerson).next(stepPickupOrg).next(stepTaskPlan).end().build();
+                .next(stepPickupZero)
+                .next(stepPickupPerson)
+                //.next(stepPickupCorp)
+                //.next(stepPickupOrg)
+                //.next(stepPickupKanrensha)
+                //.next(stepTaskPlan)
+                .end().build();
     }
 
     /**
@@ -351,22 +382,52 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
     }
 
     /**
-     * 経路抽出個人・企業
+     * 経路抽出0階層
      *
      * @param jobRepository      jobRepository
      * @param transactionManager transactionManager
      * @return step
      */
-    @Bean(STEP_ROUTE_PERSON_CORP)
-    protected Step getRoutePersonCorp(final JobRepository jobRepository,
+    @Bean(STEP_ROUTE_ZERO)
+    protected Step getRouteZero(final JobRepository jobRepository,
             final PlatformTransactionManager transactionManager) {
 
-        return new StepBuilder(STEP_ROUTE_PERSON_CORP, jobRepository)
-                .tasklet(pickupUkaiKenkinPersonAndCorpTasklet, transactionManager).build();
+        return new StepBuilder(STEP_ROUTE_ZERO, jobRepository)
+                .tasklet(pickupUkaiKenkinStageZeroTasklet, transactionManager).build();
     }
 
     /**
-     * 経路抽出個人・企業
+     * 経路抽出個人
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_PERSON)
+    protected Step getRoutePerson(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_PERSON, jobRepository)
+                .tasklet(pickupUkaiKenkinPersonTasklet, transactionManager).build();
+    }
+
+    /**
+     * 経路抽出企業
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_CORP)
+    protected Step getRouteCorp(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_CORP, jobRepository)
+                .tasklet(pickupUkaiKenkinCorpTasklet, transactionManager).build();
+    }
+
+    /**
+     * 経路抽出政治団体
      *
      * @param jobRepository      jobRepository
      * @param transactionManager transactionManager
@@ -381,7 +442,22 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
     }
 
     /**
-     * StepIncomeを返却する
+     * 経路抽出政治団体関連者
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_KANRENSHA)
+    protected Step getRouteKanrensha(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_KANRENSHA, jobRepository)
+                .tasklet(pickupUkaiKenkinKanrenshaTasklet, transactionManager).build();
+    }
+
+    /**
+     * Stepタスク計画を返却する
      *
      * @param jobRepository      ジョブレポジトリ
      * @param transactionManager トランザクションマネージャ
@@ -394,6 +470,4 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
         return new StepBuilder(STEP_TASK_PLAN_NAME, jobRepository).tasklet(finishTaskPlanTasklet, transactionManager)
                 .build();
     }
-
-
 }

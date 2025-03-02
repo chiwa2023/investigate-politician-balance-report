@@ -67,8 +67,20 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @param userCode 操作ユーザ同一識別コード
      * @return 関連者個人同一識別コード
      */
-    @Query(value = "SELECT DISTINCT trading_partner_id,trading_partner_code,trading_partner_name FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND youshiki_eda_kbn = 1", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT trading_partner_id,trading_partner_code,trading_partner_name FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code =?1 AND youshiki_eda_kbn = 1 "
+            + "AND trading_partner_code <> 0 AND pickup_stage = 0", nativeQuery = true)
     List<Tuple3<Long, Integer, String>> findTradingPartnerCode(Integer userCode);
+
+    /**
+     * 個人データから取引を行った関連者個人同一識別コードを重複なしで取得する
+     *
+     * @param userCode 操作ユーザ同一識別コード
+     * @return 関連者個人同一識別コード
+     */
+    @Query(value = "SELECT DISTINCT trading_partner_id,trading_partner_code,trading_partner_name FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code =?1 AND youshiki_eda_kbn = 1 AND pickup_stage = 0", nativeQuery = true)
+    List<Tuple3<Long, Integer, String>> findTradingPartnerCode2(Integer userCode);
 
     /**
      * 企業データから取引を行った企業・団体の代表者関連者個人同一識別コードを重複なしで取得する
@@ -76,7 +88,60 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @param userCode 操作ユーザ同一識別コード
      * @return 企業・団体の代表者関連者個人同一識別コード
      */
-    @Query(value = "SELECT DISTINCT trading_partner_code,trading_partner_delegate_id,trading_partner_delegate_code,trading_partner_delegate_name FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND youshiki_eda_kbn = 2", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_partner_delegate_id,trading_partner_delegate_code,trading_partner_delegate_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND youshiki_eda_kbn = 2 AND trading_partner_delegate_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingDelegateCode2(Integer userCode);
+    
+    
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_partner_delegate_id,trading_partner_delegate_code,trading_partner_delegate_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1  AND pickup_stage=0 AND (youshiki_eda_kbn = 3 OR youshiki_eda_kbn = 0) AND trading_partner_delegate_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingDelegateCode3(Integer userCode);
+
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_org_account_manager_id,trading_org_account_manager_code,trading_org_account_manager_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage=0 AND (youshiki_eda_kbn = 3 OR youshiki_eda_kbn = 0) AND trading_org_account_manager_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingAccountManagerCode3(Integer userCode);
+    
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_org_shikin_dantai_id,trading_org_shikin_dantai_code,trading_org_shikin_dantai_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage=0 AND (youshiki_eda_kbn = 3 OR youshiki_eda_kbn = 0) AND trading_org_shikin_dantai_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingShikinDantaiCode3(Integer userCode);
+    
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_org_kokkai_giin1_id,trading_org_kokkai_giin1_code,trading_org_kokkai_giin1_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage=0 AND (youshiki_eda_kbn = 3 OR youshiki_eda_kbn = 0) AND trading_org_kokkai_giin1_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingKokkaiGin1Code(Integer userCode);
+
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_org_kokkai_giin2_id,trading_org_kokkai_giin2_code,trading_org_kokkai_giin2_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage=0 AND (youshiki_eda_kbn = 3 OR youshiki_eda_kbn = 0) AND trading_org_kokkai_giin2_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingKokkaiGin2Code(Integer userCode);
+
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_org_kokkai_giin3_id,trading_org_kokkai_giin3_code,trading_org_kokkai_giin3_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage=0 AND (youshiki_eda_kbn = 3 OR youshiki_eda_kbn = 0) AND trading_org_kokkai_giin3_id <> 0", nativeQuery = true)
+    List<Tuple4<Integer, Long, Integer, String>> findTradingKokkaiGin3Code(Integer userCode);
+
+    /**
+     * 企業データから取引を行った企業・団体の代表者関連者個人同一識別コードを重複なしで取得する
+     *
+     * @param userCode 操作ユーザ同一識別コード
+     * @return 企業・団体の代表者関連者個人同一識別コード
+     */
+    @Query(value = "SELECT DISTINCT trading_partner_code"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND youshiki_eda_kbn = 2"
+            + " AND trading_partner_code <> 0 AND pickup_stage = 0", nativeQuery = true)
+    List<Integer> findTradingCorpCode(Integer userCode);
+
+    
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code =?1 AND youshiki_eda_kbn = 2"
+            + " AND pickup_stage > 0 AND trading_partner_code IN ("
+            + " SELECT DISTINCT trading_partner_code FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code =?1 AND youshiki_eda_kbn = 2"
+            + " AND trading_partner_code <> 0 AND pickup_stage = 0"
+            + " ) ", nativeQuery = true)
+    List<WkTblUkaiKenkinEntity> findTradingCorpByCode(Integer userCode);
+
+    
+    @Query(value = "SELECT DISTINCT trading_partner_code,trading_partner_id,trading_partner_code,trading_partner_name"
+            + " FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND youshiki_eda_kbn = 2"
+            + " AND trading_partner_code <> 0 AND pickup_stage = 0", nativeQuery = true)
     List<Tuple4<Integer, Long, Integer, String>> findTradingDelegateCode(Integer userCode);
 
     /**
@@ -87,12 +152,30 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @param personCode 取引相手関連者同一識別コード
      * @return 関連者が含まれる寄付データ
      */
-    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND ("
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage > 0 AND ("
             + " trading_partner_delegate_code = ?2" + " OR trading_org_account_manager_code = ?2"
             + " OR trading_org_shikin_dantai_code = ?2" + " OR trading_org_kokkai_giin1_code = ?2"
             + " OR trading_org_kokkai_giin2_code = ?2" + " OR trading_org_kokkai_giin3_code = ?2"
             + " )", nativeQuery = true)
     List<WkTblUkaiKenkinEntity> findCorpAndPoriOrgByKojin(Integer userCode, Integer personCode);
+
+    
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND pickup_stage = 0 AND ("
+            + " trading_partner_delegate_code = ?2" + " OR trading_org_account_manager_code = ?2"
+            + " OR trading_org_shikin_dantai_code = ?2" + " OR trading_org_kokkai_giin1_code = ?2"
+            + " OR trading_org_kokkai_giin2_code = ?2" + " OR trading_org_kokkai_giin3_code = ?2"
+            + " )", nativeQuery = true)
+    List<WkTblUkaiKenkinEntity> findCorpAndPoriOrgByKojin3(Integer userCode, Integer personCode);
+    
+    
+    
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1"
+            + " AND pickup_stage > 0 AND ( trading_partner_code = ?2 OR "
+            + " trading_partner_delegate_code = ?2 OR trading_org_account_manager_code = ?2"
+            + " OR trading_org_shikin_dantai_code = ?2" + " OR trading_org_kokkai_giin1_code = ?2"
+            + " OR trading_org_kokkai_giin2_code = ?2" + " OR trading_org_kokkai_giin3_code = ?2"
+            + " )", nativeQuery = true)
+    List<WkTblUkaiKenkinEntity> findTaishoKojinAndDantaiByKojin(Integer userCode, Integer personCode);
 
     /**
      * 企業・団体の代表者の関連者が同じデータを抽出する
@@ -103,11 +186,29 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
      * @return 検索結果
      */
     @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND trading_partner_code != ?2 "
-            + " AND (" + " trading_partner_code = ?3" + " OR trading_partner_delegate_code = ?3"
+            + " AND ( trading_partner_code = ?2 OR trading_partner_delegate_code = ?3"
+            + " OR trading_org_account_manager_code = ?3 OR trading_org_shikin_dantai_code = ?3"
+            + " OR trading_org_kokkai_giin1_code = ?3 OR trading_org_kokkai_giin2_code = ?3"
+            + " OR trading_org_kokkai_giin3_code = ?3 )", nativeQuery = true)
+    List<WkTblUkaiKenkinEntity> findDataByKigyouDaihyousha(Integer userCode, Integer corpCode, Integer personCode);
+
+    
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND trading_partner_code != ?2 "
+            + " AND ( trading_partner_delegate_code = ?3"
             + " OR trading_org_account_manager_code = ?3" + " OR trading_org_shikin_dantai_code = ?3"
             + " OR trading_org_kokkai_giin1_code = ?3" + " OR trading_org_kokkai_giin2_code = ?3"
             + " OR trading_org_kokkai_giin3_code = ?3" + " )", nativeQuery = true)
-    List<WkTblUkaiKenkinEntity> findDataByKigyouDaihyousha(Integer userCode, Integer corpCode, Integer personCode);
+    List<WkTblUkaiKenkinEntity> findDataByKigyouDaihyousha3(Integer userCode, Integer corpCode, Integer personCode);
+
+    
+    
+    @Query(value = "SELECT * FROM wk_tbl_ukai_kenkin WHERE insert_user_code =?1 AND trading_partner_code = ?2 "
+            + " AND pickup_stage = 0 AND (youshiki_eda_kbn = 0 OR youshiki_eda_kbn = 3)"
+            + " AND ( trading_partner_delegate_code = ?3"
+            + " OR trading_org_account_manager_code = ?3" + " OR trading_org_shikin_dantai_code = ?3"
+            + " OR trading_org_kokkai_giin1_code = ?3" + " OR trading_org_kokkai_giin2_code = ?3"
+            + " OR trading_org_kokkai_giin3_code = ?3" + " )", nativeQuery = true)
+    List<WkTblUkaiKenkinEntity> findDataByKigyouDaihyousha4(Integer userCode, Integer orgCode, Integer personCode);
 
     /**
      * 登録済みの経路データから該当する記載政治団体と取り引き相手政治団体が一致するデータを抽出する
@@ -153,5 +254,21 @@ public interface WkTblUkaiKenkinRepository extends JpaRepository<WkTblUkaiKenkin
     
     
     List<WkTblUkaiKenkinEntity> findByInsertUserCodeAndTradingPartnerCodeAndPickupStage(Integer userCode,Integer partnerCode,Integer stage);
+
+    List<WkTblUkaiKenkinEntity> findByInsertUserCodeAndTradingPartnerCodeAndPickupStageAndYoushikiEdaKbnIn(Integer userCode,Integer partnerCode,Integer stage,List<Integer> listEdaKbn);
+
+    List<WkTblUkaiKenkinEntity> findByInsertUserCodeAndTradingPartnerCodeAndTradingPartnerDelegateCodeAndPickupStageAndYoushikiEdaKbnIn(Integer userCode,Integer partnerCode,Integer delegateCode,Integer stage,List<Integer> listEdaKbn);
+
+    @Query(value = "SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code = ?1 AND pickup_stage = 0 AND youshiki_eda_kbn = ?2"
+            + " GROUP BY trading_partner_code"
+            + " HAVING COUNT(political_org_code) > 1", nativeQuery = true)
+    List<Integer> findUkaiPickupStageZero(Integer userCode, Integer youshikiEdaKbn);
+
+    @Query(value = "SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
+            + " WHERE insert_user_code = ?1 AND pickup_stage = 0 AND (youshiki_eda_kbn = 0 OR youshiki_eda_kbn = 3)"
+            + " GROUP BY trading_partner_code"
+            + " HAVING COUNT(political_org_code) > 1", nativeQuery = true)
+    List<Integer> findUkaiPickupStageZeroPoliOrg(Integer userCode);
 
 }

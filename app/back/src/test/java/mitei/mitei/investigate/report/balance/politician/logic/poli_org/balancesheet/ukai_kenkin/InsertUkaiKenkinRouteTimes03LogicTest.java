@@ -17,6 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RelationPersonWithYakuwariDto;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.ukai_kenkin.RelationPersonYakuwariConstants;
 import mitei.mitei.investigate.report.balance.politician.entity.PoliticalOrganizationPropertyEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinPickupRouteEntity;
 import mitei.mitei.investigate.report.balance.politician.repository.PoliticalOrganizationPropertyRepository;
@@ -29,6 +31,8 @@ import mitei.mitei.investigate.report.balance.politician.repository.WkTblUkaiKen
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
+@Transactional
+@Sql({ "wktbl_meisai_inseat_sample.sql", "wktbl_ukai_kenkin_route_insert_sample.sql" })
 class InsertUkaiKenkinRouteTimes03LogicTest {
     // CHECKSTYLE:OFF
 
@@ -46,9 +50,7 @@ class InsertUkaiKenkinRouteTimes03LogicTest {
 
     @Test
     @Tag("TableTruncate")
-    @Transactional
-    @Sql({ "wktbl_meisai_inseat_sample.sql", "wktbl_ukai_kenkin_route_insert_sample.sql" })
-    void test() {
+    void testProperty3() {
 
         Integer userCode = 987;
         Integer poliOrg = 100;
@@ -65,7 +67,51 @@ class InsertUkaiKenkinRouteTimes03LogicTest {
                         entityRoute.getWkTblUkaiKenkinPickupRouteCode());
 
         assertEquals(4, list.size(), "4件取得(最終の迂回先含む)");
-        
+
+        WkTblUkaiKenkinPickupRouteEntity entity00 = list.get(0);
+        assertEquals("ABCD団体", entity00.getPoliticalOrgName(), "記載政治団体が一致0");
+        assertEquals("中間団体13", entity00.getTradingPartnerName(), "取り引き相手が一致0"); // NOPMD
+        assertEquals(0, entity00.getPickupStage(), "階層が一致0");
+
+        WkTblUkaiKenkinPickupRouteEntity entity01 = list.get(1);
+        assertEquals("中間団体13", entity01.getPoliticalOrgName(), "記載政治団体が一致1");
+        assertEquals("中間団体23", entity01.getTradingPartnerName(), "取り引き相手が一致1"); // NOPMD
+        assertEquals(1, entity01.getPickupStage(), "階層が一致1");
+
+        WkTblUkaiKenkinPickupRouteEntity entity02 = list.get(2);
+        assertEquals("中間団体23", entity02.getPoliticalOrgName(), "記載政治団体が一致2");
+        assertEquals("迂回団体23", entity02.getTradingPartnerName(), "取り引き相手が一致2"); // NOPMD
+        assertEquals(2, entity02.getPickupStage(), "階層が一致2");
+
+        WkTblUkaiKenkinPickupRouteEntity entity03 = list.get(3);
+        assertEquals("迂回団体23", entity03.getPoliticalOrgName(), "記載政治団体が一致3");
+        assertEquals("関連団体C", entity03.getTradingPartnerName(), "取り引き相手が一致3");
+        assertEquals(3, entity03.getPickupStage(), "階層が一致3");
+
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    void testYakuwari3() {
+
+        Integer userCode = 987;
+        // 45,40,ABCD代表者 太郎
+        RelationPersonWithYakuwariDto personWithYakuwariDto = new RelationPersonWithYakuwariDto();
+        personWithYakuwariDto.setId(45L);
+        personWithYakuwariDto.setCode(40);
+        personWithYakuwariDto.setName("ABCD太郎");
+        personWithYakuwariDto.setYakuwari(RelationPersonYakuwariConstants.YAKUWARI_DAIHYOUSHA);
+
+        WkTblUkaiKenkinPickupRouteEntity entityRoute = wkTblUkaiKenkinPickupRouteRepository.findById(91L).get();
+
+        insertUkaiKenkinRouteTimes03Logic.practice(userCode, entityRoute, personWithYakuwariDto);
+
+        List<WkTblUkaiKenkinPickupRouteEntity> list = wkTblUkaiKenkinPickupRouteRepository
+                .findByWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(
+                        entityRoute.getWkTblUkaiKenkinPickupRouteCode());
+
+        assertEquals(4, list.size(), "4件取得(最終の迂回先含む)");
+
         WkTblUkaiKenkinPickupRouteEntity entity00 = list.get(0);
         assertEquals("ABCD団体", entity00.getPoliticalOrgName(), "記載政治団体が一致0");
         assertEquals("中間団体13", entity00.getTradingPartnerName(), "取り引き相手が一致0");
@@ -85,7 +131,6 @@ class InsertUkaiKenkinRouteTimes03LogicTest {
         assertEquals("迂回団体23", entity03.getPoliticalOrgName(), "記載政治団体が一致3");
         assertEquals("関連団体C", entity03.getTradingPartnerName(), "取り引き相手が一致3");
         assertEquals(3, entity03.getPickupStage(), "階層が一致3");
-
 
     }
 

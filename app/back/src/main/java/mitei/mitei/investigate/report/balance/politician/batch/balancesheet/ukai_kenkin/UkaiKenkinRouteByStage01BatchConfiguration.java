@@ -47,10 +47,19 @@ public class UkaiKenkinRouteByStage01BatchConfiguration {
     public static final String STEP_STAGE_1 = FUNCTION_NAME + "Stage01" + STEP;
 
     /** 個人・企業経路抽出Step名 */
-    public static final String STEP_ROUTE_PERSON_CORP = FUNCTION_NAME + "RoutePersonCorp" + STEP;
+    public static final String STEP_ROUTE_PERSON = FUNCTION_NAME + "RoutePerson" + STEP;
+
+    /** 個人・企業経路抽出Step名 */
+    public static final String STEP_ROUTE_CORP = FUNCTION_NAME + "RouteCorp" + STEP;
 
     /** 政治団体経路抽出Step名 */
     public static final String STEP_ROUTE_POLI_ORG = FUNCTION_NAME + "RoutePoliOrg" + STEP;
+
+    /** 0階層経路抽出Step名 */
+    public static final String STEP_ROUTE_ZERO = FUNCTION_NAME + "RouteZero" + STEP;
+
+    /** 関連者経路抽出Step名 */
+    public static final String STEP_ROUTE_KANRENSHA = FUNCTION_NAME + "RouteKanrensha" + STEP;
 
     /** Step名 */
     public static final String STEP_TASK_PLAN_NAME = FUNCTION_NAME + "TaskPlan" + STEP;
@@ -75,14 +84,26 @@ public class UkaiKenkinRouteByStage01BatchConfiguration {
     @Autowired
     private UkaiKenkinIncomeStage01TimesItemReader ukaiKenkinIncomeStage01TimesItemReader;
 
-    /** 経路抽出個人・企業Tasklet */
+    /** 経路抽出階層0Tasklet */
     @Autowired
-    private PickupUkaiKenkinPersonAndCorpTasklet pickupUkaiKenkinPersonAndCorpTasklet;
+    private PickupUkaiKenkinStageZeroTasklet pickupUkaiKenkinStageZeroTasklet;
+
+    /** 経路抽出個人Tasklet */
+    @Autowired
+    private PickupUkaiKenkinPersonTasklet pickupUkaiKenkinPersonTasklet;
+
+    /** 経路抽出個人Tasklet */
+    @Autowired
+    private PickupUkaiKenkinCorpTasklet pickupUkaiKenkinCorpTasklet;
 
     /** 経路抽出政治団体Tasklet */
     @Autowired
     private PickupUkaiKenkinPoliOrgTasklet pickupUkaiKenkinPoliOrgTasklet;
 
+    /** 関連者抽出Tasklet */
+    @Autowired
+    private PickupUkaiKenkinKanrenshaTasklet pickupUkaiKenkinKanrenshaTasklet;
+    
     /** タスク計画終了フラグTasklet */
     @Autowired
     private FinishTaskPlanTasklet finishTaskPlanTasklet;
@@ -97,15 +118,22 @@ public class UkaiKenkinRouteByStage01BatchConfiguration {
     @Bean(JOB_NAME)
     protected Job getJob(final JobRepository jobRepository, @Qualifier(STEP_CLEAN_NAME) final Step stepClean,
             @Qualifier(STEP_STAGE_0) final Step stepStage0, @Qualifier(STEP_STAGE_1) final Step stepStage1,
-            @Qualifier(STEP_ROUTE_PERSON_CORP) final Step stepPickupPerson,
+            @Qualifier(STEP_ROUTE_ZERO) final Step stepPickupZero,
+            @Qualifier(STEP_ROUTE_PERSON) final Step stepPickupPerson,
+            @Qualifier(STEP_ROUTE_CORP) final Step stepPickupCorp,
             @Qualifier(STEP_ROUTE_POLI_ORG) final Step stepPickupOrg,
+            @Qualifier(STEP_ROUTE_KANRENSHA) final Step stepPickupKanrensha,
             @Qualifier(STEP_TASK_PLAN_NAME) final Step stepTaskPlan) {
 
-        return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer()).flow(stepClean)
+        return new JobBuilder(JOB_NAME, jobRepository).incrementer(new RunIdIncrementer())
+                .flow(stepClean)
                 .next(stepStage0)
                 .next(stepStage1) // ここまで階層
+                .next(stepPickupZero)
                 .next(stepPickupPerson)
+                .next(stepPickupCorp)
                 .next(stepPickupOrg)
+                .next(stepPickupKanrensha)
                 .next(stepTaskPlan)
                 .end().build();
     }
@@ -158,22 +186,52 @@ public class UkaiKenkinRouteByStage01BatchConfiguration {
     }
 
     /**
-     * 経路抽出個人・企業
+     * 経路抽出0階層
      *
      * @param jobRepository      jobRepository
      * @param transactionManager transactionManager
      * @return step
      */
-    @Bean(STEP_ROUTE_PERSON_CORP)
-    protected Step getRoutePersonCorp(final JobRepository jobRepository,
+    @Bean(STEP_ROUTE_ZERO)
+    protected Step getRouteZero(final JobRepository jobRepository,
             final PlatformTransactionManager transactionManager) {
 
-        return new StepBuilder(STEP_ROUTE_PERSON_CORP, jobRepository)
-                .tasklet(pickupUkaiKenkinPersonAndCorpTasklet, transactionManager).build();
+        return new StepBuilder(STEP_ROUTE_ZERO, jobRepository)
+                .tasklet(pickupUkaiKenkinStageZeroTasklet, transactionManager).build();
     }
 
     /**
-     * 経路抽出個人・企業
+     * 経路抽出個人
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_PERSON)
+    protected Step getRoutePerson(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_PERSON, jobRepository)
+                .tasklet(pickupUkaiKenkinPersonTasklet, transactionManager).build();
+    }
+
+    /**
+     * 経路抽出企業
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_CORP)
+    protected Step getRouteCorp(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_CORP, jobRepository)
+                .tasklet(pickupUkaiKenkinCorpTasklet, transactionManager).build();
+    }
+
+    /**
+     * 経路抽出政治団体
      *
      * @param jobRepository      jobRepository
      * @param transactionManager transactionManager
@@ -188,7 +246,22 @@ public class UkaiKenkinRouteByStage01BatchConfiguration {
     }
 
     /**
-     * StepIncomeを返却する
+     * 経路抽出政治団体関連者
+     *
+     * @param jobRepository      jobRepository
+     * @param transactionManager transactionManager
+     * @return step
+     */
+    @Bean(STEP_ROUTE_KANRENSHA)
+    protected Step getRouteKanrensha(final JobRepository jobRepository,
+            final PlatformTransactionManager transactionManager) {
+
+        return new StepBuilder(STEP_ROUTE_KANRENSHA, jobRepository)
+                .tasklet(pickupUkaiKenkinKanrenshaTasklet, transactionManager).build();
+    }
+
+    /**
+     * Stepタスク計画を返却する
      *
      * @param jobRepository      ジョブレポジトリ
      * @param transactionManager トランザクションマネージャ
