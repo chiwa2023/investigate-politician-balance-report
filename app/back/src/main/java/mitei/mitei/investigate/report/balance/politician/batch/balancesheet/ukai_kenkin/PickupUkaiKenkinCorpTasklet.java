@@ -57,7 +57,7 @@ public class PickupUkaiKenkinCorpTasklet implements Tasklet, StepExecutionListen
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 階層1以上で階層0で出現した企業・団体をすべて抽出
-        List<WkTblUkaiKenkinEntity> listCorp = wkTblUkaiKenkinRepository.findTradingCorpByCode(userCode);
+        List<WkTblUkaiKenkinEntity> listCorp = wkTblUkaiKenkinRepository.findTradingCorpOverByZeroStage(userCode);
 
         // 抽出された団体を経路で保存
         RelationPersonWithYakuwariDto personWithYakuwariDto;

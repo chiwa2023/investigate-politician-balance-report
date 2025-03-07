@@ -35,7 +35,7 @@ public class PickupSamePoliOrgPartnerLogic {
     public List<WkTblUkaiKenkinPickupRouteEntity> practice(final Integer userCode, final Integer youshikiKbn,
             final PoliticalOrganizationPropertyEntity propertyEntity) {
 
-        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository.findTradingByRelationPoliOrg(userCode, youshikiKbn);
+        List<WkTblUkaiKenkinEntity> list = ukaiKenkinRepository.findTradingPartnerOverStageZeroByZeroStage(userCode, youshikiKbn);
 
         return convertUkaiKenkinDetailToRouteByInClassLogic.practice(list, propertyEntity);
     }

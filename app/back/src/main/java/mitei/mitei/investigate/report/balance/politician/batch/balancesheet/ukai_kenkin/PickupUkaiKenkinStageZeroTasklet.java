@@ -91,7 +91,7 @@ public class PickupUkaiKenkinStageZeroTasklet implements Tasklet, StepExecutionL
         }
 
         // 個人寄付データで同じ関連者を持つ企業・個人と政治団体データを抽出する(0階層限定)
-        List<Tuple3<Long, Integer, String>> listKojin = wkTblUkaiKenkinRepository.findTradingPartnerCode2(userCode);
+        List<Tuple3<Long, Integer, String>> listKojin = wkTblUkaiKenkinRepository.findTradingPartnerCode(userCode);
 
         List<Integer> listKey = new ArrayList<>();
         // RelationPersonWithYakuwariDto personWithYakuwariDto;
@@ -105,7 +105,7 @@ public class PickupUkaiKenkinStageZeroTasklet implements Tasklet, StepExecutionL
             if (!listKey.contains(tuple3.getT2())) {
                 listKey.add(tuple3.getT2());
 
-                List<WkTblUkaiKenkinEntity> listDetail = wkTblUkaiKenkinRepository.findCorpAndPoriOrgByKojin3(userCode,
+                List<WkTblUkaiKenkinEntity> listDetail = wkTblUkaiKenkinRepository.findCorpAndPoriOrgByKojinInZero(userCode,
                         personWithYakuwariDto.getCode());
 
                 this.savePerson(listDetail, personWithYakuwariDto, listKojinEda);

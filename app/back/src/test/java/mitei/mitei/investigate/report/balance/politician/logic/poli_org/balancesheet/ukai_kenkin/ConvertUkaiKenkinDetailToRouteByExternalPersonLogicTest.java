@@ -1,7 +1,6 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -273,12 +272,6 @@ class ConvertUkaiKenkinDetailToRouteByExternalPersonLogicTest {
         // 名称検索のときは住所も識別条件だがコード検索時は不要
         assertEquals(personDto.getYakuwari(), entity07.getTradingRelationPersonYakuari(), TRADING_YAKUWARI_TEXT);
 
-    }
-
-    @Test
-    void testByNameAndAddress() {
-
-        fail("Not yet implemented");
     }
 
     // 明細Entityの基本部分のみのCloneを生成する

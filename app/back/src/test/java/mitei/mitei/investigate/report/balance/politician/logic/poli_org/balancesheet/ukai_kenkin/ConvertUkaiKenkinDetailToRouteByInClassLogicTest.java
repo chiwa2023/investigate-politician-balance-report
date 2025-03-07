@@ -1,6 +1,5 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin;
 
-import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -388,11 +387,6 @@ class ConvertUkaiKenkinDetailToRouteByInClassLogicTest {
         assertEquals(RelationPersonYakuwariConstants.YAKUWARI_DAIHYOUSHA, entity33.getTradingRelationPersonYakuari(),
                 TRADING_YAKUWARI_TEXT);
 
-    }
-
-    @Test
-    void testName() {
-        fail("Not yet implemented");
     }
 
     // 明細Entityの基本部分のみのCloneを生成する

@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.batch.balancesheet.ukai_kenkin;
+package mitei.mitei.investigate.report.balance.politician.batch.balancesheet.ukai_kenkin; // NOPMD
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

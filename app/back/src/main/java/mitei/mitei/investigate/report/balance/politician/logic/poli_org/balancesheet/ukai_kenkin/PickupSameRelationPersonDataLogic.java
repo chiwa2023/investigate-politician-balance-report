@@ -45,13 +45,13 @@ public class PickupSameRelationPersonDataLogic {
             personWithYakuwariDto = this.createYakuwariDto(tuple3.getT1(), tuple3.getT2(), tuple3.getT3());
             personWithYakuwariDto.setYakuwari(RelationPersonYakuwariConstants.YAKUWARI_TORIHIKI);
 
-            List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findCorpAndPoriOrgByKojin(userCode,
+            List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findCorpAndPoriOrgByKojinOverStageZero(userCode,
                     personWithYakuwariDto.getCode());
             this.recordMap(map,
                     convertUkaiKenkinDetailToRouteByExternalPersonLogic.practice(listDetail, personWithYakuwariDto));
         }
 
-        List<Tuple4<Integer, Long, Integer, String>> listCorp = ukaiKenkinRepository.findTradingDelegateCode(userCode);
+        List<Tuple4<Integer, Long, Integer, String>> listCorp = ukaiKenkinRepository.findTradingCorpInStageZero(userCode);
 
         for (Tuple4<Integer, Long, Integer, String> tuple4 : listCorp) {
             personWithYakuwariDto = this.createYakuwariDto(tuple4.getT2(), tuple4.getT3(), tuple4.getT4());

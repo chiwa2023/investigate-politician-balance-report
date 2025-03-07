@@ -64,7 +64,7 @@ public class PickupUkaiKenkinPersonAndCorpTasklet implements Tasklet, StepExecut
     public RepeatStatus execute(final StepContribution contribution, final ChunkContext chunkContext) throws Exception {
 
         // 個人寄付データで同じ関連者を持つ企業・個人と政治団体データを抽出する
-        List<Tuple3<Long, Integer, String>> listKojin = ukaiKenkinRepository.findTradingPartnerCode2(userCode);
+        List<Tuple3<Long, Integer, String>> listKojin = ukaiKenkinRepository.findTradingPartnerCodeInStageZero(userCode);
 
         List<Integer> listKey = new ArrayList<>();
         RelationPersonWithYakuwariDto personWithYakuwariDto;
@@ -80,7 +80,7 @@ public class PickupUkaiKenkinPersonAndCorpTasklet implements Tasklet, StepExecut
             if (!listKey.contains(tuple3.getT2())) {
                 listKey.add(tuple3.getT2());
 
-                List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findCorpAndPoriOrgByKojin3(userCode,
+                List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findCorpAndPoriOrgByKojinInZero(userCode,
                         personWithYakuwariDto.getCode());
 
                 if (!listDetail.isEmpty()) {
@@ -106,7 +106,7 @@ public class PickupUkaiKenkinPersonAndCorpTasklet implements Tasklet, StepExecut
         // 企業・団体寄付の代表者と同じ関連者を持つ企業・個人と政治団体データを抽出する
         List<Integer> listKigyouEda = new ArrayList<>();
         listKigyouEda.add(YoushikiEdaKbn.KIGYOU_DANTAI);
-        List<Tuple4<Integer, Long, Integer, String>> listCorp = ukaiKenkinRepository.findTradingDelegateCode2(userCode);
+        List<Tuple4<Integer, Long, Integer, String>> listCorp = ukaiKenkinRepository.findTradingCorpByDelegateCode(userCode);
         for (Tuple4<Integer, Long, Integer, String> tuple4 : listCorp) {
             personWithYakuwariDto = this.createYakuwariDto(tuple4.getT2(), tuple4.getT3(), tuple4.getT4());
             personWithYakuwariDto.setYakuwari(RelationPersonYakuwariConstants.YAKUWARI_DAIHYOUSHA);
@@ -115,7 +115,7 @@ public class PickupUkaiKenkinPersonAndCorpTasklet implements Tasklet, StepExecut
             if (!listKey.contains(tuple4.getT3())) {
                 listKey.add(tuple4.getT3());
 
-                List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findDataByKigyouDaihyousha3(userCode,
+                List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findMeisaiCorpPoliOrgByPartnerAndPerson(userCode,
                         codeCorp, personWithYakuwariDto.getCode());
 
                 if (!listDetail.isEmpty()) {
@@ -141,19 +141,19 @@ public class PickupUkaiKenkinPersonAndCorpTasklet implements Tasklet, StepExecut
 
         // 寄付者の政治団体と同じ関連者を持つ企業と政治団体データを抽出する
         List<Tuple5<Integer, Long, Integer, String, String>> listPoliOrg = new ArrayList<>();
-        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingDelegateCode3(userCode),
+        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingPoliOrgByDelegateCode(userCode),
                 RelationPersonYakuwariConstants.YAKUWARI_DAIHYOUSHA));
         listPoliOrg
-                .addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingAccountManagerCode3(userCode),
+                .addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingPoliOrgByAccountManagerCode(userCode),
                         RelationPersonYakuwariConstants.YAKUWARI_KAIKEISEKINISHA));
         listPoliOrg
-                .addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingShikinDantaiCode3(userCode),
+                .addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingPoliOrgByShikinDantaiCode(userCode),
                         RelationPersonYakuwariConstants.YAKUWARI_SHIKIN_SEKININSHA));
-        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingKokkaiGin1Code(userCode),
+        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingPoliOrgByKokkaiGin1Code(userCode),
                 RelationPersonYakuwariConstants.YAKUWARI_GIIN1));
-        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingKokkaiGin2Code(userCode),
+        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingPoliOrgByKokkaiGin2Code(userCode),
                 RelationPersonYakuwariConstants.YAKUWARI_GIIN2));
-        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingKokkaiGin3Code(userCode),
+        listPoliOrg.addAll(this.createKanrenshaList(listKey, ukaiKenkinRepository.findTradingPoliOrgByKokkaiGin3Code(userCode),
                 RelationPersonYakuwariConstants.YAKUWARI_GIIN3));
 
         for (Tuple5<Integer, Long, Integer, String, String> tuple5 : listPoliOrg) {
@@ -161,13 +161,13 @@ public class PickupUkaiKenkinPersonAndCorpTasklet implements Tasklet, StepExecut
             personWithYakuwariDto.setYakuwari(tuple5.getT5());
             int codeCorp = tuple5.getT1();
 
-            List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findDataByKigyouDaihyousha3(userCode,
+            List<WkTblUkaiKenkinEntity> listDetail = ukaiKenkinRepository.findMeisaiCorpPoliOrgByPartnerAndPerson(userCode,
                     codeCorp, personWithYakuwariDto.getCode());
 
             if (!listDetail.isEmpty()) {
 
                 // 呼び出し元データも一緒に保存
-                List<WkTblUkaiKenkinEntity> listRoot = ukaiKenkinRepository.findDataByKigyouDaihyousha4(userCode,
+                List<WkTblUkaiKenkinEntity> listRoot = ukaiKenkinRepository.findMeisaiDataPoliOrgByPartnerAndPerson(userCode,
                         codeCorp, personWithYakuwariDto.getCode());
                 listDetail.addAll(0, listRoot);
 

@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.batch.balancesheet.ukai_kenkin;
+package mitei.mitei.investigate.report.balance.politician.batch.balancesheet.ukai_kenkin; // NOPMD
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -191,10 +191,10 @@ public class UkaiKenkinRouteByStage09BatchConfiguration {
                 .next(stepStage6).next(stepStage7).next(stepStage8).next(stepStage9) // ここまで階層
                 .next(stepPickupZero)
                 .next(stepPickupPerson)
-                //.next(stepPickupCorp)
-                //.next(stepPickupOrg)
-                //.next(stepPickupKanrensha)
-                //.next(stepTaskPlan)
+                .next(stepPickupCorp)
+                .next(stepPickupOrg)
+                .next(stepPickupKanrensha)
+                .next(stepTaskPlan)
                 .end().build();
     }
 
