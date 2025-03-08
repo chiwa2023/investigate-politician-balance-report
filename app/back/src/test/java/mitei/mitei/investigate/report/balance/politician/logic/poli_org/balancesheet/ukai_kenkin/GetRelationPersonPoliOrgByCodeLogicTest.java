@@ -38,23 +38,22 @@ class GetRelationPersonPoliOrgByCodeLogicTest {
     void test() throws Exception {
 
         final int houkokuNen = 2022;
-            
-        assertThrows(EmptyResultDataAccessException.class,
-                () -> getRelationPersonPoliOrgByCodeLogic.practice(houkokuNen,9999), "表紙からidが取得できない");
 
         assertThrows(EmptyResultDataAccessException.class,
-                () -> getRelationPersonPoliOrgByCodeLogic.practice(houkokuNen,430), "団体属性から関連者が取得できない");
+                () -> getRelationPersonPoliOrgByCodeLogic.practice(houkokuNen, 9999), "表紙からidが取得できない");
 
-        PoliticalOrganizationPropertyEntity entity = getRelationPersonPoliOrgByCodeLogic.practice(houkokuNen,100);
+        assertThrows(EmptyResultDataAccessException.class,
+                () -> getRelationPersonPoliOrgByCodeLogic.practice(houkokuNen, 430), "団体属性から関連者が取得できない");
 
-        assertEquals(105L, entity.getPoliticalOrganizationId(),"政治団体Id");
-        assertEquals(100, entity.getPoliticalOrganizationCode(),"政治団体Code");
-        assertEquals("ABCD団体", entity.getPoliticalOrganizationName(),"政治団体名称");
+        PoliticalOrganizationPropertyEntity entity = getRelationPersonPoliOrgByCodeLogic.practice(houkokuNen, 100);
 
-        assertEquals(105L, entity.getPoliticalOrganizationId(),"政治団体属性代表者Id");
-        assertEquals(100, entity.getPoliticalOrganizationCode(),"政治団体属性代表者Code");
-        assertEquals("ABCD団体", entity.getPoliticalOrganizationName(),"政治団体属性代表者名称");
+        assertEquals(105L, entity.getPoliticalOrganizationId(), "政治団体Id");
+        assertEquals(100, entity.getPoliticalOrganizationCode(), "政治団体Code");
+        assertEquals("ABCD団体", entity.getPoliticalOrganizationName(), "政治団体名称");
 
+        assertEquals(105L, entity.getPoliticalOrganizationId(), "政治団体属性代表者Id");
+        assertEquals(100, entity.getPoliticalOrganizationCode(), "政治団体属性代表者Code");
+        assertEquals("ABCD団体", entity.getPoliticalOrganizationName(), "政治団体属性代表者名称");
 
         // 収支報告書記載団体会計責任者
         assertEquals(59L, entity.getAccountManagerRelationPersonId(), "政治団体属性団体会計責任者Idデータ1");
@@ -77,6 +76,13 @@ class GetRelationPersonPoliOrgByCodeLogicTest {
         assertEquals(30_580, entity.getGiin3RelationPersonCode(), "政治団体属性国会議員3関連者同一識別コードデータ1");
         assertEquals("国会議員 3太郎", entity.getGiin3KoushokuName(), "政治団体属性国会議員3関連者名称データ1");
 
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    void testExceptionHoukokuNen() throws Exception {
+        assertThrows(IllegalArgumentException.class, () -> getRelationPersonPoliOrgByCodeLogic.practice(1192, 100),
+                "実装していない報告年は例外中断");
     }
 
 }

@@ -21,7 +21,6 @@ import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinE
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblUkaiKenkinPickupRouteEntity;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.ConvertUkaiKenkinDetailToRouteByExternalPersonLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.ConvertUkaiKenkinDetailToRouteByInClassLogic;
-import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin.RecordPickupRouteStageLogic;
 import mitei.mitei.investigate.report.balance.politician.repository.WkTblUkaiKenkinPickupRouteRepository;
 import mitei.mitei.investigate.report.balance.politician.repository.WkTblUkaiKenkinRepository;
 import reactor.util.function.Tuple3;
@@ -53,10 +52,6 @@ public class PickupUkaiKenkinStageZeroTasklet implements Tasklet, StepExecutionL
 
     /** 階層0定数 */
     private static final int stage0 = 0;
-
-    /** 迂回献金階層保存Logic */
-    @Autowired
-    private RecordPickupRouteStageLogic recordPickupRouteStageLogic;
 
     /**
      * JobParameterを取得する
@@ -220,16 +215,6 @@ public class PickupUkaiKenkinStageZeroTasklet implements Tasklet, StepExecutionL
             List<WkTblUkaiKenkinPickupRouteEntity> listRouteStage0 = convertUkaiKenkinDetailToRouteByExternalPersonLogic
                     .practice(listStage0, personWithYakuwariDto);
             this.recordData(listRouteStage0);
-
-            // Stage0でない場合は経路データで登録
-            List<WkTblUkaiKenkinEntity> listUkai = listDetail.stream().filter(e -> e.getPickupStage() != stage0)
-                    .toList();
-            List<WkTblUkaiKenkinPickupRouteEntity> listRouteUkai = convertUkaiKenkinDetailToRouteByExternalPersonLogic
-                    .practice(listUkai, personWithYakuwariDto);
-
-            for (WkTblUkaiKenkinPickupRouteEntity entity : listRouteUkai) {
-                recordPickupRouteStageLogic.practice(userCode, entity, personWithYakuwariDto);
-            }
         }
     }
 

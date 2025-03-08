@@ -127,7 +127,8 @@ public class PoliOrgUkaiKenkinDetailLogic {
         if (isSearchKoufukin) {
             return YoushikiKbn.KOUFUKIN;
         } else {
-            return 100; // SUPPRESS CHECKSTYLE MagicNumber // 検索条件を無効化する値
+            // 検索条件を無効化する値
+            return 100; // SUPPRESS CHECKSTYLE MagicNumber
         }
     }
 

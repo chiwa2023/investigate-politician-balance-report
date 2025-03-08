@@ -1,7 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.batch.balancesheet.ukai_kenkin;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -166,9 +166,6 @@ class UkaiKenkinBalancesheetIncomeMeisaiItemProcessorTest {
         // ユーザ情報はItemWriterで上書き
     }
 
-    
-    
-    
     @Test
     @Tag("TableTruncate")
     void testKoufukin() throws Exception { // NOPMD
@@ -299,7 +296,6 @@ class UkaiKenkinBalancesheetIncomeMeisaiItemProcessorTest {
         // ユーザ情報はItemWriterで上書き
     }
 
-    
     @Test
     @Tag("TableTruncate")
     void testPerson() throws Exception { // NOPMD
@@ -429,7 +425,7 @@ class UkaiKenkinBalancesheetIncomeMeisaiItemProcessorTest {
 
         // ユーザ情報はItemWriterで上書き
     }
-    
+
     @Test
     @Tag("TableTruncate")
     @Transactional
@@ -560,5 +556,21 @@ class UkaiKenkinBalancesheetIncomeMeisaiItemProcessorTest {
 
         // ユーザ情報はItemWriterで上書き
     }
-    
+
+    @Test
+    @Tag("TableTruncate") // NOPMD
+    void testException() throws Exception { // NOPMD
+
+        // 枝区分項目が政治資金収支報告書の使用にない数字がまぎれた場合例外検出して終了
+
+        OfferingBalancesheetIncomeEntity incomeEntity = new OfferingBalancesheetIncomeEntity();
+
+        incomeEntity.setOfferingBalancesheetIncomeId(106L);
+        incomeEntity.setOfferingBalancesheetIncomeCode(105L);
+        incomeEntity.setYoushikiEdaKbn(11);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> ukaiKenkinBalancesheetIncomeMeisaiItemProcessor.process(incomeEntity), "様式枝区分が仕様外の場合は中断");
+
+    }
 }

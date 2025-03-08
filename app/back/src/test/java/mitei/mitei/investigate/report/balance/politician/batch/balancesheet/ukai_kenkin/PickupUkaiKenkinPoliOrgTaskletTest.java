@@ -260,6 +260,25 @@ class PickupUkaiKenkinPoliOrgTaskletTest {
         assertEquals(828L, entity489.getTablleId(), "経路48詳細9");
         WkTblUkaiKenkinPickupRouteEntity entity48A = listRoute48.get(10);
         assertEquals(920L, entity48A.getTablleId(), "経路48詳細10");
+    }
+
+    @Test
+    @Tag("TableTruncate")
+    @Transactional
+    @Sql({ "truncate_wk_tbl_ukai_kenkin_route.sql", "configuration_wktbl_meisai_koufukin.sql" })
+    void testKoufukin() throws Exception { // NOPMD
+
+        StepExecution execution = this.getStepExecutionKoufukin();
+        pickupUkaiKenkinPoliOrgTasklet.beforeStep(execution);
+        assertEquals(RepeatStatus.FINISHED, pickupUkaiKenkinPoliOrgTasklet.execute(null, null), "実行");
+
+        Integer userCode = privilegeDto.getLoginUserCode();
+
+        // 全体を選択肢リスト形式で取得
+        // テーブルId 30が交付金データに変更しているが、取得できるデータに変化はない
+        List<SelectOptionDto> listOption = createUkaiKenkinRouteSelectOptionLogic.practice(userCode);
+        listOption.remove(0); // 最初の1行は0階層(全)
+        assertEquals(9, listOption.size(), "9経路取得できた");
 
     }
 
@@ -271,6 +290,19 @@ class PickupUkaiKenkinPoliOrgTaskletTest {
                 .addLong("userCode", Long.valueOf(privilegeDto.getLoginUserCode()))
                 .addString("userName", privilegeDto.getLoginUserName()).addLong("poliOrgCode", Long.valueOf(100))
                 .addString("isSearchKoufukin", Boolean.FALSE.toString()).toJobParameters();
+
+        // 起動引数付きのStepExecutionを作成
+        return MetaDataInstanceFactory.createStepExecution(jobParameters);
+    }
+
+    private StepExecution getStepExecutionKoufukin() {
+
+        // JobParameterの設定
+        JobParameters jobParameters = new JobParametersBuilder().addLocalDateTime("now", LocalDateTime.now())
+                .addLong("userId", privilegeDto.getLoginUserId())
+                .addLong("userCode", Long.valueOf(privilegeDto.getLoginUserCode()))
+                .addString("userName", privilegeDto.getLoginUserName()).addLong("poliOrgCode", Long.valueOf(100))
+                .addString("isSearchKoufukin", Boolean.TRUE.toString()).toJobParameters();
 
         // 起動引数付きのStepExecutionを作成
         return MetaDataInstanceFactory.createStepExecution(jobParameters);

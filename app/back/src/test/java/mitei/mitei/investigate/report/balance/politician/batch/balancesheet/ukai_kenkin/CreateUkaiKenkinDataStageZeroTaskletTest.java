@@ -33,6 +33,9 @@ import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivileg
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
+@Transactional
+@Sql({ "truncate_wk_tbl_ukai_kenkin_rest_other_user.sql", "tasklet_stage0_income_2022.sql",
+        "tasklet_stage0_poli_org_property.sql" })
 class CreateUkaiKenkinDataStageZeroTaskletTest {
     // CHECKSTYLE:OFF
 
@@ -46,16 +49,14 @@ class CreateUkaiKenkinDataStageZeroTaskletTest {
 
     @Test
     @Tag("TableTruncate")
-    @Transactional
-    @Sql({ "truncate_wk_tbl_ukai_kenkin.sql", "tasklet_stage0_income_2022.sql",
-            "tasklet_stage0_poli_org_property.sql" })
     void test() throws Exception {
 
         StepExecution execution = this.getStepExecution();
         createUkaiKenkinDataStageZeroTasklet.beforeStep(execution);
         assertEquals(RepeatStatus.FINISHED, createUkaiKenkinDataStageZeroTasklet.execute(null, null), "実行");
 
-        List<WkTblUkaiKenkinEntity> list = wkTblUkaiKenkinRepository.findAll();
+        List<WkTblUkaiKenkinEntity> listTemp = wkTblUkaiKenkinRepository.findAll();
+        List<WkTblUkaiKenkinEntity> list = listTemp.stream().filter(e -> e.getInsertUserCode() == 987).toList();
 
         assertEquals(15, list.size(), "取得リストサイズ");
 
@@ -121,6 +122,29 @@ class CreateUkaiKenkinDataStageZeroTaskletTest {
 
     }
 
+    @Test
+    @Tag("TableTruncate")
+    void testKoufukin() throws Exception {
+
+        StepExecution execution = this.getStepExecutionKoufukin();
+        createUkaiKenkinDataStageZeroTasklet.beforeStep(execution);
+        assertEquals(RepeatStatus.FINISHED, createUkaiKenkinDataStageZeroTasklet.execute(null, null), "実行");
+
+        List<WkTblUkaiKenkinEntity> listTemp = wkTblUkaiKenkinRepository.findAll();
+        List<WkTblUkaiKenkinEntity> list = listTemp.stream().filter(e -> e.getInsertUserCode() == 987).toList();
+
+        assertEquals(16, list.size(), "取得リストサイズは交付金も検索すると1件増加する");
+
+        // 207
+        WkTblUkaiKenkinEntity entity14 = list.get(14);
+        assertEquals(207L, entity14.getTablleId(), "テーブルId14");
+
+        // 301
+        WkTblUkaiKenkinEntity entity15 = list.get(15);
+        assertEquals(301L, entity15.getTablleId(), "テーブルId15");
+
+    }
+
     private StepExecution getStepExecution() {
         CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
 
@@ -130,6 +154,20 @@ class CreateUkaiKenkinDataStageZeroTaskletTest {
                 .addLong("userCode", Long.valueOf(privilegeDto.getLoginUserCode()))
                 .addString("userName", privilegeDto.getLoginUserName()).addLong("poliOrgCode", Long.valueOf(100))
                 .addString("isSearchKoufukin", Boolean.FALSE.toString()).toJobParameters();
+
+        // 起動引数付きのStepExecutionを作成
+        return MetaDataInstanceFactory.createStepExecution(jobParameters);
+    }
+
+    private StepExecution getStepExecutionKoufukin() {
+        CheckPrivilegeDto privilegeDto = CreateTestPrivilegeDtoUtil.pracitce();
+
+        // JobParameterの設定
+        JobParameters jobParameters = new JobParametersBuilder().addLocalDateTime("now", LocalDateTime.now())
+                .addLong("userId", privilegeDto.getLoginUserId())
+                .addLong("userCode", Long.valueOf(privilegeDto.getLoginUserCode()))
+                .addString("userName", privilegeDto.getLoginUserName()).addLong("poliOrgCode", Long.valueOf(100))
+                .addString("isSearchKoufukin", Boolean.TRUE.toString()).toJobParameters();
 
         // 起動引数付きのStepExecutionを作成
         return MetaDataInstanceFactory.createStepExecution(jobParameters);

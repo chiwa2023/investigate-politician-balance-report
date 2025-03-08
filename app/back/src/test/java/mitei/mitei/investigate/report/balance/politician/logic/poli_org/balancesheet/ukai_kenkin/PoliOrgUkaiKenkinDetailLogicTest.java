@@ -1,7 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.ukai_kenkin;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ class PoliOrgUkaiKenkinDetailLogicTest {
 
     @Test
     @Tag("TableTruncate")
-    //@Transactional
+    // @Transactional
     @Sql({ "../y2022/wk_tbl_ukai_kenkin_times00.sql", "../y2022/tasklet_stage0_income_2022.sql" })
     void testCount() throws Exception {
 
@@ -70,4 +70,10 @@ class PoliOrgUkaiKenkinDetailLogicTest {
                 "0階層、交付金データを含まない場合は取得件数は7件");
     }
 
+    @Test
+    @Tag("TableTruncate")
+    void testExceptionHoukokuNen() throws Exception {
+        assertThrows(IllegalArgumentException.class,
+                () -> poliOrgUkaiKenkinDetailLogic.practiceCount(987, 1192, 1, false), "実装していない報告年は例外中断");
+    }
 }

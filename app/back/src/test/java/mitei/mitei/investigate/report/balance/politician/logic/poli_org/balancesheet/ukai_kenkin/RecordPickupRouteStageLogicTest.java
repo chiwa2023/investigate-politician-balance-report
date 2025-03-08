@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balance
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
@@ -1002,6 +1003,37 @@ class RecordPickupRouteStageLogicTest { // NOPMD
         assertEquals("迂回団体89", entity09.getPoliticalOrgName(), "記載政治団体が一致9");
         assertEquals("関連団体I", entity09.getTradingPartnerName(), "取り引き相手が一致9");
         assertEquals(9, entity09.getPickupStage(), "階層が一致9");
+
+    }
+
+    @Test
+    @Tag("TableTruncate") // NOPMD
+    void testExceptionYakuwari() {
+
+        Integer userCode = 987;
+        RelationPersonWithYakuwariDto personWithYakuwariDto = new RelationPersonWithYakuwariDto();
+        WkTblUkaiKenkinPickupRouteEntity entityRoute = new WkTblUkaiKenkinPickupRouteEntity();
+        entityRoute.setPickupStage(100);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> recordPickupRouteStageLogic.practice(userCode, entityRoute, personWithYakuwariDto),
+                "設定していない階層データが入ってきたら例外中断");
+
+    }
+
+    @Test
+    @Tag("TableTruncate") // NOPMD
+    void testExceptionProperty() {
+
+        Integer userCode = 987;
+        PoliticalOrganizationPropertyEntity propertyEntity = new PoliticalOrganizationPropertyEntity();
+        WkTblUkaiKenkinPickupRouteEntity entityRoute = new WkTblUkaiKenkinPickupRouteEntity();
+        entityRoute.setPickupStage(100);
+        entityRoute.setPickupStage(100);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> recordPickupRouteStageLogic.practice(userCode, entityRoute, propertyEntity),
+                "設定していない階層データが入ってきたら例外中断");
 
     }
 
