@@ -55,7 +55,7 @@ public interface OfferingBalancesheet0702And0713And0717Summary2022Repository
             List<Integer> list, Integer saishinKbn);
 
     /**
-     * 政治団体から様式2データを取得す
+     * 政治団体から様式2データを取得する
      *
      * @param poliOrgCode 政治団体同一識別コード
      * @param saishinKbn  最新区分

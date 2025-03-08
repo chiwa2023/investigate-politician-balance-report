@@ -247,7 +247,7 @@ public interface OfferingBalancesheetIncome2023Repository
             + " WHERE insert_user_code = ?1 AND pickup_stage = (?2-1)"
             + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn =7) OR youshiki_kbn = ?3)"
             + ")"
-            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn =7) OR youshiki_kbn =?3)"
+            + " AND ( youshiki_kbn =7 OR youshiki_kbn =?3)"
             , nativeQuery = true)
     Page<OfferingBalancesheetIncomeEntity> findUkaiKenkiMeisai(Integer userCode,Integer stage,Integer koufukinKbn,Pageable pageable);
 
@@ -264,6 +264,6 @@ public interface OfferingBalancesheetIncome2023Repository
             + " WHERE insert_user_code = ?1 AND  pickup_stage = (?2-1) "
             + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn = 7) OR youshiki_kbn = ?3)"
             + ")"
-            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn = 7) OR youshiki_kbn = ?3)", nativeQuery = true)
+            + " AND (youshiki_kbn = 7 OR youshiki_kbn = ?3)", nativeQuery = true)
     Integer findUkaiKenkiMeisaiCount(Integer userCode,Integer stage,Integer koufukinKbn);
 }
