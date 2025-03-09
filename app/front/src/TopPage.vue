@@ -63,6 +63,7 @@ if (0 === securityDto.loginUserId) {
     <RouterLink to="/investigate-fukisai-balancesheet">不記載チェッカー</RouterLink><br>
     <RouterLink to="/investigate-kifu-jougen">寄付上限チェッカー</RouterLink><br>
     <RouterLink to="/investigate-ukai-kenkin">迂回献金キャッチャー</RouterLink><br>
+    <RouterLink to="/investigate-keinen-henka">経年変化</RouterLink><br>
 
     <RouterLink to="/regist-zengin-master/upload-csv">全銀協金融機関支店最新csv登録</RouterLink><br>
     <RouterLink to="/regist-zengin-master/show-ido-list">全銀協金融機関支店異動(廃止店舗異動指定)</RouterLink><br>
