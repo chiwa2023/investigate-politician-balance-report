@@ -92,7 +92,7 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         // 全体を選択肢リスト形式で取得
         List<SelectOptionDto> listOption = createUkaiKenkinRouteSelectOptionLogic.practice(userCode);
         listOption.remove(0); // 最初の1行は0階層(全)
-        assertEquals(57, listOption.size(), "57経路取得できた");
+        assertEquals(58, listOption.size(), "58経路取得できた");
 
         /* 個人・企業・政治団体(階層0) */
 
@@ -970,8 +970,19 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         WkTblUkaiKenkinPickupRouteEntity entity786 = listRoute78.get(6);
         assertEquals(32_105L, entity786.getTablleId(), "経路78詳細6");
 
+        // 経路87(企業代表者と企業代表者
+        SelectOptionDto dto97 = listOption.get(51);
+        List<WkTblUkaiKenkinPickupRouteEntity> listRoute97 = wkTblUkaiKenkinPickupRouteRepository
+                .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
+                        Integer.parseInt(dto97.getValue()));
+        assertEquals(2, listRoute97.size(), "経路87のデータ数は2");
+        WkTblUkaiKenkinPickupRouteEntity entity970 = listRoute97.get(0);
+        assertEquals(96L, entity970.getTablleId(), "経路87詳細0");
+        WkTblUkaiKenkinPickupRouteEntity entity971 = listRoute97.get(1);
+        assertEquals(97L, entity971.getTablleId(), "経路87詳細1");
+
         // 経路87(政治団体迂回1階層)
-        SelectOptionDto dto87 = listOption.get(51);
+        SelectOptionDto dto87 = listOption.get(52);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute87 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto87.getValue()));
@@ -982,7 +993,7 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         assertEquals(71L, entity871.getTablleId(), "経路87詳細1");
 
         // 経路88(政治団体迂回1階層)
-        SelectOptionDto dto88 = listOption.get(52);
+        SelectOptionDto dto88 = listOption.get(53);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute88 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto88.getValue()));
@@ -995,7 +1006,7 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         assertEquals(30_002L, entity882.getTablleId(), "経路88詳細2");
 
         // 経路89(政治団体迂回2階層)
-        SelectOptionDto dto89 = listOption.get(53);
+        SelectOptionDto dto89 = listOption.get(54);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute89 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto89.getValue()));
@@ -1010,7 +1021,7 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         assertEquals(30_004L, entity893.getTablleId(), "経路89詳細3");
 
         // 経路90(政治団体迂回3階層)
-        SelectOptionDto dto90 = listOption.get(54);
+        SelectOptionDto dto90 = listOption.get(55);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute90 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto90.getValue()));
@@ -1027,7 +1038,7 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         assertEquals(30_006L, entity904.getTablleId(), "経路90詳細4");
 
         // 経路91(政治団体迂回4階層)
-        SelectOptionDto dto91 = listOption.get(55);
+        SelectOptionDto dto91 = listOption.get(56);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute91 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto91.getValue()));
@@ -1046,7 +1057,7 @@ class UkaiKenkinRouteByStage05BatchConfigurationTest {
         assertEquals(30_008L, entity915.getTablleId(), "経路91詳細5");
 
         // 経路92(政治団体迂回5階層)
-        SelectOptionDto dto92 = listOption.get(56);
+        SelectOptionDto dto92 = listOption.get(57);
         List<WkTblUkaiKenkinPickupRouteEntity> listRoute92 = wkTblUkaiKenkinPickupRouteRepository
                 .findByInsertUserCodeAndWkTblUkaiKenkinPickupRouteCodeOrderByPickupStageAsc(userCode,
                         Integer.parseInt(dto92.getValue()));
