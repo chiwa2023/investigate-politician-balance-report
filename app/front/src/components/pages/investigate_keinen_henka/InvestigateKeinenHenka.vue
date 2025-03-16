@@ -15,32 +15,34 @@ import getHoukokunen from '../../../dto/houkokunen/getHoukokunen';
 import KeinenHenkaSurfaceAndSummaryByYearInterface from '../../../dto/keinen_henka/keinenHenkaSurfaceAndSummaryByYearDto';
 import KeinenHenkaSurfaceAndSummaryByYearDto from '../../../dto/keinen_henka/keinenHenkaSurfaceAndSummaryByYearDto';
 import mockGetKeinenHenkaData from './mock/mockGetKeinenHenkaData';
+import CreateSummaryChartData from './createSummaryChartData';
 
-// チャートオプション
-const chartData = ref([
-    ['Year', 'Sales', 'Expenses', 'Profit'],
-    ['2014', 1000, 400, 200],
-    ['2015', 1170, 460, 250],
-    ['2016', 660, 1120, 300],
-    ['2017', 1030, 540, 350]
+// チャートデータ(初期)
+const chartData: Ref<(string | number)[][]> = ref([
+    ['', ''],
+    ['', 0]
 ]);
 
 // チャートオプション
 const chartOptions = {
     chart: {
-        title: 'Company Performance',
-        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+        title: '集計表項目毎経年変化',
     }
 }
+// グラフ表示選択
+const datafunc = new CreateSummaryChartData();
+const selectedChartItem: Ref<string> = ref("未選択");
+const optionIncome:Ref<SelectOptionInterface[]> = ref(datafunc.createOptionIncome());
+const optionOutcome:Ref<SelectOptionInterface[]> = ref(datafunc.createOptionOutcome());
 
+// データを再描画する
 function changeData() {
-    chartData.value = [
-        ['Year', 'Sales', 'Expenses', 'Profit'],
-        ['2020', 2000, 1400, 200],
-        ['2021', 2170, 1460, 250],
-        ['2022', 2660, 3120, 300],
-        ['2023', 1030, 1540, 350]
-    ]
+    chartData.value.splice(0);
+    chartData.value.push(datafunc.createTitle(selectedChartItem.value));
+    for (const dto of listResult.value) {
+        chartData.value.push(datafunc.createData(selectedChartItem.value, dto));
+    }
+
 }
 
 //経年変化検索条件Dio
@@ -216,22 +218,339 @@ function onChangeViewYear() {
     </div>
     <div class="clear-both"><br></div>
 
+
     <div class="one-line">
         収入(様式7その2)
     </div>
-    <div class="clear-both"></div>
+    <div class="left-area">
+        収入総額
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.shunyuGokei" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        前年からの繰越額
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.zennenKurikoshi"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        本年の収入額
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.honnenShunyu" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        支出総額
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.shishutsuGoukei"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        翌年への繰越額
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.yokunenKurikoshi"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        個人の党費または会費を納入金額
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kojiFutanGoukei"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        党費または会費を納入した員数
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kojiFutanSuu" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        個人寄付の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kojiFutanSuu" disabled="true"
+            class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kojinKifuBikou" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        特定寄付合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.tokuteiKifuGoukei"
+            disabled="true" class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.tokuteiKifuBikou"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        法人寄付合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.houjinKifuGoukei"
+            disabled="true" class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.houjinKifuBiko" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        政治団体寄付合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.seijiDantaiKifuGoukei"
+            disabled="true" class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.seijiDantaiKifuBikou"
+            disabled="true" class="text-input">
+    </div>
+
+    <div class="left-area">
+        寄付小計合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kifuShoukeiGoukei"
+            disabled="true" class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kifuShoukeiBikou"
+            disabled="true" class="text-input">
+    </div>
+
+    <div class="left-area">
+        寄付のうちあっせんによるもの
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.assenGoukei" disabled="true"
+            class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.assenBikou" disabled="true"
+            class="text-input">
+    </div>
+
+    <div class="left-area">
+        政党匿名寄付の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.tokumeiKifuGoukei"
+            disabled="true" class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.tokumeiKifuBikou"
+            disabled="true" class="text-input">
+    </div>
+
+    <div class="left-area">
+        寄付総合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kifuSoGoukei" disabled="true"
+            class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kifuSoGoukeiBikou"
+            disabled="true" class="text-input">
+    </div>
+
+    <div class="clear-both"><br></div>
 
     <div class="one-line">
-        収入(様式7その13)
+        支出(様式7その13)
     </div>
+    <div class="left-area">
+        人件費
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiJinkenhi" disabled="true"
+            class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuJinkenhi" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        光熱費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiKohnetsuhi"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKohnetsuhi"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        備品項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiBihinhi" disabled="true"
+            class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuBihinhi" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        事務所費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiJimushohi"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuJimushohi" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        経費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiKeihiShoukei"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKeihiShoukei"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        組織活動費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiSoshikiKatsudouhi"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSoshikiKatsudouhi"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        選挙活動費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiSenkyoKatsudou"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSenkyoKatsudou"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        その他項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiSonota" disabled="true"
+            class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSonota" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        機関誌発行項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiHakkou" disabled="true"
+            class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuHakkou" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        宣伝費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiSenden" disabled="true"
+            class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSenden" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        政治資金パーティ開催項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiKaisaiPty"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKaisaiPty" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        その他事業費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiSonotaJigyou"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaJigyou"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        調査研究費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiChousaKenkyu"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuChousaKenkyu"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        寄付金項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiKifukin" disabled="true"
+            class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKifukin" disabled="true"
+            class="text-input">
+    </div>
+    <div class="left-area">
+        その他の経費項目の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiSonotaKeihi"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaKeihi"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        活動費小計の合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiKatsudouhi"
+            disabled="true" class="text-input">
+        <span class="left-space">交付金に係る支出</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKatsudouhi"
+            disabled="true" class="text-input">
+    </div>
+    <div class="left-area">
+        現計合計
+    </div>
+    <div class="right-area">
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.goukeiZenGohkei"
+            disabled="true" class="text-input">
+    </div>
+
     <div class="clear-both"></div>
 
-
-    <h3>グラフ導入動作確認</h3>
-    <GChart type="ColumnChart" :data="chartData" :options="chartOptions"></GChart>
+    <h3>項目ごと遷移(グラフ)</h3>
+    <div class="left-area">
+        描画項目
+    </div>
+    <div class="right-area">
+        <select v-model="selectedChartItem" @change="changeData">
+            <option>{{ CreateSummaryChartData.NO_SELECT }}</option>
+            <optgroup label="収入">
+                <option v-for="dto of optionIncome" :key="dto.value">{{ dto.text }}</option>
+            </optgroup>
+            <optgroup label="支出">
+                <option v-for="dto of optionOutcome" :key="dto.value">{{ dto.text }}</option>
+            </optgroup>
+        </select>
+    </div>
+    <!-- グラフ -->
+    <div class="one-line">
+        <GChart type="ColumnChart" :data="chartData" :options="chartOptions" class="left-space" style="width:85%"></GChart>
+    </div>
     <br>
-    <button @click="changeData">再描画</button>
-
 
     <!-- 政治団体検索コンポーネント -->
     <div v-if="isVisibleSearchPoliticalOrganizationLeast" class="overBackground"></div>

@@ -1,10 +1,343 @@
 export default interface OfferingBalancesheet0702And0713SummaryInterface {
+   /** 収支報告書様式7その2と13と17Id */
+   offeringBalancesheet0702And0713And0717SummaryId:number;
+
+   /** 収支報告書様式7その2と13と17同一識別コード */
+   offeringBalancesheet0702And0713And0717SummaryCode: number;
+
+   /** 文書同一識別コード */
+   documentCode: number;
+
+   /** 最新区分 */
+   saishinKbn: number;
+
+   /** 報告年 */
+   houkokuNen: number;
+
+   /** 提出日 */
+   offeringDate: Date;
+
+   /** 政治団体Id */
+   politicalOrganizationId: number;
+
+   /** 政治団体同一識別コード */
+   politicalOrganizationCode: number;
+
+   /** 政治団体名称 */
+   politicalOrganizationName: string;
+
+   /** 原文書政治団体代表者名 */
+   daihyouName: string;
+
+   /** 原文書政治団体名称 */
+   dantaiName: string;
+
+   /** 関連者区分 */
+   relationKbn: number;
+
+   /** 代表者関連者Id */
+   relationPersonIdDelegate: number;
+
+   /** 代表者関連者同一識別コード */
+   relationPersonCodeDelegate: number;
+
+   /** 代表者関連者名称 */
+   relationPersonNameDelegate: string;
+
+   /** 収入総合計 */
+   shunyuGokei: number;
+
+   /** 前年繰り越し合計 */
+   zennenKurikoshi: number;
+
+   /** 本年収入合計 */
+   honnenShunyu: number;
+
+   /** 支出総合計 */
+   shishutsuGoukei: number;
+
+   /** 翌年繰り越し合計 */
+   yokunenKurikoshi: number;
+
+   /** 個人の党費または会費を納入金額 */
+   kojiFutanGoukei: string;
+
+   /** 党費または会費を納入した員数 */
+   kojiFutanSuu: string;
+
+   /** 個人寄付の合計 */
+   kojinKifuGoukei: number;
+
+   /** 個人寄付備考 */
+   kojinKifuBikou: string;
+
+   /** 特定寄付合計 */
+   tokuteiKifuGoukei: number;
+
+   /** 特定寄付備考 */
+   tokuteiKifuBikou: string;
+
+   /** 法人寄付合計 */
+   houjinKifuGoukei: number;
+
+   /** 法人寄付備考 */
+   houjinKifuBiko: string;
+
+   /** 政治団体寄付合計 */
+   seijiDantaiKifuGoukei: number;
+
+   /** 政治団体寄付備考 */
+   seijiDantaiKifuBikou: string;
+
+   /** 寄付小計合計 */
+   kifuShoukeiGoukei: number;
+
+   /** 寄付小計備考 */
+   kifuShoukeiBikou: string;
+
+   /** あっせん合計 */
+   assenGoukei: number;
+
+   /** あっせん備考 */
+   assenBikou: string;
+
+   /** 匿名寄附合計 */
+   tokumeiKifuGoukei: number;
+
+   /** 匿名寄付備考 */
+   tokumeiKifuBikou: string;
+
+   /** 寄付総合計 */
+   kifuSoGoukei: number;
+
+   /** 寄付総合計備考 */
+   kifuSoGoukeiBikou: string;
+
+   /** 人件費合計 */
+   goukeiJinkenhi: string;
+
+   /** 人件費のうち交付金に係る支出 */
+   kohfuJinkenhi: string;
+
+   /** 人件費備考 */
+   bikouJinkenhi: string;
+
+   /** 光熱費合計 */
+   goukeiKohnetsuhi: string;
+
+   /** 光熱費のうち交付金に係る支出 */
+   kohfuKohnetsuhi: string;
+
+   /** 光熱費備考 */
+   bikouKohnetsuhi: string;
+
+   /** 備品合計 */
+   goukeiBihinhi: string;
+
+   /** 備品のうち交付金に係る支出 */
+   kohfuBihinhi: string;
+
+   /** 備品備考 */
+   bikouBihinhi: string;
+
+   /** 事務所費合計 */
+   goukeiJimushohi: string;
+
+   /** 事務所費合計のうち交付金に係る支出 */
+   kohfuJimushohi: string;
+
+   /** 事務所費備考 */
+   bikouJimushohi: string;
+
+   /** 経費項目の合計 */
+   goukeiKeihiShoukei: number;
+
+   /** 経費の供与した交付金に係る支出 */
+   kohfuKeihiShoukei: number;
+
+   /** 経費の備考 */
+   bikouKeihiShoukei: string;
+
+   /** 経費項目の合計 */
+   goukeiSonotaKeihi: number;
+
+   /** 経費項目の合計のうち交付金に係る支出 */
+   kohfuSonotaKeihi: string;
+
+   /** 経費項目の合計備考 */
+   bikouSonotaKeihi: string;
+
+   /** 組織費合計 */
+   goukeiSoshikiKatsudouhi: number;
+
+   /** 組織費合計のうち交付金に係る支出 */
+   kohfuSoshikiKatsudouhi: string;
+
+   /** 組織費合計備考 */
+   bikouSoshikiKatsudouhi: string;
+
+   /** 選挙費合計 */
+   goukeiSenkyoKatsudou: number;
+
+   /** 選挙費合計のうち交付金に係る支出 */
+   kohfuSenkyoKatsudou: string;
+
+   /** 選挙費合計備考 */
+   bikouSenkyoKatsudou: string;
+
+   /** その他事業費合計 */
+   goukeiSonotaJigyou: number;
+
+   /** その他事業費合計のうち交付金に係る支出 */
+   kohfuSonotaJigyou: string;
+
+
+   /** その他事業費合計備考 */
+   bikouSonotaJigyou: string;
+
+   /** 機関誌発行合計 */
+   goukeiHakkou: number;
+
+   /** 機関誌発行合計のうち交付金に係る支出 */
+   kohfuHakkou: string;
+
+   /** 機関誌発行合計備考 */
+   bikouHakkou: string;
+
+   /** 宣伝広告費合計 */
+   goukeiSenden: number;
+
+   /** 宣伝広告費合計のうち交付金に係る支出 */
+   kohfuSenden: string;
+
+   /** 宣伝広告費合計備考 */
+   bikouSenden: string;
+
+   /** パーティ開催費合計 */
+   goukeiKaisaiPty: number;
+
+   /** パーティ開催費合計のうち交付金に係る支出 */
+   kohfuKaisaiPty: string;
+
+   /** パーティ開催費合計備考 */
+   bikouKaisaiPty: string;
+
+   /** その他合計 */
+   goukeiSonota: number;
+
+   /** その他合計のうち交付金に係る支出 */
+   kohfuSonota: number;
+
+   /** その他合計備考 */
+   bikouSonota: string;
+
+   /** 調査研究費合計 */
+   goukeiChousaKenkyu: number;
+
+   /** 調査研究費合計のうち交付金に係る支出 */
+   kohfuChousaKenkyu: string;
+
+   /** 調査研究費合計備考 */
+   bikouChousaKenkyu: string;
+
+   /** 寄附合計 */
+   goukeiKifukin: number;
+
+   /** 寄附合計のうち交付金に係る支出 */
+   kohfuKifukin: string;
+
+   /** 寄附合計備考 */
+   bikouKifukin: string;
+
+   /** 活動費小計 */
+   goukeiKatsudouhi: number;
+
+   /** 活動費小計のうち交付金に係る支出 */
+   kohfuKatsudouhi: number;
+
+   /** 活動費小計備考 */
+   bikouKatsudouhi: string;
+
+   /** 総合計 */
+   goukeiZenGohkei: number;
+
+   /** 土地有無フラグ */
+   flgTochi: number;
+
+   /** 土地備考 */
+   bikouTochi: string;
+
+   /** 建物有無フラグ */
+   flgTatemono: number;
+
+   /** 建物備考 */
+   bikouTatemono: string;
+
+   /** 借地権有無フラグ */
+   flgShakuchiken: number;
+
+   /** 借地権備考 */
+   bikouShakuchiken: string;
+
+   /** 動産有無フラグ */
+   flgDohsan: number;
+
+   /** 動産備考 */
+   bikouDohsan: string;
+
+   /** 預金有無フラグ */
+   flgYokin: number;
+
+   /** 預金備考 */
+   bikouYokin: string;
+
+   /** 信託有無フラグ */
+   flgShintaku: number;
+
+   /** 信託備考 */
+   bikouShintaku: string;
+
+   /** 証券有無フラグ */
+   flgShouken: number;
+
+   /** 証券備考 */
+   bikouShouken: string;
+
+   /** 出資有無フラグ */
+   flgShusshi: number;
+
+   /** 出資備考 */
+   bikouShusshi: string;
+
+   /** 貸付有無フラグ */
+   flgKashitsuke: number;
+
+   /** 貸付備考 */
+   bikouKashitsuke: string;
+
+   /** 敷金有無フラグ */
+   flgShikikin: number;
+
+   /** 敷金備考 */
+   bikouShikikin: string;
+
+   /** 施設利用権有無フラグ */
+   flgShisetsuRiyou: number;
+
+   /** 施設利用権備考 */
+   bikouShisetsuRiyou: string;
+
+   /** 借入有無フラグ */
+   flgKairiire: number;
+
+   /** 借入備考 */
+   bikouKariire: string;
 
 }
 export default class OfferingBalancesheet0702And0713SummaryEntity implements OfferingBalancesheet0702And0713SummaryInterface {
 
    /** 収支報告書様式7その2と13と17Id */
-   offeringBalancesheet0702And0713And0717SummaryId;
+   offeringBalancesheet0702And0713And0717SummaryId:number;
 
    /** 収支報告書様式7その2と13と17同一識別コード */
    offeringBalancesheet0702And0713And0717SummaryCode: number;
