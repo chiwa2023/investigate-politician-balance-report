@@ -37,12 +37,7 @@ const optionOutcome:Ref<SelectOptionInterface[]> = ref(datafunc.createOptionOutc
 
 // データを再描画する
 function changeData() {
-    chartData.value.splice(0);
-    chartData.value.push(datafunc.createTitle(selectedChartItem.value));
-    for (const dto of listResult.value) {
-        chartData.value.push(datafunc.createData(selectedChartItem.value, dto));
-    }
-
+    chartData.value = datafunc.allData(selectedChartItem.value,listResult.value);
 }
 
 //経年変化検索条件Dio
@@ -51,8 +46,6 @@ const keinenHenkaCapsuleDto: Ref<KeinenHenkaConditionCapsuleInterface> = ref(new
 // 検索報告年リスト
 const listHoukokuNenStart: Ref<SelectOptionInterface[]> = ref(getHoukokunen());
 const listHoukokuNenEnd: Ref<SelectOptionInterface[]> = ref(getHoukokunen());
-
-
 
 //政治団体検索コンポーネント
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);

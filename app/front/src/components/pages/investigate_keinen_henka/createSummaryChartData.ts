@@ -156,14 +156,33 @@ export default class CreateSummaryChartData {
     }
 
     /**
+     * 必要なデータをまとめる
+     * @param viewKey 表示項目名
+     * @param listResult 集計Entityリスト
+     * @returns チャート表示データ
+     */
+    public allData(viewKey: string, listResult: KeinenHenkaSurfaceAndSummaryByYearInterface[]): (string | number)[][] {
+
+        const chartData: (string | number)[][] = [[]];
+        chartData.splice(0);
+        chartData.push(this.createTitle(viewKey));
+        for (const dto of listResult) {
+            chartData.push(this.createData(viewKey, dto));
+        }
+        return chartData;
+    }
+
+    /**
      * タイトルを作成する
      * @returns タイトル名配列
      */
-    public createTitle(viewKey: string): string[] {
+    private createTitle(viewKey: string): string[] {
         const title: string[] = [];
         title.splice(0);
 
         title.push("報告年");
+
+        const koufukinKoumoku: string = "内交付金";
 
         // 収入
         switch (viewKey) {
@@ -231,82 +250,82 @@ export default class CreateSummaryChartData {
             // 人件費項目 
             case CreateSummaryChartData.JINKENHI:
                 title.push(CreateSummaryChartData.JINKENHI);
-                title.push(CreateSummaryChartData.JINKENHI+"内交付金");
+                title.push(CreateSummaryChartData.JINKENHI + koufukinKoumoku);
                 return title;
             // 光熱費項目 
             case CreateSummaryChartData.KOUNETSUHI:
                 title.push(CreateSummaryChartData.KOUNETSUHI);
-                title.push(CreateSummaryChartData.KOUNETSUHI+"内交付金");
+                title.push(CreateSummaryChartData.KOUNETSUHI + koufukinKoumoku);
                 return title;
             // 備品項目 
             case CreateSummaryChartData.BIHIN:
                 title.push(CreateSummaryChartData.BIHIN);
-                title.push(CreateSummaryChartData.BIHIN+"内交付金");
+                title.push(CreateSummaryChartData.BIHIN + koufukinKoumoku);
                 return title;
             // 事務所費項目 
             case CreateSummaryChartData.JIMUSHOHI:
                 title.push(CreateSummaryChartData.JIMUSHOHI);
-                title.push(CreateSummaryChartData.JIMUSHOHI+"内交付金");
+                title.push(CreateSummaryChartData.JIMUSHOHI + koufukinKoumoku);
                 return title;
             // 経費項目 
             case CreateSummaryChartData.KEIHI:
                 title.push(CreateSummaryChartData.KEIHI);
-                title.push(CreateSummaryChartData.KEIHI+"内交付金");
+                title.push(CreateSummaryChartData.KEIHI + koufukinKoumoku);
                 return title;
             // 組織活動費項目 
             case CreateSummaryChartData.SOSHIKI_KATSUDOUHI:
                 title.push(CreateSummaryChartData.SOSHIKI_KATSUDOUHI);
-                title.push(CreateSummaryChartData.SOSHIKI_KATSUDOUHI+"内交付金");
+                title.push(CreateSummaryChartData.SOSHIKI_KATSUDOUHI + koufukinKoumoku);
                 return title;
             // 選挙活動費項目 
             case CreateSummaryChartData.SENKYYO_KATSUDOUHI:
                 title.push(CreateSummaryChartData.SENKYYO_KATSUDOUHI);
-                title.push(CreateSummaryChartData.SENKYYO_KATSUDOUHI+"内交付金");
+                title.push(CreateSummaryChartData.SENKYYO_KATSUDOUHI + koufukinKoumoku);
                 return title;
             // その他項目 
             case CreateSummaryChartData.SONOTA_SHISHUTSU:
                 title.push(CreateSummaryChartData.SONOTA_SHISHUTSU);
-                title.push(CreateSummaryChartData.SONOTA_SHISHUTSU+"内交付金");
+                title.push(CreateSummaryChartData.SONOTA_SHISHUTSU + koufukinKoumoku);
                 return title;
             // 機関誌発行項目 
             case CreateSummaryChartData.KIKANSHI_HAKKOUHI:
                 title.push(CreateSummaryChartData.KIKANSHI_HAKKOUHI);
-                title.push(CreateSummaryChartData.KIKANSHI_HAKKOUHI+"内交付金");
+                title.push(CreateSummaryChartData.KIKANSHI_HAKKOUHI + koufukinKoumoku);
                 return title;
             // 宣伝費項目 
             case CreateSummaryChartData.SENDENHI:
                 title.push(CreateSummaryChartData.SENDENHI);
-                title.push(CreateSummaryChartData.SENDENHI+"内交付金");
+                title.push(CreateSummaryChartData.SENDENHI + koufukinKoumoku);
                 return title;
             // 政治資金パーティ開催項目 
             case CreateSummaryChartData.SEIJISHIKIN_PARTY:
                 title.push(CreateSummaryChartData.SEIJISHIKIN_PARTY);
-                title.push(CreateSummaryChartData.SEIJISHIKIN_PARTY+"内交付金");
+                title.push(CreateSummaryChartData.SEIJISHIKIN_PARTY + koufukinKoumoku);
                 return title;
             // その他事業費項目 
             case CreateSummaryChartData.SONOTA_JIGYOU:
                 title.push(CreateSummaryChartData.SONOTA_JIGYOU);
-                title.push(CreateSummaryChartData.SONOTA_JIGYOU+"内交付金");
+                title.push(CreateSummaryChartData.SONOTA_JIGYOU + koufukinKoumoku);
                 return title;
             // 調査研究費項目 
             case CreateSummaryChartData.CHOUSA_KENKYUUHI:
                 title.push(CreateSummaryChartData.CHOUSA_KENKYUUHI);
-                title.push(CreateSummaryChartData.CHOUSA_KENKYUUHI+"内交付金");
+                title.push(CreateSummaryChartData.CHOUSA_KENKYUUHI + koufukinKoumoku);
                 return title;
             // 寄付金項目 
             case CreateSummaryChartData.KIFUKIN:
                 title.push(CreateSummaryChartData.KIFUKIN);
-                title.push(CreateSummaryChartData.KIFUKIN+"内交付金");
+                title.push(CreateSummaryChartData.KIFUKIN + koufukinKoumoku);
                 return title;
             // その他の経費項目 
             case CreateSummaryChartData.SONOTA_KEIHI:
                 title.push(CreateSummaryChartData.SONOTA_KEIHI);
-                title.push(CreateSummaryChartData.SONOTA_KEIHI+"内交付金");
+                title.push(CreateSummaryChartData.SONOTA_KEIHI + koufukinKoumoku);
                 return title;
             // 活動費小計 
             case CreateSummaryChartData.KATSUDOUHI:
                 title.push(CreateSummaryChartData.KATSUDOUHI);
-                title.push(CreateSummaryChartData.KATSUDOUHI+"内交付金");
+                title.push(CreateSummaryChartData.KATSUDOUHI + koufukinKoumoku);
                 return title;
             // 現計合計 
             case CreateSummaryChartData.SHISHUTSU_SOUKEI:
@@ -323,7 +342,7 @@ export default class CreateSummaryChartData {
      * @param dto 集計データ(年単位)
      * @returns google chart用のデータ 
      */
-    public createData(viewKey: string, dto: KeinenHenkaSurfaceAndSummaryByYearInterface): (string | number)[] {
+    private createData(viewKey: string, dto: KeinenHenkaSurfaceAndSummaryByYearInterface): (string | number)[] {
 
         const chartData: (string | number)[] = [];
         chartData.splice(0);
@@ -332,147 +351,147 @@ export default class CreateSummaryChartData {
         switch (viewKey) {
             // 収入総額 
             case CreateSummaryChartData.SHUNYU_SOUGAKU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.shunyuGokei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.shunyuGokei);
                 return chartData;
             // 前年からの繰越額 
             case CreateSummaryChartData.ZENNEN_KURIKOSHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.zennenKurikoshi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.zennenKurikoshi);
                 return chartData;
             // 本年の収入額 
             case CreateSummaryChartData.HONNEN_SHUUNYU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.honnenShunyu + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.honnenShunyu);
                 return chartData;
             // 支出総額
             case CreateSummaryChartData.SHISHUTSU_SOUGAKU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.shishutsuGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.shishutsuGoukei);
                 return chartData;
             // 翌年への繰越額 
             case CreateSummaryChartData.YOKUNEN_KURIKOSHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.yokunenKurikoshi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.yokunenKurikoshi);
                 return chartData;
             // 個人の党費 
             case CreateSummaryChartData.KOJIN_TOUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kojiFutanGoukei + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kojiFutanSuu + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kojiFutanGoukei);
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kojiFutanSuu);
                 return chartData;
             // 個人寄付の合計 
             case CreateSummaryChartData.KOJIN_KIFU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kojinKifuGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kojinKifuGoukei);
                 return chartData;
             // 特定寄付合計 
             case CreateSummaryChartData.TOKUTEI_KIFU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.tokuteiKifuGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.tokuteiKifuGoukei);
                 return chartData;
             // 法人寄付合計 
             case CreateSummaryChartData.HOUJIN_KIFU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.houjinKifuGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.houjinKifuGoukei);
                 return chartData;
             // 政治団体寄付合計 
             case CreateSummaryChartData.SEIJI_DANTAI_KIFU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.seijiDantaiKifuGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.seijiDantaiKifuGoukei);
                 return chartData;
             // 寄付小計合計 
             case CreateSummaryChartData.KIFU_SHOUKEI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kifuShoukeiGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kifuShoukeiGoukei);
                 return chartData;
             // 寄付のうちあっせんによるもの合計 
             case CreateSummaryChartData.KIFU_ASSEN:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.assenGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.assenGoukei);
                 return chartData;
             // 政党匿名寄付 
             case CreateSummaryChartData.SEITOU_TOKUSMEI_KIFU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.tokumeiKifuGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.tokumeiKifuGoukei);
                 return chartData;
             // 寄付総合計 
             case CreateSummaryChartData.KIFU_SOUGOUKEI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kifuSoGoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kifuSoGoukei);
                 return chartData;
 
             // 支出
 
             // 人件費項目 
             case CreateSummaryChartData.JINKENHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kifuSoGoukei + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuJinkenhi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kifuSoGoukei);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuJinkenhi));
                 return chartData;
             // 光熱費項目 
             case CreateSummaryChartData.KOUNETSUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKohnetsuhi + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKohnetsuhi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKohnetsuhi);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKohnetsuhi));
                 return chartData;
             // 備品項目 
             case CreateSummaryChartData.BIHIN:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiBihinhi + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuBihinhi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiBihinhi);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuBihinhi));
                 return chartData;
             // 事務所費項目 
             case CreateSummaryChartData.JIMUSHOHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiJimushohi + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuJimushohi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiJimushohi);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuJimushohi));
                 return chartData;
             // 経費項目 
             case CreateSummaryChartData.KEIHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKeihiShoukei + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKeihiShoukei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKeihiShoukei);
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKeihiShoukei);
                 return chartData;
             // 組織活動費項目 
             case CreateSummaryChartData.SOSHIKI_KATSUDOUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSoshikiKatsudouhi + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSoshikiKatsudouhi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSoshikiKatsudouhi);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSoshikiKatsudouhi));
                 return chartData;
             // 選挙活動費項目 
             case CreateSummaryChartData.SENKYYO_KATSUDOUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSenkyoKatsudou + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSenkyoKatsudou + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSenkyoKatsudou);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSenkyoKatsudou));
                 return chartData;
             // その他項目 
             case CreateSummaryChartData.SONOTA_SHISHUTSU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSonota + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSonota + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSonota);
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSonota);
                 return chartData;
             // 機関誌発行項目 
             case CreateSummaryChartData.KIKANSHI_HAKKOUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiHakkou + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuHakkou + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiHakkou);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuHakkou));
                 return chartData;
             // 宣伝費項目 
             case CreateSummaryChartData.SENDENHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSenden + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSenden + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSenden);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSenden));
                 return chartData;
             // 政治資金パーティ開催項目 
             case CreateSummaryChartData.SEIJISHIKIN_PARTY:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKaisaiPty + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKaisaiPty + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKaisaiPty);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKaisaiPty));
                 return chartData;
             // その他事業費項目 
             case CreateSummaryChartData.SONOTA_JIGYOU:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSonotaJigyou + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaJigyou + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSonotaJigyou);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaJigyou));
                 return chartData;
             // 調査研究費項目 
             case CreateSummaryChartData.CHOUSA_KENKYUUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiChousaKenkyu + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuChousaKenkyu + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiChousaKenkyu);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuChousaKenkyu));
                 return chartData;
             // 寄付金項目 
             case CreateSummaryChartData.KIFUKIN:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKifukin + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKifukin + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKifukin);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKifukin));
                 return chartData;
             // その他の経費項目 
             case CreateSummaryChartData.SONOTA_KEIHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSonotaKeihi + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaKeihi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiSonotaKeihi);
+                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaKeihi));
                 return chartData;
             // 活動費小計 
             case CreateSummaryChartData.KATSUDOUHI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKatsudouhi + ""));
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKatsudouhi + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiKatsudouhi);
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.kohfuKatsudouhi);
                 return chartData;
             // 現計合計 
             case CreateSummaryChartData.SHISHUTSU_SOUKEI:
-                chartData.push(parseInt(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiZenGohkei + ""));
+                chartData.push(dto.offeringBalancesheet0702And0713SummaryEntity.goukeiZenGohkei);
                 return chartData;
             // 未選択他
             default:
