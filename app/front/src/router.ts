@@ -21,6 +21,7 @@ const routes = [
     //公式フォーマット形式照会
     { path: "/show-org-balancesheet-report", name: "ShowOrgBalancesheetReport", component: () => import("./components/pages/show_org_balancesheet_report/ShowOrgBalancesheetReport.vue") },
     { path: "/show-party-usage-report", name: "ShowPartyUsageReport", component: () => import("./components/pages/show_party_usage_report/ShowPartyUsageReport.vue") },
+    { path: "/show-balancesheet-kanrensha", name: "ShowBalancesheetKanrensha", component: () => import("./components/pages/show_balancesheet_kanrensha/ShowBalancesheetKanrensha.vue") },
 
     { path: "/inquire-nationarity", name: "InquireNationality", component: () => import("./components/pages/inquire_nationarity/InquireNationality.vue") },
     { path: "/investigate-membership-fee", name: "InvestigateMembershipFee", component: () => import("./components/pages/investigate_membership_fee/InvestigateMembershipFee.vue") },
@@ -28,6 +29,7 @@ const routes = [
     { path: "/investigate-kifu-jougen", name: "InvestigateKifuJougen", component: () => import("./components/pages/investigate_kifu_jougen/InvestigateKifuJougen.vue") },
     { path: "/investigate-ukai-kenkin", name: "InvestigateUkaiKenkin", component: () => import("./components/pages/investigate_ukai_kenkin/InvestigateUkaiKenkin.vue") },
     { path: "/investigate-keinen-henka", name: "InvestigateKeinenHenka", component: () => import("./components/pages/investigate_keinen_henka/InvestigateKeinenHenka.vue") },
+    { path: "/investigate-party-jougen", name: "InvestigatePartyJougen", component: () => import("./components/pages/investigate_party_jougen/InvestigatePartyJougen.vue") },
 
 
     // 金融機関支店更新
@@ -35,6 +37,7 @@ const routes = [
     { path: "/regist-zengin-master/upload-csv", name: "UploadCsvZenginWkTbl", component: () => import("./components/pages/regist_zengin_master/UploadCsvZenginWkTbl.vue") },
     { path: "/regist-zengin-master/show-ido-list", name: "ShowZenginIdoList", component: () => import("./components/pages/regist_zengin_master/ShowZenginIdoList.vue") },
 
+    { path: "/regist-kanrensha", name: "RegistKanrensha", component: () => import("./components/pages/regist_kanrensha/RegistKanrensha.vue") },
 
 ];
 

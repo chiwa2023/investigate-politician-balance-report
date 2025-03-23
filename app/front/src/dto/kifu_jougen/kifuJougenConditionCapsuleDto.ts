@@ -11,8 +11,14 @@ export default class KifuJougenConditionCapsuleDto extends AbstractCapsuleDto im
     /** 報告年 */
     houkokuNen: number;
 
+    /** 政治団体Id */
+    poliOrgId: number;
+
     /** 政治団体同一識別コード */
     poliOrgCode: number;
+
+    /** 政治団体名称 */
+    poliOrgName: string;
 
     /** 検索基準原文書名該否 */
     isNameSearch: boolean;
@@ -36,9 +42,12 @@ export default class KifuJougenConditionCapsuleDto extends AbstractCapsuleDto im
         // 初期データ
         const INIT_NUMBER: number = 0;
         const INIT_BOOLEAN: boolean = false;
+        const INIT_STRING: string = "";
 
         this.houkokuNen = INIT_NUMBER;
+        this.poliOrgId = INIT_NUMBER;
         this.poliOrgCode = INIT_NUMBER;
+        this.poliOrgName = INIT_STRING;
         this.isNameSearch = INIT_BOOLEAN;
         this.seachKifuKbn = INIT_NUMBER;
         this.youshikiEdaKbn = INIT_NUMBER;

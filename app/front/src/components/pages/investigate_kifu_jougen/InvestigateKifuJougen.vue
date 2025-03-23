@@ -32,9 +32,9 @@ const capsuleDto: Ref<KifuJougenConditionCapsuleInterface> = ref(new KifuJougenC
 const PAGING_OFFSET: number = 100;
 
 // 検索条件定数
-const EDA_KBN_KOJIN: number = parseInt(YoushikiEdaKbnIncomeConstants.PERSONAL);
-const EDA_KBN_CORP: number = parseInt(YoushikiEdaKbnIncomeConstants.CORPORATION);
-const EDA_KBN_POLI_ORG: number = parseInt(YoushikiEdaKbnIncomeConstants.POLITIC_ORG);
+const EDA_KBN_KOJIN: number = YoushikiEdaKbnIncomeConstants.PERSONAL;
+const EDA_KBN_CORP: number = YoushikiEdaKbnIncomeConstants.CORPORATION;
+const EDA_KBN_POLI_ORG: number = YoushikiEdaKbnIncomeConstants.POLITIC_ORG;
 
 const SEARCH_PARTY: number = KifuJougenConstnts.SEARCH_PARTY;
 const SEARCH_OTHER: number = KifuJougenConstnts.SEARCH_OTHER;
