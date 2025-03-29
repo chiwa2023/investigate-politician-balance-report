@@ -143,5 +143,4 @@ public class IncomeAndOutcomeNaturalSearchResultDto extends AbstractResultDto im
     public void setSearchWords(final String searchWords) {
         this.searchWords = searchWords;
     }
-
 }

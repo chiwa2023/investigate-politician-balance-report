@@ -7,7 +7,7 @@ import mitei.mitei.investigate.report.balance.politician.dto.AbstractCapsuleDto;
 /**
  * 寄付上限検索条件Dto
  */
-public class KifuJougenConditionCapsuleDto extends AbstractCapsuleDto implements Serializable { // NOPMD
+public class KifuJougenConditionCapsuleDto extends AbstractCapsuleDto implements Serializable { // NOPMD DataClass
 
     /** Serialize id */
     private static final long serialVersionUID = 1L;
@@ -93,6 +93,9 @@ public class KifuJougenConditionCapsuleDto extends AbstractCapsuleDto implements
     /** ページ番号 */
     private Integer pageNum = INIT_Integer;
 
+    /** 全件数 */
+    private Integer allCount = INIT_Integer;
+
     /**
      * 検索団体区分
      *
@@ -163,6 +166,24 @@ public class KifuJougenConditionCapsuleDto extends AbstractCapsuleDto implements
      */
     public void setPageNum(final Integer pageNum) {
         this.pageNum = pageNum;
+    }
+
+    /**
+     * 全件数を設定する
+     *
+     * @return 全件数
+     */
+    public Integer getAllCount() {
+        return allCount;
+    }
+
+    /**
+     * 全件数を取得する
+     *
+     * @param allCount 全件数
+     */
+    public void setAllCount(final Integer allCount) {
+        this.allCount = allCount;
     }
 
 }

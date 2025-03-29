@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiEdaKbn;
+import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiKbn;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.kifu_jogen.KifuJougenTradingInfoDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.kifu_jogen.SearchKifuJougenMeisaiBalancesheetResultDto;
@@ -128,7 +129,7 @@ public class CheckKifuKobetsuJogenByRelationCodeY2022Logic {
         switch (youshikiEdaKbn) {
             case YoushikiEdaKbn.KOJIN:
                 List<Integer> listPerson = offeringBalancesheetIncome2022Repository
-                        .findRelationPersonByPoliOrg(poliOrgCode);
+                        .findRelationPersonByPoliOrg(poliOrgCode,YoushikiKbn.DONATE);
                 return offeringBalancesheetIncome2022Repository
                         .findByRelationPersonCodeIncomeInAndDantaiKbnInAndYoushikiEdaKbnAndSaishinKbnOrderByRelationPersonIdIncomeAsc(
                                 listPerson, listOther, youshikiEdaKbn, DataHistoryStatusConstants.INSERT.value(),
@@ -136,7 +137,7 @@ public class CheckKifuKobetsuJogenByRelationCodeY2022Logic {
 
             case YoushikiEdaKbn.KIGYOU_DANTAI:
                 List<Integer> listCorp = offeringBalancesheetIncome2022Repository
-                        .findRelationCorpByPoliOrg(poliOrgCode);
+                        .findRelationCorpByPoliOrg(poliOrgCode,YoushikiKbn.DONATE);
                 return offeringBalancesheetIncome2022Repository
                         .findByRelationCorpCodeIncomeInAndDantaiKbnInAndYoushikiEdaKbnAndSaishinKbnOrderByRelationCorpCodeIncomeAsc(
                                 listCorp, listOther, youshikiEdaKbn, DataHistoryStatusConstants.INSERT.value(),
@@ -145,7 +146,7 @@ public class CheckKifuKobetsuJogenByRelationCodeY2022Logic {
             case YoushikiEdaKbn.SEIJI_DANTAI:
 
                 List<Integer> listOrg = offeringBalancesheetIncome2022Repository
-                        .findRelationPoliOrgByPoliOrg(poliOrgCode);
+                        .findRelationPoliOrgByPoliOrg(poliOrgCode,YoushikiKbn.DONATE);
 
                 return offeringBalancesheetIncome2022Repository
                         .findByRelationPoliticalOrgCodeIncomeInAndDantaiKbnInAndYoushikiEdaKbnAndSaishinKbnOrderByRelationPoliticalOrgCodeIncomeAsc(
