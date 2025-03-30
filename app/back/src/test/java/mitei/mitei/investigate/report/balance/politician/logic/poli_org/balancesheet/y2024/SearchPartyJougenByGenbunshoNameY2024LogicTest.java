@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022;
+package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,24 +24,24 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 
 /**
- * SearchPartyJougenByGenbunshoNameY2022Logic単体テスト
+ * SearchPartyJougenByGenbunshoNameY2024Logic単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchPartyJougenByGenbunshoNameY2022LogicTest {
+class SearchPartyJougenByGenbunshoNameY2024LogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private SearchPartyJougenByGenbunshoNameY2022Logic searchPartyJougenByGenbunshoNameY2022Logic; 
+    private SearchPartyJougenByGenbunshoNameY2024Logic searchPartyJougenByGenbunshoNameY2024Logic; 
     
     
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("party_jougen_2022.sql")
+    @Sql("party_jougen_2024.sql")
     void test() {
         
         KifuJougenConditionCapsuleDto capsuleDto = new KifuJougenConditionCapsuleDto();
@@ -52,7 +52,7 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
         capsuleDto.setOffset(offset);
         capsuleDto.setPageNum(pageNum);
 
-        SearchKifuJougenMeisaiBalancesheetResultDto resultDto00 = searchPartyJougenByGenbunshoNameY2022Logic.practice(capsuleDto);
+        SearchKifuJougenMeisaiBalancesheetResultDto resultDto00 = searchPartyJougenByGenbunshoNameY2024Logic.practice(capsuleDto);
 
         assertEquals(9, resultDto00.getCountAll(), "全件数が一致");
         assertEquals(pageNum, resultDto00.getPageNumber(), "ページ番号は初期値が戻る");
@@ -86,7 +86,7 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
         capsuleDto1.setOffset(offset1);
         capsuleDto1.setPageNum(pageNum1);
         
-        SearchKifuJougenMeisaiBalancesheetResultDto resultDto01 = searchPartyJougenByGenbunshoNameY2022Logic.practice(capsuleDto1);
+        SearchKifuJougenMeisaiBalancesheetResultDto resultDto01 = searchPartyJougenByGenbunshoNameY2024Logic.practice(capsuleDto1);
 
         assertEquals(9, resultDto01.getCountAll(), "全件数が一致");
         assertEquals(pageNum1, resultDto01.getPageNumber(), "ページ番号は初期値が戻る");

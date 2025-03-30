@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiEdaKbn;
+import mitei.mitei.investigate.report.balance.politician.constants.BalancesheetYoushikiKbnConstants.YoushikiKbn;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.souryou_kisei.SouryouKiseiRelationCodeDto;
 import mitei.mitei.investigate.report.balance.politician.entity.RelationCorpEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.SouryouKiseiByCodeEntity;
@@ -46,7 +47,7 @@ public class CheckKifuSouryouKiseiByCorpCodeY2023Logic {
         // 関連者個人同一識別コードリストごとの合計金額を算出する
 
         List<SouryouKiseiByCodeEntity> listSum = offeringBalancesheetIncome2023Repository.calcSumByRelationCorp(
-                offeringBalancesheetIncome2023Repository.findRelationCorpByPoliOrg(poliOrgCode), listDantaiKbn);
+                offeringBalancesheetIncome2023Repository.findRelationCorpByPoliOrg(poliOrgCode,YoushikiKbn.DONATE), listDantaiKbn);
         Long limitAmount = getDonationLimitAmountLogic.practice(YoushikiEdaKbn.KIGYOU_DANTAI, listDantaiKbn);
         List<SouryouKiseiRelationCodeDto> list = new ArrayList<>();
         for (SouryouKiseiByCodeEntity entity : listSum) {

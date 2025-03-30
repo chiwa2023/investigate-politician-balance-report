@@ -1291,4 +1291,92 @@ public class OfferingBalancesheetIncome2023Entity implements Serializable, AllTa
         this.dantaiKbn = dantaiKbn;
     }
 
+    /** 取引相手区分 */
+    @Column(name = "trading_partner_kbn")
+    private Integer tradingPartnerKbn = INIT_Integer;
+
+    /** 取引相手Id */
+    @Column(name = "trading_partner_id")
+    private Long tradingPartnerId = INIT_Long;
+
+    /** 取引相手同一識別コード */
+    @Column(name = "trading_partner_code")
+    private Integer tradingPartnerCode = INIT_Integer;
+
+    /** 取引相手名称 */
+    @Column(name = "trading_partner_name")
+    private String tradingPartnerName = INIT_String;
+
+    /**
+     * 取引相手区分を取得する
+     *
+     * @return 取引相手区分
+     */
+    public Integer getTradingPartnerKbn() {
+        return tradingPartnerKbn;
+    }
+
+    /**
+     * 取引相手区分を設定する
+     *
+     * @param tradingPartnerKbn 取引相手区分
+     */
+    public void setTradingPartnerKbn(final Integer tradingPartnerKbn) {
+        this.tradingPartnerKbn = tradingPartnerKbn;
+    }
+
+    /**
+     * 取引相手Idを取得する
+     *
+     * @return 取引相手Id
+     */
+    public Long getTradingPartnerId() {
+        return tradingPartnerId;
+    }
+
+    /**
+     * 取引相手Idを設定する
+     *
+     * @param tradingPartnerId 取引相手Id
+     */
+    public void setTradingPartnerId(final Long tradingPartnerId) {
+        this.tradingPartnerId = tradingPartnerId;
+    }
+
+    /**
+     * 取引相手同一識別コードを取得する
+     *
+     * @return 取引相手同一識別コード
+     */
+    public Integer getTradingPartnerCode() {
+        return tradingPartnerCode;
+    }
+
+    /**
+     * 取引相手同一識別コードを設定する
+     *
+     * @param tradingPartnerCode 取引相手同一識別コード
+     */
+    public void setTradingPartnerCode(final Integer tradingPartnerCode) {
+        this.tradingPartnerCode = tradingPartnerCode;
+    }
+
+    /**
+     * 取引相手名称を取得する
+     *
+     * @return 取引相手名称
+     */
+    public String getTradingPartnerName() {
+        return tradingPartnerName;
+    }
+
+    /**
+     * 取引相手名称を設定する
+     *
+     * @param tradingPartnerName 取引相手名称
+     */
+    public void setTradingPartnerName(final String tradingPartnerName) {
+        this.tradingPartnerName = tradingPartnerName;
+    }
+
 }

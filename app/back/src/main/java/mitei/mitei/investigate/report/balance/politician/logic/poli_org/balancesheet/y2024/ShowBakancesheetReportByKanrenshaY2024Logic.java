@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022;
+package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import mitei.mitei.investigate.report.balance.politician.dto.kanrensha.KanrenshaBalancesheetConditionCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeNaturalSearchResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeSearchLineDto;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheetIncome2022Entity;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheetOutcome2022Entity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetIncome2024Entity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetOutcome2024Entity;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.kanrensha.CreateKanrenshaSearchYoushikiKbnIncomeLogic;
 import mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.kanrensha.CreateKanrenshaSearchYoushikiKbnOutcomeLogic;
-import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheetIncome2022Repository;
-import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2022.OfferingBalancesheetOutcome2022Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheetIncome2024Repository;
+import mitei.mitei.investigate.report.balance.politician.repository.poli_org.balancesheet.y2024.OfferingBalancesheetOutcome2024Repository;
 import reactor.util.function.Tuple4;
 import reactor.util.function.Tuple6;
 
@@ -24,15 +24,15 @@ import reactor.util.function.Tuple6;
  * 関連者から収入・支出データを取得する
  */
 @Component
-public class ShowBakancesheetReportByKanrenshaY2022Logic {
+public class ShowBakancesheetReportByKanrenshaY2024Logic {
 
-    /** 収支報告書収入テーブルRepository(2022) */
+    /** 収支報告書収入テーブルRepository(2024) */
     @Autowired
-    private OfferingBalancesheetIncome2022Repository offeringBalancesheetIncome2022Repository;
+    private OfferingBalancesheetIncome2024Repository offeringBalancesheetIncome2024Repository;
 
-    /** 収支報告書支出テーブルRepository(2022) */
+    /** 収支報告書支出テーブルRepository(2024) */
     @Autowired
-    private OfferingBalancesheetOutcome2022Repository offeringBalancesheetOutcome2022Repository;
+    private OfferingBalancesheetOutcome2024Repository offeringBalancesheetOutcome2024Repository;
 
     /** 収入様式番号作成Logic */
     @Autowired
@@ -64,10 +64,10 @@ public class ShowBakancesheetReportByKanrenshaY2022Logic {
         IncomeAndOutcomeNaturalSearchResultDto resultDto = new IncomeAndOutcomeNaturalSearchResultDto();
         if (capsuleDto.getAllCountIncome().equals(zero) && capsuleDto.getAllCountOutcome().equals(zero)) {
             // 件数取得処理
-            resultDto.setCountIncome(offeringBalancesheetIncome2022Repository.findCountDataByPartnerCode(partnerKbn,
+            resultDto.setCountIncome(offeringBalancesheetIncome2024Repository.findCountDataByPartnerCode(partnerKbn,
                     partnerCode, tuple6.getT1(), tuple6.getT2(), tuple6.getT3(), tuple6.getT4(), tuple6.getT5(),
                     tuple6.getT6()));
-            resultDto.setCountOutcome(offeringBalancesheetOutcome2022Repository.findCountDataByPartnerCode(partnerKbn,
+            resultDto.setCountOutcome(offeringBalancesheetOutcome2024Repository.findCountDataByPartnerCode(partnerKbn,
                     partnerCode, tuple4.getT1(), tuple4.getT2(), tuple4.getT3(), tuple4.getT4()));
         }
 
@@ -76,7 +76,7 @@ public class ShowBakancesheetReportByKanrenshaY2022Logic {
 
             Pageable pageable = Pageable.ofSize(offset).withPage(capsuleDto.getPageNumIncome());
 
-            List<OfferingBalancesheetIncome2022Entity> listEntity = offeringBalancesheetIncome2022Repository
+            List<OfferingBalancesheetIncome2024Entity> listEntity = offeringBalancesheetIncome2024Repository
                     .findDataByPartnerCode(partnerKbn, partnerCode, tuple6.getT1(), tuple6.getT2(), tuple6.getT3(),
                             tuple6.getT4(), tuple6.getT5(), tuple6.getT6(), pageable);
 
@@ -88,7 +88,7 @@ public class ShowBakancesheetReportByKanrenshaY2022Logic {
 
             Pageable pageable = Pageable.ofSize(offset).withPage(capsuleDto.getPageNumIncome());
 
-            List<OfferingBalancesheetOutcome2022Entity> listEntity = offeringBalancesheetOutcome2022Repository
+            List<OfferingBalancesheetOutcome2024Entity> listEntity = offeringBalancesheetOutcome2024Repository
                     .findDataByPartnerCode(partnerKbn, partnerCode, tuple4.getT1(), tuple4.getT2(), tuple4.getT3(),
                             tuple4.getT4(), pageable);
 
@@ -101,11 +101,11 @@ public class ShowBakancesheetReportByKanrenshaY2022Logic {
     }
 
     private List<IncomeAndOutcomeSearchLineDto> createIncomeLine(
-            final List<OfferingBalancesheetIncome2022Entity> listEntity) {
+            final List<OfferingBalancesheetIncome2024Entity> listEntity) {
 
         List<IncomeAndOutcomeSearchLineDto> list = new ArrayList<>();
 
-        for (OfferingBalancesheetIncome2022Entity entity : listEntity) {
+        for (OfferingBalancesheetIncome2024Entity entity : listEntity) {
 
             list.add(this.createIncomeDto(entity));
         }
@@ -113,24 +113,24 @@ public class ShowBakancesheetReportByKanrenshaY2022Logic {
     }
 
     private List<IncomeAndOutcomeSearchLineDto> createOutcomeLine(
-            final List<OfferingBalancesheetOutcome2022Entity> listEntity) {
+            final List<OfferingBalancesheetOutcome2024Entity> listEntity) {
 
         List<IncomeAndOutcomeSearchLineDto> list = new ArrayList<>();
 
-        for (OfferingBalancesheetOutcome2022Entity entity : listEntity) {
+        for (OfferingBalancesheetOutcome2024Entity entity : listEntity) {
 
             list.add(this.createOutcomeDto(entity));
         }
         return list;
     }
 
-    private IncomeAndOutcomeSearchLineDto createIncomeDto(final OfferingBalancesheetIncome2022Entity entity) {
+    private IncomeAndOutcomeSearchLineDto createIncomeDto(final OfferingBalancesheetIncome2024Entity entity) {
         IncomeAndOutcomeSearchLineDto dto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, dto);
         return dto;
     }
 
-    private IncomeAndOutcomeSearchLineDto createOutcomeDto(final OfferingBalancesheetOutcome2022Entity entity) {
+    private IncomeAndOutcomeSearchLineDto createOutcomeDto(final OfferingBalancesheetOutcome2024Entity entity) {
         IncomeAndOutcomeSearchLineDto dto = new IncomeAndOutcomeSearchLineDto();
         BeanUtils.copyProperties(entity, dto);
         dto.setItemName(entity.getHimoku());

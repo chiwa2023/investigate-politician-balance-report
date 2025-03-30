@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022;
+package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2024;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,26 +24,25 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 
 /**
- * SearchPartyJougenByGenbunshoNameY2022Logic単体テスト
+ * SearchPartyJougenY2024Logic単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchPartyJougenByGenbunshoNameY2022LogicTest {
+class SearchPartyJougenByCodeY2024LogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private SearchPartyJougenByGenbunshoNameY2022Logic searchPartyJougenByGenbunshoNameY2022Logic; 
-    
-    
+    private SearchPartyJougenByCodeY2024Logic searchPartyJougenByCodeY2024Logic;
+
     @Test
     @Tag("TableTruncate")
     @Transactional
-    @Sql("party_jougen_2022.sql")
+    @Sql("party_jougen_2024.sql")
     void test() {
-        
+
         KifuJougenConditionCapsuleDto capsuleDto = new KifuJougenConditionCapsuleDto();
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
         capsuleDto.setPoliOrgCode(100);
@@ -52,7 +51,7 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
         capsuleDto.setOffset(offset);
         capsuleDto.setPageNum(pageNum);
 
-        SearchKifuJougenMeisaiBalancesheetResultDto resultDto00 = searchPartyJougenByGenbunshoNameY2022Logic.practice(capsuleDto);
+        SearchKifuJougenMeisaiBalancesheetResultDto resultDto00 = searchPartyJougenByCodeY2024Logic.practice(capsuleDto);
 
         assertEquals(9, resultDto00.getCountAll(), "全件数が一致");
         assertEquals(pageNum, resultDto00.getPageNumber(), "ページ番号は初期値が戻る");
@@ -61,6 +60,8 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
 
         KifuJougenTradingInfoDto dto0 = list.get(0);
         assertEquals(15_002L, dto0.getSumKifu(), "合計額が一致0");
+        assertEquals(873_873L, dto0.getRelationId(), "取引相手委Idが一致0");
+        assertEquals(873_870, dto0.getRelationCode(), "取引相手Codeが一致0");
         assertEquals("親族会社1", dto0.getPartnerName(), "取引相手が一致0");
         assertEquals("宮崎県実在市", dto0.getPartnerAddress(), "取引相手住所が一致0");
         List<KobetsuKiseiMeisaiEntity> listMeisai0 = dto0.getListTradingMeisai();
@@ -73,6 +74,8 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
         assertEquals(15_003L, dto1.getSumKifu(), "合計額が一致0");
         assertEquals("指摘業種組合2", dto1.getPartnerName(), "取引相手が一致0");
         assertEquals("宮崎県実在市", dto1.getPartnerAddress(), "取引相手住所が一致0");
+        assertEquals(763_873L, dto1.getRelationId(), "取引相手委Idが一致1");
+        assertEquals(763_870, dto1.getRelationCode(), "取引相手Codeが一致1");
         List<KobetsuKiseiMeisaiEntity> listMeisai1 = dto1.getListTradingMeisai();
         KobetsuKiseiMeisaiEntity entity01 = listMeisai1.get(0);
         assertEquals(763_873L, entity01.getRelationId(), "Id手入力がしっかり入っている01");
@@ -86,7 +89,7 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
         capsuleDto1.setOffset(offset1);
         capsuleDto1.setPageNum(pageNum1);
         
-        SearchKifuJougenMeisaiBalancesheetResultDto resultDto01 = searchPartyJougenByGenbunshoNameY2022Logic.practice(capsuleDto1);
+        SearchKifuJougenMeisaiBalancesheetResultDto resultDto01 = searchPartyJougenByCodeY2024Logic.practice(capsuleDto1);
 
         assertEquals(9, resultDto01.getCountAll(), "全件数が一致");
         assertEquals(pageNum1, resultDto01.getPageNumber(), "ページ番号は初期値が戻る");
@@ -94,19 +97,18 @@ class SearchPartyJougenByGenbunshoNameY2022LogicTest {
         assertEquals(offset1, list11.size(), "取得件数は取得上限");
 
         KifuJougenTradingInfoDto dto10 = list11.get(0);
-        // assertEquals(365L, dto10.getRelationId(), "取引相委Idが一致10");
-        // assertEquals(360, dto10.getRelationCode(), "取引相手Codeが一致10");
+        assertEquals(365L, dto10.getRelationId(), "取引相委Idが一致10");
+        assertEquals(360, dto10.getRelationCode(), "取引相手Codeが一致10");
         assertEquals("迂回　献金太郎", dto10.getPartnerName(), "取引相手が一致10");
         assertEquals("和歌山県実在市", dto10.getPartnerAddress(), "取引相手住所が一致10");
         assertEquals(60_006L, dto10.getSumKifu(), "合計額が一致10");
 
         KifuJougenTradingInfoDto dto11 = list11.get(1);
-        // assertEquals(465L, dto11.getRelationId(), "取引相手委Idが一致11");
-        // assertEquals(460, dto11.getRelationCode(), "取引相手Codeが一致11");
+        assertEquals(465L, dto11.getRelationId(), "取引相手委Idが一致11");
+        assertEquals(460, dto11.getRelationCode(), "取引相手Codeが一致11");
         assertEquals("パーティ　花子", dto11.getPartnerName(), "取引相手が一致11");
         assertEquals("宮崎県実在市", dto11.getPartnerAddress(), "取引相手住所が一致11");
         assertEquals(15_002L, dto11.getSumKifu(), "合計額が一致11");
-        
     }
 
 }

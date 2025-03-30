@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.Query;
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2024.OfferingBalancesheetIncome2024Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.OfferingBalancesheetIncomeEntity;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.PartyJougenByCodeEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.SouryouKiseiByCodeEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.SouryouKiseiGenBunshoEntity;
 
@@ -111,8 +112,8 @@ public interface OfferingBalancesheetIncome2024Repository
      * @param poliOrgCode 政治団体同一識別コード
      * @return 取引相手関連者同一識別コードリスト
      */
-    @Query(value = "SELECT DISTINCT relation_person_code_income FROM offering_balancesheet_income_2024 WHERE political_organization_code=?1 AND youshiki_kbn=7 AND youshiki_eda_kbn=1 ", nativeQuery = true)
-    List<Integer> findRelationPersonByPoliOrg(Integer poliOrgCode);
+    @Query(value = "SELECT DISTINCT relation_person_code_income FROM offering_balancesheet_income_2024 WHERE political_organization_code=?1 AND youshiki_kbn=?2 AND youshiki_eda_kbn=1 and saishin_kbn = 1", nativeQuery = true)
+    List<Integer> findRelationPersonByPoliOrg(Integer poliOrgCode, Integer youshikiKbn);
 
     /**
      * 政治団体同一識別コードから取引相手関連者企業同一識別コードを取得する
@@ -120,8 +121,8 @@ public interface OfferingBalancesheetIncome2024Repository
      * @param poliOrgCode 政治団体同一識別コード
      * @return 取引相手関連者同一識別コードリスト
      */
-    @Query(value = "SELECT DISTINCT relation_corp_code_income FROM offering_balancesheet_income_2024 WHERE political_organization_code=?1 AND youshiki_kbn=7 AND youshiki_eda_kbn=2 ", nativeQuery = true)
-    List<Integer> findRelationCorpByPoliOrg(Integer poliOrgCode);
+    @Query(value = "SELECT DISTINCT relation_corp_code_income FROM offering_balancesheet_income_2024 WHERE political_organization_code=?1 AND youshiki_kbn=?2 AND youshiki_eda_kbn=2 and saishin_kbn = 1 ", nativeQuery = true)
+    List<Integer> findRelationCorpByPoliOrg(Integer poliOrgCode, Integer youshikiKbn);
 
     /**
      * 政治団体同一識別コードから取引相手関連者政治団体同一識別コードを取得する
@@ -129,8 +130,8 @@ public interface OfferingBalancesheetIncome2024Repository
      * @param poliOrgCode 政治団体同一識別コード
      * @return 取引相手関連者同一識別コードリスト
      */
-    @Query(value = "SELECT DISTINCT relation_political_org_code_income FROM offering_balancesheet_income_2024 WHERE political_organization_code=?1 AND youshiki_kbn=7 AND youshiki_eda_kbn=3 ", nativeQuery = true)
-    List<Integer> findRelationPoliOrgByPoliOrg(Integer poliOrgCode);
+    @Query(value = "SELECT DISTINCT relation_political_org_code_income FROM offering_balancesheet_income_2024 WHERE political_organization_code=?1 AND youshiki_kbn=?2 AND youshiki_eda_kbn=3 and saishin_kbn = 1 ", nativeQuery = true)
+    List<Integer> findRelationPoliOrgByPoliOrg(Integer poliOrgCode, Integer youshikiKbn);
 
     /**
      * 総量規制チェックのための取引相手ごとの取引金額合計を取得する
@@ -222,48 +223,165 @@ public interface OfferingBalancesheetIncome2024Repository
             List<Integer> listRelationCode, List<String> listDantaiKbn, Integer youshikiEdaKbn, Integer saishinKbn,
             Pageable pageable);
 
-    
     /**
      * 政治団体から取引データをすべて取得する
      *
      * @param listPoliOrgCode 政治団体同一識別コードリスト
-     * @param saishinKbn 最新区分
+     * @param saishinKbn      最新区分
      * @return 収入データリスト
      */
-    List<OfferingBalancesheetIncome2024Entity> findByPoliticalOrganizationCodeInAndYoushikiKbnInAndSaishinKbn(List<Integer> listPoliOrgCode,List<Integer> listYoushikiKbn,Integer saishinKbn);
+    List<OfferingBalancesheetIncome2024Entity> findByPoliticalOrganizationCodeInAndYoushikiKbnInAndSaishinKbn(
+            List<Integer> listPoliOrgCode, List<Integer> listYoushikiKbn, Integer saishinKbn);
 
-    
     /**
      * 迂回献金明細テーブルの直前の取得階層に存在する政治団体の収入データを取得する
      *
-     * @param userCode 操作ユーザ同一識別コード
-     * @param stage 取得階層
+     * @param userCode    操作ユーザ同一識別コード
+     * @param stage       取得階層
      * @param koufukinKbn 交付金検索有無
-     * @param pageable ページング条件
+     * @param pageable    ページング条件
      * @return 収支報告書収入データ
      */
     @Query(value = "SELECT *,(?2) AS pickup_stage FROM offering_balancesheet_income_2024 WHERE political_organization_code IN ("
             + " SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
             + " WHERE insert_user_code = ?1 AND pickup_stage = (?2-1)"
-            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn =7) OR youshiki_kbn = ?3)"
-            + ")"
-            + " AND ( youshiki_kbn =7 OR youshiki_kbn =?3)"
-            , nativeQuery = true)
-    Page<OfferingBalancesheetIncomeEntity> findUkaiKenkiMeisai(Integer userCode,Integer stage,Integer koufukinKbn,Pageable pageable);
+            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn =7) OR youshiki_kbn = ?3)" + ")"
+            + " AND ( youshiki_kbn =7 OR youshiki_kbn =?3)", nativeQuery = true)
+    Page<OfferingBalancesheetIncomeEntity> findUkaiKenkiMeisai(Integer userCode, Integer stage, Integer koufukinKbn,
+            Pageable pageable);
 
     /**
      * 迂回献金明細テーブルの直前の取得階層に存在する政治団体の収入データの総件数を取得する
      *
-     * @param userCode 操作ユーザ同一識別コード
-     * @param stage 取得階層
+     * @param userCode    操作ユーザ同一識別コード
+     * @param stage       取得階層
      * @param koufukinKbn 交付金検索有無
      * @return 総件数
      */
     @Query(value = "SELECT COUNT(*) FROM offering_balancesheet_income_2024 WHERE political_organization_code IN ("
             + " SELECT trading_partner_code FROM wk_tbl_ukai_kenkin"
             + " WHERE insert_user_code = ?1 AND  pickup_stage = (?2-1) "
-            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn = 7) OR youshiki_kbn = ?3)"
-            + ")"
+            + " AND ((youshiki_eda_kbn = 3 AND youshiki_kbn = 7) OR youshiki_kbn = ?3)" + ")"
             + " AND (youshiki_kbn = 7 OR youshiki_kbn = ?3)", nativeQuery = true)
-    Integer findUkaiKenkiMeisaiCount(Integer userCode,Integer stage,Integer koufukinKbn);
+    Integer findUkaiKenkiMeisaiCount(Integer userCode, Integer stage, Integer koufukinKbn);
+
+    /**
+     * 政治団体同一識別コード条件でパーティ上限を表示する全件数(取引相手同一識別コード)を取得する
+     *
+     * @param poliOrgCode 政治団体同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(distinct trading_partner_code)" + " FROM offering_balancesheet_income_2024" // NOPMD
+            + " WHERE political_organization_code= ?1 AND youshiki_kbn = 11 AND trading_partner_code <> 0"
+            + " AND saishin_kbn = 1", nativeQuery = true)
+    Integer findCountTradingPartnerParty(Integer poliOrgCode);
+
+    /**
+     * 政治団体同一識別コード条件でパーティ上限を表示する全件数(原文書団体と住所)を取得する
+     *
+     * @param poliOrgCode 政治団体同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(distinct partner_name,partner_juusho)" + " FROM offering_balancesheet_income_2024"
+            + " WHERE political_organization_code= ?1 AND youshiki_kbn = 11 AND trading_partner_name <> ''"
+            + " AND saishin_kbn = 1", nativeQuery = true)
+    Integer findCountTradingPartnerPartyByName(Integer poliOrgCode);
+
+    /**
+     * 取引相手同一識別コードごとに集計された金額合計を取得する
+     *
+     * @param poliOrgCode 政治団体同一識別コード
+     * @param pageable    ページング条件
+     * @return 検索結果
+     */
+    @Query(value = "SELECT sum(kingaku) AS sum , trading_partner_code AS relation_code"
+            + " FROM offering_balancesheet_income_2024"
+            + " WHERE political_organization_code= ?1 AND youshiki_kbn = 11 AND trading_partner_code <> 0"
+            + " AND saishin_kbn = 1 GROUP BY trading_partner_code", nativeQuery = true)
+    List<PartyJougenByCodeEntity> findTradingPartnerParty(Integer poliOrgCode, Pageable pageable);
+
+    /**
+     * 原文書団体名と原文書住所ごとに集計された金額合計を取得する
+     *
+     * @param poliOrgCode 政治団体同一識別コード
+     * @param pageable    ページング条件
+     * @return 検索結果
+     */
+    @Query(value = "SELECT sum(kingaku) AS sum , partner_name AS partner_name,partner_juusho AS partner_juusho"
+            + " FROM offering_balancesheet_income_2024"
+            + " WHERE political_organization_code= ?1 AND youshiki_kbn = 11 AND trading_partner_name <> ''"
+            + " AND saishin_kbn = 1 GROUP BY partner_name,partner_juusho", nativeQuery = true)
+    List<SouryouKiseiGenBunshoEntity> findTradingPartnerPartyByName(Integer poliOrgCode, Pageable pageable);
+
+    /**
+     * 取引先同一識別コードから明細データを取得する
+     *
+     * @param poliOrgCode 政治団体同一識別コード
+     * @param partnerCode 取引相手同一識別コード
+     * @param youshikiKbn 様式区分
+     * @param saishinKbn  最新区分
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetIncome2024Entity> findByPoliticalOrganizationCodeAndTradingPartnerCodeAndYoushikiKbnAndSaishinKbn(
+            Integer poliOrgCode, Integer partnerCode, Integer youshikiKbn, Integer saishinKbn);
+
+    /**
+     * 原文書団体名と住所から明細データを取得する
+     *
+     * @param poliOrgCode  政治団体同一識別コード
+     * @param partnerName  取引相手原文書名
+     * @param partnerJusho 取引相手原文書住所
+     * @param youshikiKbn  様式区分
+     * @param saishinKbn   最新区分
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetIncome2024Entity> findByPoliticalOrganizationCodeAndPartnerNameAndPartnerJuushoAndYoushikiKbnAndSaishinKbn(
+            Integer poliOrgCode, String partnerName, String partnerJusho, Integer youshikiKbn, Integer saishinKbn);
+
+    
+    /**
+     * 取引相手同一識別コードから収入データ件数を取得する
+     *
+     * @param partnerKbn  取引相手区分
+     * @param partnerCode 取引相手同一識別コード
+     * @param list1       様式区分リスト(リスト1)
+     * @param list2       様式枝区分項目リスト(リスト2)
+     * @param list3       様式区分リスト(リスト3)
+     * @param list4       様式枝区分項目リスト(リスト4)
+     * @param list5       様式区分リスト(リスト5)
+     * @param list6       様式枝区分項目リスト(リスト6)
+     * @return 検索結果
+     */
+    @Query(value = "SELECT COUNT(*) FROM offering_balancesheet_income_2024" // 改行調整
+            + "  WHERE trading_partner_Kbn = ?1 AND trading_partner_code = ?2"
+            + "    AND ( (youshiki_kbn IN ?3 AND youshiki_eda_kbn IN ?4 ) OR"
+            + "          (youshiki_kbn IN ?5 AND youshiki_eda_kbn IN ?6 ) OR"
+            + "          (youshiki_kbn IN ?7 AND youshiki_eda_kbn IN ?8 ) ) AND saishin_kbn = 1 ", nativeQuery = true)
+    Integer findCountDataByPartnerCode(Integer partnerKbn, Integer partnerCode,
+            List<Integer> list1, List<Integer> list2, List<Integer> list3, List<Integer> list4, List<Integer> list5,
+            List<Integer> list6);
+    
+    /**
+     * 取引相手同一識別コードから収入データを取得する
+     *
+     * @param partnerKbn  取引相手区分
+     * @param partnerCode 取引相手同一識別コード
+     * @param list1       様式区分リスト(リスト1)
+     * @param list2       様式枝区分項目リスト(リスト2)
+     * @param list3       様式区分リスト(リスト3)
+     * @param list4       様式枝区分項目リスト(リスト4)
+     * @param list5       様式区分リスト(リスト5)
+     * @param list6       様式枝区分項目リスト(リスト6)
+     * @param pageable    ページング条件
+     * @return 検索結果
+     */
+    @Query(value = "SELECT * FROM offering_balancesheet_income_2024" // 改行調整
+            + "  WHERE trading_partner_Kbn = ?1 AND trading_partner_code = ?2"
+            + "    AND ( (youshiki_kbn IN ?3 AND youshiki_eda_kbn IN ?4 ) OR"
+            + "          (youshiki_kbn IN ?5 AND youshiki_eda_kbn IN ?6 ) OR"
+            + "          (youshiki_kbn IN ?7 AND youshiki_eda_kbn IN ?8 ) ) AND saishin_kbn = 1 ", nativeQuery = true)
+    List<OfferingBalancesheetIncome2024Entity> findDataByPartnerCode(Integer partnerKbn, Integer partnerCode,
+            List<Integer> list1, List<Integer> list2, List<Integer> list3, List<Integer> list4, List<Integer> list5,
+            List<Integer> list6, Pageable pageable);
+
 }

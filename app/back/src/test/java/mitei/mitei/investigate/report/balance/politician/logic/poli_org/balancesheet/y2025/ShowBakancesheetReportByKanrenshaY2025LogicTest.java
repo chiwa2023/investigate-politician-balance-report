@@ -1,4 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022;
+package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2025;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,27 +23,27 @@ import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balanceshe
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.report.natural_search.IncomeAndOutcomeSearchLineDto;
 
 /**
- * ShowBakancesheetReportByKanrenshaY2022Logic単体テスト
+ * ShowBakancesheetReportByKanrenshaY2025Logic単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class ShowBakancesheetReportByKanrenshaY2022LogicTest {
+class ShowBakancesheetReportByKanrenshaY2025LogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private ShowBakancesheetReportByKanrenshaY2022Logic showBakancesheetReportByKanrenshaY2022Logic;
+    private ShowBakancesheetReportByKanrenshaY2025Logic showBakancesheetReportByKanrenshaY2025Logic;
 
     @Test
     @Transactional
     @Tag("TableTruncate")
-    @Sql({ "search_kanrensha_income_2022.sql", "search_kanrensha_outcome_2022.sql" })
+    @Sql({ "search_kanrensha_income_2025.sql", "search_kanrensha_outcome_2025.sql" })
     void test() { // NOPMD
 
         KanrenshaBalancesheetConditionCapsuleDto capsuleDto = new KanrenshaBalancesheetConditionCapsuleDto();
-        capsuleDto.setHoukokuNen(2022);
+        capsuleDto.setHoukokuNen(2025);
         capsuleDto.setOffset(25);
         // 取引相手
         capsuleDto.setRelationKbn(1);
@@ -79,7 +79,7 @@ class ShowBakancesheetReportByKanrenshaY2022LogicTest {
         capsuleDto.setIsSearchDonation(true);
         capsuleDto.setIsSearchOtherOutcome(true);
 
-        IncomeAndOutcomeNaturalSearchResultDto resultDto = showBakancesheetReportByKanrenshaY2022Logic
+        IncomeAndOutcomeNaturalSearchResultDto resultDto = showBakancesheetReportByKanrenshaY2025Logic
                 .practice(capsuleDto);
         assertTrue(resultDto.getIsOk(), "基本的に成功");
 
@@ -212,7 +212,7 @@ class ShowBakancesheetReportByKanrenshaY2022LogicTest {
         assertEquals(9, dto112.getYoushikiEdaKbn(), "支出枝区分項目12");
 
         assertEquals("R4/9/30", dto000.getAccrualDate(), "収入発生日0");
-        assertEquals(LocalDate.of(2022, 9, 30), dto000.getAccrualDateValue(), "収入発生日実値0");
+        assertEquals(LocalDate.of(2025, 9, 30), dto000.getAccrualDateValue(), "収入発生日実値0");
         assertEquals("代表者あいうえお", dto000.getDaihyouName(), "収入代表者名0");
         assertEquals("えーびーしーでぃーだんたい", dto000.getDantaiName(), "収入団体名0");
         assertEquals("機関誌発行", dto000.getItemName(), "収入項目0");
@@ -225,7 +225,7 @@ class ShowBakancesheetReportByKanrenshaY2022LogicTest {
         // assertEquals(3, dto000.getMokuteki(), "目的0");
 
         assertEquals("R4/2/15", dto101.getAccrualDate(), "支出発生日0");
-        assertEquals(LocalDate.of(2022, 2, 15), dto101.getAccrualDateValue(), "支出発生日実値0");
+        assertEquals(LocalDate.of(2025, 2, 15), dto101.getAccrualDateValue(), "支出発生日実値0");
         assertEquals("代表者", dto101.getDaihyouName(), "支出代表者名0");
         assertEquals("ABCD団体", dto101.getDantaiName(), "支出団体名0");
         assertEquals("光熱費", dto101.getItemName(), "支出項目0");

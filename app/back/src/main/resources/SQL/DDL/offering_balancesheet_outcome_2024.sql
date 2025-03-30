@@ -29,6 +29,10 @@ CREATE TABLE `offering_balancesheet_outcome_2024` (
   `bikou` varchar(210) DEFAULT NULL COMMENT '摘要',
   `flg_ryoushuusho` int DEFAULT NULL COMMENT '代表者関連者名称',
   `flg_kouufukin` int DEFAULT NULL COMMENT '代表者関連者名称',
+  `trading_partner_kbn` int DEFAULT NULL COMMENT '取引相手区分',
+  `trading_partner_id` bigint DEFAULT NULL COMMENT '取引相手Id',
+  `trading_partner_code` int DEFAULT NULL COMMENT '取引相手同一識別コード',
+  `trading_partner_name` varchar(300) DEFAULT NULL COMMENT '取引相手名称',
   `relation_person_id_outcome` bigint DEFAULT NULL COMMENT '支払者関連者Id(個人)',
   `relation_person_code_outcome` int DEFAULT NULL COMMENT '支払者関連者同一識別コード(個人)',
   `relation_person_name_outcome` varchar(210) DEFAULT NULL COMMENT '支払者関連者名称(個人)',
@@ -49,4 +53,4 @@ CREATE TABLE `offering_balancesheet_outcome_2024` (
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`offering_balancesheet_outcome_id`),
   FULLTEXT KEY `search_words` (`search_words`) /*!50100 WITH PARSER `ngram` */ 
-) ENGINE=InnoDB AUTO_INCREMENT=19838 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=19838 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

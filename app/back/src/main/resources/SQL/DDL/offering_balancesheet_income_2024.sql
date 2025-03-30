@@ -28,8 +28,8 @@ CREATE TABLE `offering_balancesheet_income_2024` (
   `accrual_date` varchar(210) DEFAULT NULL COMMENT '発生日',
   `accrual_date_value` date DEFAULT NULL COMMENT '発生日実値',
   `bikou` varchar(210) DEFAULT NULL COMMENT '備考',
-  `partner_name` varchar(210) DEFAULT NULL COMMENT '支出した相手先名',
   `partner_juusho` text COMMENT '支出した相手先住所',
+  `partner_name` varchar(210) DEFAULT NULL COMMENT '支出した相手先名',
   `shiharaisu` int DEFAULT NULL COMMENT 'パーティ支払人数',
   `kaisai_basho` text COMMENT 'パーティ開催場所',
   `flg_zeigaku_kohjo` smallint DEFAULT NULL COMMENT '税額控除フラグ',
@@ -37,6 +37,10 @@ CREATE TABLE `offering_balancesheet_income_2024` (
   `gyoukubun` smallint DEFAULT NULL COMMENT '行区分',
   `shokugyou` varchar(210) DEFAULT NULL COMMENT '職業',
   `period_mediate` varchar(210) DEFAULT NULL COMMENT 'あっせんの期間',
+  `trading_partner_kbn` int DEFAULT NULL COMMENT '取引相手区分',
+  `trading_partner_id` bigint DEFAULT NULL COMMENT '取引相手Id',
+  `trading_partner_code` int DEFAULT NULL COMMENT '取引相手同一識別コード',
+  `trading_partner_name` varchar(300) DEFAULT NULL COMMENT '取引相手名称',
   `relation_person_id_income` bigint DEFAULT NULL COMMENT '支払者関連者Id(個人)',
   `relation_person_code_income` int DEFAULT NULL COMMENT '支払者関連者同一識別コード(個人)',
   `relation_person_name_income` varchar(210) DEFAULT NULL COMMENT '支払者関連者名称(個人)',
@@ -57,4 +61,4 @@ CREATE TABLE `offering_balancesheet_income_2024` (
   `update_timestamp` datetime DEFAULT NULL COMMENT '更新タイムスタンプ',
   PRIMARY KEY (`offering_balancesheet_income_id`),
   FULLTEXT KEY `search_words` (`search_words`) /*!50100 WITH PARSER `ngram` */ 
-) ENGINE=InnoDB AUTO_INCREMENT=28002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

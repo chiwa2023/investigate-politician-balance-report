@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
@@ -80,5 +81,42 @@ public interface OfferingBalancesheetOutcome2025Repository
      */
     List<OfferingBalancesheetOutcome2025Entity> findByPartnerNameAndSaishinKbnAndDantaiNameIn(String partnerName,
             Integer saishinKbn, List<String> listDantaiName);
+
+    /**
+     * 取引相手同一識別コードから収入データ件数を取得する
+     *
+     * @param partnerKbn  取引相手区分
+     * @param partnerCode 取引相手同一識別コード
+     * @param list1       様式区分リスト(リスト1)
+     * @param list2       様式枝区分項目リスト(リスト2)
+     * @param list3       様式区分リスト(リスト3)
+     * @param list4       様式枝区分項目リスト(リスト4)
+     * @return 検索結果
+     */
+    @Query(value = "SELECT COUNT(*) FROM offering_balancesheet_outcome_2025" // 改行調整
+            + "  WHERE trading_partner_Kbn = ?1 AND trading_partner_code = ?2"
+            + "    AND ( (youshiki_kbn IN ?3 AND youshiki_eda_kbn IN ?4 ) OR"
+            + "          (youshiki_kbn IN ?5 AND youshiki_eda_kbn IN ?6 ) ) AND saishin_kbn = 1 ", nativeQuery = true)
+    Integer findCountDataByPartnerCode(Integer partnerKbn, Integer partnerCode, List<Integer> list1,
+            List<Integer> list2, List<Integer> list3, List<Integer> list4);
+
+    /**
+     * 取引相手同一識別コードから収入データを取得する
+     *
+     * @param partnerKbn  取引相手区分
+     * @param partnerCode 取引相手同一識別コード
+     * @param list1       様式区分リスト(リスト1)
+     * @param list2       様式枝区分項目リスト(リスト2)
+     * @param list3       様式区分リスト(リスト3)
+     * @param list4       様式枝区分項目リスト(リスト4)
+     * @param pageable    ページング条件
+     * @return 検索結果
+     */
+    @Query(value = "SELECT * FROM offering_balancesheet_outcome_2025" // 改行調整
+            + "  WHERE trading_partner_Kbn = ?1 AND trading_partner_code = ?2"
+            + "    AND ( (youshiki_kbn IN ?3 AND youshiki_eda_kbn IN ?4 ) OR"
+            + "          (youshiki_kbn IN ?5 AND youshiki_eda_kbn IN ?6 ) ) AND saishin_kbn = 1 ", nativeQuery = true)
+    List<OfferingBalancesheetOutcome2025Entity> findDataByPartnerCode(Integer partnerKbn, Integer partnerCode,
+            List<Integer> list1, List<Integer> list2, List<Integer> list3, List<Integer> list4, Pageable pageable);
 
 }
