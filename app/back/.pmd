@@ -325,10 +325,6 @@
             <ruleset>Performance</ruleset>
         </rule>
         <rule>
-            <name>BooleanGetMethodName</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
             <name>BrokenNullCheck</name>
             <ruleset>Error Prone</ruleset>
         </rule>
@@ -462,10 +458,6 @@
         </rule>
         <rule>
             <name>DebugsShouldUseLoggingLevel</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
-            <name>DefaultLabelNotLastInSwitchStmt</name>
             <ruleset>Best Practices</ruleset>
         </rule>
         <rule>
@@ -749,10 +741,6 @@
             <ruleset>Performance</ruleset>
         </rule>
         <rule>
-            <name>InnaccurateNumericLiteral</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
             <name>InsecureCryptoIv</name>
             <ruleset>Security</ruleset>
         </rule>
@@ -785,23 +773,7 @@
             <ruleset>Best Practices</ruleset>
         </rule>
         <rule>
-            <name>JUnit4TestShouldUseAfterAnnotation</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
-            <name>JUnit4TestShouldUseBeforeAnnotation</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
-            <name>JUnit4TestShouldUseTestAnnotation</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
             <name>JUnit5TestShouldBePackagePrivate</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
-            <name>JUnitAssertionsShouldIncludeMessage</name>
             <ruleset>Best Practices</ruleset>
         </rule>
         <rule>
@@ -811,10 +783,6 @@
         <rule>
             <name>JUnitStaticSuite</name>
             <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>JUnitTestsShouldIncludeAssert</name>
-            <ruleset>Best Practices</ruleset>
         </rule>
         <rule>
             <name>JUnitUseExpected</name>
@@ -963,10 +931,6 @@
         <rule>
             <name>NoLongScripts</name>
             <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>NonCaseLabelInSwitchStatement</name>
-            <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
             <name>NonSerializableClass</name>
@@ -1177,10 +1141,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>SwitchStmtsShouldHaveDefault</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
             <name>SystemPrintln</name>
             <ruleset>Best Practices</ruleset>
         </rule>
@@ -1195,10 +1155,6 @@
         <rule>
             <name>TomKytesDespair</name>
             <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
-            <name>TooFewBranchesForASwitchStatement</name>
-            <ruleset>Performance</ruleset>
         </rule>
         <rule>
             <name>TooManyFields</name>

@@ -7,7 +7,7 @@ import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import jakarta.persistence.EntityManagerFactory;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
@@ -19,7 +19,7 @@ import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistor
 /**
  * 異動テーブルからMasterテーブルに複写する
  */
-@Service
+@Component
 public class AddZenginTenpoMasterItemWriter extends JpaItemWriter<ZenginOrgBranchMasterEntity> {
 
     /** 全銀協記入機関・店舗マスタRepository */

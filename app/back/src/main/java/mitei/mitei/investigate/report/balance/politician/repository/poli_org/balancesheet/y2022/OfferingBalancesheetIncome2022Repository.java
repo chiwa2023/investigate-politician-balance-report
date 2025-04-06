@@ -23,7 +23,6 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 public interface OfferingBalancesheetIncome2022Repository
         extends JpaRepository<OfferingBalancesheetIncome2022Entity, Integer> { // NOPMD
 
-    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
      * 全文検索をする
      *
@@ -63,6 +62,25 @@ public interface OfferingBalancesheetIncome2022Repository
      * @return データリスト
      */
     List<OfferingBalancesheetIncome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetIncomeId(Long documentCode);
+
+    /**
+     * 文書同一識別コードに紐づくデータを取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @param pageable     ページング情報
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetIncome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetIncomeId(Long documentCode,
+            Pageable pageable);
+
+    /**
+     * 文書同一識別コードに紐づくデータ件数を取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(*) AS count FROM offering_balancesheet_income_2022 WHERE document_code = ?1", nativeQuery = true)
+    Integer findByDocumentRow(Long documentCode);
 
     /**
      * 政治団体とと取引相手の同一識別コードを条件に収入を取得する
@@ -338,7 +356,6 @@ public interface OfferingBalancesheetIncome2022Repository
     List<OfferingBalancesheetIncome2022Entity> findByPoliticalOrganizationCodeAndPartnerNameAndPartnerJuushoAndYoushikiKbnAndSaishinKbn(
             Integer poliOrgCode, String partnerName, String partnerJusho, Integer youshikiKbn, Integer saishinKbn);
 
-    
     /**
      * 取引相手同一識別コードから収入データ件数を取得する
      *
@@ -357,10 +374,9 @@ public interface OfferingBalancesheetIncome2022Repository
             + "    AND ( (youshiki_kbn IN ?3 AND youshiki_eda_kbn IN ?4 ) OR"
             + "          (youshiki_kbn IN ?5 AND youshiki_eda_kbn IN ?6 ) OR"
             + "          (youshiki_kbn IN ?7 AND youshiki_eda_kbn IN ?8 ) ) AND saishin_kbn = 1 ", nativeQuery = true)
-    Integer findCountDataByPartnerCode(Integer partnerKbn, Integer partnerCode,
-            List<Integer> list1, List<Integer> list2, List<Integer> list3, List<Integer> list4, List<Integer> list5,
-            List<Integer> list6);
-    
+    Integer findCountDataByPartnerCode(Integer partnerKbn, Integer partnerCode, List<Integer> list1,
+            List<Integer> list2, List<Integer> list3, List<Integer> list4, List<Integer> list5, List<Integer> list6);
+
     /**
      * 取引相手同一識別コードから収入データを取得する
      *

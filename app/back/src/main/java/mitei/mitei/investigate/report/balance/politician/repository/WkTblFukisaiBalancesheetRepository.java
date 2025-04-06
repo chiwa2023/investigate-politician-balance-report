@@ -16,14 +16,14 @@ import mitei.mitei.investigate.report.balance.politician.entity.WkTblFukisaiBala
 public interface WkTblFukisaiBalancesheetRepository extends JpaRepository<WkTblFukisaiBalancesheetEntity, Long> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    /**
-     * 名称を検索対象として全文検索をする
-     *
-     * @param searchWords 検索語
-     * @return 検索結果
-     */
-    @Query(value = "SELECT * FROM wk_tbl_fukisai_balancesheet WHERE saishin_kbn= 1 AND MATCH(wk_tbl_fukisai_balancesheet_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<WkTblFukisaiBalancesheetEntity> findFullText(String searchWords);
+    //    /**
+    //     * 名称を検索対象として全文検索をする
+    //     *
+    //     * @param searchWords 検索語
+    //     * @return 検索結果
+    //     */
+    //    @Query(value = "SELECT * FROM wk_tbl_fukisai_balancesheet WHERE saishin_kbn= 1 AND MATCH(wk_tbl_fukisai_balancesheet_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    //    List<WkTblFukisaiBalancesheetEntity> findFullText(String searchWords);
 
     /**
      * ユーザ同一識別コード条件でデータを削除する

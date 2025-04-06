@@ -18,7 +18,6 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 public interface OfferingBalancesheetOutcome2023Repository
         extends JpaRepository<OfferingBalancesheetOutcome2023Entity, Integer> {
 
-    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
      * 全文検索をする
      *

@@ -3,6 +3,7 @@ package mitei.mitei.investigate.report.balance.politician.repository.poli_party.
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
@@ -17,14 +18,14 @@ public interface OfferingPartyUsage0804Report2022Repository  extends JpaReposito
 
 
     //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    /**
-     * 名称を検索対象として全文検索をする
-     *
-     * @param searchWords 検索語
-     * @return 検索結果
-     */
-    @Query(value = "SELECT * FROM offering_party_usage_0804_report_2022 WHERE saishin_kbn= 1 AND MATCH(offering_party_usage_0804_report_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<OfferingPartyUsage0804Report2022Entity> findFullText(String searchWords);
+    //    /**
+    //     * 名称を検索対象として全文検索をする
+    //     *
+    //     * @param searchWords 検索語
+    //     * @return 検索結果
+    //     */
+    //    @Query(value = "SELECT * FROM offering_party_usage_0804_report_2022 WHERE saishin_kbn= 1 AND MATCH(offering_party_usage_0804_report_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    //    List<OfferingPartyUsage0804Report2022Entity> findFullText(String searchWords);
 
     
     /**
@@ -43,6 +44,21 @@ public interface OfferingPartyUsage0804Report2022Repository  extends JpaReposito
      */
     List<OfferingPartyUsage0804Report2022Entity> findByDocumentCodeOrderByPartyUsage0804ReportId(Long documentCode);
 
+    /**
+     * 文書同一識別コードに紐づくデータを取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @param pageable     ページング情報
+     * @return 検索結果
+     */
+    List<OfferingPartyUsage0804Report2022Entity> findByDocumentCodeOrderByPartyUsage0804ReportId(Long documentCode,Pageable pageable);
     
-    
+    /**
+     * 文書同一識別コードに紐づくデータ件数を取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(*) AS count FROM offering_party_usage_0804_report_2022 WHERE document_code = ?1", nativeQuery = true)
+    Integer findByDocumentRow(Long documentCode);
 }

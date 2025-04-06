@@ -18,14 +18,14 @@ public interface OfferingBalancesheet0702And0713And0717Summary2025Repository
         extends JpaRepository<OfferingBalancesheet0702And0713And0717Summary2025Entity, Integer> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    /**
-     * 名称を検索対象として全文検索をする
-     *
-     * @param searchWords 検索語
-     * @return 検索結果
-     */
-    @Query(value = "SELECT * FROM offering_balancesheet_0702_and_0713_and_0717_summary_2025 WHERE saishin_kbn= 1 AND MATCH(offering_balancesheet_0702_and_0713_and_0717_summary_2025_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<OfferingBalancesheet0702And0713And0717Summary2025Entity> findFullText(String searchWords);
+    //    /**
+    //     * 名称を検索対象として全文検索をする
+    //     *
+    //     * @param searchWords 検索語
+    //     * @return 検索結果
+    //     */
+    //    @Query(value = "SELECT * FROM offering_balancesheet_0702_and_0713_and_0717_summary_2025 WHERE saishin_kbn= 1 AND MATCH(offering_balancesheet_0702_and_0713_and_0717_summary_2025_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    //    List<OfferingBalancesheet0702And0713And0717Summary2025Entity> findFullText(String searchWords);
 
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する

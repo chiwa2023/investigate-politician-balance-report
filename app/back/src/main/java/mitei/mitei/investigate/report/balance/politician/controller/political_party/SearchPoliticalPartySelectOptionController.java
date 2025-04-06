@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import mitei.mitei.investigate.report.balance.politician.dto.SelectOptionDto;
 import mitei.mitei.investigate.report.balance.politician.service.political_party.SearchPoliticalPartySelectOptionService;
@@ -30,7 +29,7 @@ public class SearchPoliticalPartySelectOptionController {
      * @return 選択肢リスト
      */
     @GetMapping("/get-select-option")
-    public ResponseEntity<List<SelectOptionDto>> practice(final @RequestParam(name = "isNoSelect") boolean isNoSelect) {
+    public ResponseEntity<List<SelectOptionDto>> practice(final boolean isNoSelect) {
         
         /* ここに固有のビジネス処理を記載する */
 

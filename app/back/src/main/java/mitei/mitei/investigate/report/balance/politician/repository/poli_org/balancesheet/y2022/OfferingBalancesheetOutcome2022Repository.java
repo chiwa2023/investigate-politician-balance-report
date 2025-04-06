@@ -18,7 +18,6 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 public interface OfferingBalancesheetOutcome2022Repository
         extends JpaRepository<OfferingBalancesheetOutcome2022Entity, Integer> {
 
-    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     /**
      * 全文検索をする
      *
@@ -59,6 +58,25 @@ public interface OfferingBalancesheetOutcome2022Repository
      */
     List<OfferingBalancesheetOutcome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetOutcomeId(
             Long documentCode);
+
+    /**
+     * 文書同一識別コードに紐づくデータを取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @param pageable     ページング情報
+     * @return 検索結果
+     */
+    List<OfferingBalancesheetOutcome2022Entity> findByDocumentCodeOrderByOfferingBalancesheetOutcomeId(
+            Long documentCode, Pageable pageable);
+
+    /**
+     * 文書同一識別コードに紐づくデータ件数を取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(*) AS count FROM offering_balancesheet_outcome_2022 WHERE document_code = ?1", nativeQuery = true)
+    Integer findByDocumentRow(Long documentCode);
 
     /**
      * 政治団体リストと取引相手同一識別コード条件から支出を取得する

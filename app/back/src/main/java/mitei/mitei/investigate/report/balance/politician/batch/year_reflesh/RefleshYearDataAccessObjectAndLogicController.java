@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * データアクセス用のオブジェクトとロジックを複写するController
@@ -36,7 +35,7 @@ public class RefleshYearDataAccessObjectAndLogicController {
      * @return レスポンス(仮でStringメッセージ)
      */
     @GetMapping("/reflesh-year-data-access") // SUPPRESS CHECKSTYLE
-    public ResponseEntity<String> practice(final @RequestParam(name = "baseYear") int baseYear, final @RequestParam(name = "copyYear") int copyYear) {
+    public ResponseEntity<String> practice(final int baseYear, final int copyYear) {
 
         // JobParameterの設定
         JobParameters jobParameters = new JobParametersBuilder()

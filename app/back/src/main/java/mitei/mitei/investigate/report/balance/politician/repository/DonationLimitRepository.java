@@ -14,14 +14,14 @@ import reactor.util.function.Tuple2;
 public interface DonationLimitRepository extends JpaRepository<DonationLimitEntity, Integer> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    /**
-     * 名称を検索対象として全文検索をする
-     *
-     * @param searchWords 検索語
-     * @return 検索結果
-     */
-    @Query(value = "SELECT * FROM donation_limit WHERE saishin_kbn= 1 AND MATCH(donation_limit_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<DonationLimitEntity> findFullText(String searchWords);
+    //    /**
+    //     * 名称を検索対象として全文検索をする
+    //     *
+    //     * @param searchWords 検索語
+    //     * @return 検索結果
+    //     */
+    //    @Query(value = "SELECT * FROM donation_limit WHERE saishin_kbn= 1 AND MATCH(donation_limit_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    //    List<DonationLimitEntity> findFullText(String searchWords);
 
     /**
      * 企業向け寄付上限リストを取得する(資本金条件)

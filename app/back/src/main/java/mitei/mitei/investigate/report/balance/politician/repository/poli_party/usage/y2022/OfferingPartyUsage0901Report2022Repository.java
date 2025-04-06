@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
-import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2022.OfferingPartyUsage0901Report2022Entity;
@@ -17,14 +16,14 @@ public interface OfferingPartyUsage0901Report2022Repository  extends JpaReposito
 
 
     //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    /**
-     * 名称を検索対象として全文検索をする
-     *
-     * @param searchWords 検索語
-     * @return 検索結果
-     */
-    @Query(value = "SELECT * FROM offering_party_usage_0901_report_2022 WHERE saishin_kbn= 1 AND MATCH(offering_party_usage_0901_report_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<OfferingPartyUsage0901Report2022Entity> findFullText(String searchWords);
+    //    /**
+    //     * 名称を検索対象として全文検索をする
+    //     *
+    //     * @param searchWords 検索語
+    //     * @return 検索結果
+    //     */
+    //    @Query(value = "SELECT * FROM offering_party_usage_0901_report_2022 WHERE saishin_kbn= 1 AND MATCH(offering_party_usage_0901_report_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    //    List<OfferingPartyUsage0901Report2022Entity> findFullText(String searchWords);
 
     
     /**

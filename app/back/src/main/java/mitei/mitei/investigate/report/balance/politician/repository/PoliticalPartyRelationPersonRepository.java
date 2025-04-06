@@ -17,14 +17,14 @@ public interface PoliticalPartyRelationPersonRepository
         extends JpaRepository<PoliticalPartyRelationPersonEntity, Long> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    /**
-     * 名称を検索対象として全文検索をする
-     *
-     * @param searchWords 検索語
-     * @return 検索結果
-     */
-    @Query(value = "SELECT * FROM political_party_relation_person WHERE saishin_kbn= 1 AND MATCH(political_party_relation_person_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    List<PoliticalPartyRelationPersonEntity> findFullText(String searchWords);
+    //    /**
+    //     * 名称を検索対象として全文検索をする
+    //     *
+    //     * @param searchWords 検索語
+    //     * @return 検索結果
+    //     */
+    //    @Query(value = "SELECT * FROM political_party_relation_person WHERE saishin_kbn= 1 AND MATCH(political_party_relation_person_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
+    //    List<PoliticalPartyRelationPersonEntity> findFullText(String searchWords);
 
     /**
      * 政党に紐づく関連者の総数を取得する
