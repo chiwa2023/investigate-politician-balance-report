@@ -1,5 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,14 +17,16 @@ import mitei.mitei.investigate.report.balance.politician.entity.WkTblUsageOutcom
 public interface WkTblUsageOutcomeRepository extends JpaRepository<WkTblUsageOutcomeEntity, Integer> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    //    /**
-    //     * 名称を検索対象として全文検索をする
-    //     *
-    //     * @param searchWords 検索語
-    //     * @return 検索結果
-    //     */
-    //    @Query(value = "SELECT * FROM wk_tbl_usage_outcome WHERE saishin_kbn= 1 AND MATCH(wk_tbl_usage_outcome_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    //    List<WkTblUsageOutcomeEntity> findFullText(String searchWords);
+    // /**
+    // * 名称を検索対象として全文検索をする
+    // *
+    // * @param searchWords 検索語
+    // * @return 検索結果
+    // */
+    // @Query(value = "SELECT * FROM wk_tbl_usage_outcome WHERE saishin_kbn= 1 AND
+    // MATCH(wk_tbl_usage_outcome_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)",
+    // nativeQuery = true)
+    // List<WkTblUsageOutcomeEntity> findFullText(String searchWords);
 
     /**
      * 収支報告書と使途報告書を連結して連結結果Entityとして出力する
@@ -62,5 +66,30 @@ public interface WkTblUsageOutcomeRepository extends JpaRepository<WkTblUsageOut
     @Modifying
     @Query(value = "DELETE FROM wk_tbl_usage_outcome WHERE insert_user_code = ?1", nativeQuery = true)
     void deleteByInsertUserCode(Integer userCode);
+
+    /**
+     * 交付金連結テーブルに存在しないデータ件数を取得する
+     *
+     * @param userCode ユーザ同一識別コード
+     * @return 検索結果
+     */
+    @Query(value = "SELECT count(*) FROM test_politician_balance_report_investigate.wk_tbl_usage_outcome"
+            + " WHERE insert_user_code = ?1 AND sheet_amount_all_koufukin > 0"
+            + "   AND party_usage_0804_report_id NOT IN ("
+            + "      SELECT usage_report_id FROM wk_tbl_renketsu_koufukin" + "   )", nativeQuery = true)
+    Integer findCountFailureRenketsuByUserCode(Integer userCode);
+
+    /**
+     * 交付金連結テーブルに存在しないデータをページングで取得する
+     *
+     * @param userCode ユーザ同一識別コード
+     * @param pageable ページング条件
+     * @return 検索結果
+     */
+    @Query(value = "SELECT * FROM test_politician_balance_report_investigate.wk_tbl_usage_outcome"
+            + " WHERE insert_user_code = ?1 AND sheet_amount_all_koufukin > 0"
+            + "   AND party_usage_0804_report_id NOT IN ("
+            + "      SELECT usage_report_id FROM wk_tbl_renketsu_koufukin" + "   )", nativeQuery = true)
+    List<WkTblUsageOutcomeEntity> findFailureRenketsuByUserCode(Integer userCode, Pageable pageable);
 
 }

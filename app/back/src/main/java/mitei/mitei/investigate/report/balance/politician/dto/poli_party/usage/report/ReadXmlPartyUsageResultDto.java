@@ -1,5 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.dto.poli_party.usage.report;
 
+import java.io.Serializable;
+
 import mitei.mitei.common.publish.party.usage.report.dto.v5.Sheet0801Dto;
 import mitei.mitei.investigate.report.balance.politician.dto.AbstractResultDto;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.PartyUsageDocumentPoliticalPropertyDto;
@@ -8,7 +10,10 @@ import mitei.mitei.investigate.report.balance.politician.dto.storage.SaveStorage
 /**
  * 
  */
-public class ReadXmlPartyUsageResultDto extends AbstractResultDto { // NOPMD DataClass
+public class ReadXmlPartyUsageResultDto extends AbstractResultDto implements Serializable{ // NOPMD DataClass
+
+    /** SerialId */
+    private static final long serialVersionUID = 1L;
 
     /** 表示メッセージ */
     private String message = "";

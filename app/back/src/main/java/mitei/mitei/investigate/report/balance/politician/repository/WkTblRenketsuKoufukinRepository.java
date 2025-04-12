@@ -2,6 +2,7 @@ package mitei.mitei.investigate.report.balance.politician.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,14 +15,16 @@ import mitei.mitei.investigate.report.balance.politician.entity.WkTblRenketsuKou
 public interface WkTblRenketsuKoufukinRepository extends JpaRepository<WkTblRenketsuKoufukinEntity, Long> {
 
     // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    //    /**
-    //     * 名称を検索対象として全文検索をする
-    //     *
-    //     * @param searchWords 検索語
-    //     * @return 検索結果
-    //     */
-    //    @Query(value = "SELECT * FROM wk_tbl_renketsu_koufukin WHERE saishin_kbn= 1  AND MATCH(wk_tbl_renketsu_koufukin_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    //    List<WkTblRenketsuKoufukinEntity> findFullText(String searchWords);
+    // /**
+    // * 名称を検索対象として全文検索をする
+    // *
+    // * @param searchWords 検索語
+    // * @return 検索結果
+    // */
+    // @Query(value = "SELECT * FROM wk_tbl_renketsu_koufukin WHERE saishin_kbn= 1
+    // AND MATCH(wk_tbl_renketsu_koufukin_name) AGAINST (?1 IN NATURAL LANGUAGE
+    // MODE)", nativeQuery = true)
+    // List<WkTblRenketsuKoufukinEntity> findFullText(String searchWords);
 
     /**
      * ユーザ同一識別コード条件でデータを削除する
@@ -64,5 +67,26 @@ public interface WkTblRenketsuKoufukinRepository extends JpaRepository<WkTblRenk
      * @return 検索結果
      */
     List<WkTblRenketsuKoufukinEntity> findByInsertUserCodeAndDataKbn(Integer userCode, Integer dataKbn);
+
+    /**
+     * データ区分とユーザコードから該当データを検索する
+     *
+     * @param userCode ユーザ同一識別コード
+     * @param dataKbn  データ区分
+     * @param pageable ページング条件
+     * @return 検索結果
+     */
+    List<WkTblRenketsuKoufukinEntity> findByInsertUserCodeAndDataKbn(Integer userCode, Integer dataKbn,
+            Pageable pageable);
+
+    /**
+     * データ区分とユーザコードから該当データを検索した場合の件数
+     *
+     * @param userCode ユーザ同一識別コード
+     * @param dataKbn  データ区分
+     * @return 全件数
+     */
+    @Query(value = "SELECT COUNT(*) FROM wk_tbl_renketsu_koufukin WHERE insert_user_code = ?1 AND data_kbn = ?2", nativeQuery = true)
+    Integer findCountByDataKbnAndUser(Integer userCode, Integer dataKbn);
 
 }

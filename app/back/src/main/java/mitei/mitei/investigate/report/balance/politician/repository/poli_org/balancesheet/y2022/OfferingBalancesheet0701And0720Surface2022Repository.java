@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
+import mitei.mitei.investigate.report.balance.politician.dto.renketsu_koufukin.OfferingDateDocumentCodeDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Entity;
 
 /**
@@ -68,4 +70,15 @@ public interface OfferingBalancesheet0701And0720Surface2022Repository
     Optional<OfferingBalancesheet0701And0720Surface2022Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbnOrderByOfferingDateDesc(
             Integer politicalOrgCode, Integer saishinKbn);
 
+    /**
+     * 政治団体に紐づく文書同一識別コードリストを取得する
+     *
+     * @param poliOrgCode 政治団体同一識別コード
+     * @return 選択肢リスト
+     */
+    @Query(value = "SELECT offering_date,MAX(offering_balancesheet_0701_and_0720_surface_code) AS document_code"
+            + "  FROM offering_balancesheet_0701_and_0720_surface_2022"
+            + "    WHERE political_organization_code = ?1"
+            + "    GROUP BY offering_date ORDER BY offering_date", nativeQuery = true)
+    List<OfferingDateDocumentCodeDto> findLatestDocumentGroupOfferringDate(Integer poliOrgCode);
 }

@@ -31,6 +31,7 @@ import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivileg
 class CopyUsageWkTbOutncomeY2022LogicTest {
     // CHECKSTYLE:OFF
 
+    /** テスト対象 */
     @Autowired
     private CopyUsageWkTbOutncomeY2022Logic copyUsageWkTbOutncomeY2022Logic;
 

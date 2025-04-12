@@ -25,7 +25,6 @@ import mitei.mitei.investigate.report.balance.politician.service.task_plan.Regis
 @RequestMapping("/renketsu-koufukin")
 public class CreateRenketsuKoufukinWkTblController extends AbstractTemplateCheckController {
 
-
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
     /** 権限チェック不可定数 */
@@ -122,6 +121,5 @@ public class CreateRenketsuKoufukinWkTblController extends AbstractTemplateCheck
         }
 
     }
-
 
 }

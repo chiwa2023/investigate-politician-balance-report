@@ -27,6 +27,9 @@ import mitei.mitei.investigate.report.balance.politician.dto.renketsu_koufukin.C
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 import mitei.mitei.investigate.report.balance.politician.util.GetObjectMapperWithTimeModuleUtil;
 
+/**
+ * CreateRenketsuKoufukinWkTblController単体テスト
+ */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)

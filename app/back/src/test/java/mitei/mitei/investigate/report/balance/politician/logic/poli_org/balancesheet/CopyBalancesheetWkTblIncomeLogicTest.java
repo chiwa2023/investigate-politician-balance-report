@@ -31,6 +31,7 @@ import mitei.mitei.investigate.report.balance.politician.util.CreateTestPrivileg
 class CopyBalancesheetWkTblIncomeLogicTest {
     // CHECKSTYLE:OFF
 
+    /** テスト対象 */
     @Autowired
     private CopyBalancesheetWkTblIncomeLogic copyBalancesheetWkTblIncomeLogic;
 

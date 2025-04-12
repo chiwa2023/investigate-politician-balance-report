@@ -1,5 +1,4 @@
-package mitei.mitei.investigate.report.balance.politician.service.renketsu_koufukin;
-
+package mitei.mitei.investigate.report.balance.politician.logic.renketsu_koufukin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,25 +16,26 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
+import mitei.mitei.investigate.report.balance.politician.constants.RenketsuKoufukinConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.TemplatePagingCapsuleDto;
 import mitei.mitei.investigate.report.balance.politician.dto.renketsu_koufukin.RenketsuKoufukinWkTblDto;
 import mitei.mitei.investigate.report.balance.politician.entity.WkTblRenketsuKoufukinEntity;
 import mitei.mitei.investigate.report.balance.politician.util.CreateCommonCheckDtoTestOnlyUtil;
 
 /**
- * SearchRenketsuOutcomeDuplicateService単体テスト
+ * SearchRenketsuKoufukinPagingLogic単体テスト
  */
 @SpringJUnitConfig
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class SearchRenketsuOutcomeDuplicateServiceTest {
+class SearchRenketsuKoufukinPagingLogicTest {
     // CHECKSTYLE:OFF
 
     /** テスト対象 */
     @Autowired
-    private SearchRenketsuOutcomeDuplicateService searchRenketsuOutcomeDuplicateService;
-    
+    private SearchRenketsuKoufukinPagingLogic searchRenketsuKoufukinPagingLogic;
+
     @Test
     @Tag("TableTruncate")
     @Transactional
@@ -46,7 +46,8 @@ class SearchRenketsuOutcomeDuplicateServiceTest {
         CreateCommonCheckDtoTestOnlyUtil.practice(capsuleDto);
         capsuleDto.getCheckPrivilegeDto().setLoginUserCode(987);
 
-        RenketsuKoufukinWkTblDto dto = searchRenketsuOutcomeDuplicateService.practice(capsuleDto);
+        RenketsuKoufukinWkTblDto dto = searchRenketsuKoufukinPagingLogic.practice(capsuleDto,
+                RenketsuKoufukinConstants.OUTCOME_DUPLICATE);
 
         assertEquals(50, dto.getOffset());
         assertEquals(12, dto.getCountAll());
@@ -68,7 +69,5 @@ class SearchRenketsuOutcomeDuplicateServiceTest {
         WkTblRenketsuKoufukinEntity entity3 = list.get(3);
         assertEquals(247L, entity3.getBalancesheetId());
         assertEquals(115L, entity3.getUsageReportId());
-        
     }
-
 }

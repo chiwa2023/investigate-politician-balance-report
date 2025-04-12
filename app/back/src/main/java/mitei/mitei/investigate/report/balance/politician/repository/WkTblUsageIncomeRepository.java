@@ -1,5 +1,7 @@
 package mitei.mitei.investigate.report.balance.politician.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -63,5 +65,16 @@ public interface WkTblUsageIncomeRepository extends JpaRepository<WkTblUsageInco
     @Modifying
     @Query(value = "DELETE FROM wk_tbl_usage_income WHERE insert_user_code = ?1", nativeQuery = true)
     void deleteByInsertUserCode(Integer userCode);
+
+    /**
+     * 交付金連結テーブルに存在しないデータを抽出す
+     *
+     * @param userCode ユーザ同一識別コード
+     * @return 検索結果
+     */
+    @Query(value = "SELECT * FROM test_politician_balance_report_investigate.wk_tbl_usage_income"
+            + " WHERE insert_user_code = ?1" + "   AND party_usage_0802_kbn_02_report_id NOT IN ("
+            + "    SELECT usage_report_id FROM wk_tbl_renketsu_koufukin" + "    )", nativeQuery = true)
+    List<WkTblUsageIncomeEntity> findFailureRenketsuByUserCode(Integer userCode);
 
 }
