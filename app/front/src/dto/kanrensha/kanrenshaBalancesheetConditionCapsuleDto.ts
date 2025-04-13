@@ -11,6 +11,9 @@ export default class KanrenshaBalancesheetConditionCapsuleDto extends AbstractCa
     /** 報告年 */
     houkokuNen: number;
 
+    /** 関連者区分 */
+    relationKbn: number;
+
     /** 関連者Id */
     relationId: number;
 
@@ -106,8 +109,11 @@ export default class KanrenshaBalancesheetConditionCapsuleDto extends AbstractCa
     /** オフセット件数 */
     offset: number;
 
-    /** ページ番号 */
-    pageNum: number;
+    /** ページ番号収入 */
+    pageNumIncome: number;
+
+    /** ページ番号支出 */
+    pageNumOutcome: number;
 
     constructor() {
 
@@ -119,6 +125,7 @@ export default class KanrenshaBalancesheetConditionCapsuleDto extends AbstractCa
         const INIT_STRING: string = "";
 
         this.houkokuNen = INIT_NUMBER;
+        this.relationKbn = INIT_NUMBER;
         this.relationId = INIT_NUMBER;
         this.relationCode = INIT_NUMBER;
         this.relationName = INIT_STRING;
@@ -152,7 +159,8 @@ export default class KanrenshaBalancesheetConditionCapsuleDto extends AbstractCa
         this.isSearchOtherOutcome = INIT_BOOLEAN;
 
         this.offset = INIT_NUMBER;
-        this.pageNum = INIT_NUMBER;
+        this.pageNumIncome = INIT_NUMBER;
+        this.pageNumOutcome = INIT_NUMBER;
     }
 
 }

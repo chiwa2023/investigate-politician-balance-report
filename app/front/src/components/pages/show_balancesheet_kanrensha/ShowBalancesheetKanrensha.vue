@@ -4,10 +4,6 @@ import SelectOptionInterface from '../../../dto/selectOptionDto';
 import getHoukokunen from '../../../dto/houkokunen/getHoukokunen';
 import SessionStorageCommonCheck from '../../../dto/common_check/sessionStorageCommonCheck';
 import createCheckTransactionDto from '../../../dto/common_check/createCheckTransactionDto';
-import KifuJougenConditionCapsuleInterface from "../../../dto/kifu_jougen/kifuJougenConditionCapsuleDto";
-import KifuJougenConditionCapsuleDto from "../../../dto/kifu_jougen/kifuJougenConditionCapsuleDto";
-import SearchKifuJougenMeisaiBalancesheetResultInterface from "../../../dto/kifu_jougen/searchKifuJougenMeisaiBalancesheetResultDto";
-import SearchKifuJougenMeisaiBalancesheetResultDto from "../../../dto/kifu_jougen/searchKifuJougenMeisaiBalancesheetResultDto";
 import SearchKanrensha from "../../common/search_kanrensha/SearchKanrensha.vue";
 import SearchKanrenshaLeastCapsuleDto from "../../../dto/kanrensha/searchKanrenshaLeastCapsuleDto";
 import KanrenshaLeastInterface from "../../../dto/kanrensha/kanrenshaLeastDto";
@@ -20,7 +16,7 @@ import KanrenshaBalancesheetConditionCapsuleDto from "../../../dto/kanrensha/kan
 import getPagingOption from "../paging/getPagingOption";
 import IncomeAndOutcomeNaturalSearchResultInterface from "../../../dto/natural_search/incomeAndOutcomeNaturalSearchResultDto";
 import IncomeAndOutcomeNaturalSearchResultDto from "../../../dto/natural_search/incomeAndOutcomeNaturalSearchResultDto";
-import mockCreateSearchResultDto from "../natural_search/mock/mockCreateSearchResultDto";
+import mockGetBalancesheetKanrensha from "./mock/mockGetBalancesheetKanrensha";
 
 //経年変化検索条件Dto
 const kanrenshaBalancesheetCapsuleDto: Ref<KanrenshaBalancesheetConditionCapsuleInterface> = ref(new KanrenshaBalancesheetConditionCapsuleDto());
@@ -41,14 +37,14 @@ searchKanrenshaLeastCapsuleDto.checkPrivilegeDto = SessionStorageCommonCheck.get
 searchKanrenshaLeastCapsuleDto.checkTransactionDto = createCheckTransactionDto(true);// 変更を許可しない
 
 /**
- * 政治団体検索コンポーネント表示
+ * 関連者検索コンポーネント表示
  */
 function onSearchPoliticalOrgnaization() {
     isVisibleSearchKanrenshaLeast.value = true;
 }
 
 /**
- * 政治団体検索キャンセル
+ * 関連者検索キャンセル
  */
 function recieveCancelSearchKanrenshaLeast() {
     //非表示
@@ -57,14 +53,15 @@ function recieveCancelSearchKanrenshaLeast() {
 
 const kanrenshaLeastDto: Ref<KanrenshaLeastInterface> = ref(new KanrenshaLeastDto());
 /**
- * 政治団体検索選択
+ * 関連者検索選択
  * @param sendDto 選択Dto
  */
 function recieveKanrenshaLeastInterface(sendDto: KanrenshaLeastInterface) {
 
     kanrenshaLeastDto.value = sendDto;
 
-    //政治団体を設定
+    //関連者を設定
+    kanrenshaBalancesheetCapsuleDto.value.relationKbn = sendDto.relationKbn;
     kanrenshaBalancesheetCapsuleDto.value.relationId = sendDto.relationId;
     kanrenshaBalancesheetCapsuleDto.value.relationCode = sendDto.relationCode;
     kanrenshaBalancesheetCapsuleDto.value.relationName = sendDto.relationName;
@@ -77,16 +74,16 @@ function recieveKanrenshaLeastInterface(sendDto: KanrenshaLeastInterface) {
 const listPageIncome: Ref<SelectOptionInterface[]> = ref([]);
 const listPageOutcome: Ref<SelectOptionInterface[]> = ref([]);
 function onSearch() {
-    alert("検索");
     kanrenshaBalancesheetCapsuleDto.value.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
     kanrenshaBalancesheetCapsuleDto.value.checkPrivilegeDto = SessionStorageCommonCheck.getPrivilege();
     kanrenshaBalancesheetCapsuleDto.value.checkTransactionDto = createCheckTransactionDto(true);
     kanrenshaBalancesheetCapsuleDto.value.isNameSearch = isSearchCode.value;
+    kanrenshaBalancesheetCapsuleDto.value.pageNumIncome = searchResultDto.value.pageNumberIncome;
+    kanrenshaBalancesheetCapsuleDto.value.pageNumOutcome = searchResultDto.value.pageNumberOutcome;
 
     // 下記Urlと上記検索条件Dtoを用いてBackアクセス(収支報告書関連者基準検索)
     //const url: string = "http://localhost:9080/show-balancesheet/kanrensha"
-
-    searchResultDto.value = mockCreateSearchResultDto();
+    searchResultDto.value = mockGetBalancesheetKanrensha(kanrenshaBalancesheetCapsuleDto.value);
     listPageIncome.value = getPagingOption(searchResultDto.value.countIncome, 50);
     listPageOutcome.value = getPagingOption(searchResultDto.value.countOutcome, 25);
 }

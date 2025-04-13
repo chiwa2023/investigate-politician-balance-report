@@ -1,4 +1,4 @@
-export default interface wkTblFukisaiBalancesheetInterface {
+export default interface WkTblFukisaiBalancesheetInterface {
 
 }
 

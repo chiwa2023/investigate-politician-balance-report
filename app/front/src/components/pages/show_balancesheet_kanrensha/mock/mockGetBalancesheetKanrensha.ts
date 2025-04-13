@@ -1,7 +1,8 @@
+import KanrenshaBalancesheetConditionCapsuleInterface from "../../../../dto/kanrensha/kanrenshaBalancesheetConditionCapsuleDto";
 import IncomeAndOutcomeNaturalSearchResultDto from "../../../../dto/natural_search/incomeAndOutcomeNaturalSearchResultDto";
 import IncomeAndOutcomeSearchLineDto from "../../../../dto/natural_search/incomeAndOutcomeSearchLineDto";
 
-export default function mockGetBalancesheetKanrensha(){
+export default function mockGetBalancesheetKanrensha(kanrenshaBalancesheetCapsuleDto:KanrenshaBalancesheetConditionCapsuleInterface):IncomeAndOutcomeNaturalSearchResultDto{
     const resultDto: IncomeAndOutcomeNaturalSearchResultDto = new IncomeAndOutcomeNaturalSearchResultDto();
 
     // ダミーのヒット件数
@@ -10,10 +11,13 @@ export default function mockGetBalancesheetKanrensha(){
 
     // 収入
     resultDto.listIncome.push(createLineDtoIncome(9797));
+    resultDto.pageNumberIncome = kanrenshaBalancesheetCapsuleDto.pageNumIncome;
 
     // 支出
     resultDto.listOutcome.push(createLineDtoOutcome(8686));
+    resultDto.pageNumberOutcome = kanrenshaBalancesheetCapsuleDto.pageNumOutcome;
 
+    return resultDto;
 }
 
 /* 支出ダミーデータを作成する  */

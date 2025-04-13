@@ -27,7 +27,7 @@ const searchResultDto: Ref<SearchKifuJougenMeisaiBalancesheetResultInterface> = 
 // 明細表示用Dto
 const listMeisai: Ref<KobetsuKiseiMeisaiInterface[]> = ref([]);
 
-//政治団体検索コンポーネント
+// 政治団体検索コンポーネント
 const isVisibleSearchPoliticalOrganizationLeast: Ref<boolean> = ref(false);
 const searchPoliticalOrganizationLeastCapsuleDto: SearchPoliticalOrganizationLeastCapsuleDto = new SearchPoliticalOrganizationLeastCapsuleDto();
 searchPoliticalOrganizationLeastCapsuleDto.checkSecurityDto = SessionStorageCommonCheck.getSecurity();
@@ -187,8 +187,6 @@ function convertEdaKbnText(edKbn: number) {
             <td>{{ lineDto.partnerJuusho }}</td>
         </tr>
     </table>
-
-
 
     <!-- 政治団体検索コンポーネント -->
     <div v-if="isVisibleSearchPoliticalOrganizationLeast" class="overBackground"></div>

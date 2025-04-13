@@ -30,7 +30,7 @@ const routes = [
     { path: "/investigate-ukai-kenkin", name: "InvestigateUkaiKenkin", component: () => import("./components/pages/investigate_ukai_kenkin/InvestigateUkaiKenkin.vue") },
     { path: "/investigate-keinen-henka", name: "InvestigateKeinenHenka", component: () => import("./components/pages/investigate_keinen_henka/InvestigateKeinenHenka.vue") },
     { path: "/investigate-party-jougen", name: "InvestigatePartyJougen", component: () => import("./components/pages/investigate_party_jougen/InvestigatePartyJougen.vue") },
-
+    { path: "/investigate-renketsu-koufukin", name: "InvestigateRenketsuKoufukin", component: () => import("./components/pages/investigate_renketsu_koufukin/InvestigateRenketsuKoufukin.vue") },
 
     // 金融機関支店更新
     { path: "/schedule-force/regist-zengin-master", name: "ZenginBatchForce", component: () => import("./components/pages/schedule_force/regist_zengin_master/ZenginBatchForce.vue") },
