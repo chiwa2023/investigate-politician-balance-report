@@ -32,12 +32,12 @@ const chartOptions = {
 // グラフ表示選択
 const datafunc = new CreateSummaryChartData();
 const selectedChartItem: Ref<string> = ref("未選択");
-const optionIncome:Ref<SelectOptionInterface[]> = ref(datafunc.createOptionIncome());
-const optionOutcome:Ref<SelectOptionInterface[]> = ref(datafunc.createOptionOutcome());
+const optionIncome: Ref<SelectOptionInterface[]> = ref(datafunc.createOptionIncome());
+const optionOutcome: Ref<SelectOptionInterface[]> = ref(datafunc.createOptionOutcome());
 
 // データを再描画する
 function changeData() {
-    chartData.value = datafunc.allData(selectedChartItem.value,listResult.value);
+    chartData.value = datafunc.allData(selectedChartItem.value, listResult.value);
 }
 
 //経年変化検索条件Dio
@@ -363,6 +363,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuJinkenhi" disabled="true"
             class="text-input">
+        <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouJinkenhi" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         光熱費項目の合計
@@ -373,6 +376,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKohnetsuhi"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouKohnetsuhi" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         備品項目の合計
@@ -382,6 +388,9 @@ function onChangeViewYear() {
             class="text-input">
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuBihinhi" disabled="true"
+            class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouBihinhi" disabled="true"
             class="text-input">
     </div>
     <div class="left-area">
@@ -393,6 +402,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuJimushohi" disabled="true"
             class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouJimushohi" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         経費項目の合計
@@ -403,6 +415,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKeihiShoukei"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouKeihiShoukei" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         組織活動費項目の合計
@@ -413,6 +428,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSoshikiKatsudouhi"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouSoshikiKatsudouhi" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         選挙活動費項目の合計
@@ -423,6 +441,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSenkyoKatsudou"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouSenkyoKatsudou" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         その他項目の合計
@@ -432,6 +453,9 @@ function onChangeViewYear() {
             class="text-input">
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSonota" disabled="true"
+            class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouSonota" disabled="true"
             class="text-input">
     </div>
     <div class="left-area">
@@ -443,6 +467,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuHakkou" disabled="true"
             class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouHakkou" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         宣伝費項目の合計
@@ -452,6 +479,9 @@ function onChangeViewYear() {
             class="text-input">
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSenden" disabled="true"
+            class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouSenden" disabled="true"
             class="text-input">
     </div>
     <div class="left-area">
@@ -463,6 +493,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKaisaiPty" disabled="true"
             class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouKaisaiPty" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         その他事業費項目の合計
@@ -473,6 +506,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaJigyou"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouSonotaJigyou" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         調査研究費項目の合計
@@ -483,6 +519,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuChousaKenkyu"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouChousaKenkyu" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         寄付金項目の合計
@@ -492,6 +531,9 @@ function onChangeViewYear() {
             class="text-input">
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKifukin" disabled="true"
+            class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouKifukin" disabled="true"
             class="text-input">
     </div>
     <div class="left-area">
@@ -503,6 +545,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuSonotaKeihi"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouSonotaKeihi" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         活動費小計の合計
@@ -513,6 +558,9 @@ function onChangeViewYear() {
         <span class="left-space">交付金に係る支出</span>
         <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.kohfuKatsudouhi"
             disabled="true" class="text-input">
+            <span class="left-space">備考</span>
+        <input type="text" v-model="dtoView.offeringBalancesheet0702And0713SummaryEntity.bikouKatsudouhi" disabled="true"
+            class="text-input">
     </div>
     <div class="left-area">
         現計合計
@@ -541,7 +589,8 @@ function onChangeViewYear() {
     </div>
     <!-- グラフ -->
     <div class="one-line">
-        <GChart type="ColumnChart" :data="chartData" :options="chartOptions" class="left-space" style="width:85%"></GChart>
+        <GChart type="ColumnChart" :data="chartData" :options="chartOptions" class="left-space" style="width:85%">
+        </GChart>
     </div>
     <br>
 

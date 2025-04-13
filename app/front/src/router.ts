@@ -29,6 +29,7 @@ const routes = [
     { path: "/investigate-kifu-jougen", name: "InvestigateKifuJougen", component: () => import("./components/pages/investigate_kifu_jougen/InvestigateKifuJougen.vue") },
     { path: "/investigate-ukai-kenkin", name: "InvestigateUkaiKenkin", component: () => import("./components/pages/investigate_ukai_kenkin/InvestigateUkaiKenkin.vue") },
     { path: "/investigate-keinen-henka", name: "InvestigateKeinenHenka", component: () => import("./components/pages/investigate_keinen_henka/InvestigateKeinenHenka.vue") },
+    { path: "/investigate-keinen-henka-usage", name: "InvestigateKeinenUsage", component: () => import("./components/pages/investigate_keinen_henka/InvestigateKeinenUsage.vue") },
     { path: "/investigate-party-jougen", name: "InvestigatePartyJougen", component: () => import("./components/pages/investigate_party_jougen/InvestigatePartyJougen.vue") },
     { path: "/investigate-renketsu-koufukin", name: "InvestigateRenketsuKoufukin", component: () => import("./components/pages/investigate_renketsu_koufukin/InvestigateRenketsuKoufukin.vue") },
 

@@ -64,6 +64,7 @@ if (0 === securityDto.loginUserId) {
     <RouterLink to="/investigate-kifu-jougen">寄付上限チェッカー</RouterLink><br>
     <RouterLink to="/investigate-ukai-kenkin">迂回献金キャッチャー</RouterLink><br>
     <RouterLink to="/investigate-keinen-henka">経年変化</RouterLink><br>
+    <RouterLink to="/investigate-keinen-henka-usage">経年変化(政党交付金使途報告書)</RouterLink><br>
     <RouterLink to="/investigate-party-jougen">パーティ参加費上限</RouterLink><br>
     <RouterLink to="/investigate-renketsu-koufukin">交付金連結</RouterLink><br>
 
