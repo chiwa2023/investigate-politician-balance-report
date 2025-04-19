@@ -38,17 +38,30 @@ class RefleshYearPersistenceObjectBalancesheetAndUsageTaskletTest {
     /** 複写先となる年数 */
     private static final String copyYear = "2025";
 
-    /** Entityのベースディレクトリ */
-    private static final String dirEntity = "main/java/mitei/mitei/investigate/report/balance/politician/entity/poli_org/balancesheet/y";
-    /** Repositoryのベースディレクトリ */
-    private static final String dirRepository = "main/java/mitei/mitei/investigate/report/balance/politician/repository/poli_org/balancesheet/y";
-    /** Logicのベースディレクトリ */
-    private static final String dirLogic = "main/java/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
-    /** LogicTestのベースディレクトリ */
-    private static final String dirLogicTest = "test/java/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
-    /** TestSQLのベースディレクトリ */
-    private static final String dirLogicTestSql = "test/resources/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
+    /* 政治資金収支報告書用 */
+    // /** Entityのベースディレクトリ */
+    //private static final String dirEntity = "main/java/mitei/mitei/investigate/report/balance/politician/entity/poli_org/balancesheet/y";
+    // /** Repositoryのベースディレクトリ */
+    // private static final String dirRepository = "main/java/mitei/mitei/investigate/report/balance/politician/repository/poli_org/balancesheet/y";
+    // /** Logicのベースディレクトリ */
+    // private static final String dirLogic = "main/java/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
+    // /** LogicTestのベースディレクトリ */
+    // private static final String dirLogicTest = "test/java/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
+    // /** TestSQLのベースディレクトリ */
+    // private static final String dirLogicTestSql = "test/resources/mitei/mitei/investigate/report/balance/politician/logic/poli_org/balancesheet/y";
 
+    /* 政党交付金使途報告書用 */
+    /** Entityのベースディレクトリ */
+    private static final String dirEntity = "main/java/mitei/mitei/investigate/report/balance/politician/entity/poli_party/usage/y";
+    /** Repositoryのベースディレクトリ */
+    private static final String dirRepository = "main/java/mitei/mitei/investigate/report/balance/politician/repository/poli_party/usage/y";
+    /** Logicのベースディレクトリ */
+    private static final String dirLogic = "main/java/mitei/mitei/investigate/report/balance/politician/logic/party_usage/y";
+    /** LogicTestのベースディレクトリ */
+    private static final String dirLogicTest = "test/java/mitei/mitei/investigate/report/balance/politician/logic/party_usage/y";
+    /** TestSQLのベースディレクトリ */
+    private static final String dirLogicTestSql = "test/resources/mitei/mitei/investigate/report/balance/politician/logic/party_usage/y";
+    
     /** テスト対象 */
     @Autowired
     private RefleshYearPersistenceObjectBalancesheetAndUsageTasklet refleshYearPersistenceObjectBalancesheetAndUsageTasklet;

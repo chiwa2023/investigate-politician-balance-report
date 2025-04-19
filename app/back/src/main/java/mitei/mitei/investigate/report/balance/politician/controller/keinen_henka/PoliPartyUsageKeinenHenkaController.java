@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import mitei.mitei.investigate.report.balance.politician.controller.AbstractTemplateCheckController;
 import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.keinen_henka.KeinenHenkaConditionCapsuleDto;
-import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.keinen_henka.KeinenHenkaSurfaceAndSummaryByYearDto;
-import mitei.mitei.investigate.report.balance.politician.service.keinen_henka.PoliOrgBalancesheetKeinenHenkaService;
+import mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.keinen_henka.KeinenUsageSurface02103SummaryByYearDto;
+import mitei.mitei.investigate.report.balance.politician.service.keinen_henka.PoliPartyUsageKeinenHenkaService;
 
 /**
- * 経年変化取得Controller
+ * 経年変化使途報告書取得コントローラ
  */
 @Controller
-@RequestMapping("/keinen-henka")
-public class PoliOrgBalancesheetKeinenHenkaController extends AbstractTemplateCheckController {
+@RequestMapping("/keinen-usage")
+public class PoliPartyUsageKeinenHenkaController extends AbstractTemplateCheckController {
 
     /** セキュリティチェック不可定数 */
     private static final int SECURITY_CHECK_FALSE = AbstractTemplateCheckController.SECURITY_CHECK_FALSE;
@@ -33,9 +33,9 @@ public class PoliOrgBalancesheetKeinenHenkaController extends AbstractTemplateCh
     /** ビジネス処理続行定数 */
     private static final int CHECK_TRUE = AbstractTemplateCheckController.CHECK_TRUE;
 
-    /** 会費・員数検索Service */
+    /** 使途報告書集計表Service */
     @Autowired
-    private PoliOrgBalancesheetKeinenHenkaService poliOrgBalancesheetKeinenHenkaService;
+    private PoliPartyUsageKeinenHenkaService poliPartyUsageKeinenHenkaService;
 
     /**
      * 処理を行う
@@ -44,7 +44,7 @@ public class PoliOrgBalancesheetKeinenHenkaController extends AbstractTemplateCh
      * @return 検索結果
      */
     @PostMapping("/search")
-    public ResponseEntity<List<KeinenHenkaSurfaceAndSummaryByYearDto>> practice(
+    public ResponseEntity<List<KeinenUsageSurface02103SummaryByYearDto>> practice(
             @RequestBody final KeinenHenkaConditionCapsuleDto capsuleDto) {
 
         // NOTE:共通処理を行ったのちビジネス処理を行うフレームワークのため、ビジネス処理以外は丸コピすること
@@ -74,7 +74,7 @@ public class PoliOrgBalancesheetKeinenHenkaController extends AbstractTemplateCh
              * ここに固有のビジネス処理を記載する
              */
 
-            return ResponseEntity.ok(poliOrgBalancesheetKeinenHenkaService.practice(capsuleDto));
+            return ResponseEntity.ok(poliPartyUsageKeinenHenkaService.practice(capsuleDto));
 
             /* ここまで */
 
@@ -95,5 +95,4 @@ public class PoliOrgBalancesheetKeinenHenkaController extends AbstractTemplateCh
         }
 
     }
-
 }

@@ -10,13 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.dto.renketsu_koufukin.OfferingDateDocumentCodeDto;
+import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2022.OfferingPartyUsage0801And0807Report2022Entity;
 
 /**
  * offering_party_usage_0801_and_0807_report_2022接続用Repository
  */
 public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaRepository<OfferingPartyUsage0801And0807Report2022Entity, Integer>{
-
 
     //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     //    /**
@@ -54,6 +54,7 @@ public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaR
      */
     List<OfferingPartyUsage0801And0807Report2022Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(Integer saishinKbn,Integer politicalOrgCode,LocalDate offeringDate);
 
+
     
     /**
      * 政治団体に紐づく文書同一識別コードを取得する
@@ -63,8 +64,11 @@ public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaR
      */
     @Query(value = "SELECT offering_date,MAX(offering_balancesheet_0701_and_0720_surface_code) AS document_code"
             + "  FROM offering_balancesheet_0701_and_0720_surface_2022"
-            + "    WHERE political_organization_code = 9890"
+            + "    WHERE political_organization_code = ?1"
             + "    GROUP BY offering_date ORDER BY offering_date", nativeQuery = true)
     List<OfferingDateDocumentCodeDto> findLatestDocumentGroupOfferringDate(Integer poliOrgCode);
-    
+
+    Optional<OfferingPartyUsage0801And0807Report2022Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbnOrderByOfferingDateDesc(            Integer politicalOrgCode, Integer saishinKbn);
+
+
 }
