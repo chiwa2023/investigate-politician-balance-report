@@ -57,7 +57,6 @@ class PoliOrgBalancesheetKeinenHenkaServiceTest {
         assertEquals(4, list.size(), "2022から2025の年分");
 
         // テストデータを自動複写している都合で報告年以外の違いはない(が別報告年テーブルにアクセスしていることを知るにはそれで十分)
-
         KeinenHenkaSurfaceAndSummaryByYearDto byYearDto00 = list.get(0);
         OfferingBalancesheet01And20SurfaceEntity entitySurface00 = byYearDto00
                 .getOfferingBalancesheet01And20SurfaceEntity();

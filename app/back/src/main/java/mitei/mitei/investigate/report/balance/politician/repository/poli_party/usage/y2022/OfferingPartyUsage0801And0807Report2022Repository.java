@@ -10,24 +10,28 @@ import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.dto.renketsu_koufukin.OfferingDateDocumentCodeDto;
-import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balancesheet.y2022.OfferingBalancesheet0701And0720Surface2022Entity;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2022.OfferingPartyUsage0801And0807Report2022Entity;
 
 /**
  * offering_party_usage_0801_and_0807_report_2022接続用Repository
  */
-public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaRepository<OfferingPartyUsage0801And0807Report2022Entity, Integer>{
+public interface OfferingPartyUsage0801And0807Report2022Repository
+        extends JpaRepository<OfferingPartyUsage0801And0807Report2022Entity, Integer> {
 
-    //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
-    //    /**
-    //     * 名称を検索対象として全文検索をする
-    //     *
-    //     * @param searchWords 検索語
-    //     * @return 検索結果
-    //     */
-    //    @Query(value = "SELECT * FROM offering_party_usage_0801_and_0807_report_2022 WHERE saishin_kbn= 1 AND MATCH(offering_party_usage_0801_and_0807_report_2022_name) AGAINST (?1 IN NATURAL LANGUAGE MODE)", nativeQuery = true)
-    //    List<OfferingPartyUsage0801And0807Report2022Entity> findFullText(String searchWords);
-    
+    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
+    // /**
+    // * 名称を検索対象として全文検索をする
+    // *
+    // * @param searchWords 検索語
+    // * @return 検索結果
+    // */
+    // @Query(value = "SELECT * FROM offering_party_usage_0801_and_0807_report_2022
+    // WHERE saishin_kbn= 1 AND
+    // MATCH(offering_party_usage_0801_and_0807_report_2022_name) AGAINST (?1 IN
+    // NATURAL LANGUAGE MODE)", nativeQuery = true)
+    // List<OfferingPartyUsage0801And0807Report2022Entity> findFullText(String
+    // searchWords);
+
     /**
      * テーブル同一識別コードがテーブルで最大行を取得する
      *
@@ -35,27 +39,27 @@ public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaR
      */
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<OfferingPartyUsage0801And0807Report2022Entity> findFirstByOrderByPartyUsage0801And0807ReportCodeDesc();
-    
+
     /**
      * 同一識別コードが一致するデータをリストで取得する
      *
      * @param partyUsage0801And0807ReportCode 使途報告書様式8その1と7同一識別コード
      * @return データリスト
      */
-    List<OfferingPartyUsage0801And0807Report2022Entity> findByPartyUsage0801And0807ReportCodeOrderByPartyUsage0801And0807ReportId(Long partyUsage0801And0807ReportCode);
+    List<OfferingPartyUsage0801And0807Report2022Entity> findByPartyUsage0801And0807ReportCodeOrderByPartyUsage0801And0807ReportId(
+            Long partyUsage0801And0807ReportCode);
 
     /**
      * 最新かつ政治団体Idと提出日が一致するデータを抽出する
      *
-     * @param saishinKbn 最新区分
+     * @param saishinKbn       最新区分
      * @param politicalOrgCode 政治団体同一識別コード
-     * @param offeringDate 提出日
+     * @param offeringDate     提出日
      * @return データリスト
      */
-    List<OfferingPartyUsage0801And0807Report2022Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(Integer saishinKbn,Integer politicalOrgCode,LocalDate offeringDate);
+    List<OfferingPartyUsage0801And0807Report2022Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(
+            Integer saishinKbn, Integer politicalOrgCode, LocalDate offeringDate);
 
-
-    
     /**
      * 政治団体に紐づく文書同一識別コードを取得する
      *
@@ -63,12 +67,18 @@ public interface OfferingPartyUsage0801And0807Report2022Repository  extends JpaR
      * @return 選択肢Dto
      */
     @Query(value = "SELECT offering_date,MAX(offering_balancesheet_0701_and_0720_surface_code) AS document_code"
-            + "  FROM offering_balancesheet_0701_and_0720_surface_2022"
-            + "    WHERE political_organization_code = ?1"
+            + "  FROM offering_balancesheet_0701_and_0720_surface_2022" + "    WHERE political_organization_code = ?1"
             + "    GROUP BY offering_date ORDER BY offering_date", nativeQuery = true)
     List<OfferingDateDocumentCodeDto> findLatestDocumentGroupOfferringDate(Integer poliOrgCode);
 
-    Optional<OfferingPartyUsage0801And0807Report2022Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbnOrderByOfferingDateDesc(            Integer politicalOrgCode, Integer saishinKbn);
-
+    /**
+     * 政治団体に紐づく最新を取得する
+     *
+     * @param politicalOrgCode 政治団体同一識別コード
+     * @param saishinKbn       最新区分
+     * @return 検索結果
+     */
+    Optional<OfferingPartyUsage0801And0807Report2022Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbnOrderByOfferingDateDesc(
+            Integer politicalOrgCode, Integer saishinKbn);
 
 }

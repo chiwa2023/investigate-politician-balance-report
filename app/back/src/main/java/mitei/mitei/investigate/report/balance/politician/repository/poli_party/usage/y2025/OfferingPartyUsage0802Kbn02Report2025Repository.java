@@ -3,8 +3,10 @@ package mitei.mitei.investigate.report.balance.politician.repository.poli_party.
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2025.OfferingPartyUsage0802Kbn02Report2025Entity;
@@ -12,10 +14,10 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage
 /**
  * offering_party_usage_0802_kbn_02_report_2025接続用Repository
  */
-public interface OfferingPartyUsage0802Kbn02Report2025Repository  extends JpaRepository<OfferingPartyUsage0802Kbn02Report2025Entity, Integer>{
+public interface OfferingPartyUsage0802Kbn02Report2025Repository
+        extends JpaRepository<OfferingPartyUsage0802Kbn02Report2025Entity, Integer> {
 
-
-    //TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
+    // TODO マスタ系のテーブルでは名称検索が要求されることが多いので、事前に自動生成する。不要な場合は削除する
     //    /**
     //     * 名称を検索対象として全文検索をする
     //     *
@@ -39,6 +41,26 @@ public interface OfferingPartyUsage0802Kbn02Report2025Repository  extends JpaRep
      * @param documentCode 文書同一識別コード
      * @return データリスト(Id順)
      */
-    List<OfferingPartyUsage0802Kbn02Report2025Entity> findByDocumentCodeOrderByPartyUsage0802Kbn02ReportId(Long documentCode);
+    List<OfferingPartyUsage0802Kbn02Report2025Entity> findByDocumentCodeOrderByPartyUsage0802Kbn02ReportId(
+            Long documentCode);
+
+    /**
+     * 文書同一識別コードに紐づくデータを取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @param pageable     ページング情報
+     * @return 検索結果
+     */
+    List<OfferingPartyUsage0802Kbn02Report2025Entity> findByDocumentCodeOrderByPartyUsage0802Kbn02ReportId(
+            Long documentCode, Pageable pageable);
+
+    /**
+     * 文書同一識別コードに紐づくデータ件数を取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(*) AS count FROM offering_party_usage_0802_kbn_02_report_2025 WHERE document_code = ?1", nativeQuery = true)
+    Integer findByDocumentRow(Long documentCode);
 
 }

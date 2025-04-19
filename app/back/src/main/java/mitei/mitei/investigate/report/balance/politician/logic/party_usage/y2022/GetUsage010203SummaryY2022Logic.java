@@ -53,7 +53,6 @@ public class GetUsage010203SummaryY2022Logic {
 
         if (!optional.isEmpty()) {
             BeanUtils.copyProperties(optional.get(), surfaceEntity);
-            System.out.println("表紙取得---------------" + surfaceEntity.getPartyUsage0801And0807ReportId());
             summaryByYearDto.setSurfaceEntity(surfaceEntity);
             List<OfferingPartyUsage0802And0803Report2022Entity> list = offeringPartyUsage0802And0803Report2022Repository
                     .findByDocumentCodeOrderByPartyUsage0802And0803ReportId(

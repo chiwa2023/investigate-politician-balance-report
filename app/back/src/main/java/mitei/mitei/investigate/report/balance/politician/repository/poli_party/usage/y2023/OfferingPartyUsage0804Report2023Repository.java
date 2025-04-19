@@ -3,8 +3,10 @@ package mitei.mitei.investigate.report.balance.politician.repository.poli_party.
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2023.OfferingPartyUsage0804Report2023Entity;
@@ -42,6 +44,21 @@ public interface OfferingPartyUsage0804Report2023Repository  extends JpaReposito
      */
     List<OfferingPartyUsage0804Report2023Entity> findByDocumentCodeOrderByPartyUsage0804ReportId(Long documentCode);
 
+    /**
+     * 文書同一識別コードに紐づくデータを取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @param pageable     ページング情報
+     * @return 検索結果
+     */
+    List<OfferingPartyUsage0804Report2023Entity> findByDocumentCodeOrderByPartyUsage0804ReportId(Long documentCode,Pageable pageable);
     
-    
+    /**
+     * 文書同一識別コードに紐づくデータ件数を取得する
+     *
+     * @param documentCode 文書同一識別コード
+     * @return 件数
+     */
+    @Query(value = "SELECT count(*) AS count FROM offering_party_usage_0804_report_2023 WHERE document_code = ?1", nativeQuery = true)
+    Integer findByDocumentRow(Long documentCode);
 }

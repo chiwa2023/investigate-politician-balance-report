@@ -480,6 +480,28 @@ public class OfferingPartyUsage0802Kbn02Report2025Entity implements Serializable
         this.accrualDate = accrualDate;
     }
 
+    /** 発生日実値 */
+    @Column(name = "accrual_date_value")
+    private LocalDate accrualDateValue = INIT_LocalDate;
+
+    /**
+     * 発生日実値を取得する
+     *
+     * @return 発生日実値
+     */
+    public LocalDate getAccrualDateValue() {
+        return accrualDateValue;
+    }
+
+    /**
+     * 発生日実値を取得する
+     *
+     * @param accrualDateValue 発生日実値
+     */
+    public void setAccrualDateValue(final LocalDate accrualDateValue) {
+        this.accrualDateValue = accrualDateValue;
+    }
+
     /** 挿入ユーザId */
     @Column(name = "insert_user_id")
     private Long insertUserId = INIT_Long;

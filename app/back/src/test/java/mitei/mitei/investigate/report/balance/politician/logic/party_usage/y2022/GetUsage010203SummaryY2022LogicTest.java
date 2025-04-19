@@ -47,8 +47,8 @@ class GetUsage010203SummaryY2022LogicTest {
         assertNotNull(dto0.getSurfaceEntity());
         assertNotNull(dto0.getSummaryEntity());
         assertEquals(year, dto0.getHoukokuNen());
-        OfferingPartyUsage0801And0807ReportEntity surfaceEntity0 = dto0.getSurfaceEntity();
-        OfferingPartyUsage0802And0803ReportEntity summaryEntity0 = dto0.getSummaryEntity();
+        OfferingPartyUsage0801And0807ReportEntity surfaceEntity0 = dto0.getSurfaceEntity(); // NOPMD
+        OfferingPartyUsage0802And0803ReportEntity summaryEntity0 = dto0.getSummaryEntity(); // NOPMD
         assertEquals(year, surfaceEntity0.getNendo());
         assertEquals(year, summaryEntity0.getNendo());
         assertEquals(0L, surfaceEntity0.getPartyUsage0801And0807ReportId());
@@ -61,8 +61,8 @@ class GetUsage010203SummaryY2022LogicTest {
         assertNotNull(dto1.getSurfaceEntity());
         assertNotNull(dto1.getSummaryEntity());
         assertEquals(year, dto1.getHoukokuNen());
-        OfferingPartyUsage0801And0807ReportEntity surfaceEntity1 = dto1.getSurfaceEntity();
-        OfferingPartyUsage0802And0803ReportEntity summaryEntity1 = dto1.getSummaryEntity();
+        OfferingPartyUsage0801And0807ReportEntity surfaceEntity1 = dto1.getSurfaceEntity(); // NOPMD
+        OfferingPartyUsage0802And0803ReportEntity summaryEntity1 = dto1.getSummaryEntity(); // NOPMD
         assertEquals(year, surfaceEntity1.getNendo());
         assertEquals(year, summaryEntity1.getNendo());
         assertEquals(0L, surfaceEntity1.getPartyUsage0801And0807ReportId());
@@ -75,8 +75,8 @@ class GetUsage010203SummaryY2022LogicTest {
         assertNotNull(dto2.getSurfaceEntity());
         assertNotNull(dto2.getSummaryEntity());
         assertEquals(year, dto2.getHoukokuNen());
-        OfferingPartyUsage0801And0807ReportEntity surfaceEntity2 = dto2.getSurfaceEntity();
-        OfferingPartyUsage0802And0803ReportEntity summaryEntity2 = dto2.getSummaryEntity();
+        OfferingPartyUsage0801And0807ReportEntity surfaceEntity2 = dto2.getSurfaceEntity(); // NOPMD
+        OfferingPartyUsage0802And0803ReportEntity summaryEntity2 = dto2.getSummaryEntity(); // NOPMD
         assertEquals(year, surfaceEntity2.getNendo());
         assertEquals(year, summaryEntity2.getNendo());
         assertEquals(233L, surfaceEntity2.getPartyUsage0801And0807ReportId());
@@ -89,8 +89,8 @@ class GetUsage010203SummaryY2022LogicTest {
         assertNotNull(dto3.getSurfaceEntity());
         assertNotNull(dto3.getSummaryEntity());
         assertEquals(year, dto3.getHoukokuNen());
-        OfferingPartyUsage0801And0807ReportEntity surfaceEntity3 = dto3.getSurfaceEntity();
-        OfferingPartyUsage0802And0803ReportEntity summaryEntity3 = dto3.getSummaryEntity();
+        OfferingPartyUsage0801And0807ReportEntity surfaceEntity3 = dto3.getSurfaceEntity(); // NOPMD
+        OfferingPartyUsage0802And0803ReportEntity summaryEntity3 = dto3.getSummaryEntity(); // NOPMD
         assertEquals(year, surfaceEntity3.getNendo());
         assertEquals(year, summaryEntity3.getNendo());
         assertEquals(232L, surfaceEntity3.getPartyUsage0801And0807ReportId());

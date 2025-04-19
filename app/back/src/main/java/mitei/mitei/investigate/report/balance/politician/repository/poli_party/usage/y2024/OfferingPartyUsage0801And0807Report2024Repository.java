@@ -6,8 +6,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import jakarta.persistence.LockModeType;
+import mitei.mitei.investigate.report.balance.politician.dto.renketsu_koufukin.OfferingDateDocumentCodeDto;
 import mitei.mitei.investigate.report.balance.politician.entity.poli_party.usage.y2024.OfferingPartyUsage0801And0807Report2024Entity;
 
 /**
@@ -57,5 +59,26 @@ public interface OfferingPartyUsage0801And0807Report2024Repository
      */
     List<OfferingPartyUsage0801And0807Report2024Entity> findBySaishinKbnAndPoliticalOrganizationCodeAndOfferingDate(
             Integer saishinKbn, Integer politicalOrgCode, LocalDate offeringDate);
+
+    /**
+     * 政治団体に紐づく文書同一識別コードを取得する
+     *
+     * @param poliOrgCode 政治団体
+     * @return 選択肢Dto
+     */
+    @Query(value = "SELECT offering_date,MAX(offering_balancesheet_0701_and_0720_surface_code) AS document_code"
+            + "  FROM offering_balancesheet_0701_and_0720_surface_2024" + "    WHERE political_organization_code = ?1"
+            + "    GROUP BY offering_date ORDER BY offering_date", nativeQuery = true)
+    List<OfferingDateDocumentCodeDto> findLatestDocumentGroupOfferringDate(Integer poliOrgCode);
+
+    /**
+     * 政治団体に紐づく最新を取得する
+     *
+     * @param politicalOrgCode 政治団体同一識別コード
+     * @param saishinKbn       最新区分
+     * @return 検索結果
+     */
+    Optional<OfferingPartyUsage0801And0807Report2024Entity> findFirstByPoliticalOrganizationCodeAndSaishinKbnOrderByOfferingDateDesc(
+            Integer politicalOrgCode, Integer saishinKbn);
 
 }

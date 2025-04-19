@@ -1,12 +1,17 @@
 package mitei.mitei.investigate.report.balance.politician.dto.poli_org.balancesheet.keinen_henka;
 
+import java.io.Serializable;
+
 import mitei.mitei.investigate.report.balance.politician.entity.OfferingPartyUsage0801And0807ReportEntity;
 import mitei.mitei.investigate.report.balance.politician.entity.OfferingPartyUsage0802And0803ReportEntity;
 
 /**
  * 政党交付金使途報告書集計表取得Dto
  */
-public class KeinenUsageSurface02103SummaryByYearDto {
+public class KeinenUsageSurface02103SummaryByYearDto implements Serializable{ // NOPMD  DataClass 
+
+    /** SerialId */
+    private static final long serialVersionUID = 1L;
 
     /** 政党交付金使途報告書表紙Entity */
     private OfferingPartyUsage0801And0807ReportEntity surfaceEntity;
