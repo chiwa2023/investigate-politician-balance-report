@@ -71,7 +71,7 @@ if (0 === securityDto.loginUserId) {
     <RouterLink to="/regist-zengin-master/upload-csv">全銀協金融機関支店最新csv登録</RouterLink><br>
     <RouterLink to="/regist-zengin-master/show-ido-list">全銀協金融機関支店異動(廃止店舗異動指定)</RouterLink><br>
     <RouterLink to="/schedule-force/regist-zengin-master">【暫定】強制：全銀協最新情報更新バッチ</RouterLink><br>
-    <RouterLink to="/regist-kanrensha">関連者登録</RouterLink><br>
+    <RouterLink to="/partner_manage">関連者登録</RouterLink><br>
 
     <RouterLink to="/show-balancesheet-kanrensha">政治資金収支報告書照会(関連者基準)</RouterLink><br>
     <RouterLink to="/show-org-balancesheet-report">政治資金収支報告書照会(公式フォーマット)</RouterLink><br>

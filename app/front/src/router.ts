@@ -38,7 +38,8 @@ const routes = [
     { path: "/regist-zengin-master/upload-csv", name: "UploadCsvZenginWkTbl", component: () => import("./components/pages/regist_zengin_master/UploadCsvZenginWkTbl.vue") },
     { path: "/regist-zengin-master/show-ido-list", name: "ShowZenginIdoList", component: () => import("./components/pages/regist_zengin_master/ShowZenginIdoList.vue") },
 
-    { path: "/regist-kanrensha", name: "RegistKanrensha", component: () => import("./components/pages/regist_kanrensha/RegistKanrensha.vue") },
+    // 関連者管理
+    { path: "/partner_manage", name: "PartnerManage", component: () => import("./components/pages/partner_manage/PartnerManage.vue") },
 
 ];
 

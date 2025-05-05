@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { Ref, ref, toRaw } from "vue";
+import { computed, type ComputedRef, type Ref, ref, toRaw } from "vue";
 import SelectOptionInterface from "../../../dto/selectOptionDto";
 import InputAddressDto from "../../../dto/Input_address/inputAddressDto";
 import mockMakeSuggestPostalList from "./mock/mockMakeSuggestPostalList";
@@ -7,10 +7,11 @@ import mockMakeSuggestBlockList from "./mock/mockMakeSuggestBlockList";
 import mockMakeSuggestBuildingList from "./mock/mockMakeSuggestBuildingList";
 
 //props,emit
+const props = defineProps<{ editDto: InputAddressDto }>();
 const emits = defineEmits(["sendCancelInputAddress", "sendInputAddressInterface"]);
 
 /** 入力用Dto */
-const inputAddressDto: Ref<InputAddressDto> = ref(new InputAddressDto());
+const inputAddressDto: ComputedRef<InputAddressDto> = computed(() => { return props.editDto });
 
 
 /** 住所郵便番号まで */
@@ -176,7 +177,7 @@ function onSave() {
 
     <div class="footer">
         <button @click="onCancel" class="footer-button">キャンセル</button>
-        <button @click="onSave" class="footer-button">選択</button>
+        <button @click="onSave" class="footer-button left-space">選択</button>
     </div>
 
 </template>
