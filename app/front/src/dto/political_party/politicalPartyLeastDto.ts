@@ -26,7 +26,7 @@ export default class PoliticalPartyLeastDto implements PoliticalPartyLeastInterf
      * コンストラクタ
      * @param impl インターフェイス実装
      */
-    constructor(impl?: PoliticalPartyInterface) {
+    constructor(impl?: PoliticalPartyLeastInterface) {
 
         const initString: string = "";
         const initNumber: number = 0;

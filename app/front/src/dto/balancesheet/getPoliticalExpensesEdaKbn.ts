@@ -29,10 +29,10 @@ export default function getPoliticalExpensesEdaKbn(): SelectOptionInterface[] {
  * @param text オプション項目の表示テキスト
  * @returns セレクトボックス選択肢Dto
  */
-function createDto(value: string, text: string): SelectOptionDto {
+function createDto(value: number, text: string): SelectOptionDto {
 
     const dto: SelectOptionDto = new SelectOptionDto();
-    dto.value = value;
+    dto.value = String(value);
     dto.text = text;
 
     return dto;

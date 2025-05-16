@@ -22,10 +22,10 @@ export default function getOrdinaryExpensesEdaKbn(): SelectOptionInterface[] {
  * @param text 選択肢の表示テキスト
  * @returns 選択肢Dto
  */
-function createDto(value: string, text: string): SelectOptionDto {
+function createDto(value: number, text: string): SelectOptionDto {
 
     const dto: SelectOptionDto = new SelectOptionDto();
-    dto.value = value;
+    dto.value = String(value);
     dto.text = text;
 
     return dto;

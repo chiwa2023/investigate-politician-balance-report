@@ -23,9 +23,9 @@ export default function mockGetSouryouMeisai(edaKbn: number,pageNum:number): Sea
 
 function createDto(edaKbn: number, i: number): KifuJougenTradingInfoInterface {
 
-    const EDA_KBN_KOJIN: number = parseInt(YoushikiEdaKbnIncomeConstants.PERSONAL);
-    const EDA_KBN_CORP: number = parseInt(YoushikiEdaKbnIncomeConstants.CORPORATION);
-    const EDA_KBN_POLI_ORG: number = parseInt(YoushikiEdaKbnIncomeConstants.POLITIC_ORG);
+    const EDA_KBN_KOJIN: number = YoushikiEdaKbnIncomeConstants.PERSONAL;
+    const EDA_KBN_CORP: number = YoushikiEdaKbnIncomeConstants.CORPORATION;
+    const EDA_KBN_POLI_ORG: number = YoushikiEdaKbnIncomeConstants.POLITIC_ORG;
 
     const DANTAI: string = "政治団体";
     const KOJIN: string = "個人";

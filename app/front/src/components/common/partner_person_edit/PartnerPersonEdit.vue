@@ -2,108 +2,65 @@
 import { computed, ref, type ComputedRef, type Ref } from 'vue';
 import InputAddressDto from '../../../dto/Input_address/inputAddressDto';
 import ViewInputAddress from '../input_address/ViewInputAddress.vue';
-import SearchCorpNo from '../search_corp_no/SearchCorpNo.vue';
-import type CorpNoInterface from '../../../dto/partner_corp/corpNoDto';
 import ViewInputPersonName from '../input_person_name/ViewInputPersonName.vue';
 import InputPersonNameInterface from '../../../dto/input_person_name/inputPersonNameDto';
 import InputPersonNameDto from '../../../dto/input_person_name/inputPersonNameDto';
 import type PersonNoInterface from '../../../dto/partner_person/personNoDto';
+import InputShokugyou from '../input_shokugyou/InputShokugyou.vue';
+import InputShokugyouInterface from '../../../dto/input_shokugyou/inputShokugyouDto';
+import InputShokugyouDto from '../../../dto/input_shokugyou/inputShokugyouDto';
 
-const props = defineProps<{ editDto: PersonNoInterface }>();
-const inputPersonNoDto: ComputedRef<PersonNoInterface> = computed(() => { return props.editDto });
+const props = defineProps<{ editDto: PersonNoInterface, isEditNew: boolean }>();
+const inputPersonNoDto: ComputedRef<PersonNoInterface> = computed(() => props.editDto);
 
 const BLANK: string = "";
 
-// 職業入力定義
-const yakushokuFree: string = "所属なし";
-const yakushokuGeneral: string = "一般職員";
-const yakushokuDirector: string = "役職者";
-const yakushokuNoJob: string = "定職なし";
+// // 職業入力用
+// const allShokugyou: ComputedRef<string> = computed(() => {
+//     // return gyoushu.value + yakushoku.value; 
 
-// 職業入力用
-const allShokugyou: ComputedRef<string> = computed(() => {
-    // return gyoushu.value + yakushoku.value; 
+//     switch (inputPersonNoDto.value.yakushoku) {
+//         // フリーランス
+//         case yakushokuFree:
+//             isShokugyoEdit.value = false;
+//             if (BLANK === inputPersonNoDto.value.shokugyouUserWrite) {
+//                 return inputPersonNoDto.value.gyoushu + "業従事者";
+//             } else {
+//                 return inputPersonNoDto.value.shokugyouUserWrite;
+//             }
+//         // 団体所属者
+//         case yakushokuGeneral:
+//             isShokugyoEdit.value = false;
+//             if (BLANK === inputPersonNoDto.value.shokugyouUserWrite) {
+//                 return inputPersonNoDto.value.gyoushu + "業社員・職員";
+//             } else {
+//                 return inputPersonNoDto.value.shokugyouUserWrite;
+//             }
 
-    switch (inputPersonNoDto.value.yakushoku) {
-        // フリーランス
-        case yakushokuFree:
-            isShokugyoEdit.value = false;
-            if (BLANK === inputPersonNoDto.value.shokugyouUserWrite) {
-                return inputPersonNoDto.value.gyoushu + "業従事者";
-            } else {
-                return inputPersonNoDto.value.shokugyouUserWrite;
-            }
-        // 団体所属者
-        case yakushokuGeneral:
-            isShokugyoEdit.value = false;
-            if (BLANK === inputPersonNoDto.value.shokugyouUserWrite) {
-                return inputPersonNoDto.value.gyoushu + "業社員・職員";
-            } else {
-                return inputPersonNoDto.value.shokugyouUserWrite;
-            }
-
-        // 役職者
-        case yakushokuDirector:
-            isShokugyoEdit.value = true;
-            if (BLANK === corpNo.value) {
-                return inputPersonNoDto.value.gyoushu + "業役職者(社名記載拒否)";
-            } else {
-                return corpName.value + "(" + corpPrefecture.value + ")" + "役員";
-            }
-        // 定職なし
-        case yakushokuNoJob:
-            isShokugyoEdit.value = false;
-            return inputPersonNoDto.value.shokugyouUserWrite;
-        default:
-            isShokugyoEdit.value = true;
-            return "";
-    }
-});
-const isShokugyoEdit: Ref<boolean> = ref(true);
-
-/**
- * 法人情報受信
- */
-function recieveCorpNoInterface(sendDto: CorpNoInterface) {
-
-    corpNo.value = sendDto.corpNo;
-    corpPrefecture.value = sendDto.inputAddress.addressPostal;
-    corpName.value = sendDto.corpName;
-
-    //非表示
-    isCorpSearch.value = false;
-}
-
-/**
- * 関連者検索キャンセル
- */
-function recieveCancelCorpNo() {
-    //非表示
-    isCorpSearch.value = false;
-}
-
-// 検索リスト
-const listCorp: Ref<CorpNoInterface[]> = ref([]);
-
+//         // 役職者
+//         case yakushokuDirector:
+//             isShokugyoEdit.value = true;
+//             if (BLANK === corpNo.value) {
+//                 return inputPersonNoDto.value.gyoushu + "業役職者(社名記載拒否)";
+//             } else {
+//                 return corpName.value + "(" + corpPrefecture.value + ")" + "役員";
+//             }
+//         // 定職なし
+//         case yakushokuNoJob:
+//             isShokugyoEdit.value = false;
+//             return inputPersonNoDto.value.shokugyouUserWrite;
+//         default:
+//             isShokugyoEdit.value = true;
+//             return "";
+//     }
+// });
+// const isShokugyoEdit: Ref<boolean> = ref(true);
 
 function onCancel() {
     alert("キャンセル");
 }
 function onSave() {
     alert("保存");
-}
-
-// 企業団体検索
-const corpNo: Ref<string> = ref("");
-const corpPrefecture: Ref<string> = ref("");
-const corpName: Ref<string> = ref("");
-const isCorpSearch: Ref<boolean> = ref(false);
-
-/**
- * 法人検索表示
- */
-function onSearchCorpNo() {
-    isCorpSearch.value = true;
 }
 
 /**
@@ -122,9 +79,8 @@ function resetData() {
     // 住所情報のリセット   
     inputPersonNoDto.value.inputAddress = new InputAddressDto();
     // 職業情報のリセット   
-    inputPersonNoDto.value.gyoushu = BLANK;
-    inputPersonNoDto.value.yakushoku = BLANK;
-    inputPersonNoDto.value.shokugyouUserWrite = BLANK;
+    inputPersonNoDto.value.allShokugyou = BLANK;
+    inputPersonNoDto.value.inputShokugyou = new InputShokugyouDto();
 
 }
 
@@ -197,10 +153,14 @@ function nationarityConfirm() {
         default:
             break;
     }
-
-
-
 }
+
+const isGaikokuHoujin: Ref<boolean> = ref(false);
+function recieveInputShokugyouInterface(sendDto: InputShokugyouInterface) {
+    inputPersonNoDto.value.inputShokugyou = sendDto;
+    inputPersonNoDto.value.allShokugyou = sendDto.allShokugyou;
+}
+
 </script>
 <template>
 
@@ -226,11 +186,12 @@ function nationarityConfirm() {
         職業
     </div>
     <div class="right-area">
-        <input type="text" disabled="true" v-model="allShokugyou" class="max-input">
+        <input type="text" disabled="true" v-model="inputPersonNoDto.inputShokugyou.allShokugyou" class="max-input">
     </div>
     <div class="clear-both"></div>
 
     <hr>
+
 
     <h3>収支報告書公開入力</h3>
 
@@ -238,7 +199,7 @@ function nationarityConfirm() {
         (編集→)新規作成
     </div>
     <div class="right-area">
-        <button @click="resetData">入力情報のリセット</button>
+        <button @click="resetData" :disabled="!isEditNew">入力情報のリセット</button>
     </div>
     <div class="clear-both"></div>
 
@@ -259,55 +220,8 @@ function nationarityConfirm() {
     <ViewInputAddress :edit-dto="inputPersonNoDto.inputAddress" :is-raise-edit-view="true"
         @send-input-address-interface="recieveInputAddressInterface"></ViewInputAddress>
 
-    <div class="left-area">
-        職業(1)
-    </div>
-    <div class="right-area">
-        <span>業種(日本標準産業分類)&nbsp;<select v-model="inputPersonNoDto.gyoushu">
-                <option value=""></option>
-                <option value="農林"> A.農業，林業</option>
-                <option value="水産">B.漁業</option>
-                <option value="鉱業">C.鉱業，採石業，砂利採取業</option>
-                <option value="建設">D.建設業</option>
-                <option value="製造">E.製造業</option>
-                <option value="インフラ">F.電気・ガス・熱供給・水道業</option>
-                <option value="情報通信">G.情報通信業</option>
-                <option value="運輸">H.運輸業，郵便業</option>
-                <option value="流通小売">I.卸売業，小売業</option>
-                <option value="金融">J.金融業，保険業</option>
-                <option value="不動産">K.不動産業，物品賃貸業</option>
-                <option value="学術研究">L.学術研究，専門・技術サービス業</option>
-                <option value="宿泊飲食">M.宿泊業，飲食サービス業</option>
-                <option value="娯楽">N.生活関連サービス業，娯楽業</option>
-                <option value="教育学習">O.教育，学習支援業</option>
-                <option value="医療・福祉">P.医療，福祉</option>
-                <option value="複合">Q.複合サービス事業</option>
-                <option value="その他サービス">R.サービス業（他に分類されないもの）</option>
-                <option value="公務">S.公務（他に分類されるものを除く）</option>
-                <option value="分類不能">T.分類不能の産業</option>
-            </select></span>
-        <span class="left-space">役職&nbsp;<select v-model="inputPersonNoDto.yakushoku">
-                <option :value="yakushokuFree">フリーランス(所属団体なし・法人登記なし)</option>
-                <option :value="yakushokuGeneral">課長級以下職員(パート含む)</option>
-                <option :value="yakushokuDirector">法人役員(一人企業の社長)</option>
-                <option :value="yakushokuNoJob">定職なし</option>
-            </select></span>
-    </div>
-    <div class="clear-both"></div>
-    <div class="left-area">
-        職業(2)
-    </div>
-    <div class="right-area">
-        <div v-if="yakushokuDirector !== inputPersonNoDto.yakushoku"><input type="text"
-                v-model="inputPersonNoDto.shokugyouUserWrite" :disabled="isShokugyoEdit" class="max-input"></div>
-        <div v-if="yakushokuDirector === inputPersonNoDto.yakushoku">
-            <input type="text" v-model="corpNo" class="code-input">
-            <input type="text" v-model="corpPrefecture" class="code-input left-space">
-            <input type="text" v-model="corpName" class="left-space text-input">
-            <button class="left-space" @click="onSearchCorpNo">企業／団体検索</button>
-        </div>
-    </div>
-    <div class="clear-both"></div>
+    <InputShokugyou :isfooter="false" :edit-dto="inputPersonNoDto.inputShokugyou"
+        @send-input-shokugyou-interface="recieveInputShokugyouInterface"></InputShokugyou>
 
     <hr>
 
@@ -340,17 +254,21 @@ function nationarityConfirm() {
     <div class="clear-both"></div>
 
     <hr>
+    
+    <h3>変更履歴</h3>
+
+    <div class="left-area">
+        履歴表示
+    </div>
+    <div class="right-area">
+        <button>展開</button>
+    </div>
+    <div class="clear-both"></div>
+
+    <hr>
     <div class="footer">
         <button @click="onCancel" class="footer-button">キャンセル</button>
         <button @click="onSave" class="footer-button left-space">送信</button>
-    </div>
-
-    <div v-if="isCorpSearch" class="overBackground"></div>
-    <div v-if="isCorpSearch">
-        <div class="overComponent">
-            <SearchCorpNo :list="listCorp" :is-footer="true" @send-corp-no-interface="recieveCorpNoInterface"
-                @send-canceel-corp-no="recieveCancelCorpNo"></SearchCorpNo>
-        </div>
     </div>
 
 </template>

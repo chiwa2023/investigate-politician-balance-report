@@ -1,17 +1,19 @@
-import SelectOptionInterface from "../../../../dto/selectOptionDto";
-import SelectOptionDto from "../../../../dto/selectOptionDto";
+import type PostalCodeBuildingResultInterface from "../../../../dto/postal/postalCodeBuildingResultDto";
+import PostalCodeBuildingResultDto from "../../../../dto/postal/postalCodeBuildingResultDto";
+import type SelectOptionStringInterface from "../../../../dto/selectOptionStringDto";
+import SelectOptionStringDto from "../../../../dto/selectOptionStringDto";
 
-export default function mockMakeSuggestBuildingList():SelectOptionInterface[]{
+export default function mockMakeSuggestBuildingList():PostalCodeBuildingResultInterface{
 
-    const list:SelectOptionInterface[] = [];
+    const list:SelectOptionStringInterface[] = [];
 
-    const dto0:SelectOptionInterface = new SelectOptionDto();
+    const dto0:SelectOptionStringInterface = new SelectOptionStringDto();
 
-    const dto1:SelectOptionInterface = new SelectOptionDto();
+    const dto1:SelectOptionStringInterface = new SelectOptionStringDto();
     dto1.value = "三角ビル1F";
     dto1.text= "三角ビル1F";
 
-    const dto2:SelectOptionInterface = new SelectOptionDto();
+    const dto2:SelectOptionStringInterface = new SelectOptionStringDto();
     dto2.value = "三角ビル屋上";
     dto2.text= "三角ビル屋上";
 
@@ -19,6 +21,12 @@ export default function mockMakeSuggestBuildingList():SelectOptionInterface[]{
     list.push(dto1);
     list.push(dto2);
 
-    return list;
+
+    const resultDto:PostalCodeBuildingResultInterface = new PostalCodeBuildingResultDto();
+
+    resultDto.listOptions = list;
+    resultDto.lgCode = "123123";
+
+    return resultDto;
 
 }

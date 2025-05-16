@@ -41,31 +41,44 @@ export default class InputAddressDto {
     /** 住所建物編集有無 */
     isEditAddressBuilding: boolean;
 
+    /** アドレス・ベース・レジストリ住所郵便番号まで */
+    rsdtAddressPostl: string;
+
+    /** アドレス・ベース・レジストリ住所番地まで */
+    rsdtAddressBlock: string;
+
+    /** アドレス・ベース・レジストリ住所建物 */
+    rsdtAddressBuilding: string;
+
+
     constructor() {
-        const initString: string = "";
-        const initBoolean: boolean = false;
+        const INIT_STRING: string = "";
+        const INIT_BOOLEAN: boolean = false;
 
-        this.addressAll = initString;
-        this.orginAddressAll = initString;
+        this.addressAll = INIT_STRING;
+        this.orginAddressAll = INIT_STRING;
 
-        this.postalcode1 = initString;
-        this.postalcode2 = initString;
-        this.addressPostal = initString;
-        this.addressBlock = initString;
-        this.addressBuilding = initString;
-        this.tel1 = initString;
-        this.tel2 = initString;
-        this.tel3 = initString;
+        this.postalcode1 = INIT_STRING;
+        this.postalcode2 = INIT_STRING;
+        this.addressPostal = INIT_STRING;
+        this.addressBlock = INIT_STRING;
+        this.addressBuilding = INIT_STRING;
+        this.tel1 = INIT_STRING;
+        this.tel2 = INIT_STRING;
+        this.tel3 = INIT_STRING;
 
-        this.lgCode = initString;
-        this.machiazaId = initString;
-        this.blkId = initString;
-        this.rsdtId = initString;
+        this.lgCode = INIT_STRING;
+        this.machiazaId = INIT_STRING;
+        this.blkId = INIT_STRING;
+        this.rsdtId = INIT_STRING;
 
+        this.isEditAddressPostal = INIT_BOOLEAN;
+        this.isEditAddressBlock = INIT_BOOLEAN;
+        this.isEditAddressBuilding = INIT_BOOLEAN;
 
-        this.isEditAddressPostal = initBoolean;
-        this.isEditAddressBlock = initBoolean;
-        this.isEditAddressBuilding = initBoolean;
+        this.rsdtAddressPostl = INIT_STRING;
+        this.rsdtAddressBlock = INIT_STRING;
+        this.rsdtAddressBuilding = INIT_STRING;
 
     }
 }

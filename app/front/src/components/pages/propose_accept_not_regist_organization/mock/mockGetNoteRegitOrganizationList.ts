@@ -20,7 +20,7 @@ function getDto(index: number): NotRegistOrganizaionDto {
     dto1.electionCommissionLeastDto.electionCommissionCode = index * 150;
     dto1.electionCommissionLeastDto.electionCommissionName = "実在県選挙管理委員会";
 
-    dto1.saveStorageResultDto.shoshouId ="aaa/bbb/ccc/test.xml";
+    dto1.saveStorageResultDto.shoshouId = 0;
     dto1.saveStorageResultDto.shoshouCode = index;
 
     return dto1;

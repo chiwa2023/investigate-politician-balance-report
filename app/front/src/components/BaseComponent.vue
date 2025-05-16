@@ -1,8 +1,6 @@
 ﻿<script setup lang="ts">
 import { Ref, ref } from "vue";
 import InputAddressDto from "../dto/Input_address/inputAddressDto";
-import RelationPersonInterface from "../dto/relation/relationPersonDto";
-import BalancesheetXmlUpload from "./common/balancesheet-xml-upload/BalancesheetXmlUpload.vue";
 import InputAddressCode from "./common/input_address_code/InputAddressCode.vue";
 
 // 編集
@@ -13,15 +11,6 @@ editDto.value.orginAddressAll = "東京都千代田区"
 //住所入力表示フラグ
 const isVisibleInputAddress: Ref<boolean> = ref(false);
 
-/** 住所 */
-const editId: Ref<string> = ref("");
-/**
- * 住所入力コンポーネント表示
- */
-function onInputAddress(id: string) {
-    editId.value = id;
-    isVisibleInputAddress.value = true;
-}
 
 /**
  * 住所入力キャンセル

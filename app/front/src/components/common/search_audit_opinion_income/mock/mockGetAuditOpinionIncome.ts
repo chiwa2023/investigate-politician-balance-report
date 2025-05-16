@@ -37,12 +37,12 @@ function createDto(index: number): AuditOpinionIncomeInterface {
     if(index % 2 === 1){
         dto.reportKbn = ReportKbnConstants.PUBLISH_REPORT;
         dto.youshikiKbn = parseInt(YoushikiKbnIncomeConstants.DONATE);
-        dto.youshikiEdaKbn = parseInt(YoushikiEdaKbnIncomeConstants.PERSONAL);
+        dto.youshikiEdaKbn = YoushikiEdaKbnIncomeConstants.PERSONAL;
         dto.loginUserRole = "会計責任者";
     }else{
         dto.reportKbn = ReportKbnConstants.PLAN_TASK;
         dto.youshikiKbn = parseInt(YoushikiKbnIncomeConstants.PARTY);
-        dto.youshikiEdaKbn = parseInt(YoushikiEdaKbnIncomeConstants.CORPORATION);
+        dto.youshikiEdaKbn = YoushikiEdaKbnIncomeConstants.CORPORATION;
         dto.loginUserRole = "事務担当者1";
     }
 

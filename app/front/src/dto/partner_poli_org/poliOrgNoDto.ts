@@ -28,6 +28,9 @@ export default class PoliOrgNoDto implements PoliOrgNoInterface {
     /** 会計責任者氏名 */
     accountMgrName: string;
 
+        /** 承認該否  */
+        isApproval: boolean;
+
     constructor() {
 
         const INIT_STRING: string = "";
@@ -39,6 +42,8 @@ export default class PoliOrgNoDto implements PoliOrgNoInterface {
         this.delegateName = INIT_STRING;
         this.accountMgrNo = INIT_STRING;
         this.accountMgrName = INIT_STRING;
+
+        this.isApproval = false;
 
     }
 }

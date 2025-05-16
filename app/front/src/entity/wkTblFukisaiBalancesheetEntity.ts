@@ -2,7 +2,7 @@ export default interface WkTblFukisaiBalancesheetInterface {
 
 }
 
-export default class WkTblFukisaiBalancesheetEntity implements wkTblFukisaiBalancesheetInterface {
+export default class WkTblFukisaiBalancesheetEntity implements WkTblFukisaiBalancesheetInterface {
 
         /** 収支報告書不記載ワークテーブルId */
         wkTblFukisaiBalancesheetId: number;

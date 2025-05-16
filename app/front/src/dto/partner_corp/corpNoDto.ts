@@ -33,6 +33,9 @@ export default class CorpNoDto implements CorpNoInterface {
     /** 代表者名 */
     orgDelegate: string;
 
+        /** 承認該否  */
+        isApproval: boolean;
+
     constructor() {
 
         const INIT_STRING: string = "";
@@ -46,5 +49,9 @@ export default class CorpNoDto implements CorpNoInterface {
         this.inputAddress = new InputAddressDto();
         this.orgDelegateCode = INIT_STRING;
         this.orgDelegate = INIT_STRING;
+
+
+        this.isApproval = false;
+
     }
 }

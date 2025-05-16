@@ -1,6 +1,6 @@
 import FrameworkResultInterface from "../frameworkResultDto";
 import FrameworkResultDto from "../frameworkResultDto";
-import type CorpInterface from "./corpDto";
+import type CorpInterface from "./corpNoDto";
 
 export default interface CheckRegistCorpResultInterface extends FrameworkResultInterface {
 

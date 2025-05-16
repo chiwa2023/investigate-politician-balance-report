@@ -10,7 +10,7 @@ const props = defineProps<{ saveStorageResultDto: SaveStorageResultDto, }>();
  */
 async function onDownload() {
 
-    if (props.saveStorageResultDto.shoshouId === "") {
+    if (props.saveStorageResultDto.shoshouId === 0) {
         //書証Dtoが初期値のままの場合は即離脱
         alert("呼び出すファイルを指定していません");
         return;

@@ -1,23 +1,30 @@
 ﻿<script setup lang="ts">
-import { computed, type ComputedRef, type Ref, ref, toRaw } from "vue";
+import { type Ref, ref, toRaw } from "vue";
 import SelectOptionInterface from "../../../dto/selectOptionDto";
 import InputAddressDto from "../../../dto/Input_address/inputAddressDto";
 import mockMakeSuggestPostalList from "./mock/mockMakeSuggestPostalList";
 import mockMakeSuggestBlockList from "./mock/mockMakeSuggestBlockList";
 import mockMakeSuggestBuildingList from "./mock/mockMakeSuggestBuildingList";
+import PostalCodeCapsuleInterface from "../../../dto/postal/postalCodeCapsuleDto";
+import PostalCodeCapsuleDto from "../../../dto/postal/postalCodeCapsuleDto";
+import type SelectOptionNumberInterface from "../../../dto/selectOptionNumberDto";
+import type PostalCodeBlockResultInterface from "../../../dto/postal/postalCodeBlockResultDto";
+import type PostalCodeBuildingResultInterface from "../../../dto/postal/postalCodeBuildingResultDto";
 
 //props,emit
 const props = defineProps<{ editDto: InputAddressDto }>();
 const emits = defineEmits(["sendCancelInputAddress", "sendInputAddressInterface"]);
 
 /** 入力用Dto */
-const inputAddressDto: ComputedRef<InputAddressDto> = computed(() => { return props.editDto });
-
+const inputAddressDto: Ref<InputAddressDto> = ref(new InputAddressDto());
+inputAddressDto.value = structuredClone(toRaw(props.editDto));    
+//onst addressPostal: Ref<string> = ref(props.editDto.addressPostal);
+//const addressBlock: Ref<string> = ref(props.editDto.addressBlock);
 
 /** 住所郵便番号まで */
-const selectedAddressPostal: Ref<string> = ref("");
-const listPostalSuggest: Ref<SelectOptionInterface[]> = ref([]);
-const listBackupPostalSuggest: Ref<SelectOptionInterface[]> = ref([]);
+const selectedAddressPostal: Ref<number> = ref(-1);
+const listPostalSuggest: Ref<SelectOptionNumberInterface[]> = ref([]);
+const listBackupPostalSuggest: Ref<SelectOptionNumberInterface[]> = ref([]);
 
 /** 住所郵便番地まで */
 const selectedAddressBlock: Ref<string> = ref("");
@@ -28,43 +35,142 @@ const listBackupBlockSuggest: Ref<SelectOptionInterface[]> = ref([]);
 const selectedAddressBuilding: Ref<string> = ref("");
 const listBuildingSuggest: Ref<SelectOptionInterface[]> = ref([]);
 
-/** 郵便番号変更 */
-function mockMakeAddressPostal() {
+
+/** 地方自治体住居検索 */
+const isGyouseiku: Ref<boolean> = ref(false);
+
+/** 郵便番号取得 */
+function getAddressPostal() {
     listPostalSuggest.value.splice(0);
     //  郵便番号の形式となったらリストを取得する
     if (3 === inputAddressDto.value.postalcode1.length && 4 === inputAddressDto.value.postalcode2.length) {
-        listPostalSuggest.value = mockMakeSuggestPostalList();
-        listBackupPostalSuggest.value = structuredClone(toRaw(listPostalSuggest.value));
-    }
 
+        // 検索条件の設定
+        const conditionDto: PostalCodeCapsuleInterface = new PostalCodeCapsuleDto();
+        conditionDto.postal1 = inputAddressDto.value.postalcode1;
+        conditionDto.postal2 = inputAddressDto.value.postalcode2;
+
+        // TODO 住所候補をBack側から取得する
+        // const url = "http://localhost:7080/postal-search/postal";
+        // const method = "POST";
+        // const body = JSON.stringify(conditionDto);
+        // const headers = {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        // };
+        // fetch(url, { method, headers, body })
+        //     .then(async (response) => {
+        //         listInquireAnswer.value = await response.json();
+        //         listInquireAnswer.value[0];
+        //     })
+        //     .catch((error) => { alert(error); });
+
+        const resultDto = mockMakeSuggestPostalList();
+        listPostalSuggest.value = resultDto.listOptions;
+        listBackupPostalSuggest.value = structuredClone(toRaw(listPostalSuggest.value));
+        isGyouseiku.value = resultDto.isGyouseikuData;
+
+        // 1件だけの時は値を決定して番地までデータを検索
+        if (listPostalSuggest.value.length === 1) {
+            selectedAddressPostal.value = listPostalSuggest.value[0].value;
+            searchBlock();
+        }
+    }
 }
 
 /** 住所郵便番号候補選択時 */
 function selectSuggestPostal() {
-    inputAddressDto.value.addressPostal = selectedAddressPostal.value;
-    // TODO 現状は選択肢でコードと名称だけだが、公共団体コードなどを紐づけて利用する
-    inputAddressDto.value.lgCode = "123456";
-    //下層のサジェストの作成
-    listBlockSuggest.value = mockMakeSuggestBlockList();
+    const text: string = listPostalSuggest.value.filter(e => e.value === selectedAddressPostal.value)[0].text;
+    inputAddressDto.value.addressPostal = text;
+    inputAddressDto.value.rsdtAddressPostl = text;
+
+    searchBlock();
+}
+
+/** 住所番地までを検索 */
+function searchBlock() {
+    // 検索条件の設定
+    const conditionDto: PostalCodeCapsuleInterface = new PostalCodeCapsuleDto();
+    conditionDto.selectedPostal = selectedAddressPostal.value;
+    conditionDto.isGyouseikuData = isGyouseiku.value;
+
+    // TODO 番地まで住所候補をBack側から取得する
+    // const url = "http://localhost:7080/postal-search/block";
+    // const method = "POST";
+    // const body = JSON.stringify(conditionDto);
+    // const headers = {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    // };
+    // fetch(url, { method, headers, body })
+    //     .then(async (response) => {
+    //         listInquireAnswer.value = await response.json();
+    //         listInquireAnswer.value[0];
+    //     })
+    //     .catch((error) => { alert(error); });
+
+    const resultDto: PostalCodeBlockResultInterface = mockMakeSuggestBlockList();
+    listBlockSuggest.value = resultDto.listOptions;
     listBackupBlockSuggest.value = structuredClone(toRaw(listBlockSuggest.value));
+    isGyouseiku.value = resultDto.isGyouseikuData;
+    inputAddressDto.value.lgCode = resultDto.lgCode;
+
+    // 1件だけの時は値を決定して建物までデータを検索
+    if (listBlockSuggest.value.length === 1) {
+        selectedAddressBlock.value = listBlockSuggest.value[0].value;
+        searchBuilding();
+    }
+
 }
 
 /** 住所番地候補選択時 */
 function selectSuggestBlock() {
-    inputAddressDto.value.addressBlock = selectedAddressBlock.value;
-
+    const text = listBlockSuggest.value.filter(e => e.value === selectedAddressBlock.value)[0].text;
+    inputAddressDto.value.addressBlock = text;
+    inputAddressDto.value.rsdtAddressBlock = text;
     // TODO 現状は選択肢でコードと名称だけだが、公共団体コードなどを紐づけて利用する
     inputAddressDto.value.machiazaId = "2345678";
     inputAddressDto.value.blkId = "123";
     inputAddressDto.value.rsdtId = "456";
 
     //下層のサジェストの作成
-    listBuildingSuggest.value = mockMakeSuggestBuildingList();
+    searchBuilding();
 }
+
+function searchBuilding() {
+
+    // 検索条件の設定
+    const conditionDto: PostalCodeCapsuleInterface = new PostalCodeCapsuleDto();
+    conditionDto.selectedBlock = selectedAddressBlock.value;
+    conditionDto.postalCode = inputAddressDto.value.postalcode1 + inputAddressDto.value.postalcode2;
+    conditionDto.lgCode = inputAddressDto.value.lgCode;
+    conditionDto.isGyouseikuData = isGyouseiku.value;
+
+    // TODO 建物まで住所候補をBack側から取得する
+    // const url = "http://localhost:7080/postal-search/building";
+    // const method = "POST";
+    // const body = JSON.stringify(conditionDto);
+    // const headers = {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    // };
+    // fetch(url, { method, headers, body })
+    //     .then(async (response) => {
+    //         listInquireAnswer.value = await response.json();
+    //         listInquireAnswer.value[0];
+    //     })
+    //     .catch((error) => { alert(error); });
+
+    const resultDto: PostalCodeBuildingResultInterface = mockMakeSuggestBuildingList();
+    listBuildingSuggest.value = resultDto.listOptions;
+
+}
+
 
 /** 住所建物候補選択時 */
 function selectSuggestBuilding() {
     inputAddressDto.value.addressBuilding = selectedAddressBuilding.value;
+    inputAddressDto.value.rsdtAddressBuilding  = selectedAddressBuilding.value;
 }
 
 /** 住所郵便番号フィルタ時 */
@@ -93,6 +199,8 @@ function onCancel() {
  * 入力内容を保存する
  */
 function onSave() {
+    // inputAddressDto.value.addressPostal = inputAddressDto.value.addressPostal;
+    // inputAddressDto.value.addressBlock = addressBlock.value;
     emits("sendInputAddressInterface", inputAddressDto.value);
 }
 
@@ -106,8 +214,8 @@ function onSave() {
         </div>
         <div class="right-area">
             <input v-model="inputAddressDto.postalcode1" type="text" class="code-input"
-                @input="mockMakeAddressPostal">&nbsp;-&nbsp;
-            <input v-model="inputAddressDto.postalcode2" type="text" class="code-input" @input="mockMakeAddressPostal">
+                @input="getAddressPostal">&nbsp;-&nbsp;
+            <input v-model="inputAddressDto.postalcode2" type="text" class="code-input" @input="getAddressPostal">
         </div>
         <div class="clear-both"><br></div>
 
@@ -121,8 +229,7 @@ function onSave() {
             </select><span class="left-space">フィルタ<input v-model="filterPostal" type="text"
                     @input="filterSuggestPostal"></span><span class="left-space"><input
                     v-model="inputAddressDto.isEditAddressPostal" type="checkbox">編集</span><br>
-            <textarea v-model="inputAddressDto.addressPostal"
-                :disabled="!inputAddressDto.isEditAddressPostal"></textarea>
+            <textarea v-model="inputAddressDto.addressPostal" :disabled="!inputAddressDto.isEditAddressPostal"></textarea>
         </div>
         <div class="clear-both"><br></div>
 
@@ -157,10 +264,14 @@ function onSave() {
             住所コード
         </div>
         <div class="right-area">
-            <span>地方公共団体コード</span><input type="text" v-model="inputAddressDto.lgCode"  class="code-input" disabled="true">
-            <span class="left-space">町字Id</span><input type="text" v-model="inputAddressDto.machiazaId"  class="code-input" disabled="true">
-            <span class="left-space">街区Id</span><input type="text" v-model="inputAddressDto.blkId"  class="code-input" disabled="true">
-            <span class="left-space">住居Id</span><input type="text" v-model="inputAddressDto.rsdtId" class="code-input" disabled="true">
+            <span>地方公共団体コード</span><input type="text" v-model="inputAddressDto.lgCode" class="code-input"
+                disabled="true">
+            <span class="left-space">町字Id</span><input type="text" v-model="inputAddressDto.machiazaId"
+                class="code-input" disabled="true">
+            <span class="left-space">街区Id</span><input type="text" v-model="inputAddressDto.blkId" class="code-input"
+                disabled="true">
+            <span class="left-space">住居Id</span><input type="text" v-model="inputAddressDto.rsdtId" class="code-input"
+                disabled="true">
         </div>
         <div class="clear-both"></div>
 

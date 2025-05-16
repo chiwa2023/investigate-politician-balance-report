@@ -16,8 +16,6 @@ import SearchPoliOrg from '../../common/search_poli_org/SearchPoliOrg.vue';
 // 表示
 const viewStatus: Ref<number> = ref(1);
 
-
-
 /** 選択された関連者個人を受信する */
 const inputPersonDto: Ref<PersonNoInterface> = ref(new PersonNoDto());
 function recievePersonNoInterface(sendDto: PersonNoInterface) {
@@ -61,7 +59,7 @@ function recieveCorpCoInterface(sendDto: CorpNoInterface) {
         <!-- 検索 -->
         <SearchPersonNo :is-footer="false" @send-person-no-interface="recievePersonNoInterface"></SearchPersonNo>
         <hr>
-        <PartnerPersonEdit :edit-dto="inputPersonDto"></PartnerPersonEdit>
+        <PartnerPersonEdit :edit-dto="inputPersonDto" :is-edit-new="true"></PartnerPersonEdit>
     </div>
 
     <div v-if="viewStatus == 2" class="one-line">
@@ -69,14 +67,14 @@ function recieveCorpCoInterface(sendDto: CorpNoInterface) {
         <SearchCorpNo :list="listCorp" :is-footer="false" @send-corp-no-interface="recieveCorpCoInterface">
         </SearchCorpNo>
         <hr>
-        <PartnerCorpEdit :edit-dto="inputCorpNoDto"></PartnerCorpEdit>
+        <PartnerCorpEdit :edit-dto="inputCorpNoDto" :is-edit-new="true"></PartnerCorpEdit>
     </div>
 
     <div v-if="viewStatus == 3" class="one-line">
         <!-- 検索 -->
         <SearchPoliOrg :is-footer="false" @send-poli-org-no-interface="recievePoliOrgNoInterface"></SearchPoliOrg>
         <hr>
-        <PartnerPoliOrgEdit :edit-dto="inputPoliOrgDto"></PartnerPoliOrgEdit>
+        <PartnerPoliOrgEdit :edit-dto="inputPoliOrgDto" :is-edit-new="true"></PartnerPoliOrgEdit>
     </div>
 
 

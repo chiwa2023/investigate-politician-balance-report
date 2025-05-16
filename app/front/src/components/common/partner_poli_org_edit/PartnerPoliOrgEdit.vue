@@ -8,8 +8,8 @@ import type PoliOrgNoInterface from '../../../dto/partner_poli_org/poliOrgNoDto'
 import InputOrgNameInterface from '../../../dto/input_org_name/inputOrgNameDto';
 import InputOrgName from '../input_org_name/InputOrgName.vue';
 
-const props = defineProps<{ editDto: PoliOrgNoInterface }>();
-const editPoliOrgDto: ComputedRef<PoliOrgNoInterface> = computed(() => { return props.editDto });
+const props = defineProps<{ editDto: PoliOrgNoInterface, isEditNew: boolean }>();
+const editPoliOrgDto: ComputedRef<PoliOrgNoInterface> = computed(() => props.editDto)
 
 const BLANK: string = "";
 
@@ -76,7 +76,7 @@ function resetData() {
     editPoliOrgDto.value.delegateName = BLANK;
 
     // 会計責任者初期化    
-    editPoliOrgDto.value.accountMgrNo= BLANK;
+    editPoliOrgDto.value.accountMgrNo = BLANK;
     editPoliOrgDto.value.accountMgrName = BLANK;
 }
 
@@ -84,24 +84,24 @@ function resetData() {
 /**
  * すでに同じ法人番号で登録されているかチェック
  */
- function onCheckAlreadyRegist() {
-    if(editPoliOrgDto.value.poliOrgNo !== BLANK){
+function onCheckAlreadyRegist() {
+    if (editPoliOrgDto.value.poliOrgNo !== BLANK) {
         alert("現在既存または新規と確定したデータを編集中です");
-    }else{
+    } else {
         // 仮で時効の秒数基準で既存だったり新規だったり動作を変更する
         // TOD Back側で同一判定処理ができたら連結する
-        const date:Date = new Date();
-        if(date.getSeconds() % 2 == 0){
+        const date: Date = new Date();
+        if (date.getSeconds() % 2 == 0) {
             alert("新規データでした");
             editPoliOrgDto.value.poliOrgNo = "新規";
-        }else{
+        } else {
             alert("既存データが存在します。変更が必要な場合はデータ検索からやり直してください");
             editPoliOrgDto.value.poliOrgNo = "1234-tyeer";
         }
     }
 }
 
-
+const seitouKbn: Ref<string> = ref("5");
 
 function onCancel() {
     alert("キャンセル");
@@ -146,16 +146,16 @@ function onSave() {
         (編集→)新規作成
     </div>
     <div class="right-area">
-        <button @click="resetData">入力情報のリセット</button>
+        <button @click="resetData" :disabled="!isEditNew">入力情報のリセット</button>
     </div>
     <div class="clear-both"></div>
-    
+
     <div class="left-area">
         政治団体仮コード
     </div>
     <div class="right-area">
         <input type="text" v-model="editPoliOrgDto.poliOrgNo" disabled="true"><button class="left-space"
-        @click="onCheckAlreadyRegist">重複確認</button>
+            @click="onCheckAlreadyRegist">重複確認</button>
     </div>
     <div class="clear-both"></div>
 
@@ -205,15 +205,27 @@ function onSave() {
         団体区分
     </div>
     <div class="right-area">
-        <span><input type="radio" :value="1"> 政党要件を満たす政党</span>
-        <span class="left-space"><input type="radio" :value="2"> 政党の支部</span>
-        <span class="left-space"><input type="radio" :value="3"> 政治資金団体</span>
+        <span><input type="radio" v-model="seitouKbn" :value="1" id="seitouKbn"> 政党要件を満たす政党</span>
+        <span class="left-space"><input type="radio" v-model="seitouKbn" :value="2" id="seitouKbn"> 政党の支部</span>
+        <span class="left-space"><input type="radio" v-model="seitouKbn" :value="3" id="seitouKbn"> 政治資金団体</span>
         <br>
         <span><input type="radio" :value="4"> 政治資金規正法第18条の2第1項の規定による政治団体</span>
-        <span class="left-space"><input type="radio" :value="5"> その他の政治団体</span>
-        <span class="left-space"><input type="radio" :value="6"> その他の政治団体の支部</span>
+        <span class="left-space"><input type="radio" v-model="seitouKbn" :value="5" id="seitouKbn"> その他の政治団体</span>
+        <span class="left-space"><input type="radio" v-model="seitouKbn" :value="6" id="seitouKbn"> その他の政治団体の支部</span>
     </div>
     <div class="clear-both"></div>
+
+    <hr>
+    <h3>変更履歴</h3>
+
+    <div class="left-area">
+        履歴表示
+    </div>
+    <div class="right-area">
+        <button>展開</button>
+    </div>
+    <div class="clear-both"></div>
+
     <hr>
     <div class="footer">
         <button @click="onCancel" class="footer-button">キャンセル</button>

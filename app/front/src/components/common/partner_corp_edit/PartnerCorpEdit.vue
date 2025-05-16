@@ -11,15 +11,17 @@ import HoujinSbtsConstants from '../../../dto/partner_corp/houjinSbtsConstants';
 import SearchPersonNo from '../search_person_no/SearchPersonNo.vue';
 import type PersonNoInterface from '../../../dto/partner_person/personNoDto';
 
-const props = defineProps<{ editDto: CorpNoInterface }>();
-const editCorpDto: ComputedRef<CorpNoInterface> = computed(() => { return props.editDto });
+const props = defineProps<{ editDto: CorpNoInterface, isEditNew: boolean }>();
+const editCorpDto: ComputedRef<CorpNoInterface> = computed(() => props.editDto);
+
+const BLANK: string = "";
 
 // 編集用Dto
 const addressDtoStored: Ref<InputAddressDto> = ref(new InputAddressDto());
 
 const allCorpName: ComputedRef<string> = computed(() => {
     if (editCorpDto.value.isShiten) { return editCorpDto.value.corpName + "　" + branchName.value; }
-     else { return editCorpDto.value.corpName; }
+    else { return editCorpDto.value.corpName; }
 });
 
 // 検索リスト
@@ -121,6 +123,22 @@ function recievePersonNoInterface(sendDto: PersonNoInterface) {
     isPersonSearch.value = false;
 }
 
+function resetData() {
+    // コードのリセット
+    editCorpDto.value.corpNo = BLANK;
+    // 名前情報のリセット
+    editCorpDto.value.corpName = BLANK;
+    editCorpDto.value.corpNameKana = BLANK;
+    // 住所情報のリセット   
+    editCorpDto.value.inputAddress = new InputAddressDto();
+    editCorpDto.value.houjinNo = BLANK;
+
+    // 代表者のリセット   
+    editCorpDto.value.orgDelegate = BLANK;
+    editCorpDto.value.orgDelegateCode = BLANK;
+    branchName.value = BLANK;
+    branchNamekana.value = BLANK;
+}
 
 function onCancel() {
     alert("キャンセル");
@@ -158,6 +176,14 @@ function onSave() {
     <hr>
 
     <h3>編集内容(連絡先)</h3>
+
+    <div class="left-area">
+        (編集→)新規作成
+    </div>
+    <div class="right-area">
+        <button @click="resetData" :disabled="!isEditNew">入力情報のリセット</button>
+    </div>
+    <div class="clear-both"></div>
 
     <div class="left-area">
         政治資金関連者コード(企業団体)
@@ -229,7 +255,15 @@ function onSave() {
     </div>
     <div class="clear-both"></div>
 
-
+    <hr>
+    <h3>変更履歴</h3>
+    <div class="left-area">
+        履歴表示
+    </div>
+    <div class="right-area">
+        <button>展開</button>
+    </div>
+    <div class="clear-both"></div>
 
     <div class="footer">
         <button @click="onCancel" class="footer-button">キャンセル</button>

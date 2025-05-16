@@ -8,8 +8,8 @@ import YoushikiEdaKbnIncomeConstants from "./youshikiEdaKbnIncomeConstants";
  */
 export default function changeStateIncomeEdaKbn(incomeDto:BalancesheetIncomeDto):BalancesheetIncomeDto {
     //枝区分によって特殊な動きをするのは様式区分7の場合のみです
-    if (String(incomeDto.youshikiKbn) === "7") {
-        switch (String(incomeDto.youshikiEdaKbn)) {
+    if (incomeDto.youshikiKbn === 7) {
+        switch (incomeDto.youshikiEdaKbn) {
         case YoushikiEdaKbnIncomeConstants.PERSONAL:
             //個人寄付の時、遺贈チェックと寄付金控除チェックをオンにします
             incomeDto.isUseCreditTax = true;

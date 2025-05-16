@@ -1,21 +1,24 @@
 ﻿<script setup lang="ts">
-import { computed, ref, type ComputedRef, type Ref } from "vue";
+import { computed, ref, toRaw, type ComputedRef, type Ref } from "vue";
 import InputAddressDto from "../../../dto/Input_address/inputAddressDto";
 import InputAddress from "./InputAddress.vue";
 
 //props,emit
 const props = defineProps<{ editDto: InputAddressDto, isRaiseEditView: boolean }>();
-const emits = defineEmits(["sendInputAddressInterface","sendCanceelinputAddress"]);
+const emits = defineEmits(["sendInputAddressInterface", "sendCanceelinputAddress"]);
 
 /** 入力用Dto */
 const inputAddressDto: ComputedRef<InputAddressDto> = computed(() => { return props.editDto });
 
 const isInput: Ref<boolean> = ref(false);
 
+const backupAddressDto: Ref<InputAddressDto>= ref(new InputAddressDto());
+
 /**
  * 関連者検索コンポーネント表示
  */
 function onInputAddress() {
+    backupAddressDto.value = structuredClone(toRaw(inputAddressDto.value));
     isInput.value = true;
 }
 
@@ -23,6 +26,30 @@ function onInputAddress() {
  * 関連者検索キャンセル
  */
 function recieveCancelInputAddress() {
+
+
+    inputAddressDto.value.addressAll = backupAddressDto.value.tel1;
+    inputAddressDto.value.orginAddressAll = backupAddressDto.value.tel1;
+
+    inputAddressDto.value.postalcode1 = backupAddressDto.value.postalcode1;
+    inputAddressDto.value.postalcode2 = backupAddressDto.value.postalcode2;
+
+    inputAddressDto.value.addressPostal = backupAddressDto.value.addressPostal;
+    inputAddressDto.value.isEditAddressPostal = backupAddressDto.value.isEditAddressPostal;
+    inputAddressDto.value.addressBlock = backupAddressDto.value.addressBlock;
+    inputAddressDto.value.isEditAddressBlock = backupAddressDto.value.isEditAddressBlock;
+    inputAddressDto.value.addressBuilding = backupAddressDto.value.addressBuilding;
+    inputAddressDto.value.isEditAddressBuilding = backupAddressDto.value.isEditAddressBuilding;
+
+    inputAddressDto.value.lgCode = backupAddressDto.value.lgCode;
+    inputAddressDto.value.machiazaId = backupAddressDto.value.machiazaId;
+    inputAddressDto.value.rsdtId = backupAddressDto.value.rsdtId;
+    inputAddressDto.value.blkId = backupAddressDto.value.blkId;
+
+    inputAddressDto.value.tel1 = backupAddressDto.value.tel1;
+    inputAddressDto.value.tel2 = backupAddressDto.value.tel2;
+    inputAddressDto.value.tel3 = backupAddressDto.value.tel3;
+    
     //非表示
     isInput.value = false;
 }
@@ -122,7 +149,8 @@ function recieveInputAddressInterface(sendDto: InputAddressDto) {
     <div v-if="isInput" class="overBackground"></div>
     <div v-if="isInput">
         <div class="overComponent">
-            <InputAddress v-if="isInput" :edit-dto="inputAddressDto" @send-cancel-input-address="recieveCancelInputAddress"
+            <InputAddress v-if="isInput" :edit-dto="inputAddressDto"
+                @send-cancel-input-address="recieveCancelInputAddress"
                 @send-input-address-interface="recieveInputAddressInterface">
                 ></InputAddress>
         </div>

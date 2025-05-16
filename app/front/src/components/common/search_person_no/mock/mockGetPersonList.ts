@@ -59,9 +59,10 @@ function createDto(index: number): PersonNoInterface {
 
     dto.inputName = nameDto;
 
-    dto.gyoushu = "建設";
-    dto.yakushoku = "一般職員";
-    dto.shokugyouUserWrite = "申告職業" + index;
+    dto.inputShokugyou.gyoushu = "建設";
+    dto.inputShokugyou.yakushoku = "一般職員";
+    dto.inputShokugyou.shokugyouUserWrite = "申告職業" + index;
+    dto.inputShokugyou.allShokugyou = "申告職業";
 
     return dto;
 }
