@@ -36,7 +36,7 @@ public class RefleshYearDataAccessObjectAndLogicController {
      * @return レスポンス(仮でStringメッセージ)
      */
     @GetMapping("/reflesh-year-data-access") // SUPPRESS CHECKSTYLE
-    public ResponseEntity<String> practice(final @RequestParam(name = "baseYear") int baseYear, final @RequestParam(name = "copyYear") int copyYear) {
+    public ResponseEntity<String> practice(final @RequestParam int baseYear, final @RequestParam int copyYear) {
 
         // JobParameterの設定
         JobParameters jobParameters = new JobParametersBuilder()

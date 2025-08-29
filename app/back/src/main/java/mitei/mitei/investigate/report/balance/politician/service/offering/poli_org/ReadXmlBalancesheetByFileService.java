@@ -54,7 +54,7 @@ public class ReadXmlBalancesheetByFileService {
         });
 
         ReadXmlBalancesheetResultDto resultDto = new ReadXmlBalancesheetResultDto();
-
+        
         // アップロード保存
         resultDto.setSaveStorageResultDto(saveStorageFileLogic.practiceText(readXmlByFileCapsuleDto.getFileName(),
                 readXmlByFileCapsuleDto.getFileContent(), readXmlByFileCapsuleDto.getCharset(),

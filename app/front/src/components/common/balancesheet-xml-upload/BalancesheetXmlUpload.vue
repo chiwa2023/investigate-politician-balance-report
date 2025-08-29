@@ -20,6 +20,8 @@ const readXmlResultDto: Ref<ReadXmlBalancesheetResultInterface> = ref(new ReadXm
 
 const cover070100Dto: Ref<Sheet070100CoverAndOrganizationDetailsInterface> = ref(new Sheet070100CoverAndOrganizationDetailsDto());
 
+const charset:Ref<string> = ref("Windows-31J");
+
 /**
  * ファイル選択ダイアログを表示する
  */
@@ -37,7 +39,7 @@ const readTextFile = async () => {
                 selectFileName.value = file.name;
 
                 const reader: FileReader = new FileReader();
-                reader.readAsText(file, "shift_jis");
+                reader.readAsText(file, charset.value);
                 reader.onload = async () => {
                     if (reader.result !== null) {
                         //alert(String(reader.result));
@@ -52,7 +54,7 @@ const readTextFile = async () => {
 
                         readXmlCapsuleDto.fileContent = String(reader.result);
                         readXmlCapsuleDto.fileName = file.name;
-                        readXmlCapsuleDto.charset = "Windows-31J";
+                        readXmlCapsuleDto.charset = charset.value;
 
                         // xmlを書証として保存、保存のない仮解析をして必要なところだけ戻す
                         const url = "http://localhost:9080/xml-balancesheet/read";
@@ -86,7 +88,11 @@ const readTextFile = async () => {
         政治資金収支報告書XMLファイル(SHUSHI.xml)を指定して読み取り<input ref="selectFileInput" type="file" accept=".xml"
             @change="readTextFile" style="visibility: hidden;"><br>
         &nbsp;<input v-model="selectFileName" type="text" disabled="true" style="width: 50%;"><button
-            @click="onReadButton" style="margin-left: 1%;">ファイルを指定</button><br>
+            @click="onReadButton" style="margin-left: 1%;">ファイルを指定</button> <span
+            class="left-space">文字コード</span>&nbsp;<select v-model="charset">
+            <option>Windows-31J</option>
+            <option>UTF-8</option>
+        </select><br>
     </div>
     <div class="left-area">
         <label>発行年</label>

@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import mitei.mitei.common.constants.blancesheet_report.OutcomeYoushikiKbnConstants;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.AllBookDto;
@@ -40,6 +42,10 @@ import mitei.mitei.investigate.report.balance.politician.repository.poli_org.bal
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 import mitei.mitei.investigate.report.balance.politician.util.FormatNaturalSearchTextUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
+import mitei.mitei.political.balancesheet.manage.kanrensha.dto.partner.PartnerCommonInfoDto;
+import mitei.mitei.political.balancesheet.manage.kanrensha.dto.partner.SearchPartnerHistoryCapsuleDto;
+import mitei.mitei.political.balancesheet.manage.kanrensha.dto.partner.SearchPartnerHistoryResultDto;
+import reactor.core.publisher.Mono;
 
 /**
  * 政治資金収支報告書の支出を登録する
@@ -233,22 +239,39 @@ public class InsertPoliticalOrganizationOutcomeAllY2022Logic {
 
         outcomeEntity.setAccrualDateValue(dateConvertUtil.practiceWarekiToLocalDate(outcomeEntity.getAccrualDate()));
 
-        // TODO 関連者入力は使用が決定次第追加する
-        // `relation_kbn_outcome` int DEFAULT NULL COMMENT '支払者関連者区分',
-        // `relation_person_id_outcome` bigint DEFAULT NULL COMMENT '支払者関連者Id(個人)',
-        // `relation_person_code_outcome` int DEFAULT NULL COMMENT '支払者関連者同一識別コード(個人)',
-        // `relation_person_name_outcome` varchar(210) DEFAULT NULL COMMENT
-        // '支払者関連者名称(個人)',
-        // `relation_corp_id_outcome` bigint DEFAULT NULL COMMENT '支払者関連者Id(法人)',
-        // `relation_corp_code_outcome` int DEFAULT NULL COMMENT '支払者関連者同一識別コード(法人)',
-        // `relation_corp_name_outcome` varchar(210) DEFAULT NULL COMMENT
-        // '支払者関連者Id(法人)',
-        // `relation_political_org_id_outcome` bigint DEFAULT NULL COMMENT
-        // '支払者関連者同一識別コード(政治団体)',
-        // `relation_political_org_code_outcome` int DEFAULT NULL COMMENT
-        // '支払者関連者名称(政治団体)',
-        // `relation_political_org_name_outcome` varchar(210) DEFAULT NULL COMMENT
-        // '支払者関連者名称(政治団体)',
+        SearchPartnerHistoryCapsuleDto searchCapsuleDto = new SearchPartnerHistoryCapsuleDto();
+        searchCapsuleDto.setPartnerName(outcomeEntity.getPartnerName());
+        searchCapsuleDto.setAllAddress(outcomeEntity.getPartnerJuusho());
+        String token = "eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE3NTY5OTA2NzksInN1YiI6IjU1NTU1QHNlaWppc2hpa2luLm5ldCIsImlhdCI6MTc1NjM4NTg3OX0.cOfvbWr3S1xn6dve-ly1BCMZPZnrxsIQtaOL1TCuIAjJQpnW-1gfsYhBseZiqoqkYBvRam6IbZ05jdt3uqor4qJMzXkVNLyhJmFIu7t0uJ6uwfmdpeCx30yUmAAwYTb6K4rDB7JWUvjZcG6EHVcZ-ADKx1OlfsymIlDvIs8eotKNmcyt9RUa3jViymwQ-lBvOkL8cDlD55zdnWSRayTYlQUxUMjWGoEbOPTFuJBLSSexUGpTYIUhCgoTUplmxliHi6Gsq5-cZ-TApP_H7RdtAzdHdZLg7_HrQkc5rOHhehFZmrLGjFRAx-84KL4RcbyVL5XiG3Qye0RYobjdKvkV-w";
+
+        SearchPartnerHistoryResultDto personResultDto = WebClient.create("http://localhost:6080/kanrenssha-list/search")
+                .post().header("X-AUTH-TOKEN", "Bearer " + token)
+                .body(Mono.just(searchCapsuleDto), SearchPartnerHistoryResultDto.class)
+                .accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(SearchPartnerHistoryResultDto.class)
+                .blockFirst();
+        final int resultOne = 1;
+        List<PartnerCommonInfoDto> listRelation = personResultDto.getListHistoryInfo();
+        if (listRelation.size() == resultOne) {
+            PartnerCommonInfoDto partnerDto = listRelation.get(0);
+            outcomeEntity.setRelationKbn(Integer.parseInt(String.valueOf(partnerDto.getKanrenshaKbn())));
+            switch (partnerDto.getKanrenshaKbn()) {
+                case 1:
+                    outcomeEntity.setRelationPersonNameOutcome(partnerDto.getPartnerName());
+                    outcomeEntity.setRelationPersonNameDelegate(partnerDto.getKanrenshaCode());
+                    break;
+                case 2:
+                    outcomeEntity.setRelationCorpNameOutcome(partnerDto.getPartnerName());
+                    outcomeEntity.setRelationPersonNameDelegate(partnerDto.getKanrenshaCode());
+                    break;
+                case 3:
+                    outcomeEntity.setRelationPoliticalOrgNameOutcome(partnerDto.getPartnerName());
+                    outcomeEntity.setRelationPersonNameDelegate(partnerDto.getKanrenshaCode());
+                    break;
+                default:
+                    // 何もしない
+                    break;
+            }
+        }
 
         // 自由検索 費目＋相手方氏名＋相手方住所
         StringBuilder builder = new StringBuilder();

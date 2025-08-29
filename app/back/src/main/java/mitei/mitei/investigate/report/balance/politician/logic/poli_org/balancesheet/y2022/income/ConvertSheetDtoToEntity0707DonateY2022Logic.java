@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 import mitei.mitei.common.constants.blancesheet_report.IncomeYoushikiKbnConstants;
@@ -13,6 +14,7 @@ import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Row07071
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070701DonatePersonDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070702DonateGroupDto;
 import mitei.mitei.common.publish.politician.balancesheet.report.dto.v5.Sheet070703DonatePoliticOrgDto;
+import mitei.mitei.external_api.report.balance.politician.dto.relation.RelationPersonDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.CheckPrivilegeDto;
 import mitei.mitei.investigate.report.balance.politician.dto.common_check.DataHistoryStatusConstants;
 import mitei.mitei.investigate.report.balance.politician.dto.political_organization.BalancesheetReportDocumentPoliticalPropertyDto;
@@ -20,29 +22,34 @@ import mitei.mitei.investigate.report.balance.politician.entity.poli_org.balance
 import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 import mitei.mitei.investigate.report.balance.politician.util.FormatNaturalSearchTextUtil;
 import mitei.mitei.investigate.report.balance.politician.util.SetTableDataHistoryUtil;
+import mitei.mitei.political.balancesheet.manage.kanrensha.dto.partner.PartnerCommonInfoDto;
+import mitei.mitei.political.balancesheet.manage.kanrensha.dto.partner.SearchPartnerHistoryCapsuleDto;
+import mitei.mitei.political.balancesheet.manage.kanrensha.dto.partner.SearchPartnerHistoryResultDto;
+import reactor.core.publisher.Mono;
+
+import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * 様式7その7寄附収入をEntity変換
  */
 @Component
 public class ConvertSheetDtoToEntity0707DonateY2022Logic {
-    
+
     /** 日付変換Utility */
     @Autowired
     private DateConvertUtil dateConvertUtil;
-    
+
     /** 自然検索用フォーマットUtility */
     @Autowired
     private FormatNaturalSearchTextUtil formatNaturalSearchTextUtil;
 
-
     /**
      * 登録作業を行う
      *
-     * @param documentCode 文書同一識別コード
-     * @param documentPropertyDto 文書属性Dto
+     * @param documentCode          文書同一識別コード
+     * @param documentPropertyDto   文書属性Dto
      * @param allSheet0707DonateDto その1からその3までの寄附情報
-     * @param checkPrivilegeDto 権限確認Dto
+     * @param checkPrivilegeDto     権限確認Dto
      * @return 収支報告書収入Entityリスト
      */
     public List<OfferingBalancesheetIncome2022Entity> practice(final Long documentCode,
@@ -57,7 +64,8 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
         Long pageTotal1 = sheet070701.getPageTotal();
         String sonotaTotal1 = sheet070701.getSonotaTotal();
         for (Row070711DonateDto rowDto : sheet070701.getList()) {
-            list.add(this.createEntity0700(documentCode, documentPropertyDto, IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_KOJIN,pageTotal1, sonotaTotal1, rowDto,
+            list.add(this.createEntity0700(documentCode, documentPropertyDto,
+                    IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_KOJIN, pageTotal1, sonotaTotal1, rowDto,
                     checkPrivilegeDto));
         }
 
@@ -67,7 +75,8 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
         Long pageTotal2 = sheet070702.getPageTotal();
         String sonotaTotal2 = sheet070702.getSonotaTotal();
         for (Row070711DonateDto rowDto : sheet070702.getList()) {
-            list.add(this.createEntity0700(documentCode, documentPropertyDto,IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_HOUJIN, pageTotal2, sonotaTotal2, rowDto,
+            list.add(this.createEntity0700(documentCode, documentPropertyDto,
+                    IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_HOUJIN, pageTotal2, sonotaTotal2, rowDto,
                     checkPrivilegeDto));
         }
 
@@ -78,7 +87,8 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
         String sonotaTotal3 = sheet070703.getSonotaTotal();
         for (Row070711DonateDto rowDto : sheet070703.getList()) {
 
-            list.add(this.createEntity0700(documentCode, documentPropertyDto,IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_SEIJIDANTAI, pageTotal3, sonotaTotal3, rowDto,
+            list.add(this.createEntity0700(documentCode, documentPropertyDto,
+                    IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_SEIJIDANTAI, pageTotal3, sonotaTotal3, rowDto,
                     checkPrivilegeDto));
         }
 
@@ -86,9 +96,9 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
     }
 
     private OfferingBalancesheetIncome2022Entity createEntity0700(final Long documentCode,
-            final BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto,final Integer youshikiEdaKbnKoumoku, final Long pageTotal,
-            final String sonotaTotal, final Row070711DonateDto rowDto,
-            final CheckPrivilegeDto checkPrivilegeDto) {
+            final BalancesheetReportDocumentPoliticalPropertyDto documentPropertyDto,
+            final Integer youshikiEdaKbnKoumoku, final Long pageTotal, final String sonotaTotal,
+            final Row070711DonateDto rowDto, final CheckPrivilegeDto checkPrivilegeDto) {
 
         OfferingBalancesheetIncome2022Entity incomeEntity = new OfferingBalancesheetIncome2022Entity();
 
@@ -101,7 +111,6 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
 
         incomeEntity.setPageTotal(pageTotal);
         incomeEntity.setSonotaTotal(sonotaTotal);
-        
 
         BeanUtils.copyProperties(rowDto, incomeEntity);
         /// ** 連番 */
@@ -111,8 +120,8 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
         /// ** 寄付者の名前 */
         // @JacksonXmlProperty(localName = "KIFUSYA_NM")
         // private String kifusha;
-        incomeEntity.setPartnerName(rowDto.getKifusha()); 
-        incomeEntity.setItemName(IncomeYoushikiKbnConstants.YOUSHIKI_KBN_07_TEXT); 
+        incomeEntity.setPartnerName(rowDto.getKifusha());
+        incomeEntity.setItemName(IncomeYoushikiKbnConstants.YOUSHIKI_KBN_07_TEXT);
 
         /// ** 金額 */
         // @JacksonXmlProperty(localName = "KINGAKU")
@@ -121,13 +130,12 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
         /// ** 発生日 */
         // @JacksonXmlProperty(localName = "DT")
         // private String accrualDate;
-        incomeEntity.setAccrualDateValue(dateConvertUtil.practiceWarekiToLocalDate(incomeEntity.getAccrualDate())); 
+        incomeEntity.setAccrualDateValue(dateConvertUtil.practiceWarekiToLocalDate(incomeEntity.getAccrualDate()));
 
         /// ** 住所 */
         // @JacksonXmlProperty(localName = "ADR")
         // private String jusho;
-        incomeEntity.setPartnerJuusho(rowDto.getJusho()); 
-        
+        incomeEntity.setPartnerJuusho(rowDto.getJusho());
 
         /// ** 職業 */
         // @JacksonXmlProperty(localName = "SYOKUGYO")
@@ -154,35 +162,91 @@ public class ConvertSheetDtoToEntity0707DonateY2022Logic {
         final int EDA2 = IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_HOUJIN;
         final int EDA3 = IncomeYoushikiKbnConstants.YOUSHIKI_SHUNYU_EDA_KBN_SEIJIDANTAI;
 
+        SearchPartnerHistoryCapsuleDto searchCapsuleDto = new SearchPartnerHistoryCapsuleDto();
+        searchCapsuleDto.setPartnerName(incomeEntity.getPartnerName());
+        searchCapsuleDto.setAllAddress(incomeEntity.getPartnerJuusho());
+        searchCapsuleDto.setRecognizedKey(incomeEntity.getShokugyou());
+        final int resultOne = 1;
+        String token = "eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE3NTY5OTA2NzksInN1YiI6IjU1NTU1QHNlaWppc2hpa2luLm5ldCIsImlhdCI6MTc1NjM4NTg3OX0.cOfvbWr3S1xn6dve-ly1BCMZPZnrxsIQtaOL1TCuIAjJQpnW-1gfsYhBseZiqoqkYBvRam6IbZ05jdt3uqor4qJMzXkVNLyhJmFIu7t0uJ6uwfmdpeCx30yUmAAwYTb6K4rDB7JWUvjZcG6EHVcZ-ADKx1OlfsymIlDvIs8eotKNmcyt9RUa3jViymwQ-lBvOkL8cDlD55zdnWSRayTYlQUxUMjWGoEbOPTFuJBLSSexUGpTYIUhCgoTUplmxliHi6Gsq5-cZ-TApP_H7RdtAzdHdZLg7_HrQkc5rOHhehFZmrLGjFRAx-84KL4RcbyVL5XiG3Qye0RYobjdKvkV-w";
         switch (youshikiEdaKbnKoumoku) {
-            case EDA1: 
+            case EDA1:
                 // 個人からのみ探す
+
+                searchCapsuleDto.setKanrenshaKbn((short) 1);
+
+                SearchPartnerHistoryResultDto personResultDto = WebClient
+                        .create("http://localhost:6080/kanrenssha-list/search").post()
+                        .header("X-AUTH-TOKEN", "Bearer " + token)
+                        .body(Mono.just(searchCapsuleDto), SearchPartnerHistoryResultDto.class)
+                        .accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(SearchPartnerHistoryResultDto.class)
+                        .blockFirst();
+
+                List<PartnerCommonInfoDto> listPerson = personResultDto.getListHistoryInfo();
+                if (resultOne == listPerson.size()) {
+                    PartnerCommonInfoDto partnerDto = listPerson.get(0);
+                    incomeEntity.setRelationPersonNameDelegate(partnerDto.getKanrenshaCode());
+                    incomeEntity.setRelationPersonNameIncome(partnerDto.getPartnerName());
+                    incomeEntity.setRelationKbn(Integer.parseInt(String.valueOf(partnerDto.getKanrenshaKbn())));
+                }
+                // MEMO 一意に特定できない場合はセットしていないが、画面編集などではこのリストを画面にそのまま持ち込む
+
                 break;
 
-            case EDA2: 
+            case EDA2:
                 // 法人からのみ探す
+                searchCapsuleDto.setKanrenshaKbn((short) 2);
+
+                SearchPartnerHistoryResultDto corpResultDto = WebClient
+                        .create("http://localhost:6080/kanrenssha-list/search").post()
+                        .header("X-AUTH-TOKEN", "Bearer " + token)
+                        .body(Mono.just(searchCapsuleDto), SearchPartnerHistoryResultDto.class)
+                        .accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(SearchPartnerHistoryResultDto.class)
+                        .blockFirst();
+
+                List<PartnerCommonInfoDto> listCorp = corpResultDto.getListHistoryInfo();
+                if (listCorp.size() == resultOne) {
+                    PartnerCommonInfoDto partnerDto = listCorp.get(0);
+                    incomeEntity.setRelationPersonNameDelegate(partnerDto.getKanrenshaCode());
+                    incomeEntity.setRelationCorpNameInccome(partnerDto.getPartnerName());
+                    incomeEntity.setRelationKbn(Integer.parseInt(String.valueOf(partnerDto.getKanrenshaKbn())));
+                }
 
                 break;
 
-            case EDA3: 
+            case EDA3:
                 // 政治団体からのみ探す
+                searchCapsuleDto.setKanrenshaKbn((short) 3);
+
+                SearchPartnerHistoryResultDto poliOrgResultDto = WebClient
+                        .create("http://localhost:6080/kanrenssha-list/search").post()
+                        .header("X-AUTH-TOKEN", "Bearer " + token)
+                        .body(Mono.just(searchCapsuleDto), SearchPartnerHistoryResultDto.class)
+                        .accept(MediaType.APPLICATION_JSON).retrieve().bodyToFlux(SearchPartnerHistoryResultDto.class)
+                        .blockFirst();
+
+                List<PartnerCommonInfoDto> listPoliOrg = poliOrgResultDto.getListHistoryInfo();
+                if (listPoliOrg.size() == resultOne) {
+                    PartnerCommonInfoDto partnerDto = listPoliOrg.get(0);
+                    incomeEntity.setRelationPersonNameDelegate(partnerDto.getKanrenshaCode());
+                    incomeEntity.setRelationPoliticalOrgNameIncome(partnerDto.getPartnerName());
+                    incomeEntity.setRelationKbn(Integer.parseInt(String.valueOf(partnerDto.getKanrenshaKbn())));
+                }
 
                 break;
 
             default:
                 throw new IllegalArgumentException("Unexpected value: " + youshikiEdaKbnKoumoku);
         }
-        
 
         // 自由検索 項目名称+相手方名称+相手方住所
         StringBuilder builder = new StringBuilder();
-        builder.append(incomeEntity.getItemName())
-        .append(incomeEntity.getPartnerName()).append(incomeEntity.getPartnerJuusho());
+        builder.append(incomeEntity.getItemName()).append(incomeEntity.getPartnerName())
+                .append(incomeEntity.getPartnerJuusho());
         incomeEntity.setSearchWords(formatNaturalSearchTextUtil.practice(builder.toString()));
-        
+
         SetTableDataHistoryUtil.practice(checkPrivilegeDto, incomeEntity, DataHistoryStatusConstants.INSERT);
 
         return incomeEntity;
     }
-
+    
 }

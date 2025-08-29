@@ -75,8 +75,6 @@ public class UpdateFinishedWkTblBalancesheetTasklet implements Tasklet {
                     }
                 }else {
                     // TODO 対処方法が決定次第修正する
-                    //System.out.println("---------------");
-                    //System.out.println("Id呼び出し不可" + entity.getTaskPlanBalancesheetDetailId());
                 }
                 
 

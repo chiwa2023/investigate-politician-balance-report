@@ -1,11 +1,11 @@
 package mitei.mitei.investigate.report.balance.politician.logic.poli_org.balancesheet.y2022.income;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,7 +36,7 @@ import mitei.mitei.investigate.report.balance.politician.util.DateConvertUtil;
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
-class ConvertSheetDtoToEntity0707DonateLogicTest {
+class ConvertSheetDtoToEntity0707DonateY2022LogicTest {
     // CHECKSTYLE:OFF MagicNumber
 
     /** テスト対象 */
@@ -47,7 +47,7 @@ class ConvertSheetDtoToEntity0707DonateLogicTest {
     @Autowired
     private DateConvertUtil dateConvertUtil;
 
-    @Test
+    @org.junit.jupiter.api.Test
     @Tag("TableTruncate")
     void testPractice() { // NOPMD
 
